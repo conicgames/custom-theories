@@ -1,13 +1,13 @@
 [
   {
-    "url": "https://raw.githubusercontent.com/conicgames/custom-theories/main/official/test.js",
+    "relative_url": "official/test.js",
     "id": "official_recurrence_relation",
     "name": "Recurrence Relation*",
     "authors": "Gilles-Philippe Paillé",
     "description": "A implementation of the 'Recurrence Relation' theory from the game."
   },
   {
-    "url": "https://raw.githubusercontent.com/conicgames/custom-theories/main/nonofficial/test.js",
+    "relative_url": "nonofficial/test.js",
     "id": "nonofficial_differential_calculus",
     "name": "Differential Calculus*",
     "authors": "Gilles-Philippe Paillé",
