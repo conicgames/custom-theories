@@ -4,6 +4,7 @@
     "id": "official_recurrence_relation",
     "name": "Recurrence Relation*",
     "authors": "Gilles-Philippe Paillé",
+    "version": "1",
     "description": "A implementation of the 'Recurrence Relation' theory from the game."
   },
   {
@@ -11,6 +12,7 @@
     "id": "nonofficial_differential_calculus",
     "name": "Differential Calculus*",
     "authors": "Gilles-Philippe Paillé",
+    "version": "1",
     "description": "A implementation of the 'Differential Calculus' theory from the game."
   }
 ]
