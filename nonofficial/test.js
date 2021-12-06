@@ -4,7 +4,7 @@ import { parseBigNumber, BigNumber } from "../api/BigNumber";
 import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-var id = "nonofficial_differential_calculus"
+var id = "differential_calculus"
 var name = "Differential Calculus*";
 var description = "A implementation of the 'Differential Calculus' theory from the game.";
 var authors = "Gilles-Philippe Paillé";
