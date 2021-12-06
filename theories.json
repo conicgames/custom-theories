@@ -1,7 +1,7 @@
 [
   {
     "relative_url": "official/test.js",
-    "id": "official_recurrence_relation",
+    "id": "recurrence_relation",
     "name": "Recurrence Relation*",
     "authors": "Gilles-Philippe Paillé",
     "version": "1",
@@ -9,7 +9,7 @@
   },
   {
     "relative_url": "nonofficial/test.js",
-    "id": "nonofficial_differential_calculus",
+    "id": "differential_calculus",
     "name": "Differential Calculus*",
     "authors": "Gilles-Philippe Paillé",
     "version": "2",
