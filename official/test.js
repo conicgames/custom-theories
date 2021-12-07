@@ -5,7 +5,7 @@ import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
 var id = "recurrence_relation";
-var name = "Recurrence Relation*";
+var name = "frongl bongl*";
 var description = "A implementation of the 'Recurrence Relation' theory from the game.";
 var authors = "Gilles-Philippe Paillé";
 var version = 3;
