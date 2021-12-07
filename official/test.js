@@ -8,7 +8,7 @@ var id = "recurrence_relation";
 var name = "Recurrence Relation*";
 var description = "A implementation of the 'Recurrence Relation' theory from the game.";
 var authors = "Gilles-Philippe Paillé";
-var version = 1;
+var version = 2;
 
 var rhoN = BigNumber.ZERO;
 var rhoNm1 = BigNumber.ZERO;
