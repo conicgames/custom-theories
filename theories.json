@@ -4,7 +4,7 @@
     "id": "recurrence_relation",
     "name": "Recurrence Relation*",
     "authors": "Gilles-Philippe Paillé",
-    "version": "2",
+    "version": "3",
     "description": "A implementation of the 'Recurrence Relation' theory from the game."
   },
   {
