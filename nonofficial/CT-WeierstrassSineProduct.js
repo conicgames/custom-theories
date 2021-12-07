@@ -145,6 +145,7 @@ var setInternalState = (state) => {
 
 var postPublish = () => {
     q = BigNumber.ONE;
+    updateSineRatio();
 }
 
 var getPrimaryEquation = () => {
