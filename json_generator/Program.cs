@@ -52,7 +52,7 @@ namespace UpdateJson
                 json.Append("    \"name\": \"" + Escape(descriptor.Name) + "\",\n");
                 json.Append("    \"description\": \"" + Escape(descriptor.Description) + "\",\n");
                 json.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
-                json.Append("    \"version\": \"" + Escape(descriptor.Version) + "\",\n");
+                json.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
                 json.Append("  }");
 
                 if (descriptor != descriptors.Last())
