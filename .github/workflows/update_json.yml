@@ -1,0 +1,17 @@
+name: Update theories.json
+
+on: workflow_dispatch
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+      - run: dotnet publish .\json_generator\json_generator.csproj -c Release -o bin
+      - run: .\bin\json_generator.exe
