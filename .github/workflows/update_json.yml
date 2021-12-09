@@ -15,3 +15,10 @@ jobs:
           dotnet-version: '5.0.x'
       - run: dotnet publish .\json_generator\json_generator.csproj -c Release -o bin
       - run: .\bin\json_generator.exe
+      - uses: EndBug/add-and-commit@v7
+        with:
+          add: 'theories.json'
+          default_author: github_actor
+          message: 'Updated theories.json'
+          pathspec_error_handling: exitImmediately
+          pull: 'NO-PULL'
