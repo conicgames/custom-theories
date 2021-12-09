@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace UpdateJson
@@ -39,22 +40,12 @@ namespace UpdateJson
                 return -1;
             }
 
-            bool isFirst = true;
             var json = new StringBuilder();
 
             json.Append("[\n");
 
             foreach (var descriptor in descriptors)
             {
-                if (!isFirst)
-                {
-                    json.Append(",\n");
-                }
-                else
-                {
-                    isFirst = false;
-                }
-
                 json.Append("  {\n");
                 json.Append("    \"relative_url\": \"" + Escape(descriptor.RelativeUrl) + "\",\n");
                 json.Append("    \"id\": \"" + Escape(descriptor.Id) + "\",\n");
@@ -63,6 +54,9 @@ namespace UpdateJson
                 json.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
                 json.Append("    \"version\": \"" + Escape(descriptor.Version) + "\",\n");
                 json.Append("  }");
+
+                if (descriptor != descriptors.Last())
+                    json.Append(",\n");
             }
 
             json.Append("\n]");
