@@ -68,6 +68,7 @@ namespace UpdateJson
             json.Append("\n]");
 
             File.WriteAllText("theories.json", json.ToString());
+            Console.WriteLine("Success!");
 
             return 0;
         }
