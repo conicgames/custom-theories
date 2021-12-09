@@ -4,10 +4,11 @@ import { parseBigNumber, BigNumber } from "../api/BigNumber";
 import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-var id = "official_recurrence_relation";
+var id = "recurrence_relation";
 var name = "Recurrence Relation*";
-var description = "A implementation of the 'Recurrence Relation' theory from the game."
-var authors = "Gilles-Philippe Paillé"
+var description = "A implementation of the 'Recurrence Relation' theory from the game.";
+var authors = "Gilles-Philippe Paillé";
+var version = 3;
 
 var rhoN = BigNumber.ZERO;
 var rhoNm1 = BigNumber.ZERO;
@@ -203,7 +204,7 @@ var getTertiaryEquation = () => Localization.format(stringTickspeed, getTickspee
 
 var getPublicationMultiplier = (tau) => tau.pow(0.164) / BigNumber.THREE;
 var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.164}}{3}";
-var getTau = () => currency.value;
+var getTau = () => BigNumber.ZERO;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var postPublish = () => {
