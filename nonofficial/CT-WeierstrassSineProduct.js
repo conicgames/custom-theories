@@ -1,4 +1,4 @@
-﻿import { CustomCost, ExponentialCost, FirstFreeCost } from "./api/Costs";
+import { CustomCost, ExponentialCost, FirstFreeCost } from "./api/Costs";
 import { Localization } from "./api/Localization";
 import { parseBigNumber, BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
@@ -13,6 +13,10 @@ var version = 1;
 var q = BigNumber.ONE;
 var chi = BigNumber.ONE;
 var S = BigNumber.ZERO;
+
+// χ and s_n(χ)/sin(χ) don't need to be evaluated at each tick; only when c1 or n is bought or chiDivN milestone
+var updateSineRatio_flag = true;
+
 
 var q1, q2, n, c1, c2;
 var q1Exp, c2Term, chiDivN;
@@ -49,7 +53,7 @@ var init = () => {
         n = theory.createUpgrade(2, currency, new ExponentialCost(20, 3.36843));
         n.getDescription = (amount) => Utils.getMath(getDesc(n.level));
         n.getInfo = (amount) => Utils.getMathTo(getInfo(n.level), getInfo(n.level + amount));
-        n.bought = (_) => updateSineRatio();
+        n.bought = (_) => updateSineRatio_flag = true;
     }
     
     // c1
@@ -59,7 +63,7 @@ var init = () => {
         c1 = theory.createUpgrade(3, currency, new ExponentialCost(50, 3.36843/1.5));
         c1.getDescription = (amount) => Utils.getMath(getDesc(c1.level));
         c1.getInfo = (amount) => Utils.getMathTo(getInfo(c1.level), getInfo(c1.level + amount));
-        c1.bought = (_) => updateSineRatio();
+        c1.bought = (_) => updateSineRatio_flag = true;
     }
 
     // c2
@@ -101,7 +105,7 @@ var init = () => {
             chiDivN.description = Utils.getMathTo("c_1 + n" + (chiDivN.level > 0 ? ("/3^{" + chiDivN.level + "}") : ""), "c_1 + n/3^{" + (chiDivN.level + (chiDivN.level == 3 ? 0 : 1)) + "}");
             chiDivN.info = chiDivN.description;
         }
-        chiDivN.boughtOrRefunded = (_) => {theory.invalidateSecondaryEquation(); updateChiDescAndInfo(); updateSineRatio();}
+        chiDivN.boughtOrRefunded = (_) => {theory.invalidateSecondaryEquation(); updateChiDescAndInfo(); updateSineRatio_flag = true;}
         updateChiDescAndInfo();
     }
 
@@ -112,13 +116,28 @@ var updateAvailability = () => {
     c2.isAvailable = c2Term.level > 0;
 }
 
-const weierstrassProd = (m,x) => m < 1 ? 0 : [...Array(m).keys()].reduce((p,k) => p * (BigNumber.ONE - (x / BigNumber.PI / BigNumber.from(k+1)).pow(BigNumber.TWO)), BigNumber.ONE);
-
-var updateSineRatio = () => {
-    let vn = getN(n.level);
-    let vc1 = getC1(c1.level);
-    chi = BigNumber.PI * vc1 * vn / (vc1 + vn / BigNumber.THREE.pow(BigNumber.from(chiDivN.level))) + BigNumber.ONE;
-    S = chi*weierstrassProd(n.level,chi)/chi.sin();
+// fastest and most stable implementation so far
+const weierstrassProd = (m,x) => {
+    if (m < 1) return 0;
+    let sign = 1 - 2*(Math.floor(Math.abs(x)/Math.PI)%2),
+        result = 0,
+        remainder = m%4,
+        limit = Math.floor(m/4),
+        X = (x/Math.PI)**2
+        a = 4*X,        a2 = a*a,
+        b = a*(X-1),    b2 = b*b,
+        ab = a*b;
+    for (let k = 0; k < remainder; ++k) {
+        result += Math.log10(Math.abs(1 - X/(m-k)/(m-k)));
+    }
+    for (let k = 1; k <= limit; ++k) {
+        let w = 8*k - 3,
+            cpd = w*w + 3,
+            ctd = (cpd - 4)*(cpd - 12)/4;
+            num = b*(cpd*cpd - 2*ctd) - a*ctd*cpd - ab*cpd + a2*ctd + b2;
+        result +=  Math.log10(Math.abs(1 + num/ctd/ctd));
+    }
+    return sign * BigNumber.TEN.pow(result);
 }
 
 var tick = (elapsedTime, multiplier) => {
@@ -127,6 +146,13 @@ var tick = (elapsedTime, multiplier) => {
     let vq1 = getQ1(q1.level).pow(getQ1Exp(q1Exp.level));
     let vq2 = getQ2(q2.level);
     let vc2 = c2Term.level > 0 ? getC2(c2.level) : BigNumber.ONE;
+    if (updateSineRatio_flag) {
+        let vn = getN(n.level);
+        let vc1 = getC1(c1.level);
+        chi = BigNumber.PI * vc1 * vn / (vc1 + vn / BigNumber.THREE.pow(BigNumber.from(chiDivN.level))) + BigNumber.ONE;
+        S = chi*weierstrassProd(n.level,chi.toNumber())/chi.sin();
+        updateSineRatio_flag = false;
+    }
     let dq = dt * S * vc2;
 
     q = q + dq.max(BigNumber.ZERO);
@@ -140,12 +166,12 @@ var getInternalState = () => q.toString();
 var setInternalState = (state) => {
     let values = state.split(" ");
     if (values.length > 0) q = parseBigNumber(values[0]);
-    updateSineRatio();
+    updateSineRatio_flag = true;
 }
 
 var postPublish = () => {
     q = BigNumber.ONE;
-    updateSineRatio();
+    updateSineRatio_flag = true;
 }
 
 var getPrimaryEquation = () => {
