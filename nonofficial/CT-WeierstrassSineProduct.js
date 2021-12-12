@@ -116,30 +116,6 @@ var updateAvailability = () => {
     c2.isAvailable = c2Term.level > 0;
 }
 
-// fastest and most stable implementation so far
-const weierstrassProd = (m,x) => {
-    if (m < 1) return 0;
-    let sign = 1 - 2*(Math.floor(Math.abs(x)/Math.PI)%2),
-        result = 0,
-        remainder = m%4,
-        limit = Math.floor(m/4),
-        X = (x/Math.PI)**2
-        a = 4*X,        a2 = a*a,
-        b = a*(X-1),    b2 = b*b,
-        ab = a*b;
-    for (let k = 0; k < remainder; ++k) {
-        result += Math.log10(Math.abs(1 - X/(m-k)/(m-k)));
-    }
-    for (let k = 1; k <= limit; ++k) {
-        let w = 8*k - 3,
-            cpd = w*w + 3,
-            ctd = (cpd - 4)*(cpd - 12)/4;
-            num = b*(cpd*cpd - 2*ctd) - a*ctd*cpd - ab*cpd + a2*ctd + b2;
-        result +=  Math.log10(Math.abs(1 + num/ctd/ctd));
-    }
-    return sign * BigNumber.TEN.pow(result);
-}
-
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime*multiplier);
     let bonus = theory.publicationMultiplier;
@@ -150,7 +126,7 @@ var tick = (elapsedTime, multiplier) => {
         let vn = getN(n.level);
         let vc1 = getC1(c1.level);
         chi = BigNumber.PI * vc1 * vn / (vc1 + vn / BigNumber.THREE.pow(BigNumber.from(chiDivN.level))) + BigNumber.ONE;
-        S = chi*weierstrassProd(n.level,chi.toNumber())/chi.sin();
+        S = Utils.getWeierstrassSineProd(n.level,chi.toNumber())/chi.sin();
         updateSineRatio_flag = false;
     }
     let dq = dt * S * vc2;
@@ -166,6 +142,7 @@ var getInternalState = () => q.toString();
 var setInternalState = (state) => {
     let values = state.split(" ");
     if (values.length > 0) q = parseBigNumber(values[0]);
+    updateChiDescAndInfo();
     updateSineRatio_flag = true;
 }
 
@@ -176,7 +153,7 @@ var postPublish = () => {
 
 var getPrimaryEquation = () => {
     theory.primaryEquationHeight = 120;
-    let result = "\\begin{matrix} s_n(x) := x\\cdot\\displaystyle\\prod_{k=1}^n\\left(1-\\frac{x}{k\\pi}^2\\right) \\\\"
+    let result = "\\begin{matrix} s_n(x) := x\\cdot\\displaystyle\\prod_{k=1}^n\\left(1-\\frac{x}{k\\pi}^{\\ 2}\\right) \\\\"
     result += "\\dot{\\rho}=q_1";
     if (q1Exp.level == 1) result += "^{1.01}";
     if (q1Exp.level == 2) result += "^{1.02}";
