@@ -44,21 +44,8 @@ namespace UpdateJson
 
             foreach (var descriptor in descriptors)
             {
-                // Write aggregate info
-                aggregateFile.Append("  {\n");
-                aggregateFile.Append("    \"relative_url\": \"" + Escape(descriptor.RelativeUrl) + "\",\n");
-                aggregateFile.Append("    \"id\": \"" + Escape(descriptor.Id) + "\",\n");
-                aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
-                aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
-                aggregateFile.Append("  }");
-
-                if (descriptor != descriptors.Last())
-                    aggregateFile.Append(",\n");
-
-                // Write individual info
-                var individualFile = new StringBuilder();
-
-                void writeTranslations(Func<string, string> getTranslation)
+                // Utility function to enumerate translations of a field
+                void writeTranslations(StringBuilder file, Func<string, string> getTranslation, string indent)
                 {
                     string safeGetTranslation(string language)
                     {
@@ -76,8 +63,8 @@ namespace UpdateJson
 
                     var defaultTranslation = safeGetTranslation("en");
 
-                    individualFile.Append("{\n");
-                    individualFile.Append("    \"default\": \"" + Escape(defaultTranslation) + "\"");
+                    file.Append(indent);
+                    file.Append("\"default\": \"" + Escape(defaultTranslation) + "\"");
 
                     foreach (var language in languages)
                     {
@@ -85,21 +72,34 @@ namespace UpdateJson
 
                         if (translation != defaultTranslation)
                         {
-                            individualFile.Append(",\n");
-                            individualFile.Append("    \"" + language + "\": \"" + Escape(translation) + "\"");
+                            file.Append(",\n");
+                            file.Append(indent);
+                            file.Append("\"" + language + "\": \"" + Escape(translation) + "\"");
                         }
                     }
-
-                    individualFile.Append("\n  }");
                 }
 
+                // Write aggregate info
+                aggregateFile.Append("  {\n");
+                aggregateFile.Append("    \"relative_url\": \"" + Escape(descriptor.RelativeUrl) + "\",\n");
+                aggregateFile.Append("    \"id\": \"" + Escape(descriptor.Id) + "\",\n");
+                aggregateFile.Append("    \"name\": {\n");
+                writeTranslations(aggregateFile, descriptor.GetName, "      ");
+                aggregateFile.Append("\n    },\n");
+                aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
+                aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
+                aggregateFile.Append("  }");
+
+                if (descriptor != descriptors.Last())
+                    aggregateFile.Append(",\n");
+
+                // Write individual info
+                var individualFile = new StringBuilder();
+
                 individualFile.Append("{\n");
-                individualFile.Append("  \"name\": ");
-                writeTranslations(descriptor.GetName);
-                individualFile.Append(",\n");
-                individualFile.Append("  \"description\": ");
-                writeTranslations(descriptor.GetDescription);
-                individualFile.Append("\n");
+                individualFile.Append("  \"description\": {\n");
+                writeTranslations(individualFile, descriptor.GetDescription, "    ");
+                individualFile.Append("\n  }\n");
                 individualFile.Append("}");
 
                 // Change extension to json
