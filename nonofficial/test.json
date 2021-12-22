@@ -1,0 +1,8 @@
+{
+  "name": {
+    "default": "Differential Calculus*"
+  },
+  "description": {
+    "default": "A implementation of the 'Differential Calculus' theory from the game."
+  }
+}
