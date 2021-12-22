@@ -8,6 +8,7 @@ var id = "recurrence_relation";
 var name = "Recurrence Relation*";
 var getName = (l) => l == "fr" ? "Relation de récurrence" : null;
 var description = "A implementation of the 'Recurrence Relation' theory from the game.";
+var getDescription = (l) => l == "fr" ? "Une implémentation de la théorie 'Relation de Récurrence' du jeu." : null;
 var authors = "Gilles-Philippe Paillé";
 var version = 3;
 
