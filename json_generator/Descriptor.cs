@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace UpdateJson
 {
@@ -8,8 +6,8 @@ namespace UpdateJson
     {
         public string RelativeUrl { get; set; } = null;
         public string Id { get; set; } = null;
-        public string Name { get; set; } = null;
-        public string Description { get; set; } = null;
+        public Func<string, string> GetName = null;
+        public Func<string, string> GetDescription = null;
         public string Authors { get; set; } = null;
         public string Version { get; set; } = "1";
     }

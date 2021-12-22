@@ -1,6 +1,8 @@
 ﻿using Jint;
+using Jint.Native;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace UpdateJson
 {
@@ -8,15 +10,33 @@ namespace UpdateJson
     {
         public static Descriptor Parse(string script)
         {
+            // Extract only the lines we care about
             var nodes = GetDeclarationNodes(script);
-            var engine = new Jint.Engine().Execute(new Esprima.Ast.Script(nodes, false));
+
+            // Evaluate selected lines
+            var engine = new Jint.Engine(cfg => cfg.Culture(CultureInfo.GetCultureInfo("en-US")));
+            engine.Execute(new Esprima.Ast.Script(nodes, false));
+
+            // Name & Description fields can be either static or dynamic
+            TryGetString(engine, "name", out string name);
+            TryGetString(engine, "description", out string description);
+            TryGetValue(engine, "getName", out JsValue getName);
+            TryGetValue(engine, "getDescription", out JsValue getDescription);
+
+            if (name == null && getName == null)
+                throw new Exception("The theory must either provide 'name' or 'getName'");
+
+            if (description == null && getDescription == null)
+                throw new Exception("The theory must either provide 'description' or 'getDescription'");
+
+            // Extract values from the evaluation
             return new Descriptor()
             {
-                Id = GetValue(engine, "id"),
-                Name = GetValue(engine, "name"),
-                Description = GetValue(engine, "description"),
-                Authors = GetValue(engine, "authors"),
-                Version = TryGetValue(engine, "version", out string versionStr) && int.TryParse(versionStr, out int version) ? version.ToString() : "1",
+                Id = GetString(engine, "id"),
+                Authors = GetString(engine, "authors"),
+                GetName = (l) => GetTranslation(engine, "name", l, name, getName),
+                GetDescription = (l) => GetTranslation(engine, "description", l, description, getDescription),
+                Version = TryGetString(engine, "version", out string versionStr) && int.TryParse(versionStr, out int version) ? version.ToString() : "1",
             };
         }
 
@@ -41,32 +61,74 @@ namespace UpdateJson
                         AssertLiterals(identifier.Name, variableDeclarator.Init);
                         nodes.Add(element);
                     }
+                    else if (identifier.Name == "getName" ||
+                             identifier.Name == "getDescription")
+                    {
+                        nodes.Add(element);
+                    }
                 }
             }
 
             return Esprima.Ast.NodeList.Create(nodes);
         }
 
-        private static bool TryGetValue(Jint.Engine engine, string name, out string outValue)
+        private static bool TryGetValue(Jint.Engine engine, string name, out JsValue value)
         {
-            outValue = null;
-            var value = engine.GetValue(name);
+            value = engine.GetValue(name);
 
             if (value.IsUndefined() || value.IsNull())
+            {
+                value = null;
                 return false;
+            }
 
-            outValue = value.ToString();
             return true;
         }
 
-        private static string GetValue(Jint.Engine engine, string name)
+        private static JsValue GetValue(Jint.Engine engine, string name)
         {
-            var value = engine.GetValue(name);
+            if (!TryGetValue(engine, name, out JsValue value))
+                throw new Exception("The symbol \"" + name + "\" is required.");
 
-            if (value.IsUndefined() || value.IsNull())
-                ThrowRequiredParameter(name);
+            return value;
+        }
 
-            return value.ToString();
+        private static bool TryGetString(Jint.Engine engine, string name, out string value)
+        {
+            if (TryGetValue(engine, name, out JsValue jsValue))
+            {
+                value = jsValue.ToString();
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        private static string GetString(Jint.Engine engine, string name)
+        {
+            return GetValue(engine, name)?.ToString() ?? null;
+        }
+
+        private static string GetTranslation(Jint.Engine engine, string name, string language, string staticValue, JsValue dynamicValue)
+        {
+            string result = null;
+
+            if (dynamicValue != null)
+            {
+                var dynamicResult = engine.Invoke(dynamicValue, new[] { JsValue.FromObject(engine, language) });
+
+                if (!dynamicResult.IsNull() && !dynamicResult.IsUndefined())
+                    result = dynamicResult.ToString();
+            }
+
+            if (string.IsNullOrEmpty(result))
+                result = staticValue;
+
+            if (string.IsNullOrEmpty(result))
+                throw new Exception("The theory " + name + " cannot be null. Language: \"" + language + "\".");
+
+            return result;
         }
 
         private static void AssertLiterals(string name, Esprima.Ast.Node node)
@@ -82,11 +144,6 @@ namespace UpdateJson
 
             if (node.Type != Esprima.Ast.Nodes.Literal)
                 ThrowInvalidLiteral(name);
-        }
-
-        private static void ThrowRequiredParameter(string name)
-        {
-            throw new Exception("The variable \"" + name + "\" is required.");
         }
 
         private static void ThrowInvalidLiteral(string name)
