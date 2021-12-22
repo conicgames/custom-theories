@@ -21,7 +21,8 @@
     "relative_url": "nonofficial/recurrence_relation.js",
     "id": "recurrence_relation",
     "name": {
-      "default": "Recurrence Relation*"
+      "default": "Recurrence Relation*",
+      "fr": "Relation de récurrence"
     },
     "authors": "Gilles-Philippe Paillé",
     "version": "3"
