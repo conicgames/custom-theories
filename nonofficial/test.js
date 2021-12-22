@@ -9,6 +9,7 @@ var name = "Differential Calculus*";
 var description = "A implementation of the 'Differential Calculus' theory from the game.";
 var authors = "Gilles-Philippe Paillé";
 var version = 2;
+var permissions = Permissions.PERFORM_GAME_ACTIONS;
 
 var currency;
 var q1 = BigNumber.ZERO, q2 = BigNumber.ONE, q3 = BigNumber.ONE, q4 = BigNumber.ONE;
