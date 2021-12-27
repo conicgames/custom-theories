@@ -127,7 +127,7 @@ var gamma = (x) => (BigNumber.TWO*BigNumber.PI).sqrt()*(x/BigNumber.E*(BigNumber
 var sineRatio = (n,x) => gamma(n+BigNumber.ONE+x) * gamma(n+BigNumber.FOUR-x) / (gamma(n+BigNumber.ONE).pow(BigNumber.TWO) * (n+BigNumber.ONE-x) * (n+BigNumber.TWO-x) * (n+BigNumber.THREE-x));
 
 var tick = (elapsedTime, multiplier) => {
-    let dt = BigNumber.from(100*elapsedTime*multiplier);
+    let dt = BigNumber.from(elapsedTime*multiplier);
     let bonus = theory.publicationMultiplier;
     let vq1 = getQ1(q1.level).pow(getQ1Exp(q1Exp.level));
     let vq2 = getQ2(q2.level);
