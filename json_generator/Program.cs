@@ -11,9 +11,11 @@ namespace UpdateJson
         static int Main(string[] args)
         {
             var folders = new List<string>() { "official", "nonofficial" };
+            var languages = new List<string>() { "en", "ar", "zh-Hans", "zh-Hant", "cs", "de", "es", "fa", "fr", "he", "id", "it", "ja", "ko", "lv", "hu", "nl", "no", "pl", "pt-br", "pt", "ru", "uk", "sk", "fi", "vi", "tr" };
             var descriptors = new List<Descriptor>();
             bool hasError = false;
 
+            // Parse descriptors
             foreach (var folder in folders)
             {
                 foreach (string file in Directory.EnumerateFiles(folder, "*.js", SearchOption.AllDirectories))
@@ -34,34 +36,93 @@ namespace UpdateJson
                 }
             }
 
+            // Write descriptors to memory in json format
+            var aggregateFile = new StringBuilder();
+            var individualFiles = new Dictionary<string, StringBuilder>();
+
+            aggregateFile.Append("[\n");
+
+            foreach (var descriptor in descriptors)
+            {
+                // Utility function to enumerate translations of a field
+                void writeTranslations(StringBuilder file, Func<string, string> getTranslation, string indent)
+                {
+                    string safeGetTranslation(string language)
+                    {
+                        try
+                        {
+                            return getTranslation(language);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Could not parse '" + descriptor.RelativeUrl + "': " + e.Message);
+                            hasError = true;
+                            return "";
+                        }
+                    }
+
+                    var defaultTranslation = safeGetTranslation("en");
+
+                    file.Append(indent);
+                    file.Append("\"default\": \"" + Escape(defaultTranslation) + "\"");
+
+                    foreach (var language in languages)
+                    {
+                        var translation = safeGetTranslation(language);
+
+                        if (translation != defaultTranslation)
+                        {
+                            file.Append(",\n");
+                            file.Append(indent);
+                            file.Append("\"" + language + "\": \"" + Escape(translation) + "\"");
+                        }
+                    }
+                }
+
+                // Write aggregate info
+                aggregateFile.Append("  {\n");
+                aggregateFile.Append("    \"relative_url\": \"" + Escape(descriptor.RelativeUrl) + "\",\n");
+                aggregateFile.Append("    \"id\": \"" + Escape(descriptor.Id) + "\",\n");
+                aggregateFile.Append("    \"name\": {\n");
+                writeTranslations(aggregateFile, descriptor.GetName, "      ");
+                aggregateFile.Append("\n    },\n");
+                aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
+                aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
+                aggregateFile.Append("  }");
+
+                if (descriptor != descriptors.Last())
+                    aggregateFile.Append(",\n");
+
+                // Write individual info
+                var individualFile = new StringBuilder();
+
+                individualFile.Append("{\n");
+                individualFile.Append("  \"description\": {\n");
+                writeTranslations(individualFile, descriptor.GetDescription, "    ");
+                individualFile.Append("\n  }\n");
+                individualFile.Append("}");
+
+                // Change extension to json
+                var filename = System.IO.Path.ChangeExtension(descriptor.RelativeUrl, ".json");
+
+                individualFiles.Add(filename, individualFile);
+            }
+
+            aggregateFile.Append("\n]");
+
+            // Early quit if any error were encountered
             if (hasError)
             {
                 Console.WriteLine("One or more error occured. The json file was not generated.");
                 return -1;
             }
 
-            var json = new StringBuilder();
+            // Commit descriptors to files
+            File.WriteAllText("theories.json", aggregateFile.ToString());
 
-            json.Append("[\n");
+            foreach (var file in individualFiles)
+                File.WriteAllText(file.Key, file.Value.ToString());
 
-            foreach (var descriptor in descriptors)
-            {
-                json.Append("  {\n");
-                json.Append("    \"relative_url\": \"" + Escape(descriptor.RelativeUrl) + "\",\n");
-                json.Append("    \"id\": \"" + Escape(descriptor.Id) + "\",\n");
-                json.Append("    \"name\": \"" + Escape(descriptor.Name) + "\",\n");
-                json.Append("    \"description\": \"" + Escape(descriptor.Description) + "\",\n");
-                json.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
-                json.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
-                json.Append("  }");
-
-                if (descriptor != descriptors.Last())
-                    json.Append(",\n");
-            }
-
-            json.Append("\n]");
-
-            File.WriteAllText("theories.json", json.ToString());
             Console.WriteLine("Success!");
 
             return 0;
