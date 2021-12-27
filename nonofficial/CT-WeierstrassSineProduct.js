@@ -4,7 +4,7 @@ import { parseBigNumber, BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
-var id = "weierstrass-product-sine_test";
+var id = "weierstrass-product-sine";
 var name = "Weierstraß Sine Product";
 var description = "Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.\n\nIntuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.\n\nThe product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infty.\n\nHere, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.";
 var authors = "xelaroc (AlexCord#6768)";
@@ -116,8 +116,18 @@ var updateAvailability = () => {
     c2.isAvailable = c2Term.level > 0;
 }
 
+// good approximation of Euler's Gamma function Г
+var gamma = (x) => (BigNumber.TWO*BigNumber.PI).sqrt()*(x/BigNumber.E*(BigNumber.ONE + x.pow(-2)/6 + x.pow(-4)/120 + x.pow(-6)/810).sqrt()).pow(x)/x.sqrt()
+
+/*computes πx * Prod{k=1, n, 1-(x/k)^2} / sin(πx) 
+ *         = 1 / Prod{k=n+1, infty, 1-(x/k)^2}
+ *         = Г(n+1+x) * Г(n+1-x) / Г(n+1)^2
+ *         = Г(n+1+x) * Г(n+4-x) / (Г(n+1)^2 * (n+1-x) * (n+2-x) * (n+3-x))
+ * with relatively high accuracy (<1e-7 relative error) */
+var sineRatio = (n,x) => gamma(n+BigNumber.ONE+x) * gamma(n+BigNumber.FOUR-x) / (gamma(n+BigNumber.ONE).pow(BigNumber.TWO) * (n+BigNumber.ONE-x) * (n+BigNumber.TWO-x) * (n+BigNumber.THREE-x));
+
 var tick = (elapsedTime, multiplier) => {
-    let dt = BigNumber.from(elapsedTime*multiplier);
+    let dt = BigNumber.from(100*elapsedTime*multiplier);
     let bonus = theory.publicationMultiplier;
     let vq1 = getQ1(q1.level).pow(getQ1Exp(q1Exp.level));
     let vq2 = getQ2(q2.level);
@@ -126,7 +136,7 @@ var tick = (elapsedTime, multiplier) => {
         let vn = getN(n.level);
         let vc1 = getC1(c1.level);
         chi = BigNumber.PI * vc1 * vn / (vc1 + vn / BigNumber.THREE.pow(BigNumber.from(chiDivN.level))) + BigNumber.ONE;
-        S = Utils.getWeierstrassSineProd(n.level,chi)/chi.sin();
+        S = sineRatio(n.level, chi/BigNumber.PI);
         updateSineRatio_flag = false;
     }
     let dq = dt * S * vc2;
