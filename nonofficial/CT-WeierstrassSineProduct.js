@@ -116,15 +116,22 @@ var updateAvailability = () => {
     c2.isAvailable = c2Term.level > 0;
 }
 
-// good approximation of Euler's Gamma function Г
-var gamma = (x) => (BigNumber.TWO*BigNumber.PI).sqrt()*(x/BigNumber.E*(BigNumber.ONE + x.pow(-2)/6 + x.pow(-4)/120 + x.pow(-6)/810).sqrt()).pow(x)/x.sqrt()
+var srK_helper = (x) => { let x2 = x*x; return Math.log(x2 + 1/6 + 1/120/x2 + 1/810/x2/x2)/2 - 1; }
 
-/*computes πx * Prod{k=1, n, 1-(x/k)^2} / sin(πx) 
- *         = 1 / Prod{k=n+1, infty, 1-(x/k)^2}
- *         = Г(n+1+x) * Г(n+1-x) / Г(n+1)^2
- *         = Г(n+1+x) * Г(n+4-x) / (Г(n+1)^2 * (n+1-x) * (n+2-x) * (n+3-x))
- * with relatively high accuracy (<1e-7 relative error) */
-var sineRatio = (n,x) => gamma(n+BigNumber.ONE+x) * gamma(n+BigNumber.FOUR-x) / (gamma(n+BigNumber.ONE).pow(BigNumber.TWO) * (n+BigNumber.ONE-x) * (n+BigNumber.TWO-x) * (n+BigNumber.THREE-x));
+// computes πx * Prod{k=1, n, 1-(x/k)^2} / sin(πx) 
+//          = 1 / Prod{k=n+1, infty, 1-(x/k)^2}
+//          = Г(n+1+x) * Г(n+1-x) / Г(n+1)^2
+//          = Г(n+1+K+x) * Г(n+1+K-x) / (Г(n+1+K)^2 * Prod{k=n+1, n+K, 1-(x/k)^2})
+// quickly (O(K), averages for (n,x)=(1157,1157.3184): ~0.25ms for K=1, ~0.35ms for K=5, ~0.43ms for K=10) 
+// and with fair accuracy (relative error: <1e-3 for K=0, <1e-6 for K=1, <1e8 for K=5, <1e-10 for K=10)
+var sineRatioK = (n, x, K=5) => {
+    if (n < 1 || x >= n + 1) return 0;
+    let N = n + 1 + K, x2 = x*x,
+        L1 = srK_helper(N + x), L2 = srK_helper(N - x), L3 = srK_helper(N),
+        result = N * (L1 + L2 - 2*L3) + x * (L1 - L2) - Math.log(1 - x2/N/N)/2;
+    for(let k = n + 1; k < N; ++k) result -= Math.log(1 - x2/k/k);
+    return BigNumber.from(result).exp();    
+}
 
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime*multiplier);
@@ -132,11 +139,12 @@ var tick = (elapsedTime, multiplier) => {
     let vq1 = getQ1(q1.level).pow(getQ1Exp(q1Exp.level));
     let vq2 = getQ2(q2.level);
     let vc2 = c2Term.level > 0 ? getC2(c2.level) : BigNumber.ONE;
+    
     if (updateSineRatio_flag) {
         let vn = getN(n.level);
         let vc1 = getC1(c1.level);
         chi = BigNumber.PI * vc1 * vn / (vc1 + vn / BigNumber.THREE.pow(BigNumber.from(chiDivN.level))) + BigNumber.ONE;
-        S = sineRatio(n.level, chi/BigNumber.PI);
+        S = sineRatioK(n.level, chi.toNumber()/Math.PI);
         updateSineRatio_flag = false;
     }
     let dq = dt * S * vc2;
