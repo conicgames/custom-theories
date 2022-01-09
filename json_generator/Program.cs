@@ -12,6 +12,7 @@ namespace UpdateJson
         {
             var folders = new List<string>() { "official", "nonofficial" };
             var languages = new List<string>() { "en", "ar", "zh-Hans", "zh-Hant", "cs", "de", "es", "fa", "fr", "he", "id", "it", "ja", "ko", "lv", "hu", "nl", "no", "pl", "pt-br", "pt", "ru", "uk", "sk", "fi", "vi", "tr" };
+            var defaultLanguage = "en";
             var descriptors = new List<Descriptor>();
             bool hasError = false;
 
@@ -61,7 +62,7 @@ namespace UpdateJson
                         }
                     }
 
-                    var defaultTranslation = safeGetTranslation("en");
+                    var defaultTranslation = safeGetTranslation(defaultLanguage);
 
                     file.Append(indent);
                     file.Append("\"default\": \"" + Escape(defaultTranslation) + "\"");
@@ -87,6 +88,7 @@ namespace UpdateJson
                 writeTranslations(aggregateFile, descriptor.GetName, "      ");
                 aggregateFile.Append("\n    },\n");
                 aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
+                aggregateFile.Append("    \"description\": \"" + Escape(descriptor.GetDescription(defaultLanguage)) + "\",\n");
                 aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
                 aggregateFile.Append("  }");
 
