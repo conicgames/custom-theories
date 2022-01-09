@@ -2,24 +2,37 @@
   {
     "relative_url": "official/test.js",
     "id": "recurrence_relation",
+    "name": {
+      "default": "Recurrence Relation*"
+    },
     "authors": "Gilles-Philippe Paillé",
     "version": "3"
   },
   {
     "relative_url": "nonofficial/CT-WeierstrassSineProduct.js",
     "id": "weierstrass-product-sine",
+    "name": {
+      "default": "Weierstraß Sine Product"
+    },
     "authors": "xelaroc (AlexCord#6768)",
     "version": "1"
   },
   {
     "relative_url": "nonofficial/recurrence_relation.js",
     "id": "recurrence_relation",
+    "name": {
+      "default": "Recurrence Relation*",
+      "fr": "Relation de récurrence"
+    },
     "authors": "Gilles-Philippe Paillé",
     "version": "3"
   },
   {
     "relative_url": "nonofficial/test.js",
     "id": "differential_calculus",
+    "name": {
+      "default": "Differential Calculus*"
+    },
     "authors": "Gilles-Philippe Paillé",
     "version": "2"
   }
