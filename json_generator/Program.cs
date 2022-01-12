@@ -119,6 +119,11 @@ namespace UpdateJson
                 return -1;
             }
 
+            // Remove previous json files
+            foreach (var folder in folders)
+                foreach (string file in Directory.EnumerateFiles(folder, "*.json", SearchOption.AllDirectories))
+                    File.Delete(file);
+
             // Commit descriptors to files
             File.WriteAllText("theories.json", aggregateFile.ToString());
 
