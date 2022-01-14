@@ -3,6 +3,8 @@ using Jint.Native;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UpdateJson
 {
@@ -40,9 +42,15 @@ namespace UpdateJson
             };
         }
 
+        private static string Sanitize(string script)
+        {
+            // Remove import statements
+            return string.Join("\n", Regex.Split(script, "\r\n|\r|\n").Select(l => l.StartsWith("import") ? "" : l));
+        }
+
         private static Esprima.Ast.NodeList<Esprima.Ast.Statement> GetDeclarationNodes(string script)
         {
-            var program = new Esprima.JavaScriptParser(script).ParseScript();
+            var program = new Esprima.JavaScriptParser(Sanitize(script)).ParseScript();
             var nodes = new List<Esprima.Ast.Statement>();
 
             foreach (var element in program.Body)
