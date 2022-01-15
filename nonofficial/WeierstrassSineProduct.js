@@ -77,7 +77,7 @@ var init = () => {
 
     /////////////////////
     // Permanent Upgrades
-    theory.createPublicationUpgrade(0, currency, 1e7);
+    theory.createPublicationUpgrade(0, currency, 1e8);
     theory.createBuyAllUpgrade(1, currency, 1e15);
     theory.createAutoBuyerUpgrade(2, currency, 1e25);
 
@@ -170,12 +170,14 @@ var postPublish = () => {
 }
 
 var getPrimaryEquation = () => {
-    theory.primaryEquationHeight = 120;
-    let result = "\\begin{matrix} s_n(x) := x\\cdot\\displaystyle\\prod_{k=1}^n\\left(1-\\frac{x}{k\\pi}^{\\ 2}\\right) \\\\"
+    theory.primaryEquationHeight = 90;
+    let result = "\\begin{matrix}"
     result += "\\dot{\\rho}=q_1";
     if (q1Exp.level > 0) result += `^{${1+q1Exp.level*0.01}}`;
-    result += "q_2q,\\quad\\dot{q} =\\displaystyle\\frac{s_n(\\chi)}{\\sin(\\chi)}";
-    if (c2Term.level > 0) result += "\\cdot c_2";
+    result += "q_2q,\\quad\\dot{q} = "
+	if (c2Term.level > 0) result += "c_2\\cdot ";
+	result += "\s_n(\\chi)/\\sin(\\chi)\\\\\\\\";
+	result += "s_n(x) := x\\cdot\\prod_{k=1}^n\\left(1-\\frac{x}{k\\pi}^{\\ 2}\\right) "
     result += "\\end{matrix}"
     return result;
 }
