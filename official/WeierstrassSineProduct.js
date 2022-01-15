@@ -17,7 +17,6 @@ var S = BigNumber.ZERO;
 // χ and s_n(χ)/sin(χ) don't need to be evaluated at each tick; only when c1 or n is bought or chiDivN milestone
 var updateSineRatio_flag = true;
 
-
 var q1, q2, n, c1, c2;
 var q1Exp, c2Term, chiDivN;
 
@@ -203,7 +202,8 @@ var getTertiaryEquation = () => {
 
 var getPublicationMultiplier = (tau) => tau.isZero ? BigNumber.ONE : tau.pow(BigNumber.from(1.5));
 var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{1.5}";
-var getTau = () => currency.value.pow(BigNumber.from(0.1));
+var maxTau = BigNumber.from(1e100); // Temporary limit until we ensure that there are no exploits
+var getTau = () => maxTau.min(currency.value.pow(BigNumber.from(0.1)));
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getN = (level) => BigNumber.from(level);
