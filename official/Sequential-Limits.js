@@ -10,7 +10,7 @@ var id = "SequentialLimits"; //must be unique, make sure to change it
 var name = "Sequential Limits"; //display name
 var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the ninth lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n- Gilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n- Xelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n- The Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does \n\nEnjoy!"; //theory description. does not support LaTeX
 var authors = "ellipsis"; //display author in the "author" field
-var version = 3; //version id, make sure to change it on update
+var version = 4; //version id, make sure to change it on update
 
 var currency = theory.createCurrency(), currency2 = theory.createCurrency(), currency3 = theory.createCurrency(); //create three currency variables and list them as currencies
 var a1, a2, b1, b2; //set a1, a2, b1, b2 levels
@@ -31,18 +31,19 @@ theory.secondaryEquationScale = 1.25; //makes the secondary eq look 25% bigger
 var tapCount = 0;
 var t = 0;
 
-
 var init = () => {
 
-    // Regular Upgrades    
+    // Regular Upgrades   
+    // DONT EVEN FUCKING THINK ABOUT IT. NO MORE BALANCE CHANGES 
     // a1
     {
-        let getDesc = (level) => "a_1=" + geta1(level).toString(0); //returns the value seen in the description as a1 = <level>
-        let getInfo = (level) => "a_1=" + geta1(level).toString(0); //returns the value seen in the info box as a1 = <level>
+        let getDesc = (level) => "a_1=" + geta1(level).toString(1); //returns the value seen in the description as a1 = <level>
+        let getInfo = (level) => "a_1=" + geta1(level).toString(1); //returns the value seen in the info box as a1 = <level>
         a1 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(1, 0.369*Math.log2(10)))); //0'th upgrade in the list - first cost is 0, other costs are 10 * 2^(3*level), costs currency1
         a1.getDescription = (amount) => Utils.getMath(getDesc(a1.level)); //for the value of a1 in the description
         a1.getInfo = (amount) => Utils.getMathTo(getInfo(a1.level), getInfo(a1.level + amount)); //for the values of a1 when you hold I(nfo) and you have [current]->[next]
     }
+
     // a2
     {
         let getDesc = (level) => "a_2=2^{" + level + "}"; //returns the value seen in the description as a2 = 2^<level>.
@@ -54,8 +55,8 @@ var init = () => {
 
     // b1
     {
-        let getDesc = (level) => "b_1=" + getb1(level).toString(0); //returns the value seen in the description as b1 = <level>
-        let getInfo = (level) => "b_1=" + getb1(level).toString(0); //returns the value seen in the info box as b1 = <level>
+        let getDesc = (level) => "b_1=" + getb1(level).toString(1); //returns the value seen in the description as b1 = <level>
+        let getInfo = (level) => "b_1=" + getb1(level).toString(1); //returns the value seen in the info box as b1 = <level>
         b1 = theory.createUpgrade(2, currency, new ExponentialCost(500, 0.649*Math.log2(10))); //2nd upgrade in the list - costs are 100 + 10^level, costs currency1
         b1.getDescription = (amount) => Utils.getMath(getDesc(b1.level)); //for the value of b1 in the description
         b1.getInfo = (amount) => Utils.getMathTo(getInfo(b1.level), getInfo(b1.level + amount)); //for the values of a1 when you hold I(nfo) and you have [current]->[next]
@@ -73,8 +74,8 @@ var init = () => {
     
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e10 ); //unlock publications at 1e10 currency
-    theory.createBuyAllUpgrade(1, currency, 1e15); //unlock buy all at 1e30 currency
-    theory.createAutoBuyerUpgrade(2, currency, 1e20); //unlock autobuyer at 1e50 currency
+    theory.createBuyAllUpgrade(1, currency, 1e15); //unlock buy all at 1e15 currency
+    theory.createAutoBuyerUpgrade(2, currency, 1e20); //unlock autobuyer at 1e20 currency
 
 
     //// Milestone Upgrades
@@ -117,7 +118,6 @@ var init = () => {
     var bsf={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'\=",e:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=bsf._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},d:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=bsf._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}};
     
     // Achievements
-    //TODO ADD ACHIEVEMENTS [10 mainline ~4 secret]
     var AchievementCat0 = theory.createAchievementCategory(0, "Miscellaneous");
     var AchievementCat1 = theory.createAchievementCategory(1, "Publications");
     var AchievementCat2 = theory.createAchievementCategory(2, "Approximation");
@@ -144,7 +144,7 @@ var init = () => {
     achievement16 = theory.createAchievement(15, AchievementCat2, "You Can Stop Anytime", "Get your approximation of e to 10^-500 off true", () => inverseE_Gamma >= BigNumber.From("1e500"));
     
    // achievement21 = theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
-    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == a2.level && a1.level == b1.level && a1.level == b2.level && a1.level >= 3);
+    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == a2.level && a1.level == b1.level && a1.level == b2.level && 1  < a1.level < 10);
     achievement23 = theory.createSecretAchievement(22, AchievementCat3, bsf.d("bDMzdDVwMzRr"), bsf.d("MTMzNw")+ ".", bsf.d("RWxpdGU"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
     // achievement24 = theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
     achievement25 = theory.createSecretAchievement(24, AchievementCat3, bsf.d("T24gVmFjYXRpb24"),bsf.d("RG9uJ3QgYnV5IGFueXRoaW5nIGZvciBhbiBob3VyIGFmdGVyIGEgcHVibGljYXRpb24") + ".",bsf.d("Rm9yZ290IHNvbWV0aGluZz8"), () => a1.level == 0 && t >= 3600 && numPublishes > 0);
@@ -163,6 +163,7 @@ var init = () => {
 
 
 //function that runs every tick, i.e tick math
+//DO NOT TOUCH ON PAIN OF DEATH. YES THIS MEANS YOU, FUTURE ME
 var tick = (elapsedTime, multiplier) => {
 
     let dt = BigNumber.from(elapsedTime * multiplier); //find tick time
@@ -219,10 +220,8 @@ var getPrimaryEquation = () => { //text for the primary equation
 
 //display rho2dot, rho3dot and a_3 equation
 var getSecondaryEquation = () => { 
-    let result = "";
-    profilers.exec("renderSecondary", () =>  {
     //render rho2dot equation
-    result += "\\dot{\\rho}_2 = a_1 a_2 \\cdot a_3 ^{ - \\ln\\rho_3}\\qquad "; //static, doesn't need to change. plain latex
+    result = "\\dot{\\rho}_2 = a_1 a_2 \\cdot a_3 ^{ - \\ln\\rho_3}\\qquad "; //static, doesn't need to change. plain latex
 
 
     result += "{\\dot{\\rho}}_3 = b_1"; // first part of eq, i.e rho3dot = b1
@@ -267,7 +266,6 @@ var getSecondaryEquation = () => {
             result += "1.96";
             break;            
     }
-    });
     return result; //return the sum of text
 }
 
