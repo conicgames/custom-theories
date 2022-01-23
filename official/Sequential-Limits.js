@@ -122,7 +122,7 @@ var init = () => {
     var AchievementCat1 = theory.createAchievementCategory(1, "Publications");
     var AchievementCat2 = theory.createAchievementCategory(2, "Approximation");
     var AchievementCat3  = theory.createAchievementCategory(3, "Secret Achievements");
-    achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.autoBuyerUpgrade > 0); //award an achievement for unlocking the autobuyer
+    achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
     
 
     achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => 1 == numPublishes); //award an achievement with name and description if there has been 1 publish
