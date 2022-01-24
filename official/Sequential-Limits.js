@@ -306,9 +306,9 @@ var postPublish = ()  => {
 
 var setInternalState = (state) => { //set the internal state of values that need to be kept post switch that aren't levels
     let values = state.split(" "); //save values to a string
-    if (values.length > 0) numPublications = values[0]; //save the value of publish numbers to slot 0
+    if (values.length > 0) numPublications = parseInt(values[0]); //save the value of publish numbers to slot 0
     if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
-    if (values.length > 2) tapCount = values[2];
+    if (values.length > 2) tapCount = parseInt(values[2]);
     if (values.length > 3) t = Number.parseFloat(values[3]);
 }
 
