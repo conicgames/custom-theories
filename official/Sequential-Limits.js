@@ -316,8 +316,7 @@ var getInternalState = () => `${numPublications} ${inverseE_Gamma} ${tapCount} $
 
 var getPublicationMultiplier = (tau) => tau.pow(1.5); //publication mult bonus is (tau^0.15)*100
 var getPublicationMultiplierFormula = (symbol) => /*"10 · " +*/ symbol + "^{1.5}"; //text to render for publication mult ext
-var maxTau = BigNumber.from(1e100); // Temporary limit until we ensure that there are no exploits
-var getTau = () => maxTau.min(currency.value.pow(BigNumber.from(0.1)));
+var getTau = () => currency.value.pow(BigNumber.from(0.1));
 var get2DGraphValue = () => (BigNumber.ONE + currency.value.abs()).log10().toNumber(); //renders the graph based on currency 1
 
 var geta1 = (level) => Utils.getStepwisePowerSum(level, 3.5, 3, 0); //get the value of the variable from a power sum with a level of <level>, a base of 2, a step length of 5 and an initial value of 0 
