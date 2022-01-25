@@ -1,4 +1,4 @@
-﻿﻿﻿//uses code from davidcondrey on stack exchange, xelaroc (alexcord#6768) and Gilles-Philippe Paillé(#0778). 
+﻿//uses code from davidcondrey on stack exchange, xelaroc (alexcord#6768) and Gilles-Philippe Paillé(#0778). 
 
 import { ExponentialCost, FirstFreeCost, LinearCost, CustomCost } from "./api/Costs"; //make sure to use
 import { Localization } from "./api/Localization";
@@ -8,7 +8,7 @@ import { Utils } from "./api/Utils";
 
 var id = "SequentialLimits"; //must be unique, make sure to change it 
 var name = "Sequential Limits"; //display name
-var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the ninth lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!"; //theory description. does not support LaTeX
+var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!"; //theory description. does not support LaTeX
 var authors = "ellipsis"; //display author in the "author" field
 var version = 6; //version id, make sure to change it on update
 
@@ -120,11 +120,11 @@ var init = () => {
     var AchievementCat3  = theory.createAchievementCategory(3, "Secret Achievements");
     achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
     
-    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => 1 == numPublications); //award an achievement with name and description if there has been 1 publish
-    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => 3 == numPublications); //same for 5 publications
-    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => 5 == numPublications); //same for 10 publications
-    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => 10 == numPublications); //same for 25 publications
-    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => 20 == numPublications); //same for 50 publications
+    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => 1 >= numPublications); //award an achievement with name and description if there has been 1 publish
+    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => 3 >= numPublications); //same for 3 publications
+    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => 5 >= numPublications); //same for 5 publications
+    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => 10 >= numPublications); //same for 10 publications
+    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => 20 >= numPublications); //same for 20 publications
     
     achievement7 = theory.createAchievement(6, AchievementCat2, "Close Enough", "Get your approximation of e to 10^-1 off true", () => inverseE_Gamma >= BigNumber.From("1e0"));
     achievement8 = theory.createAchievement(7, AchievementCat2, "Nitpicking Exercise", "Get your approximation of e to 10^-5 off true", () => inverseE_Gamma >= BigNumber.From("1e5"));
@@ -138,7 +138,7 @@ var init = () => {
     achievement16 = theory.createAchievement(15, AchievementCat2, "You Can Stop Anytime", "Get your approximation of e to 10^-500 off true", () => inverseE_Gamma >= BigNumber.From("1e500"));
 
    // achievement21 = theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
-    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level < 10 && 0  < a2.level < 10);
+    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
     achievement23 = theory.createSecretAchievement(22, AchievementCat3, bsf.d("bDMzdDVwMzRr"), bsf.d("MTMzNw")+ ".", bsf.d("RWxpdGU"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
     // achievement24 = theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
     achievement25 = theory.createSecretAchievement(24, AchievementCat3, bsf.d("T24gVmFjYXRpb24"),bsf.d("RG9uJ3QgYnV5IGFueXRoaW5nIGZvciBhbiBob3VyIGFmdGVyIGEgcHVibGljYXRpb24") + ".",bsf.d("Rm9yZ290IHNvbWV0aGluZz8"), () => a1.level == 0 && t >= 3600 && numPublications > 0);
