@@ -120,11 +120,11 @@ var init = () => {
     var AchievementCat3  = theory.createAchievementCategory(3, "Secret Achievements");
     achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
     
-    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => 1 >= numPublications); //award an achievement with name and description if there has been 1 publish
-    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => 3 >= numPublications); //same for 3 publications
-    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => 5 >= numPublications); //same for 5 publications
-    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => 10 >= numPublications); //same for 10 publications
-    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => 20 >= numPublications); //same for 20 publications
+    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => numPublications >= 1); //award an achievement with name and description if there has been 1 publish
+    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => numPublications >= 3); //same for 3 publications
+    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => numPublications >= 5); //same for 5 publications
+    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => numPublications >= 10); //same for 10 publications
+    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => numPublications >= 20); //same for 20 publications
     
     achievement7 = theory.createAchievement(6, AchievementCat2, "Close Enough", "Get your approximation of e to 10^-1 off true", () => inverseE_Gamma >= BigNumber.From("1e0"));
     achievement8 = theory.createAchievement(7, AchievementCat2, "Nitpicking Exercise", "Get your approximation of e to 10^-5 off true", () => inverseE_Gamma >= BigNumber.From("1e5"));
