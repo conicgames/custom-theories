@@ -1,6 +1,10 @@
-﻿﻿//uses code from davidcondrey on stack exchange, xelaroc (alexcord#6768) and Gilles-Philippe Paillé(#0778). 
+//uses code from ductdat (ducdat0507#4357), xelaroc (alexcord#6768),  and Gilles-Philippe Paillé(#0778). 
+//COMMENTS ARE LIKELY OUTDATED
+//If you'd like help with your own custom theory, or want to ask about this mess, you can contact me by pinging @ellipsis in #custom-theories-dev in the exponential idle discord server.
+//or add me on discord (@ellipsis#5369) but ill probably change the #
 
-import { ExponentialCost, FirstFreeCost, LinearCost, CustomCost } from "./api/Costs"; //make sure to use
+//the imports do nothing but they allow you to see api documentation on hover
+import { ExponentialCost, FirstFreeCost, LinearCost, CustomCost } from "./api/Costs"; 
 import { Localization } from "./api/Localization";
 import { parseBigNumber, BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
@@ -111,7 +115,7 @@ localisationTable = { //stupidly large nested dicts of translation table
                 'sa1':{
                     //'category':aSecrets,
                     'name':'Pattern Fanatic',
-                    'description':'Have every variable level the same.',
+                    'description':'Have your variable levels form a palindrome.',
                     'hint':'Palindromic'
                 },
                 'sa2':{
@@ -142,7 +146,7 @@ localisationTable = { //stupidly large nested dicts of translation table
             
             'chapter2':{
                 'title':'Taking Risks',
-                'body':"You notice a few unassuming variables at the bottom of the equation.\nA student warns you against changing them, citing the risk of decreasing the income existing values, but you forge ahead.",
+                'body':"You notice a few unassuming variables at the bottom of the equation.\nA student warns you against changing them, citing the risk of decreasing the income from existing values, but you forge ahead.",
             },
             'chapter3':{
                 'title':'International Recognition',
@@ -162,7 +166,7 @@ localisationTable = { //stupidly large nested dicts of translation table
             },
             'chapter7':{
                 'title':'Mathaholic',
-                'body':"1e500.\n\nA monumentally large number, but barely a blip to you now.\nPeople are starting to take notice as you push mathematics to points thought unachieveable in this field.\nThere's a waiting list to study under you now.\nYour friends and family are expressing concern, worried you're in too deep.\nIt doesn't matter.\nAnother breakthrough is close.\nYou can feel it.\n\n\nRight?",
+                'body':"1e500.\n\nA monumentally large number, but barely a blip to you now.\nPeople are starting to take notice as you push mathematics to points thought unachieveable in this field.\nThere's a waiting list to study under you now.\nYour friends and family are expressing concern, worried you're in too deep.\nIt doesn't matter.\nAnother breakthrough is close.\nYou can feel it.\n\nRight?",
             },
             'chapter8':{
                 'title':'The End',
@@ -178,10 +182,10 @@ localisationTable = { //stupidly large nested dicts of translation table
             }
         }
     },
-    'ru':{ //RUSSIAN
+    'ru':{ //RUSSIAN, OUTDATED
         //thank you to Gyl9Sh for the translation!
         'name':'Последовательные пределы',
-        'description':"\nВы первый ученик ныне ушедшего профессора, и теперь, когда он вышл на пенсию, вам дали звание главного научного сотрудника. Стремясь погрузиться в области, в которых\nизучал ваш старый профессор, вы начинаете изучать концепцию, изложенную в седьмой лемме — последовательные пределы — для продвижения своей карьеры.\nЭта теория исследует концепцию аппроксимаций, используя преобразование формулы Стирлинга для аппроксимации числа Эйлера.\nФормула, названная в честь Джеймса Стерлинга и впервые сформулированная Абрахамом Де Муавром, утверждает, что ln(n!) можно аппроксимировать бесконечной суммой ln(1) + ln(2) .... + ln(n).\nБудьте осторожны - чем ближе ваше приближение к числу Эйлера, тем меньше растет ваш числитель!\nИгра с близким балансом, развлечение для всей семьи (или, по крайней мере, для тех, кто играет в Exponential Idle).\nОтдельное спасибо:\nGilles-Philippe за разработку SDK пользовательской теории, реализацию запрошенных мною функций, предоставление бесчисленных примеров скриптов и помощь в моих многочисленных вопросах и балансировке.\nXelaroc/AlexCord, за ответы на мои бесконечные вопросы, отладку и помощь в понимании того, как сбалансировать теорию, а также за то, что сделали все возможное, чтобы\nнаучить меня, как работают пользовательские теории.\nКоманда бета-тестирования Exponential Idle\n- Команда переводчиков Exponential Idle, к работе которой я присоединился, и без которых эта игра не имела бы того охвата, который она имеет.\n\nНаслаждаться!\nПереведено Gyl9Sh",
+        'description':"\nВы первый ученик ныне ушедшего профессора, и теперь, когда он вышл на пенсию, вам дали звание главного научного сотрудника. Стремясь погрузиться в области, в которых\nизучал ваш старый профессор, вы начинаете изучать концепцию, изложенную в седьмой лемме — последовательные пределы — для продвижения своей карьеры.\nЭта теория исследует концепцию аппроксимаций, используя преобразование формулы Стирлинга для аппроксимации числа Эйлера.\nФормула, названная в честь Джеймса Стерлинга и впервые сформулированная Абрахамом Де Муавром, утверждает, что ln(n!) можно аппроксимировать бесконечной суммой ln(1) + ln(2) .... + ln(n).\nБудьте осторожны - чем ближе ваше приближение к числу Эйлера, тем меньше растет ваш числитель!\nИгра с близким балансом, развлечение для всей семьи (или, по крайней мере, для тех, кто играет в Exponential Idle).\nОтдельное спасибо:\nGilles-Philippe за разработку SDK пользовательской теории, реализацию запрошенных мною функций, предоставление бесчисленных примеров скриптов и помощь в моих многочисленных вопросах и балансировке.\nXelaroc/AlexCord, за ответы на мои бесконечные вопросы, отладку и помощь в понимании того, как сбалансировать теорию, а также за то, что сделали все возможное, чтобы\nнаучить меня, как работают пользовательские теории.\nКоманда бета-тестирования Exponential Idle\n- Команда переводчиков Exponential Idle, к работе которой я присоединился, и без которых эта игра не имела бы того охвата, который она имеет.\n\nНаслаждаться!",
         'authors':'ellipsis',
         'achievements':{   
             'categories':{
@@ -346,6 +350,303 @@ localisationTable = { //stupidly large nested dicts of translation table
             }
         }
     },
+    'de':{ //GERMAN
+        //thank you AfuroZamurai for the translation!
+        'name':'Sequenzielle Grenzwerte',
+        'description':'Du bist der erste Student des inzwischen in den Ruhestand getretenen Professors, und nun, da er emeritiert ist, wird dir der Mantel des leitenden Forschers übergeben. Begierig darauf, in die Bereiche einzutauchen, wo dein alter Professor aufgehört hat, beginnst du dich mit dem im siebten Lemma untersuchten Konzept - den sequentiellen Grenzwerten - zu befassen, um deine Karriere voranzutreiben.\n\nDiese Theorie erforscht das Konzept der Approximation mit einer Umstellung der Stirlingformel zur Annäherung der Eulerschen Zahl.\n\nDie nach James Stirling benannte und erstmals von Abraham de Moivre aufgestellte Formel besagt, dass ln(n!) durch die unendliche Summe ln(1) + ln(2) ... + ln(n) angenähert werden kann.\n\nSei vorsichtig - umso genauer deine Approximation der Eulerschen Zahl ist, desto weniger wächst dein Zähler!\n\nEin enges Balancing-Spiel, das der ganzen Familie Spaß macht (oder zumindest denjenigen, die Exponential Idle spielen).\n\nBesonderer Dank an:\nGilles-Philippe, für die Entwicklung des SDKs für eigene Theorien, die Implementierung von Funktionen, die ich mir gewünscht habe, das Bereitstellen von unzähligen Skriptbeispielen, die Hilfe bei meinen zahlreichen Fragen und dem Ausbalancieren.\nXelaroc / Alexcord, um meine unaufhörlichen Fragen zu beantworten, zu debuggen und mir zu helfen, zu verstehen, wie man eine Theorie ausbalanciert und darüber hinaus mich zu lehren, wie eigene Theorien funktionieren.\nDas Exponential Idle Beta Testteam\nDas Exponential Idle Übersetzungteam, zu dessen Arbeit ich beigetragen habe, und ohne die dieses Spiel nicht seine jetzige Reichweite hätte.\n\nViel Spaß!',
+        'authors':'ellipsis',
+        'achievements':{   
+            'categories':{
+                'misc':'Sonstiges',
+                'pubs':'Veröffentlichungen',
+                'precision':'Annäherungspräzision',
+                'sa':'Geheime Erfolge'
+                },
+                'public':{
+                    //publication count achievements
+                    'a1':{
+                        'name':'Amateurischer Autor',
+                        'description':'Veröffentliche einmal.'
+                    },
+                    'a2':{
+                        'name':'Regulärer Reporter',
+                        'description':'Veröffentliche dreimal.'
+                    },
+                    'a3':{
+                        'name':'Studierter Schreiberling',
+                        'description':'Veröffentliche fünfmal.'
+                    },
+                    'a4':{
+                        'name':'Exemplarischer Essayist',
+                        'description':'Veröffentliche zehnmal.'
+                    },
+                    'a5':{
+                        'name':'Professioneller Publizierer',
+                        'description':'Veröffentliche zwanzigmal.'
+                    },
+                    //misc achievements
+                    'a6':{
+                        'name':'Kaufoptimierung',
+                        'description':'Lagere den Kauf von Variablen an deine Studenten aus.'
+                    },
+                    //precision achievements
+                    'a7':{
+                        'name':'Nah genug',
+                        'description':'Approximiere e auf 10^-1 genau.'
+                    },
+                    'a8':{
+                        'name':'Übung in Pingeligkeit',
+                        'description':'Approximiere e auf 10^-5 genau.'
+                    },
+                    'a9':{
+                        'name':'Haarspalterei',
+                        'description':'Approximiere e auf 10^-10 genau.'
+                    },
+                    'a10':{
+                        'name':'Mikroskopisch',
+                        'description':'Approximiere e auf 10^-15 genau.'
+                    },
+                    'a11':{
+                        'name':'Sind wir schon da?',
+                        'description':'Approximiere e auf 10^-50 genau.'
+                    },  
+                    'a12':{
+                        'name':'Subatomar',
+                        'description':'Approximiere e auf 10^-25 genau.'
+                    },
+                    'a13':{
+                        'name':'Planckkleinlichkeit',
+                        'description':'Approximiere e auf 10^-35 genau.'
+                    },
+                    'a14':{
+                        'name':'Präzisionsspieler',
+                        'description':'Approximiere e auf 10^-100 genau.'
+                    },
+                    'a15':{
+                        'name':'Der Platz wird knapp',
+                        'description':'Approximiere e auf 10^-250 genau.'
+                    },
+                    'a16':{
+                        'name':'Du kannst jederzeit aufhören',
+                        'description':'Approximiere e auf 10^-500 genau.'
+                    },
+    
+                },
+                'secret':{
+                    'sa1':{
+                        'name':'Musterfanatiker',
+                        'description':'Forme ein Palindrom mit den Leveln der Variablen.',
+                        'hint':'Palindromisch.'
+                    },
+                    'sa2':{
+                        'name':'l33t5p34k.',
+                        'description':'1337',
+                        'hint':'Elite'
+                    },
+                    'sa3':{
+                        'name':'Im Urlaub',
+                        'description':'Kaufe nichts für eine Stunde nach einer Veröffentlichung.',
+                        'hint':'Etwas vergessen?'
+                    },
+                    'sa4':{
+                        'name':'Sinnlosigkeit',
+                        'description':'Tippe 1000 Mal auf die Gleichung.',
+                        'hint':'Ermüdet'
+                    },
+                }
+        },
+        'story':{
+                'chapter1':{
+                    'title':'Ein neuer Anfang',
+                    'body':'Du kehrst von der Ruhestandsfeier deines alten Professors zurück, der dir, als erstem Studenten, die Leitung des Fachbereichs übergab, die im Laufe der Jahre viele Studenten angezogen hat.\nAufgeregt, endlich als etwas anderes als "et. al" in einem Paper aufgelistet zu werden, fuhrst du mit deiner bestehenden Forschung fort. Als sich jedoch der Fortschritt verlangsamte, fühltest du dich weniger und weniger zufrieden.\nDie Tage werden zu Wochen, die verschwimmen, je mehr Publikationen geschrieben werden.\nSchließlich kommt ein Student mit einem staubigen Foliant, welcher ein bisher unerforschtes Theorem enthält, zu dir.\nBeseelt von Inspiration stellst ein Team aus Studenten zusammen, mit dem du dich in die Forschung stürzt.'
+                    },
+                
+                'chapter2':{
+                    'title':'Risiken eingehen',
+                    'body':'Du bemerkst ein paar bescheidene Variablen unten in der Gleichung.\nEin Student warnt dich davor sie zu ändern, da das Risiko besteht, das Wachstum der existierenden Werte zu verringern, doch du machst weiter.'
+                },
+                'chapter3':{
+                    'title':'Internationale Anerkennung',
+                    'body':'Du veröffentlichst dein erstes Paper mit deinem Namen an vorderster Stelle.\nKollegen gratulieren dir, aber du fühlst, dass etwas fehlt, dass weitere Erkundungen erforderlich sind.\nDu beschließt mit Volldampf weiterzumachen.'
+                },
+                'chapter4':{
+                    'title':'Leichte Änderung',
+                    'body':'Da sich dein Fortschritt verlangsamt, durchkämmst du die ursprünglichen Gleichungen nach einem Heilmittel.\nEs stellt sich heraus, dass es die ganze Zeit einige Modifikatoren gab, die du hinzufügen könntest, allerdings zu ständig steigenden Kosten.\nDu beschließt, einen zu kaufen, in der Hoffnung, dass es deine Probleme lindert ...'
+                },
+                'chapter5':{
+                    'title':'Fortschritte machen',
+                    'body':'Du erreichst 1e100 ρ₁, einen großen Meilenstein in deiner Forschung.\nKollegen kommen, um dir zu gratulieren, weil du deine Forschung so weit voran getrieben hast, aber du zuckst nur die Schultern - du fühlst dich, als könntest du mehr tun.\nDu gehst zurück in dein Büro und einmal mehr beginnst du mit der Arbeit.'
+                },
+                'chapter6':{
+                    'title':'Das Ende ... oder ist es?',
+                    'body':'Du hast endlich jeden Modifikator gekauft, um deine Forschung in diesem Feld abzuschließen.\nDeine Studenten, die an diesem Projekt arbeiten, feiern den Abschluss dieses Forschungsfelds, und dein Name wird weltweit in Zeitschriften veröffentlicht.\nDu entscheidest dich, deine Zahlen noch einmal zu überprüfen, nur um sicherzugehen...'
+                },
+                'chapter7':{
+                    'title':'Mathaholic',
+                    'body':'1e500.\n\nEine monumental große Zahl, aber jetzt kaum ein Blick wert für dich.\nDie Leute fangen an davon Notiz zu nehmen, wie du die \nMathematik in Bereiche vorantreibst, die als unerreichbar galten.\nEs gibt jetzt eine Warteliste, um unter dir zu studieren.\nDeine Freunde und Familie sind besorgt, weil sie befürchten, dass du zu tief drinsteckst.\nEs spielt keine Rolle.\nEin weiterer Durchbruch ist nahe\n\nDu kannst es fühlen.\n\nRichtig?'
+                },
+                'chapter8':{
+                    'title':'Das Ende',
+                    'body':'1e1000.\nEine so große Zahl, dass es unmöglich ist, sie zu begreifen.\nDu hast es geschafft. Sie sagten, du könntest nicht.\nJahre nach dem du begonnen hast, erreichst du ein unglaubliches Ende deiner Forschung.\ndu wirst in der TIME, im Tagesfernsehen, in Zeitungen in der ganzen Welt vorgestellt.\nDeine Paper sind eingerahmt, deine Studenten sind jetzt alle selbst Professoren.\nDu reichst den Mantel an einen deiner jüngeren Studenten weiter, um in den Ruhestand zu gehen, wie dein alter Professor vor all diesen Jahren.\n\nDAS ENDE.\n\nDanke fürs Spielen! - ellipsis'
+                },
+                'chapter9':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter10':{
+                    'title':'',
+                    'body':''
+                }
+        }
+    },
+    'template':{ //TEMPLATE
+        'name':'',
+        'description':'',
+        'authors':'',
+        'achievements':{   
+            'categories':{
+                'misc':'',
+                'pubs':'',
+                'precision':'',
+                'sa':''
+                },
+                'public':{
+                    //publication count achievements
+                    'a1':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a2':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a3':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a4':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a5':{
+                        'name':'',
+                        'description':''
+                    },
+                    //misc achievements
+                    'a6':{
+                        'name':'',
+                        'description':''
+                    },
+                    //precision achievements
+                    'a7':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a8':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a9':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a10':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a11':{
+                        'name':'',
+                        'description':''
+                    },  
+                    'a12':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a13':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a14':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a15':{
+                        'name':'',
+                        'description':''
+                    },
+                    'a16':{
+                        'name':'',
+                        'description':''
+                    },
+    
+                },
+                'secret':{
+                    'sa1':{
+                        'name':'',
+                        'description':'',
+                        'hint':''
+                    },
+                    'sa2':{
+                        'name':'',
+                        'description':'',
+                        'hint':''
+                    },
+                    'sa3':{
+                        'name':'',
+                        'description':'',
+                        'hint':''
+                    },
+                    'sa4':{
+                        'name':'',
+                        'description':'',
+                        'hint':''
+                    },
+                }
+        },
+        'story':{
+                'chapter1':{
+                    'title':'',
+                    'body':''
+                    },
+                
+                'chapter2':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter3':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter4':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter5':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter6':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter7':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter8':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter9':{
+                    'title':'',
+                    'body':''
+                },
+                'chapter10':{
+                    'title':'',
+                    'body':''
+                }
+        }
+    },
 }
 //set locale
 // locale = localisationTable.en;
@@ -357,27 +658,49 @@ else locale = localisationTable.en;
 var id = "SequentialLimits"; //must be unique, make sure to change it 
 var name = 'Sequential Limits' //dummy, as the game won't allow anything other than a literal for first load
 var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!" //ditto
-var authors = 'ellipsis'
+var authors = 'ellipsis' //ditto again
 var version = 9; //version id, make sure to change it on update
 
 var currency = theory.createCurrency(), currency2 = theory.createCurrency(), currency3 = theory.createCurrency(); //create three currency variables and list them as currencies
 var a1, a2, b1, b2; //set a1, a2, b1, b2 levels
 var numPublications = 0; //number of publications
 
-var aMisc, aPubs, aPrecision, aSecrets; //achievement category variables
+var aMisc, aPubs, aPrecision, aSecrets; //achievement category variables, not needed but i get warns otherwise and warns make me sad
 
-var gamma0, gamma1, gamma2, gamma3; //create 4 variables that i'll use for milestones
+var gamma0, gamma1, gamma2, gamma3; //create 4 variables that i'll use for milestones - future note, make the names actually mean something next time. fuck thats annoying
 var rho1dot = BigNumber.ZERO, rho2dot = BigNumber.ZERO, rho3dot = BigNumber.ZERO; //used as drho's
 var inverseE_Gamma; //used for the approximation of e
 var tapCount = 0;
 var t = 0;
 
+function isPalindrome(x) { //it probably sucks but also i just copied it from a past project
+    // console.log('recieved string ' + x)
+    // x = x.toString();
+    lenx = x.length;
+    // console.log(lenx);
+    for (i = 0; i < Math.floor(lenx/2); i++){
+        pos1 = x.charAt(i);
+        pos2 = x.charAt(lenx-i-1);
+        // console.log(pos1 + ' , ' + pos2);
+        if(pos1 != pos2){
+            // console.log("false at position " + (i+1) + " , " + pos1 + "≠" + pos2);
+            return false;
+        }
+    }
+    return true;
+}
+
+function areLevelsPalindromic() { //seperate function bc why not
+    return isPalindrome(str(a1.level) + str(a2.level) + str(b1.level) + str(b2.level))
+}
+
 var init = () => {
     //workaround so the game doesn't spit the dummy about localisation
     //sometimes my genius is almost frightening
+    //note to anyone else reading this - just use getName and getDescription, it's less stupid
     authors = locale.authors; //display author in the "author" field
     name = locale.name; //display name
-    description = locale.description
+    description = locale.description //guess what this one is. itll shock you to know
 
     currency3.value = 1; //set rho3 to 1 to avoid a div by 0 error lol
     theory.primaryEquationHeight = 70; //set height of primary equation
@@ -483,7 +806,7 @@ var init = () => {
     
     achievement6 = theory.createAchievement(5, aMisc, locale.achievements.public.a6.name, locale.achievements.public.a6.description, () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
 
-    achievement7 = theory.createAchievement(6, aPrecision, locale.achievements.public.a7.name, locale.achievements.public.a7.description, () => inverseE_Gamma >= BigNumber.From("1e0"));
+    achievement7 = theory.createAchievement(6, aPrecision, locale.achievements.public.a7.name, locale.achievements.public.a7.description, () => inverseE_Gamma >= BigNumber.From("1e1")); //oops
     achievement8 = theory.createAchievement(7, aPrecision, locale.achievements.public.a8.name, locale.achievements.public.a8.description, () => inverseE_Gamma >= BigNumber.From("1e5"));
     achievement9 = theory.createAchievement(8, aPrecision, locale.achievements.public.a9.name, locale.achievements.public.a9.description, () => inverseE_Gamma >= BigNumber.From("1e10"));
     achievement10 = theory.createAchievement(9, aPrecision, locale.achievements.public.a10.name, locale.achievements.public.a10.description, () => inverseE_Gamma >= BigNumber.From("1e15"));
@@ -495,7 +818,7 @@ var init = () => {
     achievement16 = theory.createAchievement(15, aPrecision, locale.achievements.public.a16.name, locale.achievements.public.a16.description, () => inverseE_Gamma >= BigNumber.From("1e500"));
 
    // achievement21 = theory.createSecretAchievement(20, aSecrets,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
-    achievement22 = theory.createSecretAchievement(21, aSecrets, locale.achievements.secret.sa1.name, locale.achievements.secret.sa1.description, locale.achievements.secret.sa1.hint, () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
+    achievement22 = theory.createSecretAchievement(21, aSecrets, locale.achievements.secret.sa1.name, locale.achievements.secret.sa1.description, locale.achievements.secret.sa1.hint, () => areLevelsPalindromic());
     achievement23 = theory.createSecretAchievement(22, aSecrets, locale.achievements.secret.sa2.name, locale.achievements.secret.sa2.description, locale.achievements.secret.sa2.hint, () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
     // achievement24 = theory.createSecretAchievement(23, aSecrets, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
     achievement25 = theory.createSecretAchievement(24, aSecrets, locale.achievements.secret.sa3.name,locale.achievements.secret.sa3.description,locale.achievements.secret.sa3.hint, () => a1.level == 0 && t >= 3600 && numPublications > 0);
@@ -529,16 +852,16 @@ var tick = (elapsedTime, multiplier) => {
 
     let dt = BigNumber.from(elapsedTime * multiplier); //find tick time
     
-    rho3dot = (getb1(b1.level).pow(BigNumber.ONE + gamma2.level*BigNumber.From(0.02)) * getb2(b2.level).pow(BigNumber.ONE + gamma3.level*BigNumber.From(0.02))); //rho3dot is equal to b1.value * b2.value accounting for exponenents
+    rho3dot = (getb1(b1.level).pow(1 + gamma2.level*0.02) * getb2(b2.level).pow(1 + gamma3.level*0.02)); //rho3dot is equal to b1.value * b2.value accounting for exponenents
     currency3.value += rho3dot*dt; //increase currency3.value by rho3dot*dt
     updateInverseE_Gamma();
    
     //rho2dot equation that supports higher values without crashing lol
     let a1v = geta1(a1.level), a2v = geta2(a2.level);
 //    rho2dot =(geta1(a1.level) * geta2(a2.level) * (BigNumber.TWO-gamma1.level*0.004).pow( - currency3.value.log() )); //calculate rho2dot, accounting for milestones
-    rho2dot = a1v > 0 && a2v > 0 ? BigNumber.E.pow(a1v.log() + a2v.log() - (BigNumber.TWO-gamma1.level*0.008).log() * (currency3.value).log() ) : BigNumber.ZERO;
+    rho2dot = a1v > 0 && a2v > 0 ? BigNumber.E.pow(a1v.log() + a2v.log() - (2-gamma1.level*0.008).log() * (currency3.value).log() ) : BigNumber.ZERO;
     currency2.value += dt * rho2dot; //increase rho2 by rho2dot by dt
-    rho1dot = (currency2.value.pow(BigNumber.ONE+gamma0.level*0.02).sqrt()*(inverseE_Gamma)); //rho1dot is equal to the root of rho2^milestone, over the difference between E and stirling's approximation
+    rho1dot = (currency2.value.pow(1+gamma0.level*0.02).sqrt()*(inverseE_Gamma)); //rho1dot is equal to the root of rho2^milestone, over the difference between E and stirling's approximation
     currency.value += dt * theory.publicationMultiplier * rho1dot; //increase rho1 by rho1dot by dt, accounting for pub bonus
     
     t += elapsedTime;
@@ -624,9 +947,9 @@ var getSecondaryEquation = () => {
 //display values considered useful that aren't in the currency bar
 var getTertiaryEquation = () => {
     let result = "e - \\gamma = ";
-    if(inverseE_Gamma <= 10000)
+    if(inverseE_Gamma <= 10000) //arbitrary number that xelaroc said was ok
     result += (BigNumber.ONE/inverseE_Gamma).toString(4);
-else { 
+else { //wizard fuckery. note to future self: do not touch
     let exp = 1+Math.floor(inverseE_Gamma.log10().toNumber()),
         mts = ((BigNumber.TEN.pow(exp)/inverseE_Gamma).toString());
     result += `${mts}e\\text{-}${exp}`
@@ -641,7 +964,7 @@ else {
 
 }
 
-var getEquationOverlay = () => ui.createGrid({
+var getEquationOverlay = () => ui.createGrid({ //taken from Probability Theory
     onTouched: (e) => {
         if (e.type != TouchType.PRESSED) return;
         tapCount++;
@@ -675,7 +998,7 @@ var getPublicationMultiplier = (tau) => tau.pow(1.5); //publication mult bonus i
 var getPublicationMultiplierFormula = (symbol) => /*"10 · " +*/ symbol + "^{1.5}"; //text to render for publication mult ext
 var getTau = () => currency.value.pow(BigNumber.from(0.1));
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol]; //optional, allows showing currency_max not tau_max in publication / perma upgrade dialogs
-var get2DGraphValue = () => (BigNumber.ONE + currency.value.abs()).log10().toNumber(); //renders the graph based on currency 1
+var get2DGraphValue = () => (BigNumber.ONE + currency.value.abs()).log10(). toNumber(); //used by the game to check what the 2d graph value is. why is it .abs? i dont know. 
 
 var geta1 = (level) => Utils.getStepwisePowerSum(level, 3.5, 3, 0); //get the value of the variable from a power sum with a level of <level>, a base of 2, a step length of 5 and an initial value of 0 
 var geta2 = (level) => BigNumber.TWO.pow(level); //get the value of the variable from a power of 2^level
