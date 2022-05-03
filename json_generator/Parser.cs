@@ -149,9 +149,10 @@ namespace UpdateJson
                 foreach (var child in node.ChildNodes)
                     AssertLiterals(name, child);
             }
-
-            if (node.Type != Esprima.Ast.Nodes.Literal)
+            else if (node.Type != Esprima.Ast.Nodes.Literal)
+            {
                 ThrowInvalidLiteral(name);
+            }
         }
 
         private static void ThrowInvalidLiteral(string name)
