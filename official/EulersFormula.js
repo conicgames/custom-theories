@@ -1,4 +1,4 @@
-﻿import {CustomCost, ExponentialCost} from "./api/Costs";
+import {CustomCost, ExponentialCost} from "./api/Costs";
 import { Localization } from "./api/Localization";
 import {BigNumber, parseBigNumber} from "./api/BigNumber";
 import {QuaternaryEntry, theory} from "./api/Theory";
@@ -12,9 +12,7 @@ import { Vector3 } from "../../../Projects/theory-sdk/api/Vector3";
 import {Color} from "./api/ui/properties/Color";
 import {CornerRadius} from "./api/ui/properties/CornerRadius";
 
-requiresGameVersion("1.4.28");
-
-var id = "eulers_formula";
+var id = "eulers_formula2";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\n" +
     "You hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n" +
@@ -53,7 +51,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
     "XLII (XLII#0042) - Balancing, Structuring\n" +
     "peanut (peanut#6368) - Developer, Story";
 
-var version = 3;
+var version = 1;
 
 // init variables
 var currency, currency_R, currency_I;
@@ -248,7 +246,7 @@ var init = () => {
     let achievement_category_1 = theory.createAchievementCategory(0, "Currencies");
     let achievement_category_2 = theory.createAchievementCategory(1, "Milestones");
     let achievement_category_3 = theory.createAchievementCategory(2, "Publications");
-    let achievement_category_4 = theory.createAchievementCategory(3, "Secret");
+    let achievement_category_4 = theory.createAchievementCategory(3, "Secret Achievements");
 
     let e10 = BigNumber.from(1e10);
     let e20 = BigNumber.from(1e20);
@@ -715,7 +713,7 @@ var getQuaternaryEntries = () => {
     quaternaryEntries[0].value = q.toString(2);
     quaternaryEntries[1].value = t.toString(2);
     quaternaryEntries[2].value = R.toString(2);
-    quaternaryEntries[3].value = I.toString(2) + "i";
+    quaternaryEntries[3].value = -I.toString(2) + "i";
 
     return quaternaryEntries;
 }
