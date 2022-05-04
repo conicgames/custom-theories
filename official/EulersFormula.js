@@ -12,7 +12,7 @@ import { Vector3 } from "../../../Projects/theory-sdk/api/Vector3";
 import {Color} from "./api/ui/properties/Color";
 import {CornerRadius} from "./api/ui/properties/CornerRadius";
 
-var id = "eulers_formula2";
+var id = "eulers_formula";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\n" +
     "You hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n" +
@@ -51,7 +51,9 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
     "XLII (XLII#0042) - Balancing, Structuring\n" +
     "peanut (peanut#6368) - Developer, Story";
 
-var version = 1;
+requiresGameVersion("1.4.28");
+
+var version = 3;
 
 // init variables
 var currency, currency_R, currency_I;
