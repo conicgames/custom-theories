@@ -53,7 +53,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
     "XLII (XLII#0042) - Balancing, Structuring\n" +
     "peanut (peanut#6368) - Developer, Story";
 
-var version = 2;
+var version = 3;
 
 // init variables
 var currency, currency_R, currency_I;
