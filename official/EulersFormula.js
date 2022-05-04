@@ -14,7 +14,7 @@ import {CornerRadius} from "./api/ui/properties/CornerRadius";
 
 requiresGameVersion("1.4.28");
 
-var id = "eulers_formula";
+var id = "eulers_formula2";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nand a personal thanks from peanut to:\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n\n- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team"
 var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\nXLII (XLII#0042) - Balancing, Structuring\npeanut (peanut#6368) - Developer, Story";
@@ -690,7 +690,7 @@ var getSecondaryEquation = () => {
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
     let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value;
-    let result = s_condition ? "\\text{do the Flashbang dance!}" : s_count_3 + theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let result = s_condition ? "\\text{do the Flashbang dance!}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
