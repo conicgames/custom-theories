@@ -715,7 +715,7 @@ var getQuaternaryEntries = () => {
     quaternaryEntries[0].value = q.toString(2);
     quaternaryEntries[1].value = t.toString(2);
     quaternaryEntries[2].value = R.toString(2);
-    quaternaryEntries[3].value = -I.toString(2) + "i";
+    quaternaryEntries[3].value = (-I).toString(2) + "i";
 
     return quaternaryEntries;
 }
