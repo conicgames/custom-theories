@@ -14,7 +14,7 @@ import {CornerRadius} from "./api/ui/properties/CornerRadius";
 
 requiresGameVersion("1.4.28");
 
-var id = "eulers_formula";
+var id = "eulers_formula2";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nand a personal thanks from peanut to:\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n\n- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team"
 var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\nXLII (XLII#0042) - Balancing, Structuring\npeanut (peanut#6368) - Developer, Story";
@@ -34,8 +34,10 @@ var q = BigNumber.ONE;
 // sneaky sneaky
 var s_achievement_1;
 var s_achievement_2;
+var s_achievement_3;
 var s_boolean_1 = true;
 var s_boolean_2 = true;
+var s_count_3 = 0;
 
 // milestone variables
 var a_base, a_exp;
@@ -87,6 +89,7 @@ var init = () => {
         q1 = theory.createUpgrade(1, currency, new FirstFreeCost(new ExponentialCost(10, Math.log2(1.61328))));
         q1.getDescription = (_) => Utils.getMath(getDesc(q1.level));
         q1.getInfo = (amount) => Utils.getMathTo(getDesc(q1.level), getDesc(q1.level + amount));
+        q1.bought = (s3Count);
     }
 
     // q2
@@ -96,6 +99,7 @@ var init = () => {
         q2 = theory.createUpgrade(2, currency, new ExponentialCost(5, Math.log2(60)));
         q2.getDescription = (_) => Utils.getMath(getDesc(q2.level));
         q2.getInfo = (amount) => Utils.getMathTo(getInfo(q2.level), getInfo(q2.level + amount));
+        q2.bought = (s3Count);
     }
 
     // b1
@@ -105,6 +109,7 @@ var init = () => {
         b1 = theory.createUpgrade(3, currency_R, new FirstFreeCost(ExponentialCost(20, Math.log2(200))));
         b1.getDescription = (_) => Utils.getMath(getDesc(b1.level));
         b1.getInfo = (amount) => Utils.getMathTo(getDesc(b1.level), getDesc(b1.level + amount));
+        b1.bought = (s3Count);
     }
 
     // b2
@@ -114,6 +119,7 @@ var init = () => {
         b2 = theory.createUpgrade(4, currency_R, new ExponentialCost(100, Math.log2(2)));
         b2.getDescription = (_) => Utils.getMath(getDesc(b2.level));
         b2.getInfo = (amount) => Utils.getMathTo(getInfo(b2.level), getInfo(b2.level + amount));
+        b2.bought = (s3Count);
     }
 
 
@@ -124,6 +130,7 @@ var init = () => {
         c1 = theory.createUpgrade(5, currency_I, new FirstFreeCost(new ExponentialCost(20, Math.log2(200))));
         c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
         c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
+        c1.bought = (s3Count);
     }
 
     // c2
@@ -133,6 +140,7 @@ var init = () => {
         c2 = theory.createUpgrade(6, currency_I, new ExponentialCost(100, Math.log2(2)));
         c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
         c2.getInfo = (amount) => Utils.getMathTo(getInfo(c2.level), getInfo(c2.level + amount));
+        c2.bought = (s3Count);
     }
 
     // a1
@@ -142,6 +150,7 @@ var init = () => {
         a1 = theory.createUpgrade(7, currency, new FirstFreeCost(new ExponentialCost(2000, 2.2)));
         a1.getDescription = (_) => Utils.getMath(getDesc(a1.level));
         a1.getInfo = (amount) => Utils.getMathTo(getDesc(a1.level), getDesc(a1.level + amount));
+        a1.bought = (s3Count);
     }
 
     // a2
@@ -151,6 +160,7 @@ var init = () => {
         a2 = theory.createUpgrade(8, currency_R, new ExponentialCost(500, 2.2));
         a2.getDescription = (_) => Utils.getMath(getDesc(a2.level));
         a2.getInfo = (amount) => Utils.getMathTo(getInfo(a2.level), getInfo(a2.level + amount));
+        a2.bought = (s3Count);
     }
 
     // a3
@@ -160,6 +170,7 @@ var init = () => {
         a3 = theory.createUpgrade(9, currency_I, new ExponentialCost(500, 2.2));
         a3.getDescription = (_) => Utils.getMath(getDesc(a3.level));
         a3.getInfo = (amount) => Utils.getMathTo(getInfo(a3.level), getInfo(a3.level + amount));
+        a3.bought = (s3Count);
     }
 
     // Permanent Upgrades
@@ -250,7 +261,7 @@ var init = () => {
 
     s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
     s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
-    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'I dont like odd numbers.', "Buy 10 upgrades, only when t is even.\nYes that title is a real fear by the way.", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
+    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'Buy 10 levels of any upgrade, only when t is even.\nYes that title is a real fear by the way.', 'I dont like odd numbers.', () => s3Proof());
 
 
     // Story Chapters
@@ -473,6 +484,18 @@ var getEndPopup = ui.createPopup({
     })
 });
 
+var s3Count = () => {
+    if(t.round() % 2 == 0) {
+        s_count_3++;
+    } else {
+        s_count_3 = 0;
+    }
+}
+
+var s3Proof = () => {
+    return s_count_3 == 10;
+}
+
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
@@ -667,7 +690,7 @@ var getSecondaryEquation = () => {
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
     let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value;
-    let result = s_condition ? "\\text{do the Flashbang dance!}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let result = s_condition ? "\\text{do the Flashbang dance!}" : s_count_3 + theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
