@@ -47,12 +47,12 @@ var dimension;
 
 // graph variables
 var scale = 0.2;
-var R = BigNumber.ZERO;
-var I = BigNumber.ZERO;
+var r_graph = BigNumber.ZERO;
+var i_graph = BigNumber.ZERO;
 var t_speed;                  // multiplies dt by given value (1 + t_multiplier * dt)
 var t = BigNumber.ZERO;       // time elapsed ( -> cos(t), sin(t) etc.)
 var t_graph = BigNumber.ZERO; // distance from current x value to origin
-var max_R, max_I;
+var max_r_graph, max_i_graph;
 var num_publications = 0;
 
 // vector variables
@@ -65,8 +65,8 @@ var init = () => {
     currency_R = theory.createCurrency("R", "R");
     currency_I = theory.createCurrency("I", "I");
 
-    max_R = BigNumber.ZERO;
-    max_I = BigNumber.ZERO;
+    max_r_graph = BigNumber.ZERO;
+    max_i_graph = BigNumber.ZERO;
     scale = 0.2;
 
     quaternaryEntries = [];
@@ -435,7 +435,7 @@ var postPublish = () => {
     if(s_achievement_3.isUnlocked) {
         s_boolean_3 = false;
     }
-    
+
 }
 
 var getInternalState = () => `${num_publications} ${q} ${t} ${scale}`
@@ -449,17 +449,17 @@ var setInternalState = (state) => {
     theory.clearGraph();
     t_graph = BigNumber.ZERO;
     state.x = t_graph.toNumber();
-    state.y = R.toNumber();
-    state.z = (-I).toNumber();
+    state.y = r_graph.toNumber();
+    state.z = (-i_graph).toNumber();
 }
 
 var checkForScale = () => {
-    if(max_R > 1.5 / scale || max_I > 1.5 / scale) { // scale down everytime R or I gets larger than the screen
+    if(max_r_graph > 1.5 / scale || max_i_graph > 1.5 / scale) { // scale down everytime R or I gets larger than the screen
         theory.clearGraph();
         t_graph = BigNumber.ZERO;
         state.x = t_graph.toNumber();
-        state.y = R.toNumber();
-        state.z = (-I).toNumber();
+        state.y = r_graph.toNumber();
+        state.z = (-i_graph).toNumber();
         let old_scale = scale; // save previous scale
         scale = (50 / 100) * old_scale // scale down by 50%
     }
@@ -548,26 +548,26 @@ var tick = (elapsedTime, multiplier) => {
     let c = vc1 * vc2;
 
     // these R and I values are used for coordinates on the graph
-    R = b * t.cos(); // b * cos(t) - real part of solution
-    I = c * t.sin(); // c * i * sin(t) - "imaginary" part of solution
-    max_R = max_R.max(R);
-    max_I = max_I.max(I);
+    r_graph = b * t.cos(); // b * cos(t) - real part of solution
+    i_graph = c * t.sin(); // c * i * sin(t) - "imaginary" part of solution
+    max_r_graph = max_r_graph.max(r_graph);
+    max_i_graph = max_i_graph.max(i_graph);
 
     // graph_dist calc (explanation see top)
     t_graph += q1.level == 0 ? 0 : dt / (BigNumber.from(scale) * BigNumber.TEN);
 
     // graph drawn
     state.x = t_graph.toNumber();
-    state.y = R.toNumber();
-    state.z = (-I).toNumber();
+    state.y = r_graph.toNumber();
+    state.z = (-i_graph).toNumber();
 
     let base_currency_multiplier = dt * bonus;
 
     // CURRENCY CALC
     if(q1.level == 0) {
         currency.value = BigNumber.ZERO;
-        currency_I.value = BigNumber.ZERO;
         currency_R.value = BigNumber.ZERO;
+        currency_I.value = BigNumber.ZERO;
     } else {
         // rho calculation
         switch (dimension.level) {
@@ -583,10 +583,10 @@ var tick = (elapsedTime, multiplier) => {
         }
 
         // R calculation
-        currency_R.value += dimension.level > 0 ? base_currency_multiplier * R.square() : BigNumber.ZERO;
+        currency_R.value += dimension.level > 0 ? base_currency_multiplier * r_graph.square() : BigNumber.ZERO;
 
         // I calculation
-        currency_I.value += dimension.level > 1 ? base_currency_multiplier * I.square() : BigNumber.ZERO;
+        currency_I.value += dimension.level > 1 ? base_currency_multiplier * i_graph.square() : BigNumber.ZERO;
 
     }
 
@@ -711,8 +711,8 @@ var getQuaternaryEntries = () => {
 
     quaternaryEntries[0].value = q.toString(2);
     quaternaryEntries[1].value = t.toString(2);
-    quaternaryEntries[2].value = R.toString(2);
-    quaternaryEntries[3].value = I.toString(2) + "i";
+    quaternaryEntries[2].value = r_graph.toString(2);
+    quaternaryEntries[3].value = i_graph.toString(2) + "i";
 
     return quaternaryEntries;
 }
