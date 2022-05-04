@@ -248,6 +248,7 @@ var init = () => {
     let achievement_category_1 = theory.createAchievementCategory(0, "Currencies");
     let achievement_category_2 = theory.createAchievementCategory(1, "Milestones");
     let achievement_category_3 = theory.createAchievementCategory(2, "Publications");
+    let achievement_category_4 = theory.createAchievementCategory(3, "Secret");
 
     let e10 = BigNumber.from(1e10);
     let e20 = BigNumber.from(1e20);
@@ -282,8 +283,8 @@ var init = () => {
     theory.createAchievement(19, achievement_category_3, "Senior Writer", "Publish your research 25 times.", () => num_publications >= 25);
     theory.createAchievement(20, achievement_category_3, "Lead Author", "Publish your research 50 times.", () => num_publications >= 50);
 
-    s_achievement_1 = theory.createSecretAchievement(21,"It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
-    s_achievement_2 = theory.createSecretAchievement(22,"Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
+    s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
+    s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
 
     // Story Chapters
     let story_chapter_1 = "";
