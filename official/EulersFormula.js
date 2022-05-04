@@ -16,43 +16,8 @@ requiresGameVersion("1.4.28");
 
 var id = "eulers_formula";
 var name = "Euler's Formula";
-var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\n" +
-    "You hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n" +
-    "\n" +
-    "This theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\n" +
-    "Your task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\n" +
-    "A theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!" +
-    "\n\n" +
-    "Variable Explanation:" +
-    "\n\n" +
-    "t - A simple variable based on time. Is reset on publish." +
-    "\n" +
-    "q - A variable helping you grow ρ, directly affected by t." +
-    "\n" +
-    "a - Multiple kinds of variables, helping you grow ρ." +
-    "\n" +
-    "b and c - Variables modifying cos(t) and isin(t)" +
-    "\n\n" +
-    "Huge thanks to:" +
-    "\n\n" +
-    "- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n" +
-    "\n" +
-    "and a personal thanks from peanut to:\n" +
-    "\n" +
-    "- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n" +
-    "\n" +
-    "- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n" +
-    "\n" +
-    "- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n" +
-    "\n" +
-    "We hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n" +
-    "\n" +
-    "- The Eulers-Formula-CT Team"
-
-var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
-    "XLII (XLII#0042) - Balancing, Structuring\n" +
-    "peanut (peanut#6368) - Developer, Story";
-
+var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nand a personal thanks from peanut to:\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n\n- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team"
+var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\nXLII (XLII#0042) - Balancing, Structuring\npeanut (peanut#6368) - Developer, Story";
 var version = 3;
 
 // init variables
@@ -285,6 +250,8 @@ var init = () => {
 
     s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
     s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
+    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'I dont like odd numbers.', "Buy 10 upgrades, only when t is even.\nYes that title is a real fear by the way.", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
+
 
     // Story Chapters
     let story_chapter_1 = "";
