@@ -12,7 +12,9 @@ import { Vector3 } from "../../../Projects/theory-sdk/api/Vector3";
 import {Color} from "./api/ui/properties/Color";
 import {CornerRadius} from "./api/ui/properties/CornerRadius";
 
-var id = "eulers_formula2";
+requiresGameVersion("1.4.28");
+
+var id = "eulers_formula";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\n" +
     "You hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n" +
@@ -51,7 +53,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
     "XLII (XLII#0042) - Balancing, Structuring\n" +
     "peanut (peanut#6368) - Developer, Story";
 
-var version = 1;
+var version = 3;
 
 // init variables
 var currency, currency_R, currency_I;
@@ -465,7 +467,7 @@ var setInternalState = (state) => {
     t_graph = BigNumber.ZERO;
     state.x = t_graph.toNumber();
     state.y = R.toNumber();
-    state.z = I.toNumber();
+    state.z = (-I).toNumber();
 }
 
 var checkForScale = () => {
@@ -474,7 +476,7 @@ var checkForScale = () => {
         t_graph = BigNumber.ZERO;
         state.x = t_graph.toNumber();
         state.y = R.toNumber();
-        state.z = I.toNumber();
+        state.z = (-I).toNumber();
         let old_scale = scale; // save previous scale
         scale = (50 / 100) * old_scale // scale down by 50%
     }
@@ -560,7 +562,7 @@ var tick = (elapsedTime, multiplier) => {
     // graph drawn
     state.x = t_graph.toNumber();
     state.y = R.toNumber();
-    state.z = I.toNumber();
+    state.z = (-I).toNumber();
 
     let base_currency_multiplier = dt * bonus;
 
@@ -710,11 +712,10 @@ var getQuaternaryEntries = () => {
         quaternaryEntries.push(new QuaternaryEntry("g_i", null));
     }
 
-    let m_I = I * BigNumber.from(-1);
     quaternaryEntries[0].value = q.toString(2);
     quaternaryEntries[1].value = t.toString(2);
     quaternaryEntries[2].value = R.toString(2);
-    quaternaryEntries[3].value = m_I.toString(2) + "i";
+    quaternaryEntries[3].value = I.toString(2) + "i";
 
     return quaternaryEntries;
 }
