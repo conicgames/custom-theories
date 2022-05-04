@@ -37,6 +37,7 @@ var s_achievement_2;
 var s_achievement_3;
 var s_boolean_1 = true;
 var s_boolean_2 = true;
+var s_boolean_3 = true;
 var s_count_3 = 0;
 
 // milestone variables
@@ -431,6 +432,10 @@ var postPublish = () => {
     if(s_achievement_2.isUnlocked) {
         s_boolean_2 = false;
     }
+    if(s_achievement_3.isUnlocked) {
+        s_boolean_3 = false;
+    }
+    
 }
 
 var getInternalState = () => `${num_publications} ${q} ${t} ${scale}`
@@ -485,10 +490,12 @@ var getEndPopup = ui.createPopup({
 });
 
 var s3Count = () => {
-    if(t.round() % 2 == 0) {
-        s_count_3++;
-    } else {
-        s_count_3 = 0;
+    if(s_boolean_3) {
+        if (t.round() % 2 == 0) {
+            s_count_3++;
+        } else {
+            s_count_3 = 0;
+        }
     }
 }
 
@@ -689,8 +696,8 @@ var getSecondaryEquation = () => {
 
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
-    let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value;
-    let result = s_condition ? "\\text{do the Flashbang dance!}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value && s_boolean_1;
+    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
