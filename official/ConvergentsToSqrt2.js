@@ -10,7 +10,7 @@ var id = "convergents_to_sqrt(2)"
 var name = "Convergents to √2";
 var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
 var authors = "Solarion#4131";
-var version = 8;
+var version = 9;
 var q = BigNumber.ONE;
 
 var q1, q2, c1, c2, n;
@@ -180,19 +180,18 @@ var getTertiaryEquation = () => {
     return result
 }
 
-var root2 = BigNumber.from(2).sqrt();
-var root2m1 = root2 - BigNumber.ONE;
-var root2p1 = root2 + BigNumber.ONE;
-var twoRoot2 = BigNumber.TWO * root2;
-
-var getError = (n) => {
-    let sign = BigNumber.from(n % 2 == 0 ? 1 : -1); // (-1)^n
-    let nb = BigNumber.from(n);
-    let root2p1n = root2p1.pow(nb);
-    let vdn = (sign * root2m1.pow(nb) + root2p1n) / twoRoot2;
-    let vp = sign * root2p1n;
-    return vdn * vp;
-}
+// getError returns "1 / (sqrt(2) - N_n/D_n)"
+// Since BigNumber has problem with very small numbers, 
+// we use a slightly different form that only involves
+// exponentiation of values > 1. Using Mathematica, we define:
+//   Ni[n_] := ((1 + Sqrt[2])^n + (1 - Sqrt[2])^n)/2;
+//   Di[n_] := ((1 + Sqrt[2])^n - (1 - Sqrt[2])^n)/(2*Sqrt[2]);
+//   Simplify[1/(Sqrt[2] - Ni[n]/Di[n])]
+// which results in:
+//   (1 - (Sqrt[8] - 3)^-n)/Sqrt[8]
+var root8 = BigNumber.from(8).sqrt();
+var root8m3inv = (BigNumber.ONE / (root8 - BigNumber.THREE)).abs();
+var getError = (n) => (BigNumber.ONE - (n % 2 == 0 ? 1 : -1) * root8m3inv.pow(n)) / root8;
 
 var tt1250 = BigNumber.TEN.pow(1250);
 var multcutoff = BigNumber.from(1.18568685283083)*BigNumber.TEN.pow(273)
