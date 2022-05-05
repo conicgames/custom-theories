@@ -262,7 +262,7 @@ var init = () => {
 
     s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
     s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
-    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'Buy 10 levels of any upgrade, only when t is even.\nYes that title is a real fear by the way.', 'I dont like odd numbers.', () => s3Proof());
+    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'Buy 10 levels of any upgrade, only when t is even.\nYes that title is a real fear by the way.', "I don't like odd numbers.", () => s3Proof());
 
 
     // Story Chapters
