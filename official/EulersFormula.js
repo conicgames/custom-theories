@@ -1,4 +1,4 @@
-﻿import {CustomCost, ExponentialCost} from "./api/Costs";
+import {CustomCost, ExponentialCost} from "./api/Costs";
 import { Localization } from "./api/Localization";
 import {BigNumber, parseBigNumber} from "./api/BigNumber";
 import {QuaternaryEntry, theory} from "./api/Theory";
@@ -16,43 +16,8 @@ requiresGameVersion("1.4.28");
 
 var id = "eulers_formula";
 var name = "Euler's Formula";
-var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\n" +
-    "You hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n" +
-    "\n" +
-    "This theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\n" +
-    "Your task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\n" +
-    "A theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!" +
-    "\n\n" +
-    "Variable Explanation:" +
-    "\n\n" +
-    "t - A simple variable based on time. Is reset on publish." +
-    "\n" +
-    "q - A variable helping you grow ρ, directly affected by t." +
-    "\n" +
-    "a - Multiple kinds of variables, helping you grow ρ." +
-    "\n" +
-    "b and c - Variables modifying cos(t) and isin(t)" +
-    "\n\n" +
-    "Huge thanks to:" +
-    "\n\n" +
-    "- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n" +
-    "\n" +
-    "and a personal thanks from peanut to:\n" +
-    "\n" +
-    "- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n" +
-    "\n" +
-    "- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n" +
-    "\n" +
-    "- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n" +
-    "\n" +
-    "We hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n" +
-    "\n" +
-    "- The Eulers-Formula-CT Team"
-
-var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
-    "XLII (XLII#0042) - Balancing, Structuring\n" +
-    "peanut (peanut#6368) - Developer, Story";
-
+var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nand a personal thanks from peanut to:\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my questions and motivated us all to push this theory forward.\n\n- and Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team"
+var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\nXLII (XLII#0042) - Balancing, Structuring\npeanut (peanut#6368) - Developer, Story";
 var version = 3;
 
 // init variables
@@ -69,8 +34,11 @@ var q = BigNumber.ONE;
 // sneaky sneaky
 var s_achievement_1;
 var s_achievement_2;
+var s_achievement_3;
 var s_boolean_1 = true;
 var s_boolean_2 = true;
+var s_boolean_3 = true;
+var s_count_3 = 0;
 
 // milestone variables
 var a_base, a_exp;
@@ -79,12 +47,12 @@ var dimension;
 
 // graph variables
 var scale = 0.2;
-var R = BigNumber.ZERO;
-var I = BigNumber.ZERO;
+var r_graph = BigNumber.ZERO;
+var i_graph = BigNumber.ZERO;
 var t_speed;                  // multiplies dt by given value (1 + t_multiplier * dt)
 var t = BigNumber.ZERO;       // time elapsed ( -> cos(t), sin(t) etc.)
 var t_graph = BigNumber.ZERO; // distance from current x value to origin
-var max_R, max_I;
+var max_r_graph, max_i_graph;
 var num_publications = 0;
 
 // vector variables
@@ -97,8 +65,8 @@ var init = () => {
     currency_R = theory.createCurrency("R", "R");
     currency_I = theory.createCurrency("I", "I");
 
-    max_R = BigNumber.ZERO;
-    max_I = BigNumber.ZERO;
+    max_r_graph = BigNumber.ZERO;
+    max_i_graph = BigNumber.ZERO;
     scale = 0.2;
 
     quaternaryEntries = [];
@@ -122,6 +90,7 @@ var init = () => {
         q1 = theory.createUpgrade(1, currency, new FirstFreeCost(new ExponentialCost(10, Math.log2(1.61328))));
         q1.getDescription = (_) => Utils.getMath(getDesc(q1.level));
         q1.getInfo = (amount) => Utils.getMathTo(getDesc(q1.level), getDesc(q1.level + amount));
+        q1.bought = (s3Count);
     }
 
     // q2
@@ -131,6 +100,7 @@ var init = () => {
         q2 = theory.createUpgrade(2, currency, new ExponentialCost(5, Math.log2(60)));
         q2.getDescription = (_) => Utils.getMath(getDesc(q2.level));
         q2.getInfo = (amount) => Utils.getMathTo(getInfo(q2.level), getInfo(q2.level + amount));
+        q2.bought = (s3Count);
     }
 
     // b1
@@ -140,6 +110,7 @@ var init = () => {
         b1 = theory.createUpgrade(3, currency_R, new FirstFreeCost(ExponentialCost(20, Math.log2(200))));
         b1.getDescription = (_) => Utils.getMath(getDesc(b1.level));
         b1.getInfo = (amount) => Utils.getMathTo(getDesc(b1.level), getDesc(b1.level + amount));
+        b1.bought = (s3Count);
     }
 
     // b2
@@ -149,6 +120,7 @@ var init = () => {
         b2 = theory.createUpgrade(4, currency_R, new ExponentialCost(100, Math.log2(2)));
         b2.getDescription = (_) => Utils.getMath(getDesc(b2.level));
         b2.getInfo = (amount) => Utils.getMathTo(getInfo(b2.level), getInfo(b2.level + amount));
+        b2.bought = (s3Count);
     }
 
 
@@ -159,6 +131,7 @@ var init = () => {
         c1 = theory.createUpgrade(5, currency_I, new FirstFreeCost(new ExponentialCost(20, Math.log2(200))));
         c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
         c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
+        c1.bought = (s3Count);
     }
 
     // c2
@@ -168,6 +141,7 @@ var init = () => {
         c2 = theory.createUpgrade(6, currency_I, new ExponentialCost(100, Math.log2(2)));
         c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
         c2.getInfo = (amount) => Utils.getMathTo(getInfo(c2.level), getInfo(c2.level + amount));
+        c2.bought = (s3Count);
     }
 
     // a1
@@ -177,6 +151,7 @@ var init = () => {
         a1 = theory.createUpgrade(7, currency, new FirstFreeCost(new ExponentialCost(2000, 2.2)));
         a1.getDescription = (_) => Utils.getMath(getDesc(a1.level));
         a1.getInfo = (amount) => Utils.getMathTo(getDesc(a1.level), getDesc(a1.level + amount));
+        a1.bought = (s3Count);
     }
 
     // a2
@@ -186,6 +161,7 @@ var init = () => {
         a2 = theory.createUpgrade(8, currency_R, new ExponentialCost(500, 2.2));
         a2.getDescription = (_) => Utils.getMath(getDesc(a2.level));
         a2.getInfo = (amount) => Utils.getMathTo(getInfo(a2.level), getInfo(a2.level + amount));
+        a2.bought = (s3Count);
     }
 
     // a3
@@ -195,6 +171,7 @@ var init = () => {
         a3 = theory.createUpgrade(9, currency_I, new ExponentialCost(500, 2.2));
         a3.getDescription = (_) => Utils.getMath(getDesc(a3.level));
         a3.getInfo = (amount) => Utils.getMathTo(getInfo(a3.level), getInfo(a3.level + amount));
+        a3.bought = (s3Count);
     }
 
     // Permanent Upgrades
@@ -248,7 +225,7 @@ var init = () => {
     let achievement_category_1 = theory.createAchievementCategory(0, "Currencies");
     let achievement_category_2 = theory.createAchievementCategory(1, "Milestones");
     let achievement_category_3 = theory.createAchievementCategory(2, "Publications");
-    let achievement_category_4 = theory.createAchievementCategory(3, "Secret");
+    let achievement_category_4 = theory.createAchievementCategory(3, "Secret Achievements");
 
     let e10 = BigNumber.from(1e10);
     let e20 = BigNumber.from(1e20);
@@ -285,6 +262,8 @@ var init = () => {
 
     s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
     s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
+    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'Buy 10 levels of any upgrade, only when t is even.\nYes that title is a real fear by the way.', 'I dont like odd numbers.', () => s3Proof());
+
 
     // Story Chapters
     let story_chapter_1 = "";
@@ -453,6 +432,10 @@ var postPublish = () => {
     if(s_achievement_2.isUnlocked) {
         s_boolean_2 = false;
     }
+    if(s_achievement_3.isUnlocked) {
+        s_boolean_3 = false;
+    }
+
 }
 
 var getInternalState = () => `${num_publications} ${q} ${t} ${scale}`
@@ -466,17 +449,17 @@ var setInternalState = (state) => {
     theory.clearGraph();
     t_graph = BigNumber.ZERO;
     state.x = t_graph.toNumber();
-    state.y = R.toNumber();
-    state.z = I.toNumber();
+    state.y = r_graph.toNumber();
+    state.z = (-i_graph).toNumber();
 }
 
 var checkForScale = () => {
-    if(max_R > 1.5 / scale || max_I > 1.5 / scale) { // scale down everytime R or I gets larger than the screen
+    if(max_r_graph > 1.5 / scale || max_i_graph > 1.5 / scale) { // scale down everytime R or I gets larger than the screen
         theory.clearGraph();
         t_graph = BigNumber.ZERO;
         state.x = t_graph.toNumber();
-        state.y = R.toNumber();
-        state.z = I.toNumber();
+        state.y = r_graph.toNumber();
+        state.z = (-i_graph).toNumber();
         let old_scale = scale; // save previous scale
         scale = (50 / 100) * old_scale // scale down by 50%
     }
@@ -505,6 +488,20 @@ var getEndPopup = ui.createPopup({
         ]
     })
 });
+
+var s3Count = () => {
+    if(s_boolean_3) {
+        if (t.round() % 2 == 0) {
+            s_count_3++;
+        } else {
+            s_count_3 = 0;
+        }
+    }
+}
+
+var s3Proof = () => {
+    return s_count_3 == 10;
+}
 
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
@@ -551,26 +548,26 @@ var tick = (elapsedTime, multiplier) => {
     let c = vc1 * vc2;
 
     // these R and I values are used for coordinates on the graph
-    R = b * t.cos(); // b * cos(t) - real part of solution
-    I = c * t.sin(); // c * i * sin(t) - "imaginary" part of solution
-    max_R = max_R.max(R);
-    max_I = max_I.max(I);
+    r_graph = b * t.cos(); // b * cos(t) - real part of solution
+    i_graph = c * t.sin(); // c * i * sin(t) - "imaginary" part of solution
+    max_r_graph = max_r_graph.max(r_graph);
+    max_i_graph = max_i_graph.max(i_graph);
 
     // graph_dist calc (explanation see top)
     t_graph += q1.level == 0 ? 0 : dt / (BigNumber.from(scale) * BigNumber.TEN);
 
     // graph drawn
     state.x = t_graph.toNumber();
-    state.y = R.toNumber();
-    state.z = I.toNumber();
+    state.y = r_graph.toNumber();
+    state.z = (-i_graph).toNumber();
 
     let base_currency_multiplier = dt * bonus;
 
     // CURRENCY CALC
     if(q1.level == 0) {
         currency.value = BigNumber.ZERO;
-        currency_I.value = BigNumber.ZERO;
         currency_R.value = BigNumber.ZERO;
+        currency_I.value = BigNumber.ZERO;
     } else {
         // rho calculation
         switch (dimension.level) {
@@ -586,10 +583,10 @@ var tick = (elapsedTime, multiplier) => {
         }
 
         // R calculation
-        currency_R.value += dimension.level > 0 ? base_currency_multiplier * R.square() : BigNumber.ZERO;
+        currency_R.value += dimension.level > 0 ? base_currency_multiplier * r_graph.square() : BigNumber.ZERO;
 
         // I calculation
-        currency_I.value += dimension.level > 1 ? base_currency_multiplier * I.square() : BigNumber.ZERO;
+        currency_I.value += dimension.level > 1 ? base_currency_multiplier * i_graph.square() : BigNumber.ZERO;
 
     }
 
@@ -699,8 +696,8 @@ var getSecondaryEquation = () => {
 
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
-    let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value;
-    let result = s_condition ? "\\text{do the Flashbang dance!}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value && s_boolean_1;
+    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
@@ -714,8 +711,8 @@ var getQuaternaryEntries = () => {
 
     quaternaryEntries[0].value = q.toString(2);
     quaternaryEntries[1].value = t.toString(2);
-    quaternaryEntries[2].value = R.toString(2);
-    quaternaryEntries[3].value = I.toString(2) + "i";
+    quaternaryEntries[2].value = r_graph.toString(2);
+    quaternaryEntries[3].value = i_graph.toString(2) + "i";
 
     return quaternaryEntries;
 }
