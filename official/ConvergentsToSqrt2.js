@@ -120,7 +120,7 @@ var tick = (elapsedTime, multiplier) => {
     let c2level = c2.isAvailable ? c2.level : 0;
     let vn = getN(n.level) + c2level;
     let vc2 = c2.isAvailable ? getC2(c2.level).pow(getC2Exp(c2Exp.level)) : BigNumber.ONE;
-    q += bonus * dt * vc1 * vc2 * getError(vn).abs();
+    q += bonus * dt * vc1 * vc2 * getError(vn);
     currency.value += bonus * vq1 * vq2 * q * dt;
 
     theory.invalidateTertiaryEquation();
@@ -175,23 +175,25 @@ var getTertiaryEquation = () => {
     let result = "q=" + q.toString() + ",\\;m=" + m.toString(0) + ",\\;";
     result += "\\left|\\sqrt{2} - N_m/D_m\\right|^{-1}"
     result += " = ";
-    result += getError(m).abs();
+    result += getError(m);
 
     return result
 }
 
-// getError returns "1 / (sqrt(2) - N_n/D_n)"
+// getError returns "|1 / (sqrt(2) - N_n/D_n)|"
 // Since BigNumber has problem with very small numbers, 
 // we use a slightly different form that only involves
 // exponentiation of values > 1. Using Mathematica, we define:
 //   Ni[n_] := ((1 + Sqrt[2])^n + (1 - Sqrt[2])^n)/2;
 //   Di[n_] := ((1 + Sqrt[2])^n - (1 - Sqrt[2])^n)/(2*Sqrt[2]);
-//   Simplify[1/(Sqrt[2] - Ni[n]/Di[n])]
+//   Abs[Simplify[1/(Sqrt[2] - Ni[n]/Di[n])]]
 // which results in:
-//   (1 - (Sqrt[8] - 3)^-n)/Sqrt[8]
+//   Abs[(1 - (Sqrt[8] - 3)^-n)/Sqrt[8]]
+// With further simplification, we get
+//   ((Sqrt[8] + 3)^n - (-1)^n)/Sqrt[8]
 var root8 = BigNumber.from(8).sqrt();
-var root8m3inv = (BigNumber.ONE / (root8 - BigNumber.THREE)).abs();
-var getError = (n) => (BigNumber.ONE - (n % 2 == 0 ? 1 : -1) * root8m3inv.pow(n)) / root8;
+var root8p3 = root8 + BigNumber.THREE;
+var getError = (n) => (root8p3.pow(BigNumber.from(n)) - BigNumber.from(1 - (n % 2) * 2)) / root8;
 
 var tt1250 = BigNumber.TEN.pow(1250);
 var multcutoff = BigNumber.from(1.18568685283083)*BigNumber.TEN.pow(273)
