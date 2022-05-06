@@ -75,8 +75,8 @@ var init = () => {
 
     // t
     {
-        let getDesc = (level) => "\\dot{t}=" + BigNumber.from(0.2 + (0.2 * level)).toString(level > 3 ? 0 : 1);
-        let getInfo = (level) => "\\dot{t}=" + BigNumber.from(0.2 + (0.2 * level)).toString(level > 3 ? 0 : 1);
+        let getDesc = (level) => "\\dot{t}=" + BigNumber.from(0.02 + (0.02 * level)).toString(level > 3 ? 0 : 1);
+        let getInfo = (level) => "\\dot{t}=" + BigNumber.from(0.02 + (0.02 * level)).toString(level > 3 ? 0 : 1);
         t_speed = theory.createUpgrade(0, currency, new ExponentialCost(1e6, Math.log2(1e6)));
         t_speed.getDescription = (_) => Utils.getMath(getDesc(t_speed.level));
         t_speed.getInfo = (amount) => Utils.getMathTo(getInfo(t_speed.level), getInfo(t_speed.level + amount));
