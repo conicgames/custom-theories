@@ -56,6 +56,7 @@ var max_r_graph, max_i_graph;
 var num_publications = 0;
 
 // vector variables
+// original 3d graph made by EdgeOfDreams#4525
 var state = new Vector3(0, 0, 0);
 var center = new Vector3(0, 0, 0);
 var swizzle = (v) => new Vector3(v.y, v.z, v.x);
