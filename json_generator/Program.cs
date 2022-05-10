@@ -90,6 +90,8 @@ namespace UpdateJson
                 aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
                 aggregateFile.Append("    \"description\": \"" + Escape(descriptor.GetDescription(defaultLanguage)) + "\",\n");
                 aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
+                if (descriptor.ReleaseDate.HasValue)
+                    aggregateFile.Append("    \"release_date\": \"" + Escape(descriptor.ReleaseDate.Value.ToString("yyyy-MM-dd")) + "\"\n");
                 aggregateFile.Append("  }");
 
                 if (descriptor != descriptors.Last())

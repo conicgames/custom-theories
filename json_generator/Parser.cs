@@ -39,6 +39,7 @@ namespace UpdateJson
                 GetName = (l) => GetTranslation(engine, "name", l, name, getName),
                 GetDescription = (l) => GetTranslation(engine, "description", l, description, getDescription),
                 Version = TryGetString(engine, "version", out string versionStr) && int.TryParse(versionStr, out int version) ? version.ToString() : "1",
+                ReleaseDate = TryGetDateTime(engine, "release_date", out DateTime? releaseDate) ? releaseDate : null,
             };
         }
 
@@ -64,7 +65,8 @@ namespace UpdateJson
                         identifier.Name == "name" ||
                         identifier.Name == "description" ||
                         identifier.Name == "authors" ||
-                        identifier.Name == "version")
+                        identifier.Name == "version" ||
+                        identifier.Name == "release_date")
                     {
                         AssertLiterals(identifier.Name, variableDeclarator.Init);
                         nodes.Add(element);
@@ -107,6 +109,22 @@ namespace UpdateJson
             {
                 value = jsValue.ToString();
                 return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        private static bool TryGetDateTime(Jint.Engine engine, string name, out DateTime? value)
+        {
+            if (TryGetString(engine, name, out string valueStr))
+            {
+                try
+                {
+                    value = DateTime.ParseExact(valueStr, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                    return true;
+                }
+                catch (Exception) { }
             }
 
             value = null;
