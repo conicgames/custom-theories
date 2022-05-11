@@ -149,7 +149,7 @@ var init = () => {
 
     // c2
     {
-        let getDesc = (level) => "c_2=" + (1.1 + (0.0125 * b_base.level)) + "^{" + level + "}";
+        let getDesc = (level) => "c_2=" + (1.1 + (0.0125 * c_base.level)) + "^{" + level + "}";
         let getInfo = (level) => "c_2=" + getC2(level).toString(2);
         c2 = theory.createUpgrade(6, currency_I, new ExponentialCost(100, Math.log2(2)));
         c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
