@@ -337,8 +337,8 @@ var init = () => {
     story_chapter_6 += "Your multipliers are doing a great job pushing the theory.\n";
     story_chapter_6 += "But what if you could go even further?\n"
     story_chapter_6 += "After all, you have observed the theory for a long time now.\n"
-    story_chapter_6 += "You decide to create a variable called a3. It will have exponential growth.\n"
-    story_chapter_6 += "Is this enough to reach its limit?\n"
+    story_chapter_6 += "You decide to create a variable called 'a3'. It will have exponential growth.\n"
+    story_chapter_6 += "Is this enough, for the theory to reach its limit?\n"
     story_chapter_6 += "It nevertheless helps you immensely in your progress."
     theory.createStoryChapter(5, "Explosion", story_chapter_6, () => a_base.level == 3); // unlocked at a_base last milestone
 
