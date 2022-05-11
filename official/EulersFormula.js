@@ -278,7 +278,7 @@ var init = () => {
     s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", s_achievement_1_description, "19 is my favourite number.", () => s1Proof());
     s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", s_achievement_2_description, "Smoke what everyday?", () => s2Proof());
     s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", s_achievement_3_description, "I don't like odd numbers.", () => s3Proof());
-    s_achievement_4 = theory.createSecretAchievement(24, achievement_category_4, "Perfectionist", s_achievement_4_description, "I don't like odd numbers.", () => s4Proof());
+    s_achievement_4 = theory.createSecretAchievement(24, achievement_category_4, "Perfectionist", s_achievement_4_description, "Flawlessness is my speciality.", () => s4Proof());
 
 
     // Story Chapters
