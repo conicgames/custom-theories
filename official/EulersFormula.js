@@ -736,7 +736,7 @@ var getSecondaryEquation = () => {
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
     let s_condition = s1Proof() && currency.value > s_value && s_boolean_1;
-    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : s_count_3 + theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
