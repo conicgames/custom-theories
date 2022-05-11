@@ -11,7 +11,7 @@ var name = "Convergents to √2";
 var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
 var authors = "Solarion#4131";
 var version = 9;
-var release_date = "2022-04-05";
+var releaseOrder = "4";
 var q = BigNumber.ONE;
 
 var q1, q2, c1, c2, n;

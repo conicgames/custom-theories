@@ -10,6 +10,6 @@ namespace UpdateJson
         public Func<string, string> GetDescription = null;
         public string Authors { get; set; } = null;
         public string Version { get; set; } = "1";
-        public DateTime? ReleaseDate { get; set; } = null;
+        public string ReleaseOrder { get; set; } = "1";
     }
 }
