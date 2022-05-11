@@ -89,7 +89,7 @@ namespace UpdateJson
                 aggregateFile.Append("\n    },\n");
                 aggregateFile.Append("    \"authors\": \"" + Escape(descriptor.Authors) + "\",\n");
                 aggregateFile.Append("    \"description\": \"" + Escape(descriptor.GetDescription(defaultLanguage)) + "\",\n");
-                aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\"\n");
+                aggregateFile.Append("    \"version\": \"" + Escape(descriptor.Version) + "\",\n");
                 aggregateFile.Append("    \"releaseOrder\": \"" + Escape(descriptor.ReleaseOrder) + "\"\n");
                 aggregateFile.Append("  }");
 
