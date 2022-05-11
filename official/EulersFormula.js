@@ -11,6 +11,7 @@ import {TouchType} from "./api/ui/properties/TouchType";
 import { Vector3 } from "../../../Projects/theory-sdk/api/Vector3";
 import {Color} from "./api/ui/properties/Color";
 import {CornerRadius} from "./api/ui/properties/CornerRadius";
+import {game} from "./api/Game";
 
 requiresGameVersion("1.4.28");
 
@@ -21,9 +22,10 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\nXLII 
 var version = 3;
 var releaseOrder = "3";
 
-// init variables
+// internal variables
 var currency, currency_R, currency_I;
 var quaternaryEntries;
+var app_was_closed = false;
 
 // upgrade variables
 var q1, q2;
@@ -36,10 +38,19 @@ var q = BigNumber.ONE;
 var s_achievement_1;
 var s_achievement_2;
 var s_achievement_3;
+var s_achievement_4;
 var s_boolean_1 = true;
 var s_boolean_2 = true;
 var s_boolean_3 = true;
+var s_boolean_4 = true;
 var s_count_3 = 0;
+var s_count_4 = 0;
+
+// s_achievement description
+var s_achievement_1_description = "L"+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(!![]+[])[(+[])]+` `+'q'+`1`+` `+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+([]+[]+[][[]])[((+!+[])+(+!+[]))]+` `+'q'+`2`+` `+(typeof [])[(+!+[])]+(typeof ![])[(+!+[])]+(!![]+[])[(+[])]+'h'+` `+'h'+(![]+[])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+`1`+`9`+` `+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+'w'+'h'+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+'h'+(![]+[])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[])]+(typeof ([]+[]))[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+` `+(![]+[])[(+!+[])]+(typeof [])[(+!+[])]+(typeof ![])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+`1`+`.`+`4`+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+`7`+`ρ`+`.`+``+([]+[]+[][[]])[((+!+[])+(+!+[]))]+(typeof ![])[(+!+[])]+` `+(!![]+[])[(+[])]+'h'+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+(![]+[])[(+[])]+(![]+[])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[])]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+'h'+(typeof [])[(+!+[])]+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(typeof ([]+[]))[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+` `+([]+[]+[][[]])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(typeof [])[((+!+[])+(+!+[]))*((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+`!`+``+``;
+var s_achievement_2_description = "L"+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(!![]+[])[(+[])]+` `+(!![]+[])[(+[])]+` `+'h'+(![]+[])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+`4`+`,`+` `+'q'+`1`+` `+'h'+(![]+[])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+`2`+` `+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+([]+[]+[][[]])[((+!+[])+(+!+[]))]+` `+'q'+`2`+` `+'h'+(![]+[])[(+!+[])]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+`0`+` `+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+`.`+``;
+var s_achievement_3_description = "B"+(!![]+[])[((+!+[])+(+!+[]))]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+`1`+`0`+` `+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+(typeof ![])[(+!+[])]+(![]+[])[(+[])]+` `+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+(!![]+[])[((+!+[])+(+!+[]))]+(RegExp().constructor.name)[((+!+[])+(+!+[]))+(+!+[]+((+!+[])+(+!+[])))]+(typeof ([]+[]))[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(!![]+[])[(+!+[])]+(![]+[])[(+!+[])]+([]+[]+[][[]])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+`,`+` `+(typeof ![])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(![]+[])[((+!+[])+(+!+[]))]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+'w'+'h'+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+[][[]])[(+!+[])]+` `+(!![]+[])[(+[])]+` `+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+[][[]])[(+!+[])]+`.`+`\\`+([]+[]+[][[]])[(+!+[])]+"Y"+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+(!![]+[])[(+[])]+'h'+(![]+[])[(+!+[])]+(!![]+[])[(+[])]+` `+(!![]+[])[(+[])]+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(!![]+[])[(+[])]+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+(![]+[])[(+!+[])]+` `+(!![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[(+!+[])]+(![]+[])[((+!+[])+(+!+[]))]+` `+(![]+[])[(+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[(+!+[])]+(!![]+[])[(+!+[])]+` `+(typeof [])[(+!+[])]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+(!![]+[])[(+[])]+'h'+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+` `+'w'+(![]+[])[(+!+[])]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+`.`;
+var s_achievement_4_description = "B"+(!![]+[])[((+!+[])+(+!+[]))]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+`1`+`0`+` `+(![]+[])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+([]).constructor)[(+[+!+[]+[+[]+[+[]]]])/((+!+[])+(+!+[]))/((+!+[])+(+!+[]))-(+!+[])]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(![]+[])[((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+(typeof ![])[(+!+[])]+(![]+[])[(+[])]+` `+(![]+[])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+(!![]+[])[((+!+[])+(+!+[]))]+(RegExp().constructor.name)[((+!+[])+(+!+[]))+(+!+[]+((+!+[])+(+!+[])))]+(typeof ([]+[]))[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(!![]+[])[(+!+[])]+(![]+[])[(+!+[])]+([]+[]+[][[]])[((+!+[])+(+!+[]))]+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+`,`+` `+(typeof ![])[(+!+[])]+([]+[]+[][[]])[(+!+[])]+(![]+[])[((+!+[])+(+!+[]))]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+'w'+'h'+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+([]+[]+[][[]])[(+!+[])]+` `+(typeof ([]+[]))[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+`_`+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+` `+([]+[]+[][[]])[(+[+!+[]+[+[]]])/((+!+[])+(+!+[]))]+(![]+[])[(+!+[]+((+!+[])+(+!+[])))]+` `+([]+[]+[][[]])[(+!+[]+((+!+[])+(+!+[])))]+(RegExp().constructor.name)[(+!+[]+((+!+[])+(+!+[])))+(+!+[])]+(![]+[])[(+!+[])]+(typeof [])[((+!+[])+(+!+[]))*((+!+[])+(+!+[]))]+(!![]+[])[(+[])]+(![]+[])[((+!+[])+(+!+[]))]+(([]).constructor.name)[(+!+[])+(+!+[]+((+!+[])+(+!+[])))]+` `+`1`+`.`
 
 // milestone variables
 var a_base, a_exp;
@@ -92,7 +103,7 @@ var init = () => {
         q1 = theory.createUpgrade(1, currency, new FirstFreeCost(new ExponentialCost(10, Math.log2(1.61328))));
         q1.getDescription = (_) => Utils.getMath(getDesc(q1.level));
         q1.getInfo = (amount) => Utils.getMathTo(getDesc(q1.level), getDesc(q1.level + amount));
-        q1.bought = (s3Count);
+        q1.bought = (sVarBought);
     }
 
     // q2
@@ -102,7 +113,7 @@ var init = () => {
         q2 = theory.createUpgrade(2, currency, new ExponentialCost(5, Math.log2(60)));
         q2.getDescription = (_) => Utils.getMath(getDesc(q2.level));
         q2.getInfo = (amount) => Utils.getMathTo(getInfo(q2.level), getInfo(q2.level + amount));
-        q2.bought = (s3Count);
+        q2.bought = (sVarBought);
     }
 
     // b1
@@ -112,7 +123,7 @@ var init = () => {
         b1 = theory.createUpgrade(3, currency_R, new FirstFreeCost(ExponentialCost(20, Math.log2(200))));
         b1.getDescription = (_) => Utils.getMath(getDesc(b1.level));
         b1.getInfo = (amount) => Utils.getMathTo(getDesc(b1.level), getDesc(b1.level + amount));
-        b1.bought = (s3Count);
+        b1.bought = (sVarBought);
     }
 
     // b2
@@ -122,7 +133,7 @@ var init = () => {
         b2 = theory.createUpgrade(4, currency_R, new ExponentialCost(100, Math.log2(2)));
         b2.getDescription = (_) => Utils.getMath(getDesc(b2.level));
         b2.getInfo = (amount) => Utils.getMathTo(getInfo(b2.level), getInfo(b2.level + amount));
-        b2.bought = (s3Count);
+        b2.bought = (sVarBought);
     }
 
 
@@ -133,7 +144,7 @@ var init = () => {
         c1 = theory.createUpgrade(5, currency_I, new FirstFreeCost(new ExponentialCost(20, Math.log2(200))));
         c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
         c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
-        c1.bought = (s3Count);
+        c1.bought = (sVarBought);
     }
 
     // c2
@@ -143,7 +154,7 @@ var init = () => {
         c2 = theory.createUpgrade(6, currency_I, new ExponentialCost(100, Math.log2(2)));
         c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
         c2.getInfo = (amount) => Utils.getMathTo(getInfo(c2.level), getInfo(c2.level + amount));
-        c2.bought = (s3Count);
+        c2.bought = (sVarBought);
     }
 
     // a1
@@ -153,7 +164,7 @@ var init = () => {
         a1 = theory.createUpgrade(7, currency, new FirstFreeCost(new ExponentialCost(2000, 2.2)));
         a1.getDescription = (_) => Utils.getMath(getDesc(a1.level));
         a1.getInfo = (amount) => Utils.getMathTo(getDesc(a1.level), getDesc(a1.level + amount));
-        a1.bought = (s3Count);
+        a1.bought = (sVarBought);
     }
 
     // a2
@@ -163,7 +174,7 @@ var init = () => {
         a2 = theory.createUpgrade(8, currency_R, new ExponentialCost(500, 2.2));
         a2.getDescription = (_) => Utils.getMath(getDesc(a2.level));
         a2.getInfo = (amount) => Utils.getMathTo(getInfo(a2.level), getInfo(a2.level + amount));
-        a2.bought = (s3Count);
+        a2.bought = (sVarBought);
     }
 
     // a3
@@ -173,7 +184,7 @@ var init = () => {
         a3 = theory.createUpgrade(9, currency_I, new ExponentialCost(500, 2.2));
         a3.getDescription = (_) => Utils.getMath(getDesc(a3.level));
         a3.getInfo = (amount) => Utils.getMathTo(getInfo(a3.level), getInfo(a3.level + amount));
-        a3.bought = (s3Count);
+        a3.bought = (sVarBought);
     }
 
     // Permanent Upgrades
@@ -262,9 +273,12 @@ var init = () => {
     theory.createAchievement(19, achievement_category_3, "Senior Writer", "Publish your research 25 times.", () => num_publications >= 25);
     theory.createAchievement(20, achievement_category_3, "Lead Author", "Publish your research 50 times.", () => num_publications >= 50);
 
-    s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", 'Let q1 and q2 both have 19 levels while having above 1.4e7ρ.\nDo the Flashbang dance!\n\n', "19 is my favourite number.", () => (q1.level == 19 && q2.level == 19));
-    s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", 'Let t have 4, q1 have 2 and q2 have 0 levels.', "Smoke what everyday?", () => (t_speed.level == 4 && q1.level == 2 && q2.level == 0));
-    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", 'Buy 10 levels of any upgrade, only when t is even.\nYes that title is a real fear by the way.', "I don't like odd numbers.", () => s3Proof());
+
+    // stop spoiling yourselves and figure out yourselves, what the SA's are !
+    s_achievement_1 = theory.createSecretAchievement(21, achievement_category_4, "It's Bright!", s_achievement_1_description, "19 is my favourite number.", () => s1Proof());
+    s_achievement_2 = theory.createSecretAchievement(22, achievement_category_4, "Competition", s_achievement_2_description, "Smoke what everyday?", () => s2Proof());
+    s_achievement_3 = theory.createSecretAchievement(23, achievement_category_4, "Imparnumerophobia", s_achievement_3_description, "I don't like odd numbers.", () => s3Proof());
+    s_achievement_4 = theory.createSecretAchievement(24, achievement_category_4, "Perfectionist", s_achievement_4_description, "I don't like odd numbers.", () => s4Proof());
 
 
     // Story Chapters
@@ -319,65 +333,75 @@ var init = () => {
     theory.createStoryChapter(4, "A Different Approach", story_chapter_5, () => a_base.level == 1); // unlocked at a_base first milestone
 
     let story_chapter_6 = "";
-    story_chapter_6 += "\"Of course!\n";
-    story_chapter_6 += "It's a relationship between exponential functions and trigonometry!\n";
-    story_chapter_6 += "Why shouldn't I add an exponent?\n";
-    story_chapter_6 += "Surely, using this, this theory can be pushed to its limit!\",\n";
-    story_chapter_6 += "you think to yourself.\n";
-    story_chapter_6 += "You decide to add an exponent to your multipliers.";
-    theory.createStoryChapter(5, "Exponential Ideas", story_chapter_6, () => a_exp.level == 1); // unlocked at a_exponent first milestone
+    story_chapter_6 += "It worked!\n"
+    story_chapter_6 += "Your multipliers are doing a great job pushing the theory.\n";
+    story_chapter_6 += "But what if you could go even further?\n"
+    story_chapter_6 += "After all, you have observed the theory for a long time now.\n"
+    story_chapter_6 += "You decide to create a variable called a3. It will have exponential growth.\n"
+    story_chapter_6 += "Is this enough to reach its limit?\n"
+    story_chapter_6 += "It nevertheless helps you immensely in your progress."
+    theory.createStoryChapter(5, "Explosion", story_chapter_6, () => a_base.level == 3); // unlocked at a_base last milestone
 
     let story_chapter_7 = "";
-    story_chapter_7 += "Summer break has finally arrived.\n";
-    story_chapter_7 += "Maybe it's time for you to quit.\n";
-    story_chapter_7 += "You have pushed this theory to its limit, you think to yourself\n";
-    story_chapter_7 += "that there's nothing more you can do.\n";
-    story_chapter_7 += "You have tried everything you can think of.\n";
-    story_chapter_7 += "It's time to let go.\n\n\n\n";
-    story_chapter_7 += "Or is it...?"
-    theory.createStoryChapter(6, "The End?", story_chapter_7, () => (a_base.level == 3 && a_exp.level == 5)); // unlocked at a_exp and a_base max milestone
+    story_chapter_7 += "\"Of course!\n";
+    story_chapter_7 += "It's a relationship between exponential functions and trigonometry!\n";
+    story_chapter_7 += "Why shouldn't I add an exponent?\n";
+    story_chapter_7 += "Surely, using this, this theory can be pushed to its limit!\",\n";
+    story_chapter_7 += "you think to yourself.\n";
+    story_chapter_7 += "You decide to add an exponent to your multipliers.";
+    theory.createStoryChapter(6, "Exponential Ideas", story_chapter_7, () => a_exp.level == 1); // unlocked at a_exponent first milestone
 
     let story_chapter_8 = "";
-    story_chapter_8 += "Your summer break was beautiful.\n"
-    story_chapter_8 += "You had a great time with your friends.\n"
-    story_chapter_8 += "However, that constant thought of the theory can't get out of your head.\n"
-    story_chapter_8 += "Since the start of summer break, it has plagued you.\n";
-    story_chapter_8 += "\"This cannot be the end.\", you think.\n";
-    story_chapter_8 += "\"There has to be something more! No way its limit is so low!\"\n\n";
-    story_chapter_8 += "You look over the theory again and notice something.\n"
-    story_chapter_8 += "After all this work, how come you never changed the bases of 'b' and 'c'?\n";
-    story_chapter_8 += "You gain motivation and start work on the theory again."
-    theory.createStoryChapter(7, "A New Beginning", story_chapter_8, () => b_base.level > 0); // unlocked at tau = e100 (b2 first milestone)
+    story_chapter_8 += "Summer break has finally arrived.\n";
+    story_chapter_8 += "Maybe it's time for you to quit.\n";
+    story_chapter_8 += "You have pushed this theory to its limit, you think to yourself\n";
+    story_chapter_8 += "that there's nothing more you can do.\n";
+    story_chapter_8 += "You have tried everything you can think of.\n";
+    story_chapter_8 += "It's time to let go.\n\n\n\n";
+    story_chapter_8 += "Or is it...?"
+    theory.createStoryChapter(7, "The End?", story_chapter_8, () => (a_base.level == 3 && a_exp.level == 5)); // unlocked at a_exp and a_base max milestone
 
     let story_chapter_9 = "";
-    story_chapter_9 += "You wake up in a sudden panic.\n"
-    story_chapter_9 += "You had a nightmare, of a huge 'i' falling on you.\n";
-    story_chapter_9 += "Another night in your lab.\n";
-    story_chapter_9 += "This has been the 3rd time this week.\n"
-    story_chapter_9 += "Your theory is growing incredibly slow.\n";
-    story_chapter_9 += "You cannot figure out why.\n";
-    story_chapter_9 += "The past weeks have been filled of you\n"
-    story_chapter_9 += "trying to grow this theory as large as you possibly can.\n\n"
-    story_chapter_9 += "More or less successful.\n\n"
-    story_chapter_9 += "Suddenly, you realize that you forgot to change the base of 'c'.\n"
-    story_chapter_9 += "You think, about how 'a3' is connected to 'c'.\n"
-    story_chapter_9 += "Can this be the step to push the theory to its limit?"
-    theory.createStoryChapter(8, "Frustration", story_chapter_9, () => c_base.level > 0); // unlocked at tau = e120 (c2 first milestone)
+    story_chapter_9 += "Your summer break was beautiful.\n"
+    story_chapter_9 += "You had a great time with your friends.\n"
+    story_chapter_9 += "However, that constant thought of the theory can't get out of your head.\n"
+    story_chapter_9 += "Since the start of summer break, it has plagued you.\n";
+    story_chapter_9 += "\"This cannot be the end.\", you think.\n";
+    story_chapter_9 += "\"There has to be something more! No way its limit is so low!\"\n\n";
+    story_chapter_9 += "You look over the theory again and notice something.\n"
+    story_chapter_9 += "After all this work, how come you never changed the bases of 'b' and 'c'?\n";
+    story_chapter_9 += "You gain motivation and start work on the theory again."
+    theory.createStoryChapter(8, "A New Beginning", story_chapter_9, () => b_base.level > 0); // unlocked at tau = e100 (b2 first milestone)
 
     let story_chapter_10 = "";
-    story_chapter_10 += "You finally did it.\n"
-    story_chapter_10 += "You have proven that the theory is able to be pushed to its limit.\n"
-    story_chapter_10 += "You are proud of yourself.\n"
-    story_chapter_10 += "Your publications get a massive amount of attention.\n"
-    story_chapter_10 += "One day, your professor reaches out to you:\n"
-    story_chapter_10 += "\"You have shown a lot of dedication,\n"
-    story_chapter_10 += "far more than I have ever seen from any student I've ever lectured.\n";
-    story_chapter_10 += "I am retiring this semester. The same as you graduate in.\n";
-    story_chapter_10 += "I got a small job offering for you.\n";
-    story_chapter_10 += "Are you willing to continue in my position?\"\n";
-    story_chapter_10 += "You excitingly accept his offer and cannot wait to pursue a career as a professor.\n\n\n"
-    story_chapter_10 += "The End."
-    theory.createStoryChapter(9, "The True Ending", story_chapter_10, () => predicateAndCallbackPopup()); // unlocked at tau = e150 (finished)
+    story_chapter_10 += "You wake up in a sudden panic.\n"
+    story_chapter_10 += "You had a nightmare, of a huge 'i' falling on you.\n";
+    story_chapter_10 += "Another night in your lab.\n";
+    story_chapter_10 += "This has been the 3rd time this week.\n"
+    story_chapter_10 += "Your theory is growing incredibly slow.\n";
+    story_chapter_10 += "You cannot figure out why.\n";
+    story_chapter_10 += "The past weeks have been filled of you\n"
+    story_chapter_10 += "trying to grow this theory as large as you possibly can.\n\n"
+    story_chapter_10 += "More or less successful.\n\n"
+    story_chapter_10 += "Suddenly, you realize that you forgot to change the base of 'c'.\n"
+    story_chapter_10 += "You think, about how 'a3' is connected to 'c'.\n"
+    story_chapter_10 += "Can this be the step to push the theory to its limit?"
+    theory.createStoryChapter(9, "Frustration", story_chapter_10, () => c_base.level > 0); // unlocked at tau = e120 (c2 first milestone)
+
+    let story_chapter_11 = "";
+    story_chapter_11 += "You finally did it.\n"
+    story_chapter_11 += "You have proven that the theory is able to be pushed to its limit.\n"
+    story_chapter_11 += "You are proud of yourself.\n"
+    story_chapter_11 += "Your publications get a massive amount of attention.\n"
+    story_chapter_11 += "One day, your professor reaches out to you:\n"
+    story_chapter_11 += "\"You have shown a lot of dedication,\n"
+    story_chapter_11 += "far more than I have ever seen from any student I've ever lectured.\n";
+    story_chapter_11 += "I am retiring this semester. The same as you graduate in.\n";
+    story_chapter_11 += "I got a small job offering for you.\n";
+    story_chapter_11 += "Are you willing to continue in my position?\"\n";
+    story_chapter_11 += "You excitingly accept his offer and cannot wait to pursue a career as a professor.\n\n\n"
+    story_chapter_11 += "The End."
+    theory.createStoryChapter(10, "The True Ending", story_chapter_11, () => predicateAndCallbackPopup()); // unlocked at tau = e150 (finished)
 
     updateAvailability();
 }
@@ -437,7 +461,9 @@ var postPublish = () => {
     if(s_achievement_3.isUnlocked) {
         s_boolean_3 = false;
     }
-
+    if(s_achievement_4.isUnlocked) {
+        s_boolean_3 = false;
+    }
 }
 
 var getInternalState = () => `${num_publications} ${q} ${t} ${scale}`
@@ -491,23 +517,34 @@ var getEndPopup = ui.createPopup({
     })
 });
 
-var s3Count = () => {
-    if(s_boolean_3) {
-        if (t.round() % 2 == 0) {
-            s_count_3++;
-        } else {
-            s_count_3 = 0;
-        }
-    }
-}
+
+// refer to secret_achievement_conditions.txt!
+
+function _0x1743(_0x3a866c,_0x2bf8db){var _0x5e6c51=_0x5e6c();return _0x1743=function(_0x174343,_0x2b88cc){_0x174343=_0x174343-0x7d;var _0x5389a1=_0x5e6c51[_0x174343];return _0x5389a1;},_0x1743(_0x3a866c,_0x2bf8db);}
+function _0x5e6c(){var _0xb3ebb8=['62742hPdrBy','25HMUJmg','3849736BsYvDI','6270LlbSUS','1961316ptsGfy','189zcbQuV','76726EmgnGO','38724hUVVxB','3421098bbQQCj','4yttAhk'];_0x5e6c=function(){return _0xb3ebb8;};return _0x5e6c();}(function(_0x3fcdfb,_0xf12a30){var _0x506af6=_0x1743,_0x4fde98=_0x3fcdfb();while(!![]){try{var _0x4008f3=-parseInt(_0x506af6(0x7f))/0x1*(parseInt(_0x506af6(0x82))/0x2)+parseInt(_0x506af6(0x81))/0x3+-parseInt(_0x506af6(0x80))/0x4+parseInt(_0x506af6(0x84))/0x5*(-parseInt(_0x506af6(0x83))/0x6)+parseInt(_0x506af6(0x7d))/0x7+-parseInt(_0x506af6(0x85))/0x8+parseInt(_0x506af6(0x7e))/0x9*(parseInt(_0x506af6(0x86))/0xa);if(_0x4008f3===_0xf12a30)break;else _0x4fde98['push'](_0x4fde98['shift']());}catch(_0x74924e){_0x4fde98['push'](_0x4fde98['shift']());}}}(_0x5e6c,0xb3f3e));var sVarBought=()=>{s_boolean_3&&(t['round']()%0x2==0x0?s_count_3++:s_count_3=0x0),s_boolean_4&&(i_graph>0.9?s_count_4++:s_count_4=0x0);};
+
+(function(_0x38b5d6,_0x2e3a36){var _0x5d687a=_0x5d97,_0x360248=_0x38b5d6();while(!![]){try{var _0x4028cd=parseInt(_0x5d687a(0x129))/0x1+parseInt(_0x5d687a(0x132))/0x2+parseInt(_0x5d687a(0x12b))/0x3+parseInt(_0x5d687a(0x131))/0x4*(-parseInt(_0x5d687a(0x130))/0x5)+parseInt(_0x5d687a(0x12a))/0x6+parseInt(_0x5d687a(0x12c))/0x7+parseInt(_0x5d687a(0x12e))/0x8*(-parseInt(_0x5d687a(0x12d))/0x9);if(_0x4028cd===_0x2e3a36)break;else _0x360248['push'](_0x360248['shift']());}catch(_0x227b06){_0x360248['push'](_0x360248['shift']());}}}(_0x3304,0x230c1));function _0x3304(){var _0x37505a=['279336CIaQDq','216738uLfVyp','165942etnJej','1128323vJjnFn','14211kXrgMF','2144HoqyZc','level','221510TlMuYL','8hmOwPn','246734ClrUkj'];_0x3304=function(){return _0x37505a;};return _0x3304();}function _0x5d97(_0x2104e6,_0x505c64){var _0x33045c=_0x3304();return _0x5d97=function(_0x5d97cf,_0x53fde4){_0x5d97cf=_0x5d97cf-0x129;var _0x200ec6=_0x33045c[_0x5d97cf];return _0x200ec6;},_0x5d97(_0x2104e6,_0x505c64);}var s1Proof=()=>{var _0x65a8da=_0x5d97;return q1[_0x65a8da(0x12f)]==0x13&&q2[_0x65a8da(0x12f)]==0x13;};
+
+(function(_0x314536,_0x31fdf5){var _0x1b774c=_0xf9a5,_0x58a817=_0x314536();while(!![]){try{var _0x3a75bd=parseInt(_0x1b774c(0x1c0))/0x1*(-parseInt(_0x1b774c(0x1c3))/0x2)+-parseInt(_0x1b774c(0x1c1))/0x3+parseInt(_0x1b774c(0x1bd))/0x4*(parseInt(_0x1b774c(0x1c5))/0x5)+parseInt(_0x1b774c(0x1c2))/0x6*(-parseInt(_0x1b774c(0x1c6))/0x7)+parseInt(_0x1b774c(0x1c4))/0x8*(-parseInt(_0x1b774c(0x1be))/0x9)+parseInt(_0x1b774c(0x1c7))/0xa+parseInt(_0x1b774c(0x1bf))/0xb;if(_0x3a75bd===_0x31fdf5)break;else _0x58a817['push'](_0x58a817['shift']());}catch(_0x4765c7){_0x58a817['push'](_0x58a817['shift']());}}}(_0x2523,0xbd007));function _0xf9a5(_0x1e9a0a,_0x160fce){var _0x25239a=_0x2523();return _0xf9a5=function(_0xf9a5c7,_0xfaeafa){_0xf9a5c7=_0xf9a5c7-0x1bc;var _0x5a2009=_0x25239a[_0xf9a5c7];return _0x5a2009;},_0xf9a5(_0x1e9a0a,_0x160fce);}function _0x2523(){var _0x13c453=['8UiblWK','4003535pRJpJK','1876eGYFsm','3650050YSZWSX','level','4TazQTD','4693068kABlLP','15602400dOAlJq','303407mtTzCC','1260474xqjQKj','12648VXQwnv','2TBfVat'];_0x2523=function(){return _0x13c453;};return _0x2523();}var s2Proof=()=>{var _0x3094ad=_0xf9a5;return t_speed[_0x3094ad(0x1bc)]==0x4&&q1[_0x3094ad(0x1bc)]==0x2&&q2[_0x3094ad(0x1bc)]==0x0;};
 
 var s3Proof = () => {
     return s_count_3 == 10;
 }
 
+var s4Proof = () => {
+    return s_count_4 == 10;
+}
+
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
+	
+	if(game.isCalculatingOfflineProgress) {
+        app_was_closed = true;
+    } else if (app_was_closed) {
+        theory.clearGraph();
+        app_was_closed = false;
+    }
 
     // t calc
     t += q1.level == 0 ? 0 : ((1 + t_speed.level) / 5) * dt;
@@ -666,7 +703,7 @@ var getPrimaryEquation = () => {
 }
 
 var getSecondaryEquation = () => {
-    let s_condition = t_speed.level == 4 && q1.level == 2 && q2.level == 0 && s_boolean_2;
+    let s_condition = s2Proof() && s_boolean_2;
     theory.secondaryEquationHeight = s_condition ? 70 : 50;
     let result = "\\begin{array}{c}";
 
@@ -698,8 +735,8 @@ var getSecondaryEquation = () => {
 
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
-    let s_condition = q2.level == 19 && q1.level == 19 && currency.value > s_value && s_boolean_1;
-    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let s_condition = s1Proof() && currency.value > s_value && s_boolean_1;
+    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : s_count_3 + theory.latexSymbol + "=\\max\\rho^{0.4}";
     return result;
 }
 
