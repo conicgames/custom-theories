@@ -340,7 +340,7 @@ var init = () => {
     story_chapter_6 += "You decide to create a variable called 'a3'. It will have exponential growth.\n"
     story_chapter_6 += "Is this enough, for the theory to reach its limit?\n"
     story_chapter_6 += "It nevertheless helps you immensely in your progress."
-    theory.createStoryChapter(5, "Explosion", story_chapter_6, () => a_base.level == 3); // unlocked at a_base last milestone
+    theory.createStoryChapter(10, "Explosion", story_chapter_6, () => a_base.level == 3); // unlocked at a_base last milestone
 
     let story_chapter_7 = "";
     story_chapter_7 += "\"Of course!\n";
@@ -349,7 +349,7 @@ var init = () => {
     story_chapter_7 += "Surely, using this, this theory can be pushed to its limit!\",\n";
     story_chapter_7 += "you think to yourself.\n";
     story_chapter_7 += "You decide to add an exponent to your multipliers.";
-    theory.createStoryChapter(6, "Exponential Ideas", story_chapter_7, () => a_exp.level == 1); // unlocked at a_exponent first milestone
+    theory.createStoryChapter(5, "Exponential Ideas", story_chapter_7, () => a_exp.level == 1); // unlocked at a_exponent first milestone
 
     let story_chapter_8 = "";
     story_chapter_8 += "Summer break has finally arrived.\n";
@@ -359,7 +359,7 @@ var init = () => {
     story_chapter_8 += "You have tried everything you can think of.\n";
     story_chapter_8 += "It's time to let go.\n\n\n\n";
     story_chapter_8 += "Or is it...?"
-    theory.createStoryChapter(7, "The End?", story_chapter_8, () => (a_base.level == 3 && a_exp.level == 5)); // unlocked at a_exp and a_base max milestone
+    theory.createStoryChapter(6, "The End?", story_chapter_8, () => (a_base.level == 3 && a_exp.level == 5)); // unlocked at a_exp and a_base max milestone
 
     let story_chapter_9 = "";
     story_chapter_9 += "Your summer break was beautiful.\n"
@@ -371,7 +371,7 @@ var init = () => {
     story_chapter_9 += "You look over the theory again and notice something.\n"
     story_chapter_9 += "After all this work, how come you never changed the bases of 'b' and 'c'?\n";
     story_chapter_9 += "You gain motivation and start work on the theory again."
-    theory.createStoryChapter(8, "A New Beginning", story_chapter_9, () => b_base.level > 0); // unlocked at tau = e100 (b2 first milestone)
+    theory.createStoryChapter(7, "A New Beginning", story_chapter_9, () => b_base.level > 0); // unlocked at tau = e100 (b2 first milestone)
 
     let story_chapter_10 = "";
     story_chapter_10 += "You wake up in a sudden panic.\n"
@@ -386,7 +386,7 @@ var init = () => {
     story_chapter_10 += "Suddenly, you realize that you forgot to change the base of 'c'.\n"
     story_chapter_10 += "You think, about how 'a3' is connected to 'c'.\n"
     story_chapter_10 += "Can this be the step to push the theory to its limit?"
-    theory.createStoryChapter(9, "Frustration", story_chapter_10, () => c_base.level > 0); // unlocked at tau = e120 (c2 first milestone)
+    theory.createStoryChapter(8, "Frustration", story_chapter_10, () => c_base.level > 0); // unlocked at tau = e120 (c2 first milestone)
 
     let story_chapter_11 = "";
     story_chapter_11 += "You finally did it.\n"
@@ -401,7 +401,7 @@ var init = () => {
     story_chapter_11 += "Are you willing to continue in my position?\"\n";
     story_chapter_11 += "You excitingly accept his offer and cannot wait to pursue a career as a professor.\n\n\n"
     story_chapter_11 += "The End."
-    theory.createStoryChapter(10, "The True Ending", story_chapter_11, () => predicateAndCallbackPopup()); // unlocked at tau = e150 (finished)
+    theory.createStoryChapter(9, "The True Ending", story_chapter_11, () => predicateAndCallbackPopup()); // unlocked at tau = e150 (finished)
 
     updateAvailability();
 }
