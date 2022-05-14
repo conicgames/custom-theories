@@ -593,7 +593,8 @@ var tick = (elapsedTime, multiplier) => {
     max_i_graph = max_i_graph.max(i_graph);
 
     // graph_dist calc (explanation see top)
-    t_graph += q1.level == 0 ? 0 : dt / (BigNumber.from(scale) * BigNumber.TEN);
+    let t_graph_divisor = BigNumber.from(scale * 10);
+    t_graph += q1.level == 0 || t_graph_divisor.isZero ? 0 : (dt / t_graph_divisor);
 
     // graph drawn
     state.x = t_graph.toNumber();
