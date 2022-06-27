@@ -79,7 +79,7 @@ var init = () => {
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e8);
     theory.createBuyAllUpgrade(1, currency, 1e15);
-    theory.createAutoBuyerUpgrade(2, currency, 1e25);
+    theory.createAutoBuyerUpgrade(2, currency, 1e24);
 
     /////////////////////
     // Checkpoint Upgrades
