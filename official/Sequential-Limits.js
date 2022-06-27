@@ -45,7 +45,7 @@ var init = () => {
     {
         let getDesc = (level) => "a_2=2^{" + level + "}"; //returns the value seen in the description as a2 = 2^<level>.
         let getInfo = (level) => "a_2=" + geta2(level).toString(0); //returns the value seen in the info box as a2 = <level>
-        a2 = theory.createUpgrade(1, currency, new ExponentialCost(175, Math.log2(10))); //1st upgrade in the list - costs are 5*10^level, costs currency1
+        a2 = theory.createUpgrade(1, currency, new ExponentialCost(275, Math.log2(10))); //1st upgrade in the list - costs are 5*10^level, costs currency1
         a2.getDescription = (_) => Utils.getMath(getDesc(a2.level));  //for the value of a2 in the description
         a2.getInfo = (amount) => Utils.getMathTo(getInfo(a2.level), getInfo(a2.level + amount)); //for the values of a2 when you hold I(nfo) and you have [current]->[next]
     }
