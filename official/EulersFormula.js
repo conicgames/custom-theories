@@ -108,7 +108,7 @@ var init = () => {
 
     // q2
     {
-        let getDesc = (level) => "q_2=2^{" + level + "}";
+        let getDesc = (level) => "q_2=3^{" + level + "}";
         let getInfo = (level) => "q_2=" + getQ2(level).toString(0);
         q2 = theory.createUpgrade(2, currency, new ExponentialCost(5, Math.log2(60)));
         q2.getDescription = (_) => Utils.getMath(getDesc(q2.level));
@@ -768,7 +768,7 @@ var getTau = () => currency.value.pow(BigNumber.from(0.4));
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(2.5), currency.symbol];
 
 var getQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getQ2 = (level) => BigNumber.TWO.pow(level);
+var getQ2 = (level) => BigNumber.THREE.pow(level);
 var getA1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getA2 = (level) => Utils.getStepwisePowerSum(level, 40, 10, 1);
 var getA3 = (level) => BigNumber.TWO.pow(level);
