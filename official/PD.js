@@ -7,7 +7,7 @@ import { Utils } from "./api/Utils";
 var id = "permutations_and_derangements";
 var name = "Permutations & Derangements";
 var description = "A theory about the possible arrangements and derangments of objects\n"+
-                    "Permutations are the number of ways objects can be stored as a diferent sequence, in this case a 'very' long string of text\n"+
+                    "Permutations are the number of ways objects can be stored as a different sequence, in this case a 'very' long string of text\n"+
                     "Derangments are the number of ways all objects can be rearranged so that each object is not in its current position\n"+
                     "Note: in this theory every object is treated as individually different for derangment (only the number of object matters, the types and amount in each of them doesn't)\n"+
                     "";
@@ -154,6 +154,7 @@ var updateAvailability = () => {
     C.isAvailable = CTerm.level > 0
     D.isAvailable = DTerm.level > 0;
     c2.isAvailable = c2Term.level > 0;
+    updateObject_flag = true;
 }
 
 var tick = (elapsedTime, multiplier) => {
@@ -172,7 +173,7 @@ var tick = (elapsedTime, multiplier) => {
         n = vA+vB+vC+vD;
 
         q1 = getQ1(n);
-        q2 = q2.max(getQ2(vA,vB,vC,vD));
+        q2 = getQ2(n,vA,vB,vC,vD);
         
         updateObject_flag = false;
     }
@@ -228,7 +229,7 @@ var getTertiaryEquation = () => {
     let result = "";
     result += "\\begin{matrix}q_1 =";
     result += q1.toString();
-    if (n < BigNumber.from(1e25)) result += ",&q_2 ="+ q2.toString();
+    result += ",&q_2 ="+ q2.toString();
     result += ",&n ="
     result += n.toString();
     result += ",&t ="
@@ -280,9 +281,31 @@ var getQ1 = (num_Obj) => {
     return part1/part2; 
 }
 
-//Permutations
+//Permutations https://www.desmos.com/calculator/k3qpjcmw5c
 //n!/(A!*B!*C!*D!)
-var getQ2 = (vA,vB,vC,vD) => factorial(vA + vB + vC + vD)/(factorial(vA)*factorial(vB)*factorial(vC)*factorial(vD));
+var getQ2 = (vn,vA,vB,vC,vD) => {
+    let temp = bigObject(vn,vA,vB,vC,vD);
+    if(temp != -1){
+        let objs = [vA,vB,vC,vD];
+        objs.splice(temp,1);
+        return BigNumber.TEN.pow((objs[0]+objs[1]+objs[2])*vn.log10());
+    }else{
+        return factorial(vn)/(factorial(vA)*factorial(vB)*factorial(vC)*factorial(vD));
+    }
+}
+
+var bigObject = (vn, vA,vB,vC,vD) => {
+    if(vA>1 && vn/vA <= 1.00000001){
+        return 0;
+    }else if(vB>1 && vn/vB <= 1.00000001){
+        return 1;
+    }else if(vC>1 && vn/vC <= 1.00000001){
+        return 2;
+    }else if(vD>1 && vn/vD <= 1.00000001){
+        return 3;
+    }
+    return -1;
+}
 
 
 var getPublicationMultiplier = (tau) => tau.isZero ? BigNumber.ONE : tau;
