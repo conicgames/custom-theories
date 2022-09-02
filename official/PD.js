@@ -6,14 +6,14 @@ import { Utils } from "./api/Utils";
 
 var id = "permutations_and_derangements";
 var name = "Permutations & Derangements";
-var description = "A theory about the possible arrangements and derangments of objects\n"+
-                    "Permutations are the number of ways objects can be stored as a different sequence, in this case a 'very' long string of text\n"+
-                    "Derangments are the number of ways all objects can be rearranged so that each object is not in its current position\n"+
-                    "Note: in this theory every object is treated as individually different for derangment (only the number of object matters, the types and amount in each of them doesn't)\n"+
+var description = "A theory about the possible arrangements and derangements of objects.\n"+
+                    "Permutations are the number of ways objects can be arranged as a different sequence, in this case a 'very' long string of text.\n"+
+                    "Derangements are the number of ways all objects can be rearranged so that each object is not in its current position.\n"+
+                    "Note: in this theory every object is treated as individually different for derangement (only the number of object matters, the types and amount in each of them doesn't).\n"+
                     "";
 var authors = "Gen (Gen#3006) - Idea\nXLII (XLII#0042) - Balancing";
-var version = 1.0;
-var releaseOrder = "1";
+var version = 1;
+var releaseOrder = "5";
 
 var rho_dot = BigNumber.ZERO;
 var q1 = BigNumber.ONE;
@@ -272,7 +272,7 @@ var mac_e_x = (itr) => {
     return num;
 }
 
-//Derangment = n!*M(e^(-n))
+//Derangement = n!*M(e^(-n))
 //for large n n!/e^n
 //part 2 either *Maclaurin expansion or /e^x 
 var getQ1 = (num_Obj) => {
