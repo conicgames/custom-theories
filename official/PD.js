@@ -16,8 +16,8 @@ var version = 1.0;
 var releaseOrder = "1";
 
 var rho_dot = BigNumber.ZERO;
-var q1 = BigNumber.ZERO;
-var q2 = BigNumber.ZERO;
+var q1 = BigNumber.ONE;
+var q2 = BigNumber.ONE;
 var n = BigNumber.ZERO;
 var t_cumulative = BigNumber.ZERO;
 var updateObject_flag = false;
@@ -104,8 +104,8 @@ var init = () => {
 
     /////////////////////
     // Permanent Upgrades
-    theory.createPublicationUpgrade(0, currency, 1e8);
-    theory.createBuyAllUpgrade(1, currency, 1e15);
+    theory.createPublicationUpgrade(0, currency, 1e18);
+    theory.createBuyAllUpgrade(1, currency, 1e20);
     theory.createAutoBuyerUpgrade(2, currency, 1e25);
 
     /////////////////////
@@ -163,7 +163,6 @@ var tick = (elapsedTime, multiplier) => {
     let vc1 = getC1(c1.level).pow(getC1Exp(c1Exp.level));
     let vc2 = (c2Term.level > 0) ? getC2(c2.level) : BigNumber.ONE;
     let vt = getT(t.level);
-    t_cumulative += vt * dt;
     
     if (updateObject_flag) {        
         let vA = getA(A.level);
@@ -178,9 +177,11 @@ var tick = (elapsedTime, multiplier) => {
         updateObject_flag = false;
     }
 
-    rho_dot = t_cumulative * vc1 * vc2 * (1 + (BigNumber.ONE + q1) / (BigNumber.ONE + q2)).log() * dt;
 
-    currency.value += bonus * rho_dot;
+    if(c1.level > 0) t_cumulative += vt * dt;
+    rho_dot = t_cumulative * vc1 * vc2 * (1 + (BigNumber.ONE + q1) / q2).log();
+
+    currency.value += bonus * rho_dot * dt;
 
     theory.invalidateTertiaryEquation();
 }
@@ -196,8 +197,8 @@ var setInternalState = (state) => {
 }
 
 var postPublish = () => {
-    q1 = BigNumber.ZERO;
-    q2 = BigNumber.ZERO;
+    q1 = BigNumber.ONE;
+    q2 = BigNumber.ONE;
     updateObject_flag = true;
     t_cumulative = BigNumber.ZERO;
 }
@@ -209,33 +210,38 @@ var getPrimaryEquation = () => {
     if (c1Exp.level > 0) result += `^{${1+c1Exp.level*0.015}}`;
     if (c2.isAvailable) result +="c_2"
     result += "t"
-    result += "\\ln(1+\\frac{1+q_1}{1+q_2})";
+    result += "\\ln(1+\\frac{1+q_1}{q_2})";
     result += "\\end{matrix}";
     return result;
 }
 
 var getSecondaryEquation = () => {
     theory.secondaryEquationHeight = 100;
-    let result = "q_1 = n! \\sum_{k=0}^{n}(-1)^k {\\frac{1}{k!}}";
-    result += "\\\\q_2 = n!/(A!B!";
+    let result = "\\\\q_1 = n! \\sum_{k=0}^{n} {\\frac{(-1)^k}{k!}}";
+    result += "\\\\\\\\q_2 = n!/(A!B!";
     if(C.isAvailable) result +="C!"
     if(D.isAvailable) result +="D!"
     result +=")";
-    result+= "\\\\" + theory.latexSymbol + "=\\max\\rho^{0.1}"
+    result+= "\\\\\\\\ n = A + B";
+    if(C.isAvailable) result +=" + C"
+    if(D.isAvailable) result +=" + D"
+    result += ",\\quad"+theory.latexSymbol + "=\\max\\rho^{0.1}"
     return result;
 }
 
 var getTertiaryEquation = () => {
-    let result = "";
-    result += "\\begin{matrix}q_1 =";
+    let result = "\\begin{matrix}&\\qquad t =";
+    result += t_cumulative.toString();
+    result += ",&\\qquad\\dot{\\rho} ="
+    result += rho_dot.toString();
+    result += ",\\\\";
+    result += "&q_1 =";
     result += q1.toString();
-    result += ",&q_2 ="+ q2.toString();
+    result += ",&q_2 =";
+    result += q2.toString()
     result += ",&n ="
     result += n.toString();
-    result += ",&t ="
-    result += t_cumulative.toString();
-    result += ",&\\dot{\\rho} ="
-    result += rho_dot.toString();
+
     result += "\\end{matrix}";
 
     return result;
@@ -270,8 +276,6 @@ var mac_e_x = (itr) => {
 //for large n n!/e^n
 //part 2 either *Maclaurin expansion or /e^x 
 var getQ1 = (num_Obj) => {
-    if (num_Obj.isZero || num_Obj == BigNumber.ONE) return BigNumber.ZERO;
-
     let part1 = factorial(num_Obj);
     if(num_Obj < BigNumber.FIVE*BigNumber.TEN) {
         let part2 = mac_e_x(num_Obj);
