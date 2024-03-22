@@ -1,0 +1,5 @@
+{
+  "description": {
+    "default": "The functions between a function and its derivative have many ways of being shown, this is one of them. Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. As such, as a fractional integral approaches 1, it should become the integral."
+  }
+}

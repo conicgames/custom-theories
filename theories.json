@@ -22,6 +22,17 @@
     "releaseOrder": "3"
   },
   {
+    "relativeUrl": "official/FractionalIntegration.js",
+    "id": "fractional_integration",
+    "name": {
+      "default": "Fractional Integration"
+    },
+    "authors": "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing",
+    "description": "The functions between a function and its derivative have many ways of being shown, this is one of them. Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. As such, as a fractional integral approaches 1, it should become the integral.",
+    "version": "1",
+    "releaseOrder": "5"
+  },
+  {
     "relativeUrl": "official/Sequential-Limits.js",
     "id": "SequentialLimits",
     "name": {
