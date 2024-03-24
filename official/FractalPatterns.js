@@ -169,7 +169,7 @@ var init = () => {
       updateAvailability();
       quaternaryEntries = [];
     };
-    fractalTerm.canBeRefunded = () => snexp.level === 0;
+    fractalTerm.canBeRefunded = () => nboost.level === 0;
   }
   {
     nboost = theory.createMilestoneUpgrade(2, 2);
@@ -399,6 +399,7 @@ var getTertiaryEquation = () => {
 var getQuaternaryEntries = () => {
   // log(JSON.stringify(quaternaryEntries))
   if (quaternaryEntries.length == 0) {
+    quaternaryEntries.push(new QuaternaryEntry(null, ''));
     quaternaryEntries.push(new QuaternaryEntry("n", null));
     if (stage === 0) {
       if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("\\dot{q}", null));
@@ -410,18 +411,19 @@ var getQuaternaryEntries = () => {
       if (fractalTerm.level > 1) quaternaryEntries.push(new QuaternaryEntry("r", null));
       if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("A", null));
     }
+    quaternaryEntries.push(new QuaternaryEntry(null, ''));
   }
 
-  quaternaryEntries[0].value = BigNumber.from(n).toString(0);
+  quaternaryEntries[1].value = BigNumber.from(n).toString(0);
   if (stage === 0) {
-    if (fractalTerm.level > 0) quaternaryEntries[1].value = (adBoost * qdot).toString(3);
-    if (fractalTerm.level > 1) quaternaryEntries[2].value = (adBoost * rdot).toString(3);
-    quaternaryEntries[fractalTerm.level + 1].value = (adBoost * rhodot).toString(3);
+    if (fractalTerm.level > 0) quaternaryEntries[2].value = (adBoost * qdot).toString(3);
+    if (fractalTerm.level > 1) quaternaryEntries[3].value = (adBoost * rdot).toString(3);
+    quaternaryEntries[fractalTerm.level + 2].value = (adBoost * rhodot).toString(3);
   } else {
-    quaternaryEntries[1].value = t_cumulative.toString(2);
-    if (fractalTerm.level > 0) quaternaryEntries[2].value = q.toString(2);
-    if (fractalTerm.level > 1) quaternaryEntries[3].value = r.toString(2);
-    if (fractalTerm.level > 0) quaternaryEntries[fractalTerm.level > 1 ? 4 : 3].value = A.toString(2);
+    quaternaryEntries[2].value = t_cumulative.toString(2);
+    if (fractalTerm.level > 0) quaternaryEntries[3].value = q.toString(2);
+    if (fractalTerm.level > 1) quaternaryEntries[4].value = r.toString(2);
+    if (fractalTerm.level > 0) quaternaryEntries[fractalTerm.level > 1 ? 5 : 4].value = A.toString(2);
   }
 
   return quaternaryEntries;
