@@ -8,8 +8,10 @@ var id = "weierstrass-product-sine";
 var name = "Weierstraß Sine Product";
 var description = "Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.\n\nIntuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.\n\nThe product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infty.\n\nHere, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.";
 var authors = "xelaroc (AlexCord#6768)";
-var version = 3;
+var version = 4;
 var releaseOrder = "1";
+
+var tauMultiplier = 4;
 
 var q = BigNumber.ONE;
 var chi = BigNumber.ONE;
@@ -83,7 +85,7 @@ var init = () => {
 
     /////////////////////
     // Checkpoint Upgrades
-    theory.setMilestoneCost(new CustomCost(lvl => BigNumber.from(lvl < 5 ? 1 + 1.5*lvl : lvl < 6 ? 10 : lvl < 7 ? 14 : 20)));
+    theory.setMilestoneCost(new CustomCost(lvl => tauMultiplier*BigNumber.from(lvl < 5 ? 1 + 1.5*lvl : lvl < 6 ? 10 : lvl < 7 ? 14 : 20)));
 
     {
         q1Exp = theory.createMilestoneUpgrade(0, 4);
@@ -183,7 +185,7 @@ var getPrimaryEquation = () => {
 }
 
 var getSecondaryEquation = () => {
-    let result = theory.latexSymbol + "=\\max\\rho^{0.1},\\quad\\chi =\\pi\\cdot\\frac{c_1n}{c_1+n";
+    let result = theory.latexSymbol + "=\\max\\rho^{0.4},\\quad\\chi =\\pi\\cdot\\frac{c_1n}{c_1+n";
     if (chiDivN.level > 0) result += "/3^{" + chiDivN.level + "}";
     result += "}+1";
     return result;
@@ -201,10 +203,10 @@ var getTertiaryEquation = () => {
     return result;
 }
 
-var getPublicationMultiplier = (tau) => tau.isZero ? BigNumber.ONE : tau.pow(BigNumber.from(1.5));
-var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{1.5}";
-var getTau = () => currency.value.pow(BigNumber.from(0.1));
-var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol];
+var getPublicationMultiplier = (tau) => tau.isZero ? BigNumber.ONE : tau.pow(BigNumber.from(1.5/tauMultiplier));
+var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{0.375}";
+var getTau = () => currency.value.pow(BigNumber.from(0.1*tauMultiplier));
+var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getN = (level) => BigNumber.from(level);
