@@ -242,24 +242,24 @@ var init = () => {
     let achievement_category_3 = theory.createAchievementCategory(2, "Publications");
     let achievement_category_4 = theory.createAchievementCategory(3, "Secret Achievements");
 
-    let e10 = BigNumber.from(1e10);
-    let e20 = BigNumber.from(1e20);
-    let e25 = BigNumber.from(1e25);
-    let e50 = BigNumber.from(1e50);
+    let e10 = BigNumber.from(1e10*tauMultiplier);
+    let e20 = BigNumber.from(1e20*tauMultiplier);
+    let e25 = BigNumber.from(1e25*tauMultiplier);
+    let e50 = BigNumber.from(1e50*tauMultiplier);
     let e69 = BigNumber.from(1e69);
-    let e75 = BigNumber.from(1e75);
-    let e100 = BigNumber.from(1e100);
-    let e125 = BigNumber.from(1e125);
-    let e150 = BigNumber.from(1e150);
-    theory.createAchievement(0, achievement_category_1, "Getting Started", "Reach 1e10τ.", () => theory.tau > e10);
-    theory.createAchievement(1, achievement_category_1, "Beginner's Luck", "Reach 1e20τ.", () => theory.tau > e20);
-    theory.createAchievement(2, achievement_category_1, "Imaginary Limits", "Reach 1e25τ.", () => theory.tau > e25);
-    theory.createAchievement(3, achievement_category_1, "Complex Progress", "Reach 1e50τ.", () => theory.tau > e50);
+    let e75 = BigNumber.from(1e75*tauMultiplier);
+    let e100 = BigNumber.from(1e100*tauMultiplier);
+    let e125 = BigNumber.from(1e125*tauMultiplier);
+    let e150 = BigNumber.from(1e150*tauMultiplier);
+    theory.createAchievement(0, achievement_category_1, "Getting Started", "Reach 1e40τ.", () => theory.tau > e10);
+    theory.createAchievement(1, achievement_category_1, "Beginner's Luck", "Reach 1e80τ.", () => theory.tau > e20);
+    theory.createAchievement(2, achievement_category_1, "Imaginary Limits", "Reach 1e100τ.", () => theory.tau > e25);
+    theory.createAchievement(3, achievement_category_1, "Complex Progress", "Reach 1e200τ.", () => theory.tau > e50);
     theory.createAchievement(4, achievement_category_1, "Nice", "Reach 1e69τ.", () => theory.tau > e69);
-    theory.createAchievement(5, achievement_category_1, "Euler's Student", "Reach 1e75τ.", () => theory.tau > e75);
-    theory.createAchievement(6, achievement_category_1, "There's more?", "Reach 1e100τ.", () => theory.tau > e100);
-    theory.createAchievement(7, achievement_category_1, "Are we done yet?", "Reach 1e125τ.", () => theory.tau > e125);
-    theory.createAchievement(8, achievement_category_1, "A New Professor", "Reach 1e150τ.", () => theory.tau > e150);
+    theory.createAchievement(5, achievement_category_1, "Euler's Student", "Reach 1e300τ.", () => theory.tau > e75);
+    theory.createAchievement(6, achievement_category_1, "There's more?", "Reach 1e400τ.", () => theory.tau > e100);
+    theory.createAchievement(7, achievement_category_1, "Are we done yet?", "Reach 1e500τ.", () => theory.tau > e125);
+    theory.createAchievement(8, achievement_category_1, "A New Professor", "Reach 1e600τ.", () => theory.tau > e150);
 
     theory.createAchievement(9, achievement_category_2, "Automatic Analysis", "Let your machine learning algorithm calculate the theory for you.", () => theory.isAutoBuyerAvailable);
     theory.createAchievement(10, achievement_category_2, "Realistic Methods", "Figure out how to use R (real dimension).", () => dimension.level > 0);
@@ -403,7 +403,7 @@ var init = () => {
     story_chapter_11 += "Are you willing to continue in my position?\"\n";
     story_chapter_11 += "You excitingly accept his offer and cannot wait to pursue a career as a professor.\n\n\n"
     story_chapter_11 += "The End."
-    theory.createStoryChapter(9, "The True Ending", story_chapter_11, () => predicateAndCallbackPopup()); // unlocked at tau = e150 (finished)
+    theory.createStoryChapter(9, "The True Ending", story_chapter_11, () => predicateAndCallbackPopup()); // unlocked at tau = e600 (finished)
 
     updateAvailability();
 }
@@ -412,9 +412,9 @@ var init = () => {
 // -------------------------------------------------------------------------------
 
 // written by gilles
-let e150 = BigNumber.from(1e150);
+let e600 = BigNumber.from(1e600);
 var predicateAndCallbackPopup = () => {
-    if (theory.tau >= e150) {
+    if (theory.tau >= e600) {
         getEndPopup.show();
         return true;
     }
