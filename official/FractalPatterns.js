@@ -9,8 +9,10 @@ var name = "Fractal Patterns";
 var description =
   "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.";
 var authors = "xlii";
-var version = 3;
+var version = 4;
 var releaseOrder = "6";
+
+var tauMultiplier = 4;
 
 var currency = BigNumber.ZERO;
 var quaternaryEntries;
@@ -144,7 +146,7 @@ var init = () => {
 
   ///////////////////////
   //// Milestone Upgrades
-  theory.setMilestoneCost(new CustomCost((total) => BigNumber.from(getMilCustomCost(total))));
+  theory.setMilestoneCost(new CustomCost((total) => BigNumber.from(tauMultiplier*getMilCustomCost(total))));
   function getMilCustomCost(lvl) {
     const unlocks = [Math.log10(5e22), 95, 175, 300, 385, 420, 550, 600, 700, 1500];
     return unlocks[Math.min(lvl, unlocks.length - 1)] * 0.075;
@@ -394,7 +396,7 @@ var getTertiaryEquation = () => {
     if (fractalTerm.level > 0) result += ",&U_n=" + U_n.toString(0);
     if (fractalTerm.level > 1) result += "\\\\\\\\ S_{\\lfloor \\sqrt{n} \\rfloor}=" + S_n.toString(0);
   } else {
-    result += theory.latexSymbol + "=\\max\\rho^{0.075}";
+    result += theory.latexSymbol + "=\\max\\rho^{0.3}";
   }
   result += "\\\\ {}\\end{matrix}";
   return result;
@@ -450,10 +452,10 @@ var goToNextStage = () => {
   theory.invalidateQuaternaryValues();
 };
 
-var getPublicationMultiplier = (tau) => tau.pow(1.324) * BigNumber.FIVE;
-var getPublicationMultiplierFormula = (symbol) => "5" + symbol + "^{1.324}";
-var getTau = () => currency.value.pow(0.075);
-var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(1 / 0.075), currency.symbol];
+var getPublicationMultiplier = (tau) => tau.pow(1.324/tauMultiplier) * BigNumber.FIVE;
+var getPublicationMultiplierFormula = (symbol) => "5" + symbol + "^{0.331}";
+var getTau = () => currency.value.pow(0.075*tauMultiplier);
+var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(1 / (0.075*tauMultiplier)), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 let stepwiseSum = (level, base, length) => {

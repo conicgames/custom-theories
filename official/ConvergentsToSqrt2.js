@@ -10,10 +10,12 @@ var id = "convergents_to_sqrt(2)"
 var name = "Convergents to √2";
 var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
 var authors = "Solarion#4131";
-var version = 9;
+var version = 10;
 var releaseOrder = "4";
-var q = BigNumber.ONE;
 
+var tauMultiplier = 4;
+
+var q = BigNumber.ONE;
 var q1, q2, c1, c2, n;
 var q1Exp, c2Term, c2Exp;
 
@@ -77,7 +79,7 @@ var init = () => {
 
     /////////////////////
     // Checkpoint Upgrades
-    theory.setMilestoneCost(new CustomCost(lvl => BigNumber.from(lvl < 4 ? 1 + 3.5*lvl : lvl<5 ? 22 : 50)));
+    theory.setMilestoneCost(new CustomCost(lvl => tauMultiplier * BigNumber.from(lvl < 4 ? 1 + 3.5*lvl : lvl<5 ? 22 : 50)));
 
     {
         q1Exp = theory.createMilestoneUpgrade(0, 3);
@@ -161,7 +163,7 @@ var getSecondaryEquation = () => {
     let result = "\\begin{matrix}N_m = 2N_{m-1}+N_{m-2},\\; N_0 = 1,\\; N_1 = 3";
     
     result += "\\\\D_m = 2D_{m-1}+D_{m-2},\\; D_0 = 1,\\; D_1 = 2";
-    result += "\\\\"+theory.latexSymbol + "=\\max\\rho ^ {0.1},\\; m=n"
+    result += "\\\\"+theory.latexSymbol + "=\\max\\rho ^ {0.4},\\; m=n"
     if (c2.isAvailable)
         result += "+\\log_2{(c_2)}";
     result += "\\end{matrix}"
@@ -198,10 +200,13 @@ var getError = (n) => (root8p3.pow(BigNumber.from(n)) - BigNumber.from(1 - (n % 
 
 var tt1250 = BigNumber.TEN.pow(1250);
 var multcutoff = BigNumber.from(1.18568685283083)*BigNumber.TEN.pow(273)
-var getPublicationMultiplier = (tau) => tau<tt1250 ? tau.pow(2.203)/200:multcutoff*tau.pow(0.0001);
-var getPublicationMultiplierFormula = (symbol) => "\\frac{\\tau^{2.203}}{200}";
-var getTau = () => currency.value.pow(0.1);
-var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol];
+var getPublicationMultiplier = (newtau) => {
+    let tau = newtau.pow(1.0/tauMultiplier);
+    return tau<tt1250 ? tau.pow(2.203)/200:multcutoff*tau.pow(0.0001);
+}
+var getPublicationMultiplierFormula = (symbol) => "\\frac{\\tau^{0.55075}}{200}";
+var getTau = () => currency.value.pow(0.1*tauMultiplier);
+var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);

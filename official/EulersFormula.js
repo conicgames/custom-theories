@@ -19,8 +19,10 @@ var id = "eulers_formula";
 var name = "Euler's Formula";
 var description = "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my (peanut's) questions and motivated us all to push this theory forward.\n\nand of course:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team"
 var authors = "Snaeky (SnaekySnacks#1161) - Structuring\nXLII (XLII#0042) - Balancing\npeanut (peanut#6368) - Developer";
-var version = 3;
+var version = 4;
 var releaseOrder = "3";
+
+var tauMultiplier = 4;
 
 // internal variables
 var currency, currency_R, currency_I;
@@ -193,7 +195,7 @@ var init = () => {
     theory.createAutoBuyerUpgrade(2, currency, 1e20);
 
     // Milestone Upgrades
-    theory.setMilestoneCost(new CustomCost(total => BigNumber.from(getCustomCost(total))));
+    theory.setMilestoneCost(new CustomCost(total => BigNumber.from(getCustomCost(total)*tauMultiplier)));
 
     {
         dimension = theory.createMilestoneUpgrade(0, 2);
@@ -737,7 +739,7 @@ var getSecondaryEquation = () => {
 var getTertiaryEquation = () => {
     let s_value = BigNumber.from(14102005);
     let s_condition = s1Proof() && currency.value > s_value && s_boolean_1;
-    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{0.4}";
+    let result = s_condition ? "\\text{-- do the flashbang dance! --}" : theory.latexSymbol + "=\\max\\rho^{1.6}";
     return result;
 }
 
@@ -761,11 +763,11 @@ var getQuaternaryEntries = () => {
 
 var get3DGraphPoint = () => swizzle((state - center) * scale);
 var get3DGraphTranslation = () => swizzle((new Vector3(-t_graph.toNumber() + 6, 0, 0) - center) * scale);
-var getPublicationMultiplier = (tau) => tau.pow(0.387);
-var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.387}";
+var getPublicationMultiplier = (tau) => tau.pow(0.387/tauMultiplier);
+var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.9675}";
 var isCurrencyVisible = (index) => index == 0 || (index == 1 && dimension.level > 0) || (index == 2 && dimension.level > 1);
-var getTau = () => currency.value.pow(BigNumber.from(0.4));
-var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(2.5), currency.symbol];
+var getTau = () => currency.value.pow(BigNumber.from(0.4*tauMultiplier));
+var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(2.5/tauMultiplier), currency.symbol];
 
 var getQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getQ2 = (level) => BigNumber.TWO.pow(level);

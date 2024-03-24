@@ -11,8 +11,10 @@ var description =
   "Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. " +
   "As such, as a fractional integral approaches 1, it should become the integral.";
 var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
-var version = 1;
+var version = 2;
 var releaseOrder = "5";
+
+var tauMultiplier = 4;
 
 var rho_dot = BigNumber.ZERO;
 var t_cumulative = BigNumber.ZERO;
@@ -195,7 +197,7 @@ var init = () => {
 
   /////////////////////
   // Checkpoint Upgrades
-  theory.setMilestoneCost(new CustomCost((total) => BigNumber.from(getMilCustomCost(total))));
+  theory.setMilestoneCost(new CustomCost((total) => BigNumber.from(tauMultiplier*getMilCustomCost(total))));
 
   {
     intUnlock = theory.createMilestoneUpgrade(0, 1);
@@ -546,7 +548,7 @@ var getSecondaryEquation = () => {
   if (gxUpg.level == 3) result += "\\qquad\\qquad";
   result += "\\dot{q}=q_1";
   if (q1Exp.level > 0) result += `^{${1 + q1Exp.level * 0.01}}`;
-  result += "q_2,\\quad" + theory.latexSymbol + "=\\max\\rho^{0.1}";
+  result += "q_2,\\quad" + theory.latexSymbol + "=\\max\\rho^{0.4}";
   result += "";
   return result;
 };
@@ -611,10 +613,10 @@ var fx_latex = () => {
   }
 };
 
-var getPublicationMultiplier = (tau) => (tau.isZero ? BigNumber.ONE : tau.pow(0.65));
-var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.65}";
-var getTau = () => currency.value.pow(BigNumber.from(0.1));
-var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10), currency.symbol];
+var getPublicationMultiplier = (tau) => (tau.isZero ? BigNumber.ONE : tau.pow(0.65/tauMultiplier));
+var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.1625}";
+var getTau = () => currency.value.pow(BigNumber.from(0.1*tauMultiplier));
+var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getT = (level) => BigNumber.from(0.2 + level * 0.2);
