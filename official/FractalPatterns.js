@@ -407,14 +407,14 @@ var getQuaternaryEntries = () => {
     quaternaryEntries.push(new QuaternaryEntry(null, ''));
     quaternaryEntries.push(new QuaternaryEntry("n", null));
     if (stage === 0) {
-      if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("\\dot{q}", null));
-      if (fractalTerm.level > 1) quaternaryEntries.push(new QuaternaryEntry("\\dot{r}", null));
-      quaternaryEntries.push(new QuaternaryEntry("\\dot{\\rho}", null));
+      if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("\\dot{q}_{{}\\,}", null));
+      if (fractalTerm.level > 1) quaternaryEntries.push(new QuaternaryEntry("\\dot{r}_{{}\\,}", null));
+      quaternaryEntries.push(new QuaternaryEntry("\\dot{\\rho}_{{}\\,}", null));
     } else {
-      quaternaryEntries.push(new QuaternaryEntry("t", null));
+      quaternaryEntries.push(new QuaternaryEntry("t_{{}\\,}", null));
       if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("q", null));
       if (fractalTerm.level > 1) quaternaryEntries.push(new QuaternaryEntry("r", null));
-      if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("A", null));
+      if (fractalTerm.level > 0) quaternaryEntries.push(new QuaternaryEntry("A_{{}\\,}", null));
     }
     quaternaryEntries.push(new QuaternaryEntry(null, ''));
   }
