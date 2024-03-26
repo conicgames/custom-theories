@@ -242,15 +242,15 @@ var init = () => {
     let achievement_category_3 = theory.createAchievementCategory(2, "Publications");
     let achievement_category_4 = theory.createAchievementCategory(3, "Secret Achievements");
 
-    let e10 = BigNumber.from(1e10*tauMultiplier);
-    let e20 = BigNumber.from(1e20*tauMultiplier);
-    let e25 = BigNumber.from(1e25*tauMultiplier);
-    let e50 = BigNumber.from(1e50*tauMultiplier);
+    let e10 = BigNumber.from(1e10).pow(tauMultiplier);
+    let e20 = BigNumber.from(1e20).pow(tauMultiplier);
+    let e25 = BigNumber.from(1e25).pow(tauMultiplier);
+    let e50 = BigNumber.from(1e50).pow(tauMultiplier);
     let e69 = BigNumber.from(1e69);
-    let e75 = BigNumber.from(1e75*tauMultiplier);
-    let e100 = BigNumber.from(1e100*tauMultiplier);
-    let e125 = BigNumber.from(1e125*tauMultiplier);
-    let e150 = BigNumber.from(1e150*tauMultiplier);
+    let e75 = BigNumber.from(1e75).pow(tauMultiplier);
+    let e100 = BigNumber.from(1e100).pow(tauMultiplier);
+    let e125 = BigNumber.from(1e125).pow(tauMultiplier);
+    let e150 = BigNumber.from(1e150).pow(tauMultiplier);
     theory.createAchievement(0, achievement_category_1, "Getting Started", "Reach 1e40τ.", () => theory.tau > e10);
     theory.createAchievement(1, achievement_category_1, "Beginner's Luck", "Reach 1e80τ.", () => theory.tau > e20);
     theory.createAchievement(2, achievement_category_1, "Imaginary Limits", "Reach 1e100τ.", () => theory.tau > e25);
@@ -412,7 +412,7 @@ var init = () => {
 // -------------------------------------------------------------------------------
 
 // written by gilles
-let e600 = BigNumber.from(1e600);
+let e600 = BigNumber.from("1e600");
 var predicateAndCallbackPopup = () => {
     if (theory.tau >= e600) {
         getEndPopup.show();
