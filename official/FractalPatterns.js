@@ -12,6 +12,8 @@ var authors = "xlii";
 var version = 5;
 var releaseOrder = "6";
 
+requiresGameVersion("1.4.32");
+
 var tauMultiplier = 4;
 
 var currency = BigNumber.ZERO;
