@@ -13,7 +13,7 @@ import {Color} from "./api/ui/properties/Color";
 import {CornerRadius} from "./api/ui/properties/CornerRadius";
 import {game} from "./api/Game";
 
-requiresGameVersion("1.4.28");
+requiresGameVersion("1.4.32");
 
 var id = "eulers_formula";
 var name = "Euler's Formula";
