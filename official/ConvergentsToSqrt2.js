@@ -4,7 +4,7 @@ import { parseBigNumber, BigNumber } from "../api/BigNumber";
 import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-requiresGameVersion("1.4.32");
+requiresGameVersion("1.4.33");
 
 var id = "convergents_to_sqrt(2)"
 var name = "Convergents to √2";

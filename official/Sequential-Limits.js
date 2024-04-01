@@ -13,7 +13,7 @@ var authors = "ellipsis"; //display author in the "author" field
 var version = 7; //version id, make sure to change it on update
 var releaseOrder = "2";
 
-requiresGameVersion("1.4.32");
+requiresGameVersion("1.4.33");
 
 var tauMultiplier = 4;
 

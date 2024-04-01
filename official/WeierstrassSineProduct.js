@@ -11,7 +11,7 @@ var authors = "xelaroc (AlexCord#6768)";
 var version = 4;
 var releaseOrder = "1";
 
-requiresGameVersion("1.4.32");
+requiresGameVersion("1.4.33");
 
 var tauMultiplier = 4;
 

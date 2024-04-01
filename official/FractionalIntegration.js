@@ -11,10 +11,10 @@ var description =
   "Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. " +
   "As such, as a fractional integral approaches 1, it should become the integral.";
 var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
-var version = 2;
+var version = 3;
 var releaseOrder = "5";
 
-requiresGameVersion("1.4.32");
+requiresGameVersion("1.4.33");
 
 var tauMultiplier = 4;
 
@@ -322,11 +322,11 @@ var init = () => {
     "As your ρ growth begins to slow down, you sit down and think. This is just the base and you know that it works well, but you start to wonder about how good this thought experiment can be.\n" +
     "Maybe applying the same idea for ρ directly will work well.\n" +
     'You try to add the "fractional integral" into ρ equation to see what comes of it...';
-  theory.createStoryChapter(1, "The Implimentation", story_chapter_2, () => intUnlock.level == 1);
+  theory.createStoryChapter(1, "The Implementation", story_chapter_2, () => intUnlock.level == 1);
 
   let story_chapter_3 =
     "The change helped, but it is still not enough to get anywhere close to proving the theory.\n" +
-    "You take a look a the equation. You knew from the beginning that you needed to adjust lambda in some way to be able to check if this 'Integral' is really related to actual Integrals.\n" +
+    "You take a look at the equation. You knew from the beginning that you needed to adjust lambda in some way to be able to check if this 'Integral' is really related to actual Integrals.\n" +
     "It is finally time to make lambda approach 1.";
   theory.createStoryChapter(2, "The Inevitability", story_chapter_3, () => kUnlock.level == 1);
 
