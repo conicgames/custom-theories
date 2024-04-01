@@ -13,6 +13,8 @@ var authors = "ellipsis"; //display author in the "author" field
 var version = 7; //version id, make sure to change it on update
 var releaseOrder = "2";
 
+requiresGameVersion("1.4.32");
+
 var tauMultiplier = 4;
 
 var currency = theory.createCurrency(), currency2 = theory.createCurrency(), currency3 = theory.createCurrency(); //create three currency variables and list them as currencies
