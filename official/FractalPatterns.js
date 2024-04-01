@@ -9,7 +9,7 @@ var name = "Fractal Patterns";
 var description =
   "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.";
 var authors = "xlii";
-var version = 4;
+var version = 5;
 var releaseOrder = "6";
 
 var tauMultiplier = 4;
@@ -319,8 +319,8 @@ var tick = (elapsedTime, multiplier) => {
   theory.invalidateTertiaryEquation();
   theory.invalidateQuaternaryValues();
 
-  if (!game.isCalculatingOfflineProgress)
-    updateBackgroundImage(elapsedTime);
+  // if (!game.isCalculatingOfflineProgress)
+  //   updateBackgroundImage(elapsedTime);
 };
 
 var postPublish = () => {
@@ -485,63 +485,63 @@ var getS = (level) => {
 };
 var getsnexp = (level) => BigNumber.from(1 + level * 0.6);
 
-var lastTheme = null;
-var backgroundImages = [ui.createImage({scale: 0.75, opacity: 0}) , ui.createImage({scale: 0.75, opacity: 0}) , ui.createImage({scale: 0.75, opacity: 0})];
-var backgroundIndex = backgroundImages.length - 1;
-var backgroundTime = 0;
-var backgroundDisplayTime = 10;
-var backgroundTransitionTime = 2;
-var backgroundInitialized = false;
+// var lastTheme = null;
+// var backgroundImages = [ui.createImage({scale: 0.75, opacity: 0}) , ui.createImage({scale: 0.75, opacity: 0}) , ui.createImage({scale: 0.75, opacity: 0})];
+// var backgroundIndex = backgroundImages.length - 1;
+// var backgroundTime = 0;
+// var backgroundDisplayTime = 10;
+// var backgroundTransitionTime = 2;
+// var backgroundInitialized = false;
 
-var fadeBackground = (image, opacity) => {
-  if (image.opacity != opacity)
-    image.fadeTo(opacity, backgroundTransitionTime * 1000, Easing.LINEAR);
-}
+// var fadeBackground = (image, opacity) => {
+//   if (image.opacity != opacity)
+//     image.fadeTo(opacity, backgroundTransitionTime * 1000, Easing.LINEAR);
+// }
 
-var updateBackgroundImage = (elapsedTime) => {
-  if (lastTheme != game.settings.theme) {
-    if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequenceLight.png?raw=true");
-    else
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequence.png?raw=true");
+// var updateBackgroundImage = (elapsedTime) => {
+//   if (lastTheme != game.settings.theme) {
+//     if (game.settings.theme == Theme.LIGHT)
+//       backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequenceLight.png?raw=true");
+//     else
+//       backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequence.png?raw=true");
     
-    if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburtonLight.png?raw=true");
-    else
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburton.png?raw=true");
+//     if (game.settings.theme == Theme.LIGHT)
+//       backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburtonLight.png?raw=true");
+//     else
+//       backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburton.png?raw=true");
     
-    if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangleLight.png?raw=true");
-    else
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangle.png?raw=true");
+//     if (game.settings.theme == Theme.LIGHT)
+//       backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangleLight.png?raw=true");
+//     else
+//       backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangle.png?raw=true");
 
-    lastTheme = game.settings.theme;
-  }
+//     lastTheme = game.settings.theme;
+//   }
 
-  backgroundTime += elapsedTime;
-  var nextIndex = null;
+//   backgroundTime += elapsedTime;
+//   var nextIndex = null;
 
-  if (backgroundIndex > fractalTerm.length || !backgroundInitialized && backgroundTime > 2)
-    nextIndex = 0;
+//   if (backgroundIndex > fractalTerm.length || !backgroundInitialized && backgroundTime > 2)
+//     nextIndex = 0;
 
-  if (backgroundTime > backgroundDisplayTime)
-    nextIndex = (backgroundIndex + 1) % Math.min(fractalTerm.level + 1, backgroundImages.length);
+//   if (backgroundTime > backgroundDisplayTime)
+//     nextIndex = (backgroundIndex + 1) % Math.min(fractalTerm.level + 1, backgroundImages.length);
 
-  if (nextIndex != null) {
-    if (backgroundIndex != nextIndex)
-      fadeBackground(backgroundImages[backgroundIndex], 0);
+//   if (nextIndex != null) {
+//     if (backgroundIndex != nextIndex)
+//       fadeBackground(backgroundImages[backgroundIndex], 0);
 
-    backgroundIndex = nextIndex;
-    fadeBackground(backgroundImages[backgroundIndex], 1);
-    backgroundTime = 0;
-    backgroundInitialized = true;
-  }
-}
+//     backgroundIndex = nextIndex;
+//     fadeBackground(backgroundImages[backgroundIndex], 1);
+//     backgroundTime = 0;
+//     backgroundInitialized = true;
+//   }
+// }
 
-var getEquationUnderlay = () => {
-  return ui.createGrid({
-    children: backgroundImages
-  });
-}
+// var getEquationUnderlay = () => {
+//   return ui.createGrid({
+//     children: backgroundImages
+//   });
+// }
 
 init();
