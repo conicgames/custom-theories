@@ -14,6 +14,8 @@ var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII 
 var version = 2;
 var releaseOrder = "5";
 
+requiresGameVersion("1.4.32");
+
 var tauMultiplier = 4;
 
 var rho_dot = BigNumber.ZERO;
