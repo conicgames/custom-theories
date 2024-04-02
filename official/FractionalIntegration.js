@@ -11,7 +11,7 @@ var description =
   "Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. " +
   "As such, as a fractional integral approaches 1, it should become the integral.";
 var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
-var version = 3;
+var version = 4;
 var releaseOrder = "5";
 
 requiresGameVersion("1.4.33");
