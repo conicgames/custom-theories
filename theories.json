@@ -7,7 +7,7 @@
     },
     "authors": "Solarion#4131",
     "description": "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.",
-    "version": "10",
+    "version": "11",
     "releaseOrder": "4"
   },
   {
@@ -18,7 +18,7 @@
     },
     "authors": "Snaeky (SnaekySnacks#1161) - Structuring\nXLII (XLII#0042) - Balancing\npeanut (peanut#6368) - Developer",
     "description": "You're a student hired by a professor at a famous university. Since your work has received a bit of attention from your colleagues in the past, you decide to go into a subject not yet covered by your professor, which has interested you since day 1 of deciding to study mathematics - Complex Numbers.\nYou hope that with your research on this subject, you can finally get the breakthrough you always wanted in the scientific world.\n\nThis theory explores the world of complex numbers, their arrangement and their place in the Universe of Mathematics. The theory, named after famous mathematician Leonhard Euler, explores the relationship between exponential and trigonometric functions.\nYour task is to use this formula, and with the help of the Pythagorean theorem, to calculate the distances of cos(t) and isin(t) from the origin and grow them as large as possible using many different methods and approaches!\nA theory with interesting grow and decay rates, unusual properties, and (We hope) an interesting story!\n\nVariable Explanation:\n\nt - A simple variable based on time. Is reset on publish.\nq - A variable helping you grow ρ, directly affected by t.\na - Multiple kinds of variables, helping you grow ρ.\nb and c - Variables modifying cos(t) and isin(t)\n\nHuge thanks to:\n\n- Gilles-Philippe, for implementing integral features we proposed, helping us a *ton* during development, answering our questions and giving us beta features to use in our theories!\n\n- XLII, doing basically ALL of the balancing together with Snaeky, deciding various integral features of the theory such as, but not limited to: milestone placement, milestone costs, publication multipliers and a lot more!\n\n- Snaeky, without whom this theory would not have been possible as he was the one with the original idea of structuring a theory around Euler's Formula, and always answered my (peanut's) questions and motivated us all to push this theory forward.\n\nand of course:\n\n- The entire Discord community, who've playtested this theory and reported many bugs, especially those active in #custom-theories-dev!\n\nWe hope you enjoy playing this theory as much as we had developing it and coming up with ideas for it!\n\n- The Eulers-Formula-CT Team",
-    "version": "4",
+    "version": "5",
     "releaseOrder": "3"
   },
   {
@@ -29,7 +29,7 @@
     },
     "authors": "xlii",
     "description": "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.",
-    "version": "5",
+    "version": "6",
     "releaseOrder": "6"
   },
   {
@@ -40,7 +40,7 @@
     },
     "authors": "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing",
     "description": "The functions between a function and its derivative have many ways of being shown, this is one of them. Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. As such, as a fractional integral approaches 1, it should become the integral.",
-    "version": "3",
+    "version": "4",
     "releaseOrder": "5"
   },
   {
@@ -51,7 +51,7 @@
     },
     "authors": "ellipsis",
     "description": "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!",
-    "version": "7",
+    "version": "8",
     "releaseOrder": "2"
   },
   {
@@ -62,7 +62,7 @@
     },
     "authors": "xelaroc (AlexCord#6768)",
     "description": "Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.\n\nIntuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.\n\nThe product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infty.\n\nHere, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.",
-    "version": "4",
+    "version": "5",
     "releaseOrder": "1"
   }
 ]
