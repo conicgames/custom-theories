@@ -9,7 +9,7 @@ var name = "Fractal Patterns";
 var description =
   "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.";
 var authors = "xlii";
-var version = 6;
+var version = 7;
 var releaseOrder = "6";
 
 requiresGameVersion("1.4.33");
@@ -255,8 +255,8 @@ function wt(n) {
 }
 function U(n) {
   let p = n - (n % 100);
-  let temp = prevN > p ? U_n.toNumber() : un_precomputed[Math.floor(n / 100)];
-  for (let i = prevN > p ? prevN + 1 : p + 1; i <= n; i++) temp += u(i);
+  let temp = un_precomputed[Math.floor(n / 100)];
+  for (let i = p + 1; i <= n; i++) temp += u(i);
   return temp;
 }
 function S(n) {
