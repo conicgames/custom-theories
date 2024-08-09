@@ -11,7 +11,7 @@ var description =
   "Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. " +
   "As such, as a fractional integral approaches 1, it should become the integral.";
 var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
-var version = 4;
+var version = 5;
 var releaseOrder = "5";
 
 requiresGameVersion("1.4.33");
@@ -21,6 +21,7 @@ var tauMultiplier = 4;
 var rho_dot = BigNumber.ZERO;
 var t_cumulative = BigNumber.ZERO;
 var mainEquationPressed = false;
+var adBoost = BigNumber.ONE;
 
 // lambda = 1 - 1/2^k
 // lambda = 1 - `lambda_man`e`lambda_exp`
@@ -74,7 +75,9 @@ var popup = ui.createPopup({
             text: "Yes",
             onClicked: () => {
               gxMilestoneConfirmed = true;
-              gxUpg.level += gxMilestoneLevelDifference;
+              if(theory.milestonesUnused > 0 || gxMilestoneLevelDifference < 0) {
+                gxUpg.level += gxMilestoneLevelDifference;
+              }
               popup.hide();
             },
           }),
@@ -409,6 +412,7 @@ var updateAvailability = () => {
 var tick = (elapsedTime, multiplier) => {
   let dt = BigNumber.from(elapsedTime * multiplier);
   let bonus = theory.publicationMultiplier;
+  adBoost = BigNumber.from(multiplier);
   let vq1 = getQ1(q1.level).pow(getQ1Exp(q1Exp.level));
   let vq2 = getQ2(q2.level);
   let vt = getT(t.level);
@@ -437,6 +441,7 @@ var tick = (elapsedTime, multiplier) => {
 
   currency.value += bonus * rho_dot * dt;
 
+  if(mainEquationPressed) theory.invalidatePrimaryEquation();
   theory.invalidateTertiaryEquation();
 };
 
@@ -512,6 +517,8 @@ var getPrimaryEquation = () => {
   if (mainEquationPressed) {
     theory.primaryEquationScale = 1.0;
     result += "_{\\lambda}\\int_{0}^{\\pi}g(x)dx^{\\lambda} = \\frac{1}{\\Gamma(\\lambda)}\\int_0^\\pi{(\\pi-x)^{\\lambda-1}g(x)}dx";
+    result += "\\\\\\\\";
+    result += "h=" + getH(gxUpg.level).toString() + ", \\quad\\dot{ \\rho } =" + (rho_dot*theory.publicationMultiplier*adBoost).toString();
   } else {
     theory.primaryEquationScale = 1.27;
     result = "\\begin{matrix}";
@@ -527,7 +534,7 @@ var getPrimaryEquation = () => {
     }
     if (intUnlock.level == 1) result += "}g(x)dx";
     result += "}\\\\\\\\";
-    result += "\\dot{r}=(\\int_{0}^{\\pi}g(x)dx - _{\\lambda}\\int_{0}^{\\pi}g(x)dx^{\\lambda})^{-1}";
+    result += "\\dot{r}=h(\\int_{0}^{\\pi}g(x)dx - _{\\lambda}\\int_{0}^{\\pi}g(x)dx^{\\lambda})^{-1}";
   }
   result += "\\end{matrix}";
   return result;
@@ -627,6 +634,7 @@ var getQ2 = (level) => BigNumber.TWO.pow(level);
 var getK = (level) => BigNumber.from(level);
 var getM = (level) => BigNumber.from(1.5).pow(level);
 var getN = (level) => Utils.getStepwisePowerSum(level, 3, 11, 0);
+var getH = (level) => [0.03870, 0.04357, -0.19151, -0.02968][level]
 
 var getQ1Exp = (level) => BigNumber.from(1 + level * 0.01);
 
