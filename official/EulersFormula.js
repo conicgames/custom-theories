@@ -764,7 +764,7 @@ var getQuaternaryEntries = () => {
 var get3DGraphPoint = () => swizzle((state - center) * scale);
 var get3DGraphTranslation = () => swizzle((new Vector3(-t_graph.toNumber() + 6, 0, 0) - center) * scale);
 var getPublicationMultiplier = (tau) => tau.pow(0.387/tauMultiplier);
-var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.9675}";
+var getPublicationMultiplierFormula = (symbol) => symbol + "^{0.09675}";
 var isCurrencyVisible = (index) => index == 0 || (index == 1 && dimension.level > 0) || (index == 2 && dimension.level > 1);
 var getTau = () => currency.value.pow(BigNumber.from(0.4*tauMultiplier));
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(2.5/tauMultiplier), currency.symbol];
