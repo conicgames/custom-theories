@@ -44,6 +44,23 @@
     "releaseOrder": "5"
   },
   {
+    "relativeUrl": "official/ReimannZetaFunction.js",
+    "id": "riemann_zeta_f",
+    "name": {
+      "default": "Riemann Zeta Function",
+      "zh-Hans": "黎曼 ζ 函数",
+      "zh-Hant": "黎曼 ζ 函数",
+      "es": "Función Zeta de Riemann",
+      "fr": "Fonction Zêta de Riemann",
+      "ru": "Дзета-функция Римана",
+      "vi": "Hàm zeta Riemann"
+    },
+    "authors": "propfeds, Eylanding\nMartin_mc, original idea\n\nThanks to:\nGlen Pugh, for the Riemann-Siegel formula implementation\nXLII, for teaching the ancient Sim language\nSneaky, Gen & Gaunter, for maths consultation & other suggestions\ngame-icons.net\n\nTranslations:\nOmega_3301 & WYXkk - 简体中文\nOmega_3301 & pacowoc - 繁體中文\nJooo & Warzen User - Español\nMathis S - Français\nhotab - Русский\n66.69 - Filipino\npropfeds - Tiếng Việt",
+    "description": "The function now known as the Riemann zeta function was first defined by Euler for integers greater than 1 as an infinite series:\nζ(s) = 1 + 1/(2^s) + 1/(3^s) + ...\nThe definition was later extended to real numbers by Chebyshev, and to the complex plane by Riemann. However, as it diverged on all s with a real component less than or equal to 1, a special version of the function had to be defined in order to preserve the continuity of its derivatives. This is known as an analytic continuation, and the zeta function's analytic continuation relates to this infamous meme:\n1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)\n\nIn this theory, we will be examining the zeta function on the line perpendicular to the x-axis at x = 0.5, known as the critical line. In 1859, it was hypothesised by Riemann himself that, other than the so-called 'trivial zeroes' lying at negative even integers -2, -4, -6, ..., every other root of the function lies on this critical line.",
+    "version": "1",
+    "releaseOrder": "7"
+  },
+  {
     "relativeUrl": "official/Sequential-Limits.js",
     "id": "SequentialLimits",
     "name": {
