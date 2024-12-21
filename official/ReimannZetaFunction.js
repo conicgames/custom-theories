@@ -6,10 +6,6 @@ import { Utils } from '../api/Utils';
 import { Vector3 } from '../api/Vector3';
 
 var id = 'riemann_zeta_f';
-var version = 2;
-var releaseOrder = "7";
-const versionName = 'v0.5.2';
-
 var getName = (language) =>
 {
     const names =
@@ -79,12 +75,12 @@ Dans cette théorie, nous examinerons la fonction zêta sur la droite perpendicu
 Згодом Чебишов розширив її визначення на дійсні числа, а Ріман — на всю комплексну площину. Однак, оскільки ряд розбіжний при всіх s з дійсною частиною меншою або рівною 1, потрібно було визначити особливе розширення функції, яке б зберегло неперервність її похідних. Це розширення відомо як аналітичне продовження, і аналітичне продовження дзети-функції пов'язане з цим відомим мемом:
 1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)`,
         tl:
-`Ang punsiyong ito ay kinikilala bilang Rienmann zeta function na siyang unang tinukoy ni Euler para sa mga buong numero na higit sa 1 – bilang isang seryeng walang katiyakan:
+`Ang punsiyong ito ay kinikilala bilang Riemann zeta function na siyang unang tinukoy ni Euler para sa mga buong numero na higit sa 1 – bilang isang seryeng walang katiyakan:
 ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ...
 Ang depinisyon nito ay 'di katagalang pinayabong sa mga tunay na numero ni Chebyshev, at sa mga komplikadong katam ni Riemann. Ngunit, habang ito ay humihiwalay sa lahat ng s na may totoong bahagi na mas mababa o kapantay ng 1, isang namumukod tanging punsiyon ang kinakailangang ilarawan upang mapreserba ang pagpapatuloy ng mga derivatives nito. Ito ay kilala bilang isang analitikal na pagpapatuloy, at ang analitikal na pagpapatuloy ng punsiyong zeta ay ini-ugnay sa kilalang meme na ito:
 1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)
 
-Sa teoryang ito, susuriin natin ang punsiyong zeta sa linyang perpendikular sa x-axis o x = 0.5, na siya ring kilala bilang kritikal na linya. Noong 1859, inihipotisa ni Riemann, maliban sa mga tinatawag na ""walang kwentang zeros"" na siyang nasa negatibong even na numero ng -2, -2, -6, ..., at bawat ibang root ng punsiyong nakalatag sa kritikal na linya.`,
+Sa teoryang ito, susuriin natin ang punsiyong zeta sa linyang perpendikular sa x-axis o x = 0.5, na siya ring kilala bilang kritikal na linya. Noong 1859, inihipotisa ni Riemann, maliban sa mga tinatawag na "walang kwentang zeros" na siyang nasa negatibong even na numero ng -2, -2, -6, ..., at bawat ibang root ng punsiyong nakalatag sa kritikal na linya.`,
         vi:
 `Trước khi được mang tên Riemann, hàm zeta được định nghĩa bởi Euler dưới dạng chuỗi vô hạn trên miền các số tự nhiên lớn hơn 1:
 ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ...
@@ -96,12 +92,13 @@ Trong lí thuyết này, chúng ta sẽ khám phá hàm zeta trên đường th�
 
     return descs[language] || descs.en;
 }
-var authors = 'propfeds, Eylanding\n' +
-'Martin_mc, original idea\n\n' +
+var authors = 'propfeds, Eylanding\n\n' +
 'Thanks to:\n' +
+'Martin_mc, for the original idea\n' +
 'Glen Pugh, for the Riemann-Siegel formula implementation\n' +
 'XLII, for teaching the ancient Sim language\n' +
-'Sneaky, Gen & Gaunter, for maths consultation & other suggestions\n' +
+'Sneaky, Gen & Gaunter, for maths & other consultation\n' +
+'Maimai & LLL333, for reporting bugs\n' +
 'game-icons.net\n\n' +
 'Translations:\n' +
 'Omega_3301 & WYXkk - 简体中文\n' +
@@ -109,9 +106,11 @@ var authors = 'propfeds, Eylanding\n' +
 'Jooo & Warzen User - Español\n' +
 'Mathis S - Français\n' +
 'hotab - Русский\n' +
-'BotAn, hotab - Українська\n' +
+'BotAn & hotab - Українська\n' +
 '66.69 - Filipino\n' +
 'propfeds - Tiếng Việt';
+var version = 2;
+var releaseOrder = '7';
 
 let pubTime = 0;
 
@@ -241,7 +240,7 @@ const locStrings =
         blackhole: 'Unleash a black hole',
         blackholeInfo: 'Pulls {0} backwards to the nearest zero of {1}',
         menuBlackhole: 'Black Hole Settings',
-        blackholeThreshold: 'Unleash black hole at: ',
+        blackholeThreshold: 'Automatically unleash black hole at: ',
         blackholeCopyt: 'Take current t',
         save: 'Save',
         rotationLock:
@@ -260,7 +259,7 @@ const locStrings =
         blackhole: '释放黑洞',
         blackholeInfo: '将 {0} 拉回至 {1} 的最近的零点',
         menuBlackhole: '黑洞设置',
-        blackholeThreshold: '释放黑洞的条件：',
+        blackholeThreshold: '自动释放黑洞的条件：',
         blackholeCopyt: '使用现在的 t 值',
         save: '保存',
         rotationLock:
@@ -279,7 +278,7 @@ const locStrings =
         blackhole: '釋放黑洞',
         blackholeInfo: '將 {0} 移到和 {1} 最接近的零點',
         menuBlackhole: '黑洞設定',
-        blackholeThreshold: '釋放黑洞的條件：',
+        blackholeThreshold: '自動釋放黑洞的條件：',
         blackholeCopyt: '利用現在的 t 值',
         save: '儲存',
         rotationLock:
@@ -298,7 +297,7 @@ const locStrings =
         blackhole: 'Desatar el agujero negro',
         blackholeInfo: 'Jala {0} hacia atrás hasta el cero más cercano de {1}',
         menuBlackhole: 'Configuraciones del Agujero Negro',
-        blackholeThreshold: 'Desata el Agujero Negro en:',
+        blackholeThreshold: 'Automaticamente desata el Agujero Negro en: ',
         blackholeCopyt: 'Usar t actual',
         save: 'Guardar',
         rotationLock:
@@ -317,7 +316,7 @@ const locStrings =
         blackhole: 'Libérer un trou noir',
         blackholeInfo: 'Renvoie {0} au dernier zéro de {1}',
         menuBlackhole: 'Paramètres du trou noir',
-        blackholeThreshold: 'Libérer le trou noir à :',
+        blackholeThreshold: 'Libérer automatiquement le trou noir à : ',
         blackholeCopyt: 'Utiliser le t actuel',
         save: 'Sauvegarder',
         rotationLock:
@@ -336,7 +335,7 @@ const locStrings =
         blackhole: 'Высвободить чёрную дыру',
         blackholeInfo: 'Оттягивает {0} назад к ближайшему нулю {1}',
         menuBlackhole: 'Настройки Чёрной Дыры',
-        blackholeThreshold: 'Высвободить чёрную дыру при:',
+        blackholeThreshold: 'Автоматически высвободить чёрную дыру при: ',
         blackholeCopyt: 'Скопировать текущее значение t',
         save: 'Сохранить',
         rotationLock:
@@ -355,7 +354,7 @@ const locStrings =
         blackhole: 'Вивільнити чорну діру',
         blackholeInfo: 'Відтягує {0} назад до найближчого нуля {1}',
         menuBlackhole: 'Налаштування Чорної Діри',
-        blackholeThreshold: 'Вивільнити чорну діру при:',
+        blackholeThreshold: 'Автоматично вивільнити чорну діру при: ',
         blackholeCopyt: 'Скопіювати поточне значення t',
         save: 'Зберегти',
         rotationLock:
@@ -370,11 +369,11 @@ const locStrings =
     tl:
     {
         pubTime: 'Oras: {0}',
-        terms: 'Mga terminolohiya ng Reimann-Siegel: {0}',
+        terms: 'Mga terminolohiya ng Riemann-Siegel: {0}',
         blackhole: 'Pakawalan ang black hole',
         blackholeInfo: 'Hilain ang {0} patalikod patungo sa pinakamalapit na {1}',
         menuBlackhole: 'Settings ng Black Hole',
-        blackholeThreshold: 'Pakawalan ang black hole sa:',
+        blackholeThreshold: 'Awtomatikong pakawalan ang black hole: ',
         blackholeCopyt: 'Kuhanin ang Kasalukuyang t',
         save: 'I-save',
         rotationLock:
@@ -393,7 +392,7 @@ const locStrings =
         blackhole: 'Giải phóng hố đen',
         blackholeInfo: 'Kéo {0} ngược lại tới không điểm gần nhất của {1}',
         menuBlackhole: 'Cài đặt hố đen',
-        blackholeThreshold: 'Giải phóng hố đen tại: ',
+        blackholeThreshold: 'Tự động giải phóng hố đen tại: ',
         blackholeCopyt: 'Lấy t hiện tại',
         save: 'Lưu',
         rotationLock:
@@ -814,8 +813,9 @@ let zeta = (T) =>
         z = [
             a[0]*(1-offset) + b[0]*offset,
             a[1]*(1-offset) + b[1]*offset,
-            a[2]*(1-offset) + b[2]*offset
+            0
         ];
+        z[2] = -Math.sqrt(z[0]*z[0] + z[1]*z[1]);
     }
     if(T < 0)
         z[1] = -z[1];
@@ -1272,9 +1272,6 @@ var tick = (elapsedTime, multiplier) =>
         zResult = zeta(t);
         if(zResult[2] * prevZ <= 0)
             lastZero = t;
-        // when offline: lastZero is small (maybe even zero), if lastZero is smaller than t but t is greater than threshold then rewind
-        if(clipping_t && t >= lastZero && t >= tClipThreshold)
-            blackholeMs.buy(1);
 
         if(derivMs.level)
         {
@@ -1284,6 +1281,7 @@ var tick = (elapsedTime, multiplier) =>
             dTerm = BigNumber.from(Math.sqrt(dr*dr + di*di) * derivRes);
             derivCurrency.value += dTerm.pow(bTerm) * w1Term * w2Term * w3Term *
             bonus;
+
             if(blackholeMs.level && t >= 14 && !dTerm.isZero)
             {
                 let d = (tmpZ[2] - zResult[2]) * derivRes;
@@ -1303,7 +1301,7 @@ var tick = (elapsedTime, multiplier) =>
                     {
                         foundZero = true;
                         // Calculate bhzTerm
-                        zResult = zeta(t);
+                        let zResult = zeta(t);
                         let tmpZ = zeta(t + derivResInv);
                         let dr = tmpZ[0] - zResult[0];
                         let di = tmpZ[1] - zResult[1];
@@ -1318,6 +1316,11 @@ var tick = (elapsedTime, multiplier) =>
 
         normCurrency.value += tTerm * c1Term * c2Term * w1Term * bonus /
         (zTerm / BigNumber.TWO.pow(bTerm) + bMarginTerm);
+
+        // when offline: lastZero is small (maybe even zero), if lastZero is smaller than t but t is greater than threshold then rewind
+        if(blackholeMs.isAvailable && clipping_t &&
+        t >= lastZero && t >= tClipThreshold)
+            blackholeMs.buy(1);
     }
     else
     {
@@ -1370,8 +1373,8 @@ let createBlackholeMenu = () =>
     {
         clipping_t = !clipping_t;
         clippingSwitch.isToggled = clipping_t;
-        if(!clipping_t)
-            blackholeMs.refund(1);
+        // if(!clipping_t)
+        //     blackholeMs.refund(1);
     }, clipping_t);
 
     let actuallyEditing = false;
@@ -1430,8 +1433,7 @@ let createBlackholeMenu = () =>
                 ({
                     margin: new Thickness(0, 0, 0, 6),
                     text: getLoc('blackholeThreshold'),
-                    verticalTextAlignment: TextAlignment.CENTER,
-                    horizontalTextAlignment: TextAlignment.CENTER
+                    verticalTextAlignment: TextAlignment.CENTER
                 }),
                 ui.createGrid
                 ({
@@ -1561,15 +1563,10 @@ bhRewindLength);
 var resetStage = () =>
 {
     t = Math.max(0, t - bhRewindLength);
-    // t -= bhRewindLength;
     // This points lastZero to a non-zero, necessary sacrifice.
     lastZero = 0;
-
-    if(blackholeMs.level)
-    {
-        blackholeMs.refund(1);
-        blackholeMs.buy(1);
-    }
+    foundZero = false;
+    blackholeMs.refund(1);
 }
 
 var getInternalState = () => JSON.stringify
