@@ -2,6 +2,12 @@ import { BigNumber } from '../api/BigNumber';
 import { ConstantCost, ExponentialCost, FirstFreeCost, StepwiseCost } from '../api/Costs';
 import { Localization } from '../api/Localization';
 import { QuaternaryEntry, theory } from '../api/Theory';
+import { Color } from '../api/ui/properties/Color';
+import { Keyboard } from '../api/ui/properties/Keyboard';
+import { LayoutOptions } from '../api/ui/properties/LayoutOptions';
+import { TextAlignment } from '../api/ui/properties/TextAlignment';
+import { Thickness } from '../api/ui/properties/Thickness';
+import { ui } from '../api/ui/UI';
 import { Utils } from '../api/Utils';
 import { Vector3 } from '../api/Vector3';
 
@@ -92,24 +98,24 @@ Trong lí thuyết này, chúng ta sẽ khám phá hàm zeta trên đường th�
 
     return descs[language] || descs.en;
 }
-var authors = 'propfeds, Eylanding\n\n' +
+var authors = 'prop (Minh)\n\n' +
 'Thanks to:\n' +
-'Martin_mc, for the original idea\n' +
-'Glen Pugh, for the Riemann-Siegel formula implementation\n' +
-'XLII, for teaching the ancient Sim language\n' +
-'Sneaky, Gen & Gaunter, for maths & other consultation\n' +
-'Maimai & LLL333, for reporting bugs\n' +
+'Prof. Glen Pugh, for the implementation of the Riemann-Siegel formula\n' +
+'Martin_mc & Eylanding, original developers of the concept\n' +
+'Sneaky, Gen & Gaunter, for maths & other consultations during development\n' +
+'XLII, hotab & Mathis S., for the development of testing tools\n' +
+'Maimai, LLL333 & Mathis S., for reporting bugs\n' +
 'game-icons.net\n\n' +
 'Translations:\n' +
 'Omega_3301 & WYXkk - 简体中文\n' +
 'Omega_3301 & pacowoc - 繁體中文\n' +
 'Jooo & Warzen User - Español\n' +
-'Mathis S - Français\n' +
+'Mathis S. - Français\n' +
 'hotab - Русский\n' +
 'BotAn & hotab - Українська\n' +
 '66.69 - Filipino\n' +
-'propfeds - Tiếng Việt';
-var version = 2;
+'prop - Tiếng Việt';
+var version = 3;
 var releaseOrder = '7';
 
 let pubTime = 0;
@@ -121,6 +127,7 @@ let zTerm = BigNumber.from(zResult[2]);
 let dTerm = BigNumber.ZERO;
 
 let lastZero = 0;
+let blackhole = false;
 let searchingRewind = false;
 let foundZero = false;
 let bhzTerm = null;
@@ -145,7 +152,7 @@ const scale = 4;
 const derivRes = 100000;
 const derivResInv = 1 / derivRes;
 const t_resolution = 1/4;
-const bhRewindLength = 1.5;
+const bhRewindLength = 5;
 
 const c1ExpMaxLevel = 3;
 // The first 3 zeta zeroes lol
@@ -219,6 +226,7 @@ const locStrings =
         pubTime: '{0}',
         terms: '{0}',
         blackhole: '',
+        blackholeUnlock: '',
         blackholeInfo: 'Pulls {0} to {1}',
         menuBlackhole: '',
         blackholeThreshold: '',
@@ -237,7 +245,8 @@ const locStrings =
     {
         pubTime: 'Publication time: {0}',
         terms: 'Riemann-Siegel terms: {0}',
-        blackhole: 'Unleash a black hole',
+        blackhole: 'Unleash the black hole: ',
+        blackholeUnlock: 'the black hole',
         blackholeInfo: 'Pulls {0} backwards to the nearest zero of {1}',
         menuBlackhole: 'Black Hole Settings',
         blackholeThreshold: 'Automatically unleash black hole at: ',
@@ -256,7 +265,8 @@ const locStrings =
     {
         pubTime: '出版时间：{0}',
         terms: '黎曼-西格尔项：{0}',
-        blackhole: '释放黑洞',
+        blackhole: '释放黑洞：',
+        blackholeUnlock: '黑洞',
         blackholeInfo: '将 {0} 拉回至 {1} 的最近的零点',
         menuBlackhole: '黑洞设置',
         blackholeThreshold: '自动释放黑洞的条件：',
@@ -275,7 +285,8 @@ const locStrings =
     {
         pubTime: '出版時間：{0}',
         terms: '黎曼-西格爾項：{0}',
-        blackhole: '釋放黑洞',
+        blackhole: '釋放黑洞：',
+        blackholeUnlock: '黑洞',
         blackholeInfo: '將 {0} 移到和 {1} 最接近的零點',
         menuBlackhole: '黑洞設定',
         blackholeThreshold: '自動釋放黑洞的條件：',
@@ -294,10 +305,11 @@ const locStrings =
     {
         pubTime: 'Tiempo: {0}',
         terms: 'Términos de Riemann-Siegel: {0}',
-        blackhole: 'Desatar el agujero negro',
+        blackhole: 'Desatar el agujero negro: ',
+        blackholeUnlock: 'el agujero negro',
         blackholeInfo: 'Jala {0} hacia atrás hasta el cero más cercano de {1}',
         menuBlackhole: 'Configuraciones del Agujero Negro',
-        blackholeThreshold: 'Automaticamente desata el Agujero Negro en: ',
+        blackholeThreshold: 'Automaticamente desata el agujero negro en: ',
         blackholeCopyt: 'Usar t actual',
         save: 'Guardar',
         rotationLock:
@@ -313,7 +325,8 @@ const locStrings =
     {
         pubTime: 'Temps : {0}',
         terms: 'Termes de Riemann-Siegel : {0}',
-        blackhole: 'Libérer un trou noir',
+        blackhole: 'Libérer le trou noir : ',
+        blackholeUnlock: 'le trou noir',
         blackholeInfo: 'Renvoie {0} au dernier zéro de {1}',
         menuBlackhole: 'Paramètres du trou noir',
         blackholeThreshold: 'Libérer automatiquement le trou noir à : ',
@@ -332,7 +345,8 @@ const locStrings =
     {
         pubTime: 'Время: {0}',
         terms: 'Члены Римана-Зигеля: {0}',
-        blackhole: 'Высвободить чёрную дыру',
+        blackhole: 'Высвободить чёрную дыру: ',
+        blackholeUnlock: 'чёрную дыру',
         blackholeInfo: 'Оттягивает {0} назад к ближайшему нулю {1}',
         menuBlackhole: 'Настройки Чёрной Дыры',
         blackholeThreshold: 'Автоматически высвободить чёрную дыру при: ',
@@ -351,7 +365,8 @@ const locStrings =
     {
         pubTime: 'Час: {0}',
         terms: 'Членів Рімана-Зігеля: {0}',
-        blackhole: 'Вивільнити чорну діру',
+        blackhole: 'Вивільнити чорну діру: ',
+        blackholeUnlock: 'чорну діру',
         blackholeInfo: 'Відтягує {0} назад до найближчого нуля {1}',
         menuBlackhole: 'Налаштування Чорної Діри',
         blackholeThreshold: 'Автоматично вивільнити чорну діру при: ',
@@ -370,7 +385,8 @@ const locStrings =
     {
         pubTime: 'Oras: {0}',
         terms: 'Mga terminolohiya ng Riemann-Siegel: {0}',
-        blackhole: 'Pakawalan ang black hole',
+        blackhole: 'Pakawalan ang black hole: ',
+        blackholeUnlock: 'ang black hole',
         blackholeInfo: 'Hilain ang {0} patalikod patungo sa pinakamalapit na {1}',
         menuBlackhole: 'Settings ng Black Hole',
         blackholeThreshold: 'Awtomatikong pakawalan ang black hole: ',
@@ -389,7 +405,8 @@ const locStrings =
     {
         pubTime: 'Thời gian: {0}',
         terms: 'Riemann-Siegel: {0} số hạng',
-        blackhole: 'Giải phóng hố đen',
+        blackhole: 'Giải phóng hố đen: ',
+        blackholeUnlock: 'hố đen',
         blackholeInfo: 'Kéo {0} ngược lại tới không điểm gần nhất của {1}',
         menuBlackhole: 'Cài đặt hố đen',
         blackholeThreshold: 'Tự động giải phóng hố đen tại: ',
@@ -802,7 +819,7 @@ let zeta = (T) =>
     let t = Math.abs(T);
     let z;
     if(t >= 1)
-        z = riemannSiegelZeta(t, 1);
+        z = riemannSiegelZeta(t, 2);
     else if(t < 0.1)
         z = zetaSmall(t);
     else
@@ -820,6 +837,37 @@ let zeta = (T) =>
     if(T < 0)
         z[1] = -z[1];
     return z;
+}
+
+let enableBlackhole = () =>
+{
+    if(blackhole)
+        return;
+    blackhole = true;
+
+    searchingRewind = true;
+    foundZero = false;
+    bhzTerm = null;
+    bhdTerm = null;
+    if(lastZero >= 14 && lastZero > t - 10)
+    {
+        t = lastZero;
+        searchingRewind = false;
+    }
+}
+
+let disableBlackhole = () =>
+{
+    if(!blackhole)
+        return;
+    blackhole = false;
+
+    if(foundZero)
+        lastZero = t;
+    searchingRewind = false;
+    foundZero = false;
+    bhzTerm = null;
+    bhdTerm = null;
 }
 
 /**
@@ -844,6 +892,18 @@ let getImageSize = (width) =>
     return 20;
 }
 
+let getSmallBtnSize = (width) =>
+{
+    if(width >= 1080)
+        return 80;
+    if(width >= 720)
+        return 60;
+    if(width >= 360)
+        return 40;
+
+    return 32;
+}
+
 let createImageBtn = (params, callback, isAvailable, image) =>
 {
     let triggerable = true;
@@ -852,7 +912,7 @@ let createImageBtn = (params, callback, isAvailable, image) =>
     ({
         cornerRadius: 1,
         margin: new Thickness(2),
-        padding: new Thickness(1),
+        padding: new Thickness(2),
         hasShadow: isAvailable,
         heightRequest: getImageSize(ui.screenWidth),
         widthRequest: getImageSize(ui.screenWidth),
@@ -860,7 +920,7 @@ let createImageBtn = (params, callback, isAvailable, image) =>
         ({
             source: image,
             aspect: Aspect.ASPECT_FIT,
-            useTint: true
+            useTint: false
         }),
         borderColor,
         ...params
@@ -870,12 +930,10 @@ let createImageBtn = (params, callback, isAvailable, image) =>
         if(e.type == TouchType.PRESSED)
         {
             frame.borderColor = Color.TRANSPARENT;
-            // frame.hasShadow = false;
         }
         else if(e.type.isReleased())
         {
             frame.borderColor = borderColor;
-            // frame.hasShadow = true;
             if(triggerable && isAvailable())
             {
                 Sound.playClick();
@@ -888,91 +946,10 @@ let createImageBtn = (params, callback, isAvailable, image) =>
         e.x > frame.width || e.y > frame.height))
         {
             frame.borderColor = borderColor;
-            // frame.hasShadow = true;
             triggerable = false;
         }
     };
     return frame;
-}
-
-let createActiveImageBtn = (params, callback, image) =>
-{
-    let triggerable = true;
-    let borderColor = Color.BORDER;
-    let frame = ui.createFrame
-    ({
-        cornerRadius: 1,
-        margin: new Thickness(2),
-        padding: new Thickness(1),
-        hasShadow: true,
-        heightRequest: getImageSize(ui.screenWidth),
-        widthRequest: getImageSize(ui.screenWidth),
-        content: ui.createImage
-        ({
-            source: image,
-            aspect: Aspect.ASPECT_FIT,
-            useTint: true
-        }),
-        borderColor,
-        ...params
-    });
-    frame.onTouched = (e) =>
-    {
-        if(e.type == TouchType.PRESSED)
-        {
-            frame.borderColor = Color.TRANSPARENT;
-            // frame.hasShadow = false;
-        }
-        else if(e.type.isReleased())
-        {
-            frame.borderColor = borderColor;
-            // frame.hasShadow = true;
-            if(triggerable)
-            {
-                Sound.playClick();
-                callback();
-            }
-            else
-                triggerable = true;
-        }
-        else if(e.type == TouchType.MOVED && (e.x < 0 || e.y < 0 ||
-        e.x > frame.width || e.y > frame.height))
-        {
-            frame.borderColor = borderColor;
-            // frame.hasShadow = true;
-            triggerable = false;
-        }
-    };
-    return frame;
-}
-
-let createHesitantSwitch = (params, callback, isToggled) =>
-{
-    let triggerable = true;
-    let element = ui.createSwitch
-    ({
-        horizontalOptions: LayoutOptions.CENTER,
-        onColor: Color.BORDER,
-        isToggled,
-        onTouched: (e) =>
-        {
-            if(e.type.isReleased())
-            {
-                if(triggerable)
-                {
-                    Sound.playClick();
-                    callback();
-                }
-                else
-                    triggerable = true;
-            }
-            else if(e.type == TouchType.MOVED && (e.x < 0 || e.y < 0 ||
-            e.x > element.width || e.y > element.height))
-                triggerable = false;
-        },
-        ...params
-    });
-    return element;
 }
 
 const bhImage = game.settings.theme == Theme.LIGHT ?
@@ -1195,33 +1172,24 @@ var init = () =>
         w2Ms.isAvailable = false;
         w2Ms.canBeRefunded = () => blackholeMs.level == 0;
     }
-    /* Blackhole
+    /* Black hole
     Tradeoff. Use for coasting.
     */
     {
         blackholeMs = theory.createMilestoneUpgrade(4, 1);
-        blackholeMs.description = getLoc('blackhole');
+        blackholeMs.description = Localization.getUpgradeUnlockDesc(
+        Localization.format(`\\text{${getLoc('blackholeUnlock')}}`));
         blackholeMs.info = Localization.format(getLoc('blackholeInfo'),
         Utils.getMath('t'), Utils.getMath('\\zeta(s)'));
         blackholeMs.bought = (_) =>
         {
-            searchingRewind = true;
-            foundZero = false;
-            bhzTerm = null;
-            bhdTerm = null;
-            if(lastZero >= 14 && lastZero > t - 10)
-                t = lastZero;
-            
             updateAvailability();
         }
         blackholeMs.refunded = (_) =>
         {
-            if(foundZero)
-                lastZero = t;
-            searchingRewind = false;
-            foundZero = false;
-            bhzTerm = null;
-            bhdTerm = null;
+            clipping_t = false;
+            disableBlackhole();
+            updateAvailability();
         }
         blackholeMs.isAvailable = false;
     }
@@ -1239,7 +1207,7 @@ var updateAvailability = () =>
     w2.isAvailable = w2Ms.level > 0;
     w3.isAvailable = w3Perma.level > 0;
     blackholeMs.isAvailable = c1ExpMs.level == c1ExpMaxLevel && w2Ms.level > 0;
-    blackholeMenuFrame.isVisible = theory.milestonesTotal > 5;
+    blackholeMenuFrame.isVisible = blackholeMs.level > 0;
 }
 
 var isCurrencyVisible = (index) => (index && derivMs.level > 0) || !index;
@@ -1250,7 +1218,7 @@ var tick = (elapsedTime, multiplier) =>
         return;
 
     pubTime += elapsedTime;
-    if(!blackholeMs.level || t < 14)
+    if(!blackhole || t < 14)
     {
         t_dot = t_resolution;
         t += t_dot * elapsedTime;
@@ -1266,7 +1234,7 @@ var tick = (elapsedTime, multiplier) =>
     let c2Term = getc2(c2.level);
     let bTerm = getb(b.level);
 
-    if(!blackholeMs.level || !foundZero)
+    if(!blackhole || !foundZero)
     {
         let prevZ = zResult[2];
         zResult = zeta(t);
@@ -1282,20 +1250,21 @@ var tick = (elapsedTime, multiplier) =>
             derivCurrency.value += dTerm.pow(bTerm) * w1Term * w2Term * w3Term *
             bonus;
 
-            if(blackholeMs.level && t >= 14 && !dTerm.isZero)
+            if(blackhole && t >= 14)
             {
-                let d = (tmpZ[2] - zResult[2]) * derivRes;
-                let bhdt = zResult[2] / d;
-                // Not very accurate this way but eh (xdd)
-                if(searchingRewind && bhdt < 0)
+                let dNewt = (tmpZ[2] - zResult[2]) * derivRes;
+                let bhdt = Math.min(Math.max(-0.5, -zResult[2] / dNewt), 0.375);
+
+                if(searchingRewind && bhdt > 0)
                 {
-                    t_dot = t_resolution;
-                    t += t_dot * elapsedTime;
+                    let srdt = -Math.min(0.125 / bhdt, 0.125);
+                    t_dot = srdt / elapsedTime;
+                    t += srdt;
                 }
                 else
                 {
-                    t_dot = -bhdt / elapsedTime;
-                    t -= bhdt;
+                    t_dot = bhdt / elapsedTime;
+                    t += bhdt;
                     searchingRewind = false;
                     if(Math.abs(bhdt) < 1e-9)
                     {
@@ -1317,10 +1286,9 @@ var tick = (elapsedTime, multiplier) =>
         normCurrency.value += tTerm * c1Term * c2Term * w1Term * bonus /
         (zTerm / BigNumber.TWO.pow(bTerm) + bMarginTerm);
 
-        // when offline: lastZero is small (maybe even zero), if lastZero is smaller than t but t is greater than threshold then rewind
-        if(blackholeMs.isAvailable && clipping_t &&
+        if(blackholeMs.level && clipping_t &&
         t >= lastZero && t >= tClipThreshold)
-            blackholeMs.buy(1);
+            enableBlackhole();
     }
     else
     {
@@ -1360,38 +1328,55 @@ var getEquationOverlay = () =>
     return result;
 }
 
-
 let createBlackholeMenu = () =>
 {
     let tmpThreshold = tClipThreshold;
 
-    let clippingSwitch = createHesitantSwitch
+    let getBHStr = () => `${blackhole ? '═' : '─'}${!searchingRewind ?
+    '═' : '─'}${foundZero ? '═' : '─'}`;
+
+    let blackholeBtn = ui.createButton
+    ({
+        row: 0, column: 1,
+        horizontalOptions: LayoutOptions.END,
+        heightRequest: getSmallBtnSize(ui.screenWidth),
+        text: () => blackhole ? getBHStr() :
+        Localization.get('EnumSoundOff'),
+        onClicked: () =>
+        {
+            Sound.playClick();
+            if(!blackhole)
+                enableBlackhole();
+            else
+                disableBlackhole();
+        }
+    });
+
+    let clippingSwitch = ui.createSwitch
     ({
         row: 0, column: 2,
-        horizontalOptions: LayoutOptions.END
-    }, () =>
-    {
-        clipping_t = !clipping_t;
-        clippingSwitch.isToggled = clipping_t;
-        // if(!clipping_t)
-        //     blackholeMs.refund(1);
-    }, clipping_t);
-
-    let actuallyEditing = false;
+        horizontalOptions: LayoutOptions.END,
+        isToggled: clipping_t,
+        onToggled: () =>
+        {
+            Sound.playClick();
+            clipping_t = clippingSwitch.isToggled;
+        }
+    });
 
     let thresholdEntry = ui.createEntry
     ({
         row: 0, column: 1,
         text: tmpThreshold.toString(),
+        placeholder: '0',
+        placeholderColor: Color.TEXT_MEDIUM,
         keyboard: Keyboard.NUMERIC,
         horizontalTextAlignment: TextAlignment.END,
         onTextChanged: (ot, nt) =>
         {
-            if(!actuallyEditing)
-                return;
             let tmpML = parseFloat(nt) ?? tmpThreshold;
             if(isNaN(tmpML))
-                tmpML = tmpThreshold;
+                tmpML = 0;
             tmpThreshold = tmpML;
         }
     });
@@ -1402,10 +1387,8 @@ let createBlackholeMenu = () =>
         onClicked: () =>
         {
             Sound.playClick();
-            actuallyEditing = false;
             tmpThreshold = t;
             thresholdEntry.text = tmpThreshold.toString();
-            actuallyEditing = true;
         }
     })
     let saveBtn = ui.createButton
@@ -1419,8 +1402,6 @@ let createBlackholeMenu = () =>
         }
     })
 
-    actuallyEditing = true;
-
     let menu = ui.createPopup
     ({
         isPeekable: true,
@@ -1429,14 +1410,32 @@ let createBlackholeMenu = () =>
         ({
             children:
             [
+                ui.createGrid
+                ({
+                    margin: new Thickness(0, 0, 0, 4),
+                    columnDefinitions: ['auto', '1*'],
+                    children:
+                    [
+                        ui.createLatexLabel
+                        ({
+                            row: 0, column: 0,
+                            text: getLoc('blackhole'),
+                            verticalTextAlignment: TextAlignment.CENTER
+                        }),
+                        blackholeBtn
+                    ]
+                }),
                 ui.createLatexLabel
                 ({
+                    opacity: () => clipping_t ? 1 : 0.4,
                     margin: new Thickness(0, 0, 0, 6),
                     text: getLoc('blackholeThreshold'),
+                    horizontalTextAlignment: TextAlignment.CENTER,
                     verticalTextAlignment: TextAlignment.CENTER
                 }),
                 ui.createGrid
                 ({
+                    opacity: () => clipping_t ? 1 : 0.4,
                     columnDefinitions: ['auto', '1*', 'auto'],
                     children:
                     [
@@ -1524,7 +1523,7 @@ var getQuaternaryEntries = () =>
     return quaternaryEntries;
 }
 
-var getTau = () => normCurrency.value.pow(tauRate);
+var getTau = () => normCurrency.value.abs().pow(tauRate);
 
 var getCurrencyFromTau = (tau) =>
 [
@@ -1541,12 +1540,9 @@ var postPublish = () =>
     zTerm = BigNumber.from(zResult[2]);
     dTerm = BigNumber.ZERO;
     lastZero = 0;
-    searchingRewind = false;
     foundZero = false;
-    bhzTerm = null;
-    bhdTerm = null;
 
-    blackholeMs.refund(1);
+    disableBlackhole();
 
     theory.invalidatePrimaryEquation();
     theory.invalidateSecondaryEquation();
@@ -1566,7 +1562,10 @@ var resetStage = () =>
     // This points lastZero to a non-zero, necessary sacrifice.
     lastZero = 0;
     foundZero = false;
-    blackholeMs.refund(1);
+
+    disableBlackhole();
+    // Prevent lastZero from opening
+    zResult[2] = NaN;
 }
 
 var getInternalState = () => JSON.stringify
@@ -1575,6 +1574,9 @@ var getInternalState = () => JSON.stringify
     t,
     pubTime,
     lastZero,
+    blackhole,
+    searchingRewind,
+    foundZero,
     clipping_t,
     tClipThreshold
 })
@@ -1588,8 +1590,22 @@ var setInternalState = (stateStr) =>
     t = state.t ?? t;
     pubTime = state.pubTime ?? pubTime;
     lastZero = state.lastZero ?? lastZero;
+    blackhole = state.blackhole ?? blackhole;
+    searchingRewind = state.searchingRewind ?? searchingRewind;
+    foundZero = state.foundZero ?? foundZero;
     clipping_t = state.clipping_t ?? clipping_t;
     tClipThreshold = state.tClipThreshold ?? tClipThreshold;
+
+    if(foundZero)
+    {
+        let zResult = zeta(t);
+        let tmpZ = zeta(t + derivResInv);
+        let dr = tmpZ[0] - zResult[0];
+        let di = tmpZ[1] - zResult[1];
+        bhdTerm = BigNumber.from(Math.sqrt(dr*dr + di*di) *
+        derivRes);
+        bhzTerm = BigNumber.from(zResult[2]).abs();
+    }
 
     theory.invalidatePrimaryEquation();
     theory.invalidateTertiaryEquation();
