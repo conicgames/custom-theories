@@ -4,7 +4,7 @@ import { BigNumber } from "../api/BigNumber";
 import { theory, QuaternaryEntry } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-var id = "magnetic_fields_@season";
+var id = "magnetic_fields";
 var name = "Magnetic Fields";
 var description = 
 "A Custom Theory to explore the basic concepts of Magnetic Fields.\n"+
@@ -15,7 +15,8 @@ var description =
 "Version 0.3"
 var authors = "Mathis S.\n" +
 "Thanks to the amazing Exponential Idle community for their support and feedback on this theory!";
-var version = 0.3;
+var version = 2;
+var releaseOrder = '8';
 
 const tauRate = 1;
 const pubExponent = 0.17;
