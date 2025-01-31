@@ -4,8 +4,8 @@ import { BigNumber } from "../api/BigNumber";
 import { theory, QuaternaryEntry } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-var id = "magnetic_fields";
-var name = "Magnetic Fields";
+var id = "magnetic_fields_season2";
+var name = "Magnetic Fields (Season 2)";
 var description = 
 "A Custom Theory to explore the basic concepts of Magnetic Fields.\n"+
 "Discover the equations that describe the movement of a charged particle inside a solenoid of infinite length.\n"+
