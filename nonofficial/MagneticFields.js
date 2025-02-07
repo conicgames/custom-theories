@@ -353,7 +353,7 @@ var tick = (elapsedTime, multiplier) => {
     x += dt * vx;
 
     let icap = va2*i0;
-    I = icap - (icap - I)*(BigNumber.E.pow(-(dt*va1)/(BigNumber.THOUSAND*va2)))
+    I = icap - (icap - I)*(BigNumber.E.pow(-(dt*va1)/(BigNumber.TEN*va2)))
     I = I.min(icap);
     
     B = mu0 * I * getDelta(delta.level);
@@ -406,7 +406,7 @@ var getSecondaryEquation = () => {
             result += `v_y = [{v_3}{v_4}\\times{10^{-18}}]({t_s}=0)\\times\\sin(\\omega{t})\\\\`;
             result += `v_z = [{v_3}{v_4}\\times{10^{-18}}]({t_s}=0)\\times\\cos(\\omega{t})\\\\`;
         }
-        result += `\\dot{I} = \\frac{a_1}{100}\\left(10^{-15} - \\frac{I}{a_2}\\right)\\\\`;
+        result += `\\dot{I} = \\frac{a_1}{10}\\left(10^{-15} - \\frac{I}{a_2}\\right)\\\\`;
     }
     else
     {
