@@ -1,0 +1,5 @@
+{
+  "description": {
+    "default": "Control Theory is a tool used in engineering to maintain a variable at a set value (known as the 'set point'). \n    \n You must regulate a 2×2×2 cm metal block using a variable output heater with a maximum power rating of 20 kW. \n \n The output of your PID system will be an integer between 0-512 (denoted by u(t) in the equation). This number will determine the output of the heater with 512 providing the maximum value \n \n An output of 0 allows the system to be air cooled under ambient conditions (30°C), with no heater output. \n \n Eventually, you will be able to tune the controller for yourself. While doing so, you will face various constraints and challenges which you must overcome to progress within this custom theory."
+  }
+}
