@@ -19,6 +19,7 @@ var getName = (language) =>
         en: 'Riemann Zeta Function',
         'zh-Hans': '黎曼 ζ 函数',
         'zh-Hant': '黎曼 ζ 函数',
+        de: 'Riemannsche Zeta-Funktion',
         es: 'Función Zeta de Riemann',
         fr: 'Fonction Zêta de Riemann',
         ru: 'Дзета-функция Римана',
@@ -54,6 +55,12 @@ In this theory, we will be examining the zeta function on the line perpendicular
 1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)
 
 在這個理論中，我們將探索在 x = 0.5 處垂直於 x 軸的直線（稱為臨界線）上 zeta 函數的行為。 1859 年，黎曼臆測：除了位於負偶數 -2、-4、-6、... 處的所謂“平凡零點”之外，ζ 函數的所有其他根都位於這條臨界線上。`,
+        de:
+`Die heute als Riemannsche Zeta-Funktion bekannte Funktion wurde erstmals von Euler für ganze Zahlen größer als 1 als unendliche Reihe definiert: 
+ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ... 
+Die Definition wurde später von Tschebyschow auf reelle Zahlen und von Riemann auf die komplexe Zahlenebene erweitert. Allerdings, da sie für alle s, deren Realteil kleiner oder gleich 1 ist, divergierte, musste eine spezielle Variante der Funktion definiert werden, um die Stetigkeit ihrer Ableitungen zu erhalten. Dies ist bekannt als eine analytische Fortsetzung, und die analytische Fortsetzung der Zeta-Funktion bezieht sich auf dieses berüchtigte Meme: 
+1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)
+In dieser Theorie werden wir die Zeta-Funktion auf der Geraden senkrecht zur x-Achse bei x = 0.5 untersuchen, die als kritische Gerade bekannt ist. Im Jahr 1859 wurde von Riemann selbst die Hypothese aufgestellt, dass, abgesehen von den sogenannten "trivialen Nullstellen", die bei negativen geraden ganzen Zahlen liegen: -2, -4, -6, ..., jede andere Nullstelle der Funktion auf dieser kritischen Geraden liegt.`,
         es:
 `Esta función conocida como la función de Riemann Zeta fue definida por Euler para los números enteros mayores a 1 como una serie de infinitos:
 ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ...
@@ -109,13 +116,14 @@ var authors = 'prop (Minh)\n\n' +
 'Translations:\n' +
 'Omega_3301 & WYXkk - 简体中文\n' +
 'Omega_3301 & pacowoc - 繁體中文\n' +
+'aervnu - Deutsch\n' +
 'Jooo & Warzen User - Español\n' +
 'Mathis S. - Français\n' +
 'hotab - Русский\n' +
 'BotAn & hotab - Українська\n' +
 '66.69 - Filipino\n' +
 'prop - Tiếng Việt';
-var version = 4;
+var version = 5;
 var releaseOrder = '7';
 
 let pubTime = 0;
@@ -300,6 +308,26 @@ const locStrings =
         rotationLockInfo: '開啟/關閉 3D 圖形的旋轉和縮放',
         overlayInfo: '顯示/隱藏 黎曼-西格爾項和出版時間',
         rewind: '將 t 回溯 {0}。\n在使用黑洞時有助於通過之前的零點。'
+    },
+    de:
+    {
+        pubTime: 'Zeit: {0}',
+        terms: 'Riemann-Siegel-Terme: {0}',
+        blackhole: 'Setze das schwarze Loch frei: ',
+        blackholeUnlock: 'das schwarze Loch',
+        blackholeInfo: 'Aktuellen Wert von {0} zur nächsten Nullstelle von {1} setzen',
+        menuBlackhole: 'Schwarzes-Loch-Einstellungen',
+        blackholeThreshold: 'Automatisch das schwarze Loch freisetzen um: ',
+        blackholeCopyt: 'Aktuelles t nehmen',
+        save: 'Speichern',
+        rotationLock:
+        [
+            'Graphen entsperren',
+            'Graphen sperren'
+        ],
+        rotationLockInfo: 'Rotieren und Zoomen des 3D-Graphen umschalten',
+        overlayInfo: 'Riemann-Siegel-Terme und Publikationszeit anzeigen umschalten',
+        rewind: 't um {0} zurücksetzen.\nDies kann helfen, frühere Nullstellen zu finden, wenn man das schwarze Loch verwendet.',
     },
     es:
     {
@@ -851,7 +879,7 @@ let enableBlackhole = () =>
     bhdTerm = null;
     if(t > lastZero && lastZero > Math.max(0, t - 10))
     {
-        t = lastZero;
+        t = lastZero + 1e-4;
         // searchingRewind = false;
     }
 }
@@ -1403,8 +1431,9 @@ let createBlackholeMenu = () =>
         {
             Sound.playClick();
             tClipThreshold = tmpThreshold;
-            if(clipping_t && t < tClipThreshold)
-                disableBlackhole();
+            // 0.6.7: Disabled save button QoL due to exploit
+            // if(clipping_t && t < tClipThreshold)
+            //     disableBlackhole();
         }
     })
 
