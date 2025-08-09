@@ -18,7 +18,7 @@ Optimize actively or progress passively?\n\
 Try to decide it on your own.\
 ";
 var authors = "skyhigh173";
-var version = 12;
+var version = 13;
 
 // currency
 var rho;
@@ -168,8 +168,8 @@ var init = () => {
     }
     {
       nExp = theory.createMilestoneUpgrade(1, 2);
-      nExp.getDescription = () => Localization.getUpgradeIncCustomExpDesc("n",0.6) + " in d$x$/d$rt$ term";
-      nExp.getInfo = () => nExp.level == 1 ? "Removes $n$ in d$x$/d$rt$ term" : "Increases $n$ exponent by $0.6$ in d$x$/d$rt$ term"
+      nExp.getDescription = () => Localization.getUpgradeIncCustomExpDesc("n",0.6) + " in $\\dot{x}$ term";
+      nExp.getInfo = () => nExp.level == 1 ? "Removes $n$ in $\\dot{x}$ term" : "Increases $n$ exponent by $0.6$ in $\\dot{x}$ term"
       nExp.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation();
     }
     {
@@ -208,8 +208,8 @@ var getSecondaryEquation = () => {
   theory.secondaryEquationScale = 0.95;
   let nExp = getNExp();
   let nExpText = "a_0" + (a0Exp.level > 0 ? `^{${1+a0Exp.level}}` : "") + (nExp == BigNumber.ZERO ? "" : `n^{-${nExp.toString(1)}}`);
-  let r = `\\frac{\\mathrm{d}x}{\\mathrm{d}rt} = n \\ln\\left(${nExpText}+e\\right)`;
-  if (qTerm.level > 0) r += `\\qquad \\frac{\\mathrm{d}q}{\\mathrm{d}rt}=\\frac{mxa_1}{1+t}`;
+  let r = `$\\dot{x}$ = n \\ln\\left(${nExpText}+e\\right)`;
+  if (qTerm.level > 0) r += `\\qquad $\\dot{q}$=\\frac{mxa_1}{1+t}`;
   return r;
 }
 
