@@ -9,7 +9,7 @@ var name = "Derivative Equation (S04)";
 var description = "Derivative Equation --\n\
 \n\
 x grows continuously over time,\n\
-approaching to an limit.\n\
+approaching to a limit.\n\
 \n\
 Purchase upgrades to accelerate ρ production,\n\
 at the cost of resetting x.\n\
