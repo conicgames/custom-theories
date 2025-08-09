@@ -113,8 +113,8 @@
       "default": "Derivative Equation (S04)"
     },
     "authors": "skyhigh173",
-    "description": "Derivative Equation --\n\nx grows continuously over time,\napproaching to an limit.\n\nPurchase upgrades to accelerate ρ production,\nat the cost of resetting x.\n\nOptimize actively or progress passively?\nTry to decide it on your own.",
-    "version": "12",
+    "description": "Derivative Equation --\n\nx grows continuously over time,\napproaching a limit.\n\nPurchase upgrades to accelerate ρ production,\nat the cost of resetting x.\n\nOptimize actively or progress passively?\nTry to decide it on your own.",
+    "version": "13",
     "releaseOrder": "1"
   }
 ]
