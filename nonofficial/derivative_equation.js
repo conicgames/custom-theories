@@ -169,7 +169,7 @@ var init = () => {
     {
       nExp = theory.createMilestoneUpgrade(1, 2);
       nExp.getDescription = () => Localization.getUpgradeIncCustomExpDesc("n",0.6) + " in d$x$/d$rt$ term";
-      nExp.getInfo = () => nExp.level == 1 ? "remove $n$ in d$x$/d$rt$ term" : "increases $n$ exponent by $0.6$ in d$x$/d$rt$ term"
+      nExp.getInfo = () => nExp.level == 1 ? "Removes $n$ in d$x$/d$rt$ term" : "Increases $n$ exponent by $0.6$ in d$x$/d$rt$ term"
       nExp.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation();
     }
     {
@@ -258,28 +258,28 @@ var tick = (elapsedTime, multiplier) => {
 
 var ach_0 = theory.createAchievementCategory(0,'x');
 var ach_1 = theory.createAchievementCategory(1,'rho');
-var ach_s = theory.createAchievementCategory(3,'secret');
+var ach_s = theory.createAchievementCategory(3,'Secret');
 
-var ach_x_1 = theory.createAchievement(100, ach_0, "Overflow", "reach the maximum value of x", isCappedX);
-var ach_x_2 = theory.createAchievement(101, ach_0, "Limit? What limit?", "increase x's cap", () => maxX.level > 0);
-var ach_x_3 = theory.createAchievement(102, ach_0, "Even faster than light speed", "reach x = 1e10", () => x >= BigNumber.from(1e10));
-var ach_x_4 = theory.createAchievement(103, ach_0, "xponential idle", "reach x = 1e25", () => x >= BigNumber.from(1e15));
-var ach_x_5 = theory.createAchievement(104, ach_0, "xcelerating", "reach x = 1e50", () => x >= BigNumber.from(1e50));
-var ach_x_6 = theory.createAchievement(105, ach_0, "xtreme growth", "reach x = 1e150", () => x >= BigNumber.from(1e150));
-var ach_x_7 = theory.createAchievement(106, ach_0, "xceeds infinity?", "reach x = 1.79e308", () => x >= BigNumber.TWO.pow(1024));
+var ach_x_1 = theory.createAchievement(100, ach_0, "Overflow", "Reach the maximum value of x", isCappedX);
+var ach_x_2 = theory.createAchievement(101, ach_0, "Limit? What limit?", "Increase x's cap", () => maxX.level > 0);
+var ach_x_3 = theory.createAchievement(102, ach_0, "Even faster than light speed", "Reach x = 1e10", () => x >= BigNumber.from(1e10));
+var ach_x_4 = theory.createAchievement(103, ach_0, "xponential idle", "Reach x = 1e25", () => x >= BigNumber.from(1e15));
+var ach_x_5 = theory.createAchievement(104, ach_0, "xcelerating", "Reach x = 1e50", () => x >= BigNumber.from(1e50));
+var ach_x_6 = theory.createAchievement(105, ach_0, "xtreme growth", "Reach x = 1e150", () => x >= BigNumber.from(1e150));
+var ach_x_7 = theory.createAchievement(106, ach_0, "xceeds infinity?", "Reach x = 1.79e308", () => x >= BigNumber.TWO.pow(1024));
 
-var ach_rho_1 = theory.createAchievement(200, ach_1, "Rocket fuel", "reach 1e10ρ", () => rho.value >= BigNumber.from(1e10));
-var ach_rho_2 = theory.createAchievement(201, ach_1, "Terminal velocity", "reach 1e25ρ", () => rho.value >= BigNumber.from(1e25));
-var ach_rho_3 = theory.createAchievement(203, ach_1, "Nice.", "reach 6.9e69ρ", () => rho.value >= BigNumber.from(6.9e69));
-var ach_rho_4 = theory.createAchievement(204, ach_1, "The aρocalypse", "reach 1e100ρ", () => rho.value >= BigNumber.from(1e100));
-var ach_rho_5 = theory.createAchievement(205, ach_1, "IT'S OVER CENTILLION!!!", "reach 1e303ρ", () => rho.value >= BigNumber.from('1e303'));
-var ach_rho_6 = theory.createAchievement(206, ach_1, "No way, you can reach eternity?", "reach 3.23e616ρ", () => rho.value >= BigNumber.TWO.pow(2048));
-var ach_rho_7 = theory.createAchievement(207, ach_1, "Half-ρ decay", "reach 1e750ρ", () => rho.value >= BigNumber.from('1e750'));
-var ach_rho_8 = theory.createAchievement(208, ach_1, "Googolρlex? Not yet.", "reach 1e1000ρ", () => rho.value >= BigNumber.from('1e1000'));
-var ach_rho_9 = theory.createAchievement(209, ach_1, "The end.", "reach 1e1500ρ", () => rho.value >= BigNumber.from('1e1500'));
+var ach_rho_1 = theory.createAchievement(200, ach_1, "Rocket fuel", "Reach 1e10ρ", () => rho.value >= BigNumber.from(1e10));
+var ach_rho_2 = theory.createAchievement(201, ach_1, "Terminal velocity", "Reach 1e25ρ", () => rho.value >= BigNumber.from(1e25));
+var ach_rho_3 = theory.createAchievement(203, ach_1, "Nice.", "Reach 6.9e69ρ", () => rho.value >= BigNumber.from(6.9e69));
+var ach_rho_4 = theory.createAchievement(204, ach_1, "The aρocalypse", "Reach 1e100ρ", () => rho.value >= BigNumber.from(1e100));
+var ach_rho_5 = theory.createAchievement(205, ach_1, "IT'S OVER CENTILLION!!!", "Reach 1e303ρ", () => rho.value >= BigNumber.from('1e303'));
+var ach_rho_6 = theory.createAchievement(206, ach_1, "No way, you can reach eternity?", "Reach 3.23e616ρ", () => rho.value >= BigNumber.TWO.pow(2048));
+var ach_rho_7 = theory.createAchievement(207, ach_1, "Half-ρ decay", "Reach 1e750ρ", () => rho.value >= BigNumber.from('1e750'));
+var ach_rho_8 = theory.createAchievement(208, ach_1, "Googolρlex? Not yet.", "Reach 1e1000ρ", () => rho.value >= BigNumber.from('1e1000'));
+var ach_rho_9 = theory.createAchievement(209, ach_1, "The end.", "Reach 1e1500ρ", () => rho.value >= BigNumber.from('1e1500'));
 
 var ach_sec1 = theory.createSecretAchievement(1000, ach_s , 'I thought it would be useful', "Perform a reset 5 times in the same publication", "No progress", () => resetCount >= 5);
-var ach_sec2 = theory.createSecretAchievement(1001, ach_s , 'Why are you still here?', "reach 1e2000ρ", "Progress", () => rho.value >= BigNumber.from('1e2000')); // might be hard to get
+var ach_sec2 = theory.createSecretAchievement(1001, ach_s , 'Why are you still here?', "Reach 1e2000ρ", "Progress", () => rho.value >= BigNumber.from('1e2000')); // might be hard to get
 
 
 init();
