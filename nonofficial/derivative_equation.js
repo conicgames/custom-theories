@@ -208,8 +208,8 @@ var getSecondaryEquation = () => {
   theory.secondaryEquationScale = 0.95;
   let nExp = getNExp();
   let nExpText = "a_0" + (a0Exp.level > 0 ? `^{${1+a0Exp.level}}` : "") + (nExp == BigNumber.ZERO ? "" : `n^{-${nExp.toString(1)}}`);
-  let r = `$\\dot{x}$ = n \\ln\\left(${nExpText}+e\\right)`;
-  if (qTerm.level > 0) r += `\\qquad $\\dot{q}$=\\frac{mxa_1}{1+t}`;
+  let r = `\\dot{x} = n \\ln\\left(${nExpText}+e\\right)`;
+  if (qTerm.level > 0) r += `\\qquad \\dot{q}=\\frac{mxa_1}{1+t}`;
   return r;
 }
 
