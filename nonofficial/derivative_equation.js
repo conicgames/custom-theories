@@ -18,7 +18,7 @@ Optimize actively or progress passively?\n\
 Try to decide it on your own.\
 ";
 var authors = "skyhigh173";
-var version = 13;
+var version = 15;
 
 // currency
 var rho;
@@ -86,6 +86,16 @@ var setInternalState = (state) => {
   x = BigNumber.fromBase64String(state[0]);
   t = BigNumber.fromBase64String(state[1]);
   q = BigNumber.fromBase64String(state[2]);
+}
+
+var updateAvailability = () => {
+  unlockA.isAvailable = isMaxRhoOver(1e80);
+  a0Exp.isAvailable = isMaxRhoOver(1e150);
+  qTerm.isAvailable = isMaxRhoOver(1e200);
+  a2.isAvailable = unlockA.level > 0;
+  m.isAvailable = qTerm.level > 0;
+  extraCap.maxLevel = 6 + maxXPermCap.level;
+  maxXPermCap.isAvailable = pubUpg.level > 0;
 }
 
 var init = () => {
@@ -188,8 +198,10 @@ var init = () => {
       qTerm = theory.createMilestoneUpgrade(4, 1);
       qTerm.getDescription = () => Localization.getUpgradeUnlockDesc(`q`);
       qTerm.getInfo = () => Localization.getUpgradeUnlockInfo(`q`);
-      qTerm.boughtOrRefunded = (_) => { theory.invalidateSecondaryEquation(); q = BigNumber.ONE; }
+      qTerm.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); theory.invalidateSecondaryEquation(); q = BigNumber.ONE; }
     }
+    
+  updateAvailability();
 }
 
 var getPrimaryEquation = () => {
@@ -247,13 +259,7 @@ var tick = (elapsedTime, multiplier) => {
   }
 
   theory.invalidateTertiaryEquation();
-  unlockA.isAvailable = isMaxRhoOver(1e80);
-  a0Exp.isAvailable = isMaxRhoOver(1e150);
-  qTerm.isAvailable = isMaxRhoOver(1e200);
-  a2.isAvailable = unlockA.level > 0;
-  m.isAvailable = qTerm.level > 0;
-  extraCap.maxLevel = 6 + maxXPermCap.level;
-  maxXPermCap.isAvailable = pubUpg.level > 0;
+  updateAvailability();
 }
 
 var ach_0 = theory.createAchievementCategory(0,'x');
