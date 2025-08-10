@@ -19,6 +19,7 @@ Try to decide it on your own.\
 ";
 var authors = "skyhigh173";
 var version = 15;
+var releaseOrder = "10";
 
 // currency
 var rho;
