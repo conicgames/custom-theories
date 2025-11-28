@@ -13,7 +13,7 @@ import { ScrollOrientation } from "./api/ui/properties/ScrollOrientation";
 import { LayoutOptions } from "./api/ui/properties/LayoutOptions";
 import { Profiler } from "./api/Profiler";
 
-var id = "convergence_test_speedrun";
+var id = "convergence_test_s05";
 var name = "Convergence Test (S05)";
 var description = "An speedrun-oriented implementation of the 'Convergence Test' theory from the game.";
 var authors = "Gilles-Philippe Paillé, pacowoc";
@@ -87,6 +87,7 @@ var importedRun = [[],[],[],[],[],[],[]]
 var lastRunTokenized = ["","","","","","",""]
 var bestRunTokenized = ["","","","","","",""]
 var importedRunTokenized = ["","","","","","",""];
+var username = ""
 function getBaseLevel(lemma,vari){
     if(lemma==5&&vari=="c3"){
         return 2;
@@ -480,6 +481,51 @@ var init = () => {
                 })
             ]
         })
+        P.show();
+    }
+
+
+    submitMenu = theory.createPermanentUpgrade(2, currency, new FreeCost());
+    submitMenu.getDescription = (_) => "Submit to Leaderboard";
+    submitMenu.getInfo = (_) => "Opens a popup containing allowing to easily submit the current lemma score to the leaderboard.";
+    submitMenu.bought = (_) => {
+        submitMenu.level = 0;
+        let lemmaName = "L" + (lemma.level + 1).toString();
+        let updateUrl = () => {
+            let exportBest = bestRunTokenized[lemma.level]
+            urlEntry.text = `https://docs.google.com/forms/d/e/1FAIpQLSdViw2jLVFvmEMU9X7A8B0szZv-HP55MqQ_E74monyYOO3muQ/viewform?entry.1422219039=${username}&entry.1550824495=${lemmaName}&entry.683102282=${exportBest}`;
+        }
+        P.title = "Submission of Lemma " + (lemma.level+1).toString();
+        P.content = ui.createStackLayout({
+            children:[
+                ui.createLabel({
+                    text: "Enter your user name for submission:",
+                    horizontalTextAlignment: TextAlignment.CENTER,
+                }),
+                usernameEntry = ui.createEntry({
+                    text: username,
+                    onTextChanged: (_, newUsername) => {
+                        username = newUsername;
+                        updateUrl();
+                    }
+                }),
+                ui.createLabel({
+                    text: "Pre-filled form URL for Submission:",
+                    horizontalTextAlignment: TextAlignment.CENTER,
+                }),
+                urlEntry = ui.createEntry({
+                    text: "",
+                    selectionLength: 0,
+                    cursorPosition: 0,
+                    maxLength: 2147483647
+                }),
+                ui.createLabel({
+                    text: "To submit, copy the URL and open it in a browser.",
+                    horizontalTextAlignment: TextAlignment.CENTER,
+                }),
+            ]
+        })
+        updateUrl()
         P.show();
     }
 
@@ -1360,10 +1406,10 @@ var getInternalState = () => {
         result += " " + qs[i].toString() + " " + currencyValues[i].toString() + " " + bestTime[i].toString() + " " + Ts[i].toString();
     result+="~"
     for(let i=0;i<lemmaCount;++i)
-        result +="~" + lastRunTokenized[i] + "~" + bestRunTokenized[i] + "~" + importedRunTokenized[i];
+        result += "~" + lastRunTokenized[i] + "~" + bestRunTokenized[i] + "~" + importedRunTokenized[i];
+    result += "~" + username.replace("~", "&tilde;");
     return result;
 }
-
 
 var setInternalState = (state) => {
     let terms = state.split("~")
@@ -1379,9 +1425,12 @@ var setInternalState = (state) => {
         if (values.length > 4*i + 3) bestTime[i] = parseBigNumber(values[4*i + 3]);
         if (values.length > 4*i + 4) Ts[i] = initialT[i]
     }
-    lastRun[lemma.level] = fromCompressedString(lastRunTokenized[lemma.level])
-    bestRun[lemma.level] = fromCompressedString(bestRunTokenized[lemma.level])
-    importedRun[lemma.level] = fromCompressedString(importedRunTokenized[lemma.level])
+    if (lemma.level != lemmaCount) {
+        lastRun[lemma.level] = fromCompressedString(lastRunTokenized[lemma.level])
+        bestRun[lemma.level] = fromCompressedString(bestRunTokenized[lemma.level])
+        importedRun[lemma.level] = fromCompressedString(importedRunTokenized[lemma.level])
+    }
+    username = terms[terms.length - 1].replace("&tilde;", "~");
     theory.invalidatePrimaryEquation(); 
     theory.invalidateSecondaryEquation(); 
     theory.invalidateQuaternaryValues();
@@ -1396,9 +1445,16 @@ var alwaysShowRefundButtons = () => true;
 var getPrimaryEquation = () => {
     theory.primaryEquationHeight = 50;
     theory.primaryEquationScale = 2;
-    if(lemma.level!=lemmaCount)return "L"+(lemma.level+1).toString() +":" + Ts[lemma.level].toString(1) + "\\;" + "\\text{s}";
-    else if(bestTime.reduce((a, b) => a + b, BigNumber.ZERO)>=timeLimit) return "Unfinished";
-    else return "Total:" + bestTime.reduce((a, b) => a + b, BigNumber.ZERO).toString(1) + "\\;" + "\\text{s}";
+    
+    if (lemma.level != lemmaCount)
+        return "\\text{L}" + (lemma.level + 1).toString() + ":" + Ts[lemma.level].toString(1) + "\\;" + "\\text{s}";
+    
+    let total = bestTime.reduce((a, b) => a + b, BigNumber.ZERO);
+    
+    if (total >= timeLimit)
+        return "\\text{Unfinished}";
+    else
+        return "\\text{Total}:" + total.toString(1) + "\\;" + "\\text{s}";
 }
 
 var getSecondaryEquation = () => {
