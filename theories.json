@@ -114,7 +114,7 @@
     },
     "authors": "Gilles-Philippe Paillé, pacowoc",
     "description": "An speedrun-oriented implementation of the 'Convergence Test' theory from the game.",
-    "version": "4",
+    "version": "5",
     "releaseOrder": "1"
   }
 ]
