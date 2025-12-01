@@ -17,7 +17,7 @@ var id = "convergence_test_s05";
 var name = "Convergence Test (S05)";
 var description = "An speedrun-oriented implementation of the 'Convergence Test' theory from the game.";
 var authors = "Gilles-Philippe Paillé, pacowoc";
-var version = 5;
+var version = 6;
 
 var c11, c12, c13;
 var c21, c22, c23, c24;
@@ -1005,7 +1005,11 @@ var init = () => {
         }
         c63.refunded = (count) => {
             record.push(new Purchase('c3', Ts[5], -count));
-            if (c63.level < 2) c63.Buy(2 - c63.level);
+
+            while (c63.level < 2) {
+                currency.value -= c63.cost.getCost(c63.level);
+                c63.level += 1;
+            }
         }
     }
 
