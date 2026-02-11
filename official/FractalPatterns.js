@@ -364,7 +364,7 @@ var getPrimaryEquation = () => {
       result += "w_n = n-\\sum_{k=1}^{\\infty}\\left\\lfloor\\frac{n}{2^k}\\right\\rfloor \\\\";
       result += "U_n = \\sum_{i=0}^n u_i";
     }
-    if (fractalTerm.level > 1) result += snboost.level === 0 ? ", \\qquad S_n = 3^{n-1}" : ", \\qquad S_n = \\frac{1}{2}(3^n-1)";
+    if (fractalTerm.level > 1) result += snboost.level === 0 ? ", \\qquad S_n = 3^{n-1}" : ", \\qquad S_n = 2(3^{n-1}) - 1";
     return result;
   } else {
     theory.primaryEquationHeight = fractalTerm.level === 0 ? 60 : 110;
