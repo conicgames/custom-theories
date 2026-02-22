@@ -158,7 +158,6 @@ var init = () => {
       backgroundInitialized = false;
       backgroundImages[0].opacity = backgroundImages[1].opacity = backgroundImages[2].opacity = 0;
     }
-    fractalToggle.level = 1;
   }
 
   ///////////////////////
