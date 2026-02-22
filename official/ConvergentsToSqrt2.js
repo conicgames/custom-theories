@@ -10,7 +10,7 @@ var id = "convergents_to_sqrt(2)"
 var name = "Convergents to √2";
 var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
 var authors = "Solarion#4131";
-var version = 11;
+var version = 12;
 var releaseOrder = "4";
 
 var tauMultiplier = 4;
@@ -197,7 +197,7 @@ var getTertiaryEquation = () => {
 //   ((Sqrt[8] + 3)^n - (-1)^n)/Sqrt[8]
 var root8 = BigNumber.from(8).sqrt();
 var root8p3 = root8 + BigNumber.THREE;
-var getError = (n) => (root8p3.pow(BigNumber.from(n)) - BigNumber.from(1 - (n % 2) * 2)) / root8;
+var getError = (n) => (root8p3.pow(BigNumber.from(n + 1)) - BigNumber.from(1 - ((n + 1) % 2) * 2)) / root8;
 
 var tt1250 = BigNumber.TEN.pow(1250);
 var multcutoff = BigNumber.from(1.18568685283083)*BigNumber.TEN.pow(273)
@@ -216,6 +216,6 @@ var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getC2 = (level) => BigNumber.TWO.pow(level);
 var getQ1Exp = (level) => BigNumber.from(1 + level * 0.05);
 var getC2Exp = (level) => BigNumber.from(1 + level * 0.5);
-var getN = (level) => BigNumber.from(level + 1);
+var getN = (level) => BigNumber.from(level);
 
 init();
