@@ -138,6 +138,7 @@ var setInternalState = (state) => {
 
 var postPublish = () => {
     q = BigNumber.ONE;
+    theory.invalidateTertiaryEquation();
 }
 
 var getPrimaryEquation = () => {

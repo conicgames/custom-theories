@@ -358,13 +358,13 @@ var getPrimaryEquation = () => {
   if (stage === 0) {
     theory.primaryEquationHeight = 150;
     theory.primaryEquationScale = 0.65;
-    let result = "T_{2^k+i}=\\begin{cases}\\frac{2^{2k+1}+1}{3},  & \\text{if } i = 0,  \\\\ T_{2^k}+2T_i + T_{i+1}-1, & \\text{if } 1 < i \\leq 2^k \\end{cases}\\\\";
+    let result = "T_{2^k+i}=\\begin{cases}\\frac{2^{2k+1}+1}{3},  & \\text{if } i = 0,  \\\\ T_{2^k}+2T_i + T_{i+1}-1, & \\text{if } 1 \\leq i < 2^k \\end{cases}\\\\";
     if (fractalTerm.level > 0) {
       result += "u_0 = 0,\\ u_1 = 1,\\ \\dots,\\ u_n=4(3^{w_{n-1}-1})\\\\";
       result += "w_n = n-\\sum_{k=1}^{\\infty}\\left\\lfloor\\frac{n}{2^k}\\right\\rfloor \\\\";
       result += "U_n = \\sum_{i=0}^n u_i";
     }
-    if (fractalTerm.level > 1) result += snboost.level === 0 ? ", \\qquad S_n = 3^{n-1}" : ", \\qquad S_n = \\frac{1}{2}(3^n-1)";
+    if (fractalTerm.level > 1) result += snboost.level === 0 ? ", \\qquad S_n = 3^{n-1}" : ", \\qquad S_n = 2(3^{n-1}) - 1";
     return result;
   } else {
     theory.primaryEquationHeight = fractalTerm.level === 0 ? 60 : 110;
