@@ -10,6 +10,7 @@ var id = "convergents_to_sqrt(2)";
 var getName = (language) => {
     const names = {
         en: `Convergents to √2`,
+        de: `Konvergenz zur Wurzel von 2`,
         fr: `Convergents à √2`
     };
     return names[language] || names.en;
@@ -18,6 +19,8 @@ var getDescription = (language) => {
     const descs = {
         en:
 `Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.`,
+        de:
+`Verwenden Sie die gegen √2 konvergierenden Zahlen, um ρ zu erhöhen. Die ersten gegen √2 konvergierenden Zahlen lauten: 1, 3/2, 7/5, 17/12. N_n ist der Zähler der n-ten gegen √2 konvergierenden Zahl und D_n der nth Nenner, wobei die nullte konvergierende Zahl 1/1 ist. Im Grenzwert konvergieren diese Zahlen gegen √2. Die Konvergenten schwanken um √2. Die Änderungsrate von q hängt von der Genauigkeit der Approximation ab.`,
         fr:
 `Utilisez les convergents à √2 pour augmenter ρ. Les premiers convergents à √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent à √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`
     };

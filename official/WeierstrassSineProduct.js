@@ -24,7 +24,13 @@ The product s_n represents only the n first factors of this infinite product (to
 
 Here, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.`,
         de:
-``,
+`Nutzen Sie die Ungenauigkeit der Produktdarstellung des Sinus aus, ein Ergebnis von Euler, das später von Weierstraß mithilfe seines berühmten Faktorisierungssatzes rigoros bewiesen wurde.
+
+Intuitiv liegt der Gedanke hinter dieser Formel darin, den Sinus mithilfe seiner Wurzeln zu faktorisieren (der Sinus hat Nullstellen an jedem Vielfachen von π), genau wie man es bei einem Polynom tun würde.
+
+Das Produkt s_n repräsentiert lediglich die ersten n Faktoren dieses unendlichen Produkts (zusammen mit der Nullstelle bei x=0), was bedeutet, dass zwischen s_n(x) und dem tatsächlichen sin(x) ein Fehler besteht, der von n und x abhängt. Beachten Sie, dass dieses verkürzte Produkt s_n sin(x) für größere n und kleinere x besser approximiert. Insbesondere verschlechtert sich die Approximation für ein festes n, wenn x groß wird, da das Verhältnis s_n(x)/sin(x) für x → ∞ divergiert.
+
+Hier wird die Ableitung von q nach der Zeit auf s_n(χ)/sin(χ) gesetzt, d. h. das Verhältnis von zuvor, ausgewertet an der Stelle χ (chi), welches selbst ein Wert ist, der von n abhängt. Beachten Sie, dass eine Erhöhung von n sowohl χ als auch die Genauigkeit der Näherung s_n erhöht.`,
         fr:
 `Exploiter l’inexactitude de la représentation du produit du sinus, un résultat dû à Euler qui a été rigoureusement prouvé plus tard par Weierstrass en utilisant son célèbre théorème de factorisation.
 

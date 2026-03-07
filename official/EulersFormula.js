@@ -1538,13 +1538,19 @@ var postPublish = () => {
     }
 }
 
-var getInternalState = () => `${num_publications} ${q} ${t} ${scale}`
+var getInternalState = () => `${num_publications} ${q.toBase64String()} ${t.toBase64String()} ${scale}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
     if (values.length > 0) num_publications = parseInt(values[0]);
-    if (values.length > 1) q = parseBigNumber(values[1]);
-    if (values.length > 2) t = parseBigNumber(values[2]);
+    if (values.length > 1) q = bigNumberFromBase64OrParse(values[1]);
+    if (values.length > 2) t = bigNumberFromBase64OrParse(values[2]);
     if (values.length > 3) scale = parseFloat(values[3]);
     theory.clearGraph();
     t_graph = BigNumber.ZERO;
