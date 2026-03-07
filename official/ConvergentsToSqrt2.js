@@ -11,7 +11,7 @@ var getName = (language) => {
     const names = {
         en: `Convergents to √2`,
         de: `Konvergenz zur Wurzel von 2`,
-        fr: `Convergents à √2`,
+        fr: `Convergents vers √2`,
         ja: `√2の収束分数`
     };
     return names[language] || names.en;

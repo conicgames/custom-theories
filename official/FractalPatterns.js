@@ -8,7 +8,7 @@ var id = "fractal_patterns";
 var getName = (language) => {
   const names = {
     en: `Fractal Patterns`,
-    fr: `Modèles Fractaux`
+    fr: `Modèles de Fractales`
   };
   return names[language] || names.en;
 };
@@ -68,11 +68,11 @@ const locStrings = {
     fractalToggle: `Afficher l’arrière-plan fractal`,
     addUlamWarburtonFractal: `Ajouter la fractale Ulam-Warburton`,
     addSierpinskiTriangleFractal: `Ajouter la fractale du triangle de Sierpinski`,
-    improveNScaling: `Améliorer la mise à l’échelle des variables`,
+    improveNScaling: `Améliorer la variable n`,
     snBoostDesc: `$S_n$ renvoie le nombre total de triangles`,
-    snBoostInfo: `Comptez tous les triangles dans le triangle Sierpinski`,
-    addSTerm: `$\\text{Ajouter le terme }s\\text{ & }\\downarrow T_n\\text{exponent par 2}$`,
-    improveRDesc: `$\\text{Améliorer} \\dot{r} \\text{equation}$`
+    snBoostInfo: `Compter tous les triangles dans le triangle de Sierpinski`,
+    addSTerm: `$\\text{Ajouter le terme }s\\text{ & }\\downarrow \\text{exposant de}T_n\\text{par 2}$`,
+    improveRDesc: `$\\text{Améliorer l'équation de} \\dot{r}$`
   }
 };
 const menuLang = Localization.language;
