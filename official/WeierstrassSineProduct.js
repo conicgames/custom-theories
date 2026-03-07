@@ -8,7 +8,7 @@ var id = "weierstrass-product-sine";
 var getName = (language) => {
     const names = {
         en: `Weierstraß Sine Product`,
-        de: `Weierstraße Sinus Produkt`,
+        de: `Weierstraß Sinus Produkt`,
         fr: `Weierstrasse Sine Product`,
         ja: `ワイエルシュトラスの正弦積`
     };
