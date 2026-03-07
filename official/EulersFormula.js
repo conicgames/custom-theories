@@ -19,6 +19,7 @@ var id = "eulers_formula";
 var getName = (language) => {
     const names = {
         en: `Euler's Formula`,
+        de: `Eulers Formel`,
         ja: `オイラーの公式`,
         ru: `Формула Эйлера`,
         uk: `Формула Ейлера`
