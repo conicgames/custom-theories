@@ -696,17 +696,17 @@ var init = () => {
   // Story Chapters
 
   // Story Chapters
-  theory.createStoryChapter(0, getLoc(`story1Title`, `story1`), () => currency.value >= 1);
-  theory.createStoryChapter(1, getLoc(`story2Title`, `story2`), () => intUnlock.level == 1);
-  theory.createStoryChapter(2, getLoc(`story3Title`, `story3`), () => kUnlock.level == 1);
-  theory.createStoryChapter(3, getLoc(`story4Title`, `story4`), () => UnlTerm.level > 0);
-  theory.createStoryChapter(4, getLoc(`story5Title`, `story5`), () => perm1.level == 1);
-  theory.createStoryChapter(5, getLoc(`story6Title`, `story6`), () => perm2.level == 1);
-  theory.createStoryChapter(6, getLoc(`story7Title`, `story7`), () => currency.value >= BigNumber.TEN.pow(500));
-  theory.createStoryChapter(7, getLoc(`story8Title`, `story8`), () => perm2.level == 2);
-  theory.createStoryChapter(8, getLoc(`story9Title`, `story9`), () => perm1.level == 3);
-  theory.createStoryChapter(9, getLoc(`story10Title`, `story10`), () => currency.value >= BigNumber.TEN.pow(1150));
-  theory.createStoryChapter(10, getLoc(`story11Title`, `story11`), () => currency.value >= BigNumber.TEN.pow(1250));
+  theory.createStoryChapter(0, getLoc(`story1Title`), getLoc(`story1`), () => currency.value >= 1);
+  theory.createStoryChapter(1, getLoc(`story2Title`), getLoc(`story2`), () => intUnlock.level == 1);
+  theory.createStoryChapter(2, getLoc(`story3Title`), getLoc(`story3`), () => kUnlock.level == 1);
+  theory.createStoryChapter(3, getLoc(`story4Title`), getLoc(`story4`), () => UnlTerm.level > 0);
+  theory.createStoryChapter(4, getLoc(`story5Title`), getLoc(`story5`), () => perm1.level == 1);
+  theory.createStoryChapter(5, getLoc(`story6Title`), getLoc(`story6`), () => perm2.level == 1);
+  theory.createStoryChapter(6, getLoc(`story7Title`), getLoc(`story7`), () => currency.value >= BigNumber.TEN.pow(500));
+  theory.createStoryChapter(7, getLoc(`story8Title`), getLoc(`story8`), () => perm2.level == 2);
+  theory.createStoryChapter(8, getLoc(`story9Title`), getLoc(`story9`), () => perm1.level == 3);
+  theory.createStoryChapter(9, getLoc(`story10Title`), getLoc(`story10`), () => currency.value >= BigNumber.TEN.pow(1150));
+  theory.createStoryChapter(10, getLoc(`story11Title`), getLoc(`story11`), () => currency.value >= BigNumber.TEN.pow(1250));
 
   updateAvailability();
 };
