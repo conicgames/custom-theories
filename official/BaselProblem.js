@@ -211,7 +211,7 @@ We hope you enjoyed playing through this, as much as we did making and designing
         gameEndPopupLabel: `Thanks for playing!`,
         gameEndPopupClose: `Close`
     },
-    example: {
+    fr: {
         aPermaDesc: `$\\text{Débloquer }a\\text{ milestone lv }\${0}`,
         aPermaInfo: `$\\text{Milestone: }\\augmente a\\text{ par }\\frac{{{0}}^2}{1000}$`,
         qPermaDesc: `$\\text{Débloquer }q\\text{ milestone lv }\${0}`,
