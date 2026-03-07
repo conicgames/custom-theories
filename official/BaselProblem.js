@@ -18,7 +18,8 @@ requiresGameVersion("1.4.33");
 var id = "basel_problem";
 var getName = (language) => {
     const names = {
-        en: "Basel Problem"
+        en: "Basel Problem",
+        fr: `Problème de Bâle`
     };
     return names[language] || names.en;  
 };
@@ -27,7 +28,11 @@ const getDescription = (language) => {
         en:
 `The Basel problem is a legendary puzzle in mathematics, first proposed in the 17th century and famously solved by Leonhard Euler. It asks a deceptively simple question: what is the sum of the inverse squares of all positive integers? This infinite series, 1/1 + 1/4 + 1/9 + 1/16 + ..., converges to a finite value, but what?
 
-In the Basel Problem theory, stand in Euler's shoes as you navigate the world of inverse squares. Everything in this theory revolves around them - variables based on partial sums, variable power scaling, and even the publication multiplier. Can you figure out the solution to this ancient problem?`
+In the Basel Problem theory, stand in Euler's shoes as you navigate the world of inverse squares. Everything in this theory revolves around them - variables based on partial sums, variable power scaling, and even the publication multiplier. Can you figure out the solution to this ancient problem?`,
+        fr:
+`Le problème de Bâle est une énigme légendaire en mathématiques, proposée pour la première fois au XVIIe siècle et résolue par Leonhard Euler. Il pose une question faussement simple : quelle est la somme des carrés inverses de tous les entiers positifs ? Cette série infinie, 1/1 + 1/4 + 1/9 + 1/16 + ..., converge vers une valeur finie, mais quoi?
+
+Dans la théorie du problème de Bâle, placez-vous à la place d'Euler pendant que vous naviguez dans le monde des carrés inverses. Tout dans cette théorie tourne autour d'eux - des variables basées sur des sommes partielles, une mise à l'échelle de puissance variable et même le multiplicateur de publication. Pouvez-vous trouver la solution à cet ancien problème?`
     }
     return descs[language] || descs.en;
 };
@@ -46,7 +51,6 @@ const locStrings = {
         tMilestoneDesc: ``,
         tMilestoneInfo: ``,
         aMilestoneDesc: `{0}`,
-        aMilestoneInfo: `{0}`,
         story1Title: ``,
         story1:
 ``,
@@ -93,7 +97,6 @@ const locStrings = {
         tMilestoneDesc: `Improve variable $t$`,
         tMilestoneInfo: `Moves $t$ outside the $a$ exponent.`,
         aMilestoneDesc: `$\\uparrow a$ by $\\frac{{{0}}^2}{1000}$`,
-        aMilestoneInfo: `$a \\to \${0}`,
         story1Title: `Infinite Series`,
         story1:
 `You find an interesting unsolved problem in an old mathematics textbook.
@@ -207,6 +210,131 @@ The End.`,
 We hope you enjoyed playing through this, as much as we did making and designing this theory!`,
         gameEndPopupLabel: `Thanks for playing!`,
         gameEndPopupClose: `Close`
+    },
+    example: {
+        aPermaDesc: `$\\text{Débloquer }a\\text{ milestone lv }\${0}`,
+        aPermaInfo: `$\\text{Milestone: }\\augmente a\\text{ par }\\frac{{{0}}^2}{1000}$`,
+        qPermaDesc: `$\\text{Débloquer }q\\text{ milestone lv }\${0}`,
+        qPermaInfo: `$\\text{Milestone: Débloquer }q_{{0}}$`,
+        rMilestoneDesc: `$\\text{Inverser } \\dot{r} \\text{ équation}$`,
+        rMilestoneInfo: `Inverse l' $\\dot{r}$ équation`,
+        tMilestoneDesc: `Améliorer la variable $t$`,
+        tMilestoneInfo: `Déplace $t$ en dehors de l'exposant $a$.`,
+        aMilestoneDesc: `$\\Augmente a$ par $\\frac{{{0}}^2}{1000}$`,
+        story1Title: `Série infinie`,
+        story1:
+`Vous trouvez un problème intéressant non résolu dans un vieux manuel de mathématiques.
+Le problème est une série infinie de carrés inverses.
+Vous approchez votre professeur avec ce problème.
+Elle vous regarde et dit: "Savez-vous si cette série converge?"
+Vous répondez: "Je ne suis pas sûr, mais c'est ce que je veux comprendre."
+Elle regarde à nouveau votre ancien manuel.
+"C'est un problème non résolu depuis des siècles. Pensez-vous que vous pouvez le casser?"
+Vous regardez la feuille de papier, en réfléchissant un peu plus.
+"Il a un nombre infini de termes, et ils sont tous positifs, donc il diverge probablement, n'est-ce pas?"
+"Et je pense que je sais comment le prouver."
+Vous créez un petit terme nommé 'r' et commencez à travailler sur le projet.`,
+        story2Title: `Sentiment de malaise`,
+        story2:
+`Vous commencez vos recherches avec enthousiasme.
+Vous parvenez à publier un dilemme relatif au problème dans une petite revue.
+Satisfait de vos progrès, vous continuez à avancer.
+Mais quelque part au fond de ton esprit
+Vous ne pouvez pas tout à fait vous débarrasser du sentiment que vous avez manqué quelque chose.
+Vous allez et revérifiez à nouveau toutes vos équations pour être sûr.`,
+        story3Title: `Défier les hypothèses`,
+        story3:
+`Vous avez passé des semaines à regarder votre formule en vain.
+Les progrès commencent à ralentir considérablement.
+Le désespoir s'installe.
+Tout d'un coup, vous vous réveillez au milieu de la nuit avec une idée.
+Et si votre hypothèse était fausse?
+Et si la série ne diverge pas?
+Et converge après tout?
+Vous faites une petite modification au calcul de rdot.`,
+        story4Title: `Manipulation temporelle`,
+        story4:
+`Vos progrès se sont considérablement améliorés depuis que vous avez revisité votre hypothèse.
+Il est maintenant assez clair que la série converge.
+Mais vers quoi converge-t-il?
+Vous commencez à être bloqué à nouveau.
+Peut-être que faire passer le temps plus vite aidera.
+Vous prenez la variable 't' et la déplacez vers une autre partie de votre équation.`,
+        story5Title: `Croissance exponentielle`,
+        story5:
+`Vous parvenez à créer une limite inférieure pour le nombre vers laquelle la série converge.
+Mais vous ne savez pas comment faire une limite supérieure.
+Vous demandez à votre professeur ce que vous devriez faire.
+Elle regarde votre équation et dit:
+"Avez-vous essayé de modifier la variable 'a'?"
+Vous vous rendez compte que dans toutes vos recherches, vous n'aviez jamais pensé à changer cette valeur.
+Vous essayez d'augmenter la valeur de 'a' et voyez ce qui se passe.`,
+        story6Title: `Limites`,
+        story6:
+`Ça a marché!
+La modification de la variable 'a' vous a permis de créer une limite supérieure pour la convergence de l'équation.
+En ce moment, cependant, vos limites ne sont pas très précises.
+Vous avez limité la série pour qu'elle converge vers une valeur comprise entre 1 et 2.
+Mais vous voulez améliorer les limites.
+Vous regardez à nouveau votre équation et réalisez que vous n'avez jamais manipulé la variable 'q1'.
+Vous essayez d'ajouter une variable 'q2' et voyez ce qui se passe.`,
+        story7Title: `Rapprochement`,
+        story7:
+`Vous avez fait de bons progrès.
+Vous pouvez sentir que vous vous rapprochez maintenant.
+Vous avez limité la valeur de convergence de la série entre 1,6 et 1,65.
+Mais vous n'êtes pas satisfait.
+Vous voulez connaître la valeur exacte.
+Vous continuez...`,
+        story8Title: `Désespoir`,
+        story8:
+`Les mois ont passé.
+Vous n'avez toujours pas réussi à améliorer vos limites sur la valeur de convergence.
+Mais que pouvez-vous faire d'autre?
+Vous avez essayé de manipuler chaque variable de la théorie.
+Tu deviens désespéré.
+Est-ce la fin?
+Vous n'êtes pas encore tout à fait prêt à abandonner.
+Vous continuez à aller de l'avant avec votre recherche, aussi lente qu'elle puisse être.`,
+        story9Title: `EUREKA!!!`,
+        story9:
+`Une nuit, tu dors agité.
+À quoi converge-t-il ?
+Tu t'es tellement rapproché.
+Mais vous n'avez pas été en mesure de faire beaucoup de progrès récemment.
+Même ainsi, vous ne pouvez pas sortir les pensées de votre série de votre esprit.
+Soudain, vous le voyez.
+Les termes de la série se tordent dans votre esprit et dans la limite, il y a un chiffre.
+pi^2/6.
+La série converge vers pi^2/6.
+Et vous savez comment le prouver.
+Vous sautez du lit.
+Les mains tremblantes d'excitation, vous ajoutez un dernier terme à votre équation.`,
+        story10Title: `La fin`,
+        story10:
+`Vous l'avez enfin fait.
+Vous avez prouvé que la série converge vers pi^2/6.
+Vous avez publié votre travail dans une revue prestigieuse.
+On vous a demandé de présenter votre travail lors des meilleures conférences de mathématiques.
+Votre professeur s'approche de vous et vous dit:
+"Je suis tellement fier de toi.
+J'ai toujours su que tu pouvais le faire.
+Ce problème n'était pas résolu depuis des siècles.
+Aucun de mes autres étudiants ne le toucherait même.
+Mais vous n'avez pas seulement prouvé que la série convergeait.
+Vous avez même trouvé ce vers quoi il a convergé, avec une preuve très élégante.
+Il y a une ouverture de faculté en mathématiques dans notre université. Êtes-vous intéressé?"
+Vous acceptez l'offre et vous travaillez en tant que professeur.
+
+
+Fin.`,
+        gameEndPopupTitle: `Fin`,
+        gameEndPopupText:
+`Vous avez atteint la fin du problème de Bâle. Cette théorie se termine à la limite CT de 1e600, mais elle peut aller plus haut (si vous voulez vraiment la pousser).
+
+Nous espérons que vous avez apprécié de jouer à travers cela, autant que nous avons fait de faire et de concevoir cette théorie!`,
+        gameEndPopupLabel: `Merci d'avoir joué!`,
+        gameEndPopupClose: `Fermeture`
     }
 };
 const menuLang = Localization.language;
@@ -419,7 +547,7 @@ var init = () => {
     {
         a_level = theory.createMilestoneUpgrade(2, 9);
         a_level.getDescription = (_) => Localization.format(getLoc(`aMilestoneDesc`), 9 - a_level.level);
-        a_level.getInfo = () => Localization.format(getLoc(`aMilestoneInfo`), getA(a_level.level+1, false, 0).toFixed(3));
+        a_level.getInfo = () => `$a \\to ${getA(a_level.level+1, false, 0).toFixed(3)}`;
         a_level.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); }
         a_level.canBeRefunded = (_) => n_unlock.level == 0;
     }
