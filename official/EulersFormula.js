@@ -638,9 +638,7 @@ Wir hoffen das du spaß am durchspielen hattest, wie wir das Desing und des krei
 
 Sieh dich auch bei der Anderen CT, Konvergenz zur Wurzel von 2, die auch in diesem Update Paket mit dazu gekommen sind, nachdem du dies gespielt hast, wenn du sie noch nicht gespielt hast.
 
-PS: Wenn du es so weit Geschaft hast, dann PN "peanut#6368" wie schlecht die sprache JavaScript ist.
-
-Die Übersetzung ist von "Broken Door#5097" bei gestellt, wenn Fehler sein sollten, bitte mir eine PN schreiben.`,
+PS: Wenn du es so weit Geschaft hast, dann PN "peanut#6368" wie schlecht die sprache JavaScript ist.`,
         gameEndPopupLabel: `Danke für das Spielen!`,
         gameEndPopupClose: `Schließen`
     },
