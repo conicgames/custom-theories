@@ -6,9 +6,23 @@ import { Utils } from "../api/Utils";
 
 requiresGameVersion("1.4.33");
 
-var id = "convergents_to_sqrt(2)"
-var name = "Convergents to √2";
-var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
+var id = "convergents_to_sqrt(2)";
+var getName = (language) => {
+    const names = {
+        en: `Convergents to √2`,
+        fr: `Convergents à √2`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => {
+    const descs = {
+        en:
+`Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.`,
+        fr:
+`Utilisez les convergents à √2 pour augmenter ρ. Les premiers convergents à √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent à √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`
+    };
+    return descs[language] || descs.en;
+};
 var authors = "Solarion#4131";
 var version = 12;
 var releaseOrder = "4";
@@ -129,11 +143,17 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => `${q}`
+var getInternalState = () => `${q.toBase64String()}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
-    if (values.length > 0) q = parseBigNumber(values[0]);
+    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
 }
 
 var postPublish = () => {
@@ -205,7 +225,7 @@ var getPublicationMultiplier = (newtau) => {
     let tau = newtau.pow(1.0/tauMultiplier);
     return tau<tt1250 ? tau.pow(2.203)/200:multcutoff*tau.pow(0.0001);
 }
-var getPublicationMultiplierFormula = (symbol) => "\\frac{\\tau^{0.55075}}{200}";
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.55075}}{200}";
 var getTau = () => currency.value.pow(0.1*tauMultiplier);
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();

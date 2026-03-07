@@ -16,17 +16,207 @@ import {game} from "./api/Game";
 requiresGameVersion("1.4.33");
 
 var id = "basel_problem";
-var name = "Basel Problem";
-var description =
-    "The Basel problem is a legendary puzzle in mathematics, first proposed in the 17th century and famously solved by Leonhard Euler. " +
-    "It asks a deceptively simple question: what is the sum of the inverse squares of all positive integers? " +
-    "This infinite series, 1/1 + 1/4 + 1/9 + 1/16 + ..., converges to a finite value, but what? " +
-    "\n\n" + "In the Basel Problem theory, stand in Euler's shoes as you navigate the world of inverse squares. " +
-    "Everything in this theory revolves around them - variables based on partial sums, variable power scaling, and even the publication multiplier. " +
-    "Can you figure out the solution to this ancient problem?";
+var getName = (language) => {
+    const names = {
+        en: "Basel Problem"
+    };
+    return names[language] || names.en;  
+};
+const getDescription = (language) => {
+    const descs = {
+        en:
+`The Basel problem is a legendary puzzle in mathematics, first proposed in the 17th century and famously solved by Leonhard Euler. It asks a deceptively simple question: what is the sum of the inverse squares of all positive integers? This infinite series, 1/1 + 1/4 + 1/9 + 1/16 + ..., converges to a finite value, but what?
+
+In the Basel Problem theory, stand in Euler's shoes as you navigate the world of inverse squares. Everything in this theory revolves around them - variables based on partial sums, variable power scaling, and even the publication multiplier. Can you figure out the solution to this ancient problem?`
+    }
+    return descs[language] || descs.en;
+};
 var authors = "Python's Koala\n\nThanks to Mathis S. for developing the simulation for theory balancing.";
 var version = 2;
 var releaseOrder = "9";
+
+const locStrings = {
+    example: {
+        aPermaDesc: `{0}`,
+        aPermaInfo: `{0}`,
+        qPermaDesc: `{0}`,
+        qPermaInfo: `{0}`,
+        rMilestoneDesc: ``,
+        rMilestoneInfo: ``,
+        tMilestoneDesc: ``,
+        tMilestoneInfo: ``,
+        aMilestoneDesc: `{0}`,
+        aMilestoneInfo: `{0}`,
+        story1Title: ``,
+        story1:
+``,
+        story2Title: ``,
+        story2:
+``,
+        story3Title: ``,
+        story3:
+``,
+        story4Title: ``,
+        story4:
+``,
+        story5Title: ``,
+        story5:
+``,
+        story6Title: ``,
+        story6:
+``,
+        story7Title: ``,
+        story7:
+``,
+        story8Title: ``,
+        story8:
+``,
+        story9Title: ``,
+        story9:
+``,
+        story10Title: ``,
+        story10:
+``,
+        gameEndPopupTitle: ``,
+        gameEndPopupText:
+``,
+        gameEndPopupLabel: ``,
+        gameEndPopupClose: ``
+    },
+    en: {
+        aPermaDesc: `$\\text{Unlock }a\\text{ milestone lv }\${0}`,
+        aPermaInfo: `$\\text{Milestone: }\\uparrow a\\text{ by }\\frac{{{0}}^2}{1000}$`,
+        qPermaDesc: `$\\text{Unlock }q\\text{ milestone lv }\${0}`,
+        qPermaInfo: `$\\text{Milestone: Unlock }q_{{0}}$`,
+        rMilestoneDesc: `$\\text{Invert } \\dot{r} \\text{ equation}$`,
+        rMilestoneInfo: `Inverts the $\\dot{r}$ equation`,
+        tMilestoneDesc: `Improve variable $t$`,
+        tMilestoneInfo: `Moves $t$ outside the $a$ exponent.`,
+        aMilestoneDesc: `$\\uparrow a$ by $\\frac{{{0}}^2}{1000}$`,
+        aMilestoneInfo: `$a \\to \${0}`,
+        story1Title: `Infinite Series`,
+        story1:
+`You find an interesting unsolved problem in an old mathematics textbook.
+The problem is an infinite series of inverse squares.
+You approach your professor with this problem.
+She looks at you and says, "Do you know if this series converges?"
+You reply, "I'm not sure, but that is what I want to figure out."
+She looks at your old textbook again.
+"This has been an unsolved problem for centuries. Do you think you can crack it?"
+You look at the sheet of paper, thinking some more.
+"It has an infinite number of terms, and they are all positive, so it probably diverges, right?"
+"And I think I know how to prove it."
+You create a little term named 'r' and start work on the project.`,
+        story2Title: `Uneasy Feeling`,
+        story2:
+`You start your research with excitement.
+You manage to publish a lemma relating to the problem in a small journal.
+Pleased with your progress, you continue to press ahead.
+But somewhere in the back of your mind
+you can't quite shake the feeling that you've missed something.
+You go over and double check all of your equations again to be sure.`,
+        story3Title: `Challenging Assumptions`,
+        story3:
+`You've spent weeks staring at your formula to no avail.
+Progress is starting to slow substantially.
+Desperation is setting in.
+All of a sudden, you wake up in the middle of the night with an idea.
+What if your hypothesis was wrong?
+What if the series doesn't diverge
+and converges after all?
+You make a small modification to the computation of rdot.`,
+        story4Title: `Temporal Manipulation`,
+        story4:
+`Your progress has improved dramatically since revisiting your hypothesis.
+It is now pretty clear that the series converges.
+But what does it converge to?
+You're starting to get stuck again.
+Maybe making time move faster will help.
+You take the variable 't' and move it to a different part of your equation.`,
+        story5Title: `Exponential Growth`,
+        story5:
+`You manage to create a lower bound for the number the series converges to.
+But you aren't sure how to make an upper bound.
+You ask your professor what you should do.
+She looks at your equation and says:
+"Have you tried modifying the variable 'a'?"
+You realize that in all your research, you'd never thought to change that value.
+You try increasing the value of 'a', and see what happens.`,
+        story6Title: `Bounds`,
+        story6:
+`It worked!
+Changing the variable 'a' has allowed you to create an upper bound for the convergence of the equation.
+Right now though, your bounds aren't very precise.
+You've bounded the series to converge to a value between 1 and 2.
+But you want to improve the bounds.
+You look over your equation again and realize you've never manipulated the variable 'q1'.
+You try adding a variable 'q2' and see what happens.`,
+        story7Title: `Getting Close`,
+        story7:
+`You've been making good progress.
+You can feel you're getting close now.
+You've bounded the series convergence value to between 1.6 and 1.65.
+But you're not satisfied.
+You want to know the exact value.
+You continue onwards...`,
+        story8Title: `Desperation`,
+        story8:
+`Months have passed.
+You still haven't managed to improve your bounds on the convergence value.
+But what else can you do?
+You've tried manipulating every variable in the theory.
+You're getting desperate.
+Is this the end?
+You're not quite ready to give up yet.
+You continue to forge ahead with your research, as slow as it might be.`,
+        story9Title: `EUREKA!!!`,
+        story9:
+`One night, you sleep restlessly.
+What does it converge to?
+You've gotten so close.
+But you haven't been able to make much of any progress recently.
+Even so, you can't get thoughts of your series out of your mind.
+Suddenly, you see it.
+The terms of the series twist in your mind and in the limit, there is one number.
+pi^2/6.
+The series converges to pi^2/6.
+And you know how to prove it.
+You leap out of bed.
+Hands shaking with excitement, you add one final term to your equation.`,
+        story10Title: `The End`,
+        story10:
+`You've finally done it.
+You have proven that the series converges to pi^2/6.
+You've published your work in a prestigious journal.
+You've been asked to present your work at top mathematics conferences.
+Your professor approaches you and says,
+"I'm so proud of you.
+I always knew you could do it.
+This problem had been unsolved for centuries.
+None of my other students would even touch it.
+But you not only proved the series converged.
+You even found what it converged to, with a very elegant proof.
+There's a faculty opening in mathematics at our university. Are you interested?"
+You accept the offer and get to work as a professor.
+
+
+The End.`,
+        gameEndPopupTitle: `The End`,
+        gameEndPopupText:
+`You have reached the end of Basel Problem. This theory ends at the CT limit of 1e600, it however can go higher (if you really want to push it.)
+We hope you enjoyed playing through this, as much as we did making and designing this theory!`,
+        gameEndPopupLabel: `Thanks for playing!`,
+        gameEndPopupClose: `Close`
+    }
+};
+const menuLang = Localization.language;
+let getLoc = (name, lang = menuLang) => {
+    if (lang in locStrings && name in locStrings[lang])
+        return locStrings[lang][name];
+    if (name in locStrings.en)
+        return locStrings.en[name];
+    return `String missing: ${lang}.${name}`;
+};
 
 var tauMultiplier = 0.4;
 
@@ -187,8 +377,8 @@ var init = () => {
             currency,
             new CustomCost(level => BigNumber.TEN.pow(BigNumber.from(getAUpgradeCost(level))))
         );
-        perm1.getDescription = (amount) => "$\\text{Unlock }a\\text{ milestone lv }$" + (perm1.level + 1);
-        perm1.getInfo = (amount) => "$\\text{Milestone: }\\uparrow a\\text{ by }\\frac{" + (9-perm1.level) + "^2}{1000}$";
+        perm1.getDescription = (amount) => Localization.format(getLoc(`aPermaDesc`), perm1.level + 1);
+        perm1.getInfo = (amount) => Localization.format(getLoc(`aPermaInfo`), 9 - perm1.level);
         perm1.boughtOrRefunded = (_) => {
             updateAvailability();
         };
@@ -201,8 +391,8 @@ var init = () => {
             currency,
             new CustomCost(level => BigNumber.TEN.pow(BigNumber.from(getQUpgradeCost(level))))
         );
-        perm2.getDescription = (amount) => "$\\text{Unlock }q\\text{ milestone lv }$" + (perm2.level + 1);
-        perm2.getInfo = (amount) => "$\\text{Milestone: Unlock }q_{" + (perm2.level + 2)+"}$";
+        perm2.getDescription = (amount) => Localization.format(getLoc(`qPermaDesc`), perm2.level + 1);
+        perm2.getInfo = (amount) => Localization.format(getLoc(`qPermaInfo`), perm2.level + 2);
         perm2.boughtOrRefunded = (_) => updateAvailability();
         perm2.maxLevel = 8;
     }
@@ -212,31 +402,31 @@ var init = () => {
 
     {
         r_upgrade = theory.createMilestoneUpgrade(0, 1);
-        r_upgrade.getDescription = () => "$\\text{Invert } \\dot{r} \\text{ equation}$";
-        r_upgrade.getInfo = () => "Inverts the $\\dot{r}$ equation";
+        r_upgrade.getDescription = () => getLoc(`rMilestoneDesc`);
+        r_upgrade.getInfo = () => getLoc(`rMilestoneInfo`);
         r_upgrade.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); theory.invalidateSecondaryEquation(); theory.invalidateTertiaryEquation(); updateAvailability();}
         r_upgrade.canBeRefunded = (_) => t_upgrade.level == 0;
     }
 
     {
         t_upgrade = theory.createMilestoneUpgrade(1, 1);
-        t_upgrade.getDescription = () => "Improve variable $t$";
-        t_upgrade.getInfo = () => "Moves $t$ outside the $a$ exponent."
+        t_upgrade.getDescription = () => getLoc(`tMilestoneDesc`);
+        t_upgrade.getInfo = () => getLoc(`tMilestoneInfo`);
         t_upgrade.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); theory.invalidateSecondaryEquation(); theory.invalidateTertiaryEquation(); updateAvailability();}
         t_upgrade.canBeRefunded = (_) => a_level.level == 0 && dimension.level == 0;
     }
 
     {
         a_level = theory.createMilestoneUpgrade(2, 9);
-        a_level.getDescription = (_) => "$\\uparrow a$ by $\\frac{" + (9-a_level.level) + "^2}{1000}$";
-        a_level.getInfo = () => "$a \\to $" + getA(a_level.level+1, false, 0).toFixed(3);
+        a_level.getDescription = (_) => Localization.format(getLoc(`aMilestoneDesc`), 9 - a_level.level);
+        a_level.getInfo = () => Localization.format(getLoc(`aMilestoneInfo`), getA(a_level.level+1, false, 0).toFixed(3));
         a_level.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); }
         a_level.canBeRefunded = (_) => n_unlock.level == 0;
     }
 
     {
         dimension = theory.createMilestoneUpgrade(3, 8);
-        dimension.getDescription = () => "Unlock $q_{" + Math.min(9, dimension.level + 2) + "}$";
+        dimension.getDescription = () => Localization.getUpgradeUnlockDesc(`q_{${Math.min(9, dimension.level + 2)}}`);
         dimension.getInfo = () => Localization.getUpgradeAddDimensionDesc();
         dimension.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); theory.invalidateSecondaryEquation(); theory.invalidateTertiaryEquation(); updateAvailability(); }
         dimension.canBeRefunded = (_) => n_unlock.level == 0;
@@ -244,127 +434,23 @@ var init = () => {
 
     {
         n_unlock = theory.createMilestoneUpgrade(4, 1);
-        n_unlock.getDescription = () => "Unlock variable $n$";
-        n_unlock.getInfo = () => "Unlocks $n$";
+        n_unlock.getDescription = () => Localization.getUpgradeUnlockDesc("n");
+        n_unlock.getInfo = () => Localization.getUpgradeUnlockInfo("n");
         n_unlock.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); }
         n_unlock.canBeRefunded = (_) => true;
     }
 
     // Story Chapters
-    let story_chapter_1 = "";
-    story_chapter_1 += "You find an interesting unsolved problem in an old mathematics textbook.\n";
-    story_chapter_1 += "The problem is an infinite series of inverse squares.\n";
-    story_chapter_1 += "You approach your professor with this problem.\n";
-    story_chapter_1 += "She looks at you and says, \"Do you know if this series converges?\"\n";
-    story_chapter_1 += "You reply, \"I'm not sure, but that is what I want to figure out.\"\n";
-    story_chapter_1 += "She looks at your old textbook again.\n";
-    story_chapter_1 += "\"This has been an unsolved problem for centuries. Do you think you can crack it?\"\n"
-    story_chapter_1 += "You look at the sheet of paper, thinking some more.\n";
-    story_chapter_1 += "\"It has an infinite number of terms, and they are all positive, so it probably diverges, right?\"\n";
-    story_chapter_1 += "\"And I think I know how to prove it.\"\n";
-    story_chapter_1 += "You create a little term named 'r' and start work on the project.";
-    theory.createStoryChapter(0, "Infinite Series", story_chapter_1, () => c1.level == 0); // unlocked at beginning of the theory
-
-    let story_chapter_2 = "";
-    story_chapter_2 += "You start your research with excitement.\n";
-    story_chapter_2 += "You manage to publish a lemma relating to the problem in a small journal.\n";
-    story_chapter_2 += "Pleased with your progress, you continue to press ahead.\n";
-    story_chapter_2 += "But somewhere in the back of your mind\n";
-    story_chapter_2 += "you can't quite shake the feeling that you've missed something.\n";
-    story_chapter_2 += "You go over and double check all of your equations again to be sure.";
-    theory.createStoryChapter(1, "Uneasy Feeling", story_chapter_2, () => num_publications > 0); // unlocked at rho = 1e7
-
-    let story_chapter_3 = "";
-    story_chapter_3 += "You've spent weeks staring at your formula to no avail.\n";
-    story_chapter_3 += "Progress is starting to slow substantially.\n";
-    story_chapter_3 += "Desperation is setting in.\n";
-    story_chapter_3 += "All of a sudden, you wake up in the middle of the night with an idea.\n";
-    story_chapter_3 += "What if your hypothesis was wrong?\n";
-    story_chapter_3 += "What if the series doesn't diverge\n";
-    story_chapter_3 += "and converges after all?\n";
-    story_chapter_3 += "You make a small modification to the computation of rdot.";
-    theory.createStoryChapter(2, "Challenging Assumptions", story_chapter_3, () => r_upgrade.level > 0); // unlocked at R dimension milestone
-
-    let story_chapter_4 = "";
-    story_chapter_4 += "Your progress has improved dramatically since revisiting your hypothesis.\n";
-    story_chapter_4 += "It is now pretty clear that the series converges.\n";
-    story_chapter_4 += "But what does it converge to?\n";
-    story_chapter_4 += "You're starting to get stuck again.\n";
-    story_chapter_4 += "Maybe making time move faster will help.\n";
-    story_chapter_4 += "You take the variable 't' and move it to a different part of your equation.";
-    theory.createStoryChapter(3, "Temporal Manipulation", story_chapter_4, () => t_upgrade.level > 0); // unlocked at I dimension milestone
-
-    let story_chapter_5 = "";
-    story_chapter_5 += "You manage to create a lower bound for the number the series converges to.\n";
-    story_chapter_5 += "But you aren't sure how to make an upper bound.\n";
-    story_chapter_5 += "You ask your professor what you should do.\n";
-    story_chapter_5 += "She looks at your equation and says:\n";
-    story_chapter_5 += "\"Have you tried modifying the variable 'a'?\"\n";
-    story_chapter_5 += "You realize that in all your research, you'd never thought to change that value.\n";
-    story_chapter_5 += "You try increasing the value of 'a', and see what happens.\n";
-    theory.createStoryChapter(4, "Exponential Growth", story_chapter_5, () => perm1.level > 0); // unlocked at a_base first milestone
-
-    let story_chapter_6 = "";
-    story_chapter_6 += "It worked!\n"
-    story_chapter_6 += "Changing the variable 'a' has allowed you to create an upper bound for the convergence of the equation.\n";
-    story_chapter_6 += "Right now though, your bounds aren't very precise.\n";
-    story_chapter_6 += "You've bounded the series to converge to a value between 1 and 2.\n";
-    story_chapter_6 += "But you want to improve the bounds.\n";
-    story_chapter_6 += "You look over your equation again and realize you've never manipulated the variable 'q1'.\n";
-    story_chapter_6 += "You try adding a variable 'q2' and see what happens.";
-    theory.createStoryChapter(5, "Bounds", story_chapter_6, () => perm2.level > 0); // unlocked at a_base last milestone
-
-    let story_chapter_7 = "";
-    story_chapter_7 += "You've been making good progress.\n";
-    story_chapter_7 += "You can feel you're getting close now.\n";
-    story_chapter_7 += "You've bounded the series convergence value to between 1.6 and 1.65.\n";
-    story_chapter_7 += "But you're not satisfied.\n";
-    story_chapter_7 += "You want to know the exact value.\n";
-    story_chapter_7 += "You continue onwards...";
-    theory.createStoryChapter(6, "Getting Close", story_chapter_7, () => perm1.level > 8); // unlocked at a_exponent first milestone
-
-    let story_chapter_8 = "";
-    story_chapter_8 += "Months have passed.\n";
-    story_chapter_8 += "You still haven't managed to improve your bounds on the convergence value.\n";
-    story_chapter_8 += "But what else can you do?\n";
-    story_chapter_8 += "You've tried manipulating every variable in the theory.\n";
-    story_chapter_8 += "You're getting desperate.\n";
-    story_chapter_8 += "Is this the end?\n";
-    story_chapter_8 += "You're not quite ready to give up yet.\n";
-    story_chapter_8 += "You continue to forge ahead with your research, as slow as it might be.\n";
-    theory.createStoryChapter(7, "Desperation", story_chapter_8, () => currency.value > BigNumber.TEN.pow(getMilestoneCost(19)-25)); // unlocked just before n unlock
-
-    let story_chapter_9 = "";
-    story_chapter_9 += "One night, you sleep restlessly.\n";
-    story_chapter_9 += "What does it converge to?\n";
-    story_chapter_9 += "You've gotten so close.\n";
-    story_chapter_9 += "But you haven't been able to make much of any progress recently.\n";
-    story_chapter_9 += "Even so, you can't get thoughts of your series out of your mind.\n"
-    story_chapter_9 += "Suddenly, you see it.\n";
-    story_chapter_9 += "The terms of the series twist in your mind and in the limit, there is one number.\n";
-    story_chapter_9 += "pi^2/6.\n";
-    story_chapter_9 += "The series converges to pi^2/6.\n";
-    story_chapter_9 += "And you know how to prove it.\n";
-    story_chapter_9 += "You leap out of bed.\n";
-    story_chapter_9 += "Hands shaking with excitement, you add one final term to your equation.\n";
-    theory.createStoryChapter(8, "EUREKA!!!", story_chapter_9, () => n_unlock.level > 0); 
-
-    let story_chapter_10 = "";
-    story_chapter_10 += "You've finally done it.\n"
-    story_chapter_10 += "You have proven that the series converges to pi^2/6.\n"
-    story_chapter_10 += "You've published your work in a prestigious journal.\n"
-    story_chapter_10 += "You've been asked to present your work at top mathematics conferences.\n"
-    story_chapter_10 += "Your professor approaches you and says,\n"
-    story_chapter_10 += "\"I'm so proud of you.\n"
-    story_chapter_10 += "I always knew you could do it.\n";
-    story_chapter_10 += "This problem had been unsolved for centuries.\n";
-    story_chapter_10 += "None of my other students would even touch it.\n";
-    story_chapter_10 += "But you not only proved the series converged.\n";
-    story_chapter_10 += "You even found what it converged to, with a very elegant proof.\n";
-    story_chapter_10 += "There's a faculty opening in mathematics at our university. Are you interested?\"\n";
-    story_chapter_10 += "You accept the offer and get to work as a professor.\n\n\n";
-    story_chapter_10 += "The End.";
-    theory.createStoryChapter(9, "The End", story_chapter_10, () => predicateAndCallbackPopup()); // unlocked at tau = e600 (finished)
+    theory.createStoryChapter(0, getLoc("story1Title"), getLoc("story1"), () => c1.level == 0); // unlocked at beginning of the theory
+    theory.createStoryChapter(1, getLoc("story2Title"), getLoc("story2"), () => num_publications > 0); // unlocked at rho = 1e7
+    theory.createStoryChapter(2, getLoc("story3Title"), getLoc("story3"), () => r_upgrade.level > 0); // unlocked at R dimension milestone
+    theory.createStoryChapter(3, getLoc("story4Title"), getLoc("story4"), () => t_upgrade.level > 0); // unlocked at I dimension milestone
+    theory.createStoryChapter(4, getLoc("story5Title"), getLoc("story5"), () => perm1.level > 0); // unlocked at a_base first milestone
+    theory.createStoryChapter(5, getLoc("story6Title"), getLoc("story6"), () => perm2.level > 0); // unlocked at a_base last milestone
+    theory.createStoryChapter(6, getLoc("story7Title"), getLoc("story7"), () => perm1.level > 8); // unlocked at a_exponent first milestone
+    theory.createStoryChapter(7, getLoc("story8Title"), getLoc("story8"), () => currency.value > BigNumber.TEN.pow(getMilestoneCost(19)-25)); // unlocked just before n unlock
+    theory.createStoryChapter(8, getLoc("story9Title"), getLoc("story9"), () => n_unlock.level > 0); 
+    theory.createStoryChapter(9, getLoc("story10Title"), getLoc("story10"), () => predicateAndCallbackPopup()); // unlocked at tau = e600 (finished)
 
     updateAvailability();
 }
@@ -526,45 +612,51 @@ var postPublish = () => {
     num_publications++;
 }
 
-var getInternalState = () => `${num_publications} ${t} ${q1} ${q2} ${q3} ${q4} ${q5} ${q6} ${q7} ${q8} ${q9} ${r}`
+var getInternalState = () => `${num_publications} ${t.toBase64String()} ${q1.toBase64String()} ${q2.toBase64String()} ${q3.toBase64String()} ${q4.toBase64String()} ${q5.toBase64String()} ${q6.toBase64String()} ${q7.toBase64String()} ${q8.toBase64String()} ${q9.toBase64String()} ${r.toBase64String()}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
     if (values.length > 0) num_publications = parseInt(values[0]);
-    if (values.length > 1) t = parseBigNumber(values[1]);
-    if (values.length > 2) q1 = parseBigNumber(values[2]);
-    if (values.length > 3) q2 = parseBigNumber(values[3]);
-    if (values.length > 4) q3 = parseBigNumber(values[4]);
-    if (values.length > 5) q4 = parseBigNumber(values[5]);
-    if (values.length > 6) q5 = parseBigNumber(values[6]);
-    if (values.length > 7) q6 = parseBigNumber(values[7]);
-    if (values.length > 8) q7 = parseBigNumber(values[8]);
-    if (values.length > 9) q8 = parseBigNumber(values[9]);
-    if (values.length > 10) q9 = parseBigNumber(values[10]);
-    if (values.length > 11) r = parseBigNumber(values[11]);
+    if (values.length > 1) t = bigNumberFromBase64OrParse(values[1]);
+    if (values.length > 2) q1 = bigNumberFromBase64OrParse(values[2]);
+    if (values.length > 3) q2 = bigNumberFromBase64OrParse(values[3]);
+    if (values.length > 4) q3 = bigNumberFromBase64OrParse(values[4]);
+    if (values.length > 5) q4 = bigNumberFromBase64OrParse(values[5]);
+    if (values.length > 6) q5 = bigNumberFromBase64OrParse(values[6]);
+    if (values.length > 7) q6 = bigNumberFromBase64OrParse(values[7]);
+    if (values.length > 8) q7 = bigNumberFromBase64OrParse(values[8]);
+    if (values.length > 9) q8 = bigNumberFromBase64OrParse(values[9]);
+    if (values.length > 10) q9 = bigNumberFromBase64OrParse(values[10]);
+    if (values.length > 11) r = bigNumberFromBase64OrParse(values[11]);
 }
 
 
 var getEndPopup = ui.createPopup({
-    title: "The End",
+    title: getLoc(`gameEndPopupTitle`),
     content: ui.createStackLayout({
         children: [
             ui.createFrame({
                 heightRequest: 309,
                 cornerRadius: 0,
-                content: ui.createLabel({text: "\nYou have reached the end of Basel Problem. This theory ends at the CT limit of 1e600, it however can go higher (if you really want to push it.)\nWe hope you enjoyed playing through this, as much as we did making and designing this theory!\n\n",
+                content: ui.createLabel({text: "\n" + getLoc(`gameEndPopupText`) + "\n\n",
                     padding: Thickness(12, 2, 12, 2),
                     fontSize: 15
                 })
             }),
             ui.createLabel({
-                text: "Thanks for playing!",
+                text: getLoc(`gameEndPopupLabel`),
                 horizontalTextAlignment: TextAlignment.CENTER,
                 fontAttributes: FontAttributes.BOLD,
                 fontSize: 18,
                 padding: Thickness(0, 18, 0, 18),
             }),
-            ui.createButton({text: "Close", onClicked: () => getEndPopup.hide()})
+            ui.createButton({text: getLoc(`gameEndPopupClose`), onClicked: () => getEndPopup.hide()})
         ]
     })
 });

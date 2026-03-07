@@ -7,13 +7,210 @@ import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "SequentialLimits"; //must be unique, make sure to change it 
-var name = "Sequential Limits"; //display name
-var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!"; //theory description. does not support LaTeX
+var getName = (language) => { //display name
+    const names = {
+        en: `Sequential Limits`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => { //theory description. does not support LaTeX
+    const descs = {
+        en:
+`You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.
+
+This theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.
+The formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).
+Be careful - the closer your approximation of Euler's number is, the less your numerator grows!
+A close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle).
+
+Special thanks to:
+
+Gilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.
+
+Xelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.
+
+The Exponential Idle beta testing team
+- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.
+
+Enjoy!`
+    };
+    return descs[language] || descs.en;
+}
 var authors = "ellipsis"; //display author in the "author" field
 var version = 8; //version id, make sure to change it on update
 var releaseOrder = "2";
 
 requiresGameVersion("1.4.33");
+
+const locStrings = {
+    example: {
+        achCat1: ``,
+        achCat2: ``,
+        achCat3: ``,
+        achCat4: ``,
+        ach1: ``,
+        ach1Desc: ``,
+        ach2: ``,
+        ach2Desc: ``,
+        ach3: ``,
+        ach4: ``,
+        ach5: ``,
+        ach6: ``,
+        ach7: ``,
+        ach8: ``,
+        ach9: ``,
+        ach10: ``,
+        ach11: ``,
+        ach12: ``,
+        ach13: ``,
+        ach14: ``,
+        ach15: ``,
+        ach16: ``,
+        ach17: ``,
+        achPubDesc: `{0}`,
+        achApproxDesc: `{0}`,
+        sach1: ``,
+        sach1Desc: ``,
+        sach1Hint: ``,
+        sach2: ``,
+        sach2Desc: ``,
+        sach2Hint: ``,
+        sach3: ``,
+        sach3Desc: ``,
+        sach3Hint: ``,
+        sach4: ``,
+        sach44Desc: ``,
+        sach4Hint: ``,
+        story1Title: ``,
+        story1:
+``,
+        story2Title: ``,
+        story2:
+``,
+        story3Title: ``,
+        story3:
+``,
+        story4Title: ``,
+        story4:
+``,
+        story5Title: ``,
+        story5:
+``,
+        story6Title: ``,
+        story6:
+``,
+        story7Title: ``,
+        story7:
+``,
+        story8Title: ``,
+        story8:
+``
+    },
+    en: {
+        achCat1: `Miscellaneous`,
+        achCat2: `Publications`,
+        achCat3: `Approximation`,
+        achCat4: `Secret Achievements`,
+        ach1: `Purchase Optimisation`,
+        ach1Desc: `Outsource the actual buying of variables to your students.`,
+        ach2: `Amateur Author`,
+        ach2Desc: `Publish once.`,
+        ach3: `Regular Reporter`,
+        ach4: `Regular Scribbler`,
+        ach5: `Studied Scribbler`,
+        ach6: `Exemplary Essayist`,
+        ach7: `Publication Professional`,
+        ach8: `Close Enough`,
+        ach9: `Nitpicking Exercise`,
+        ach10: `Splitting Hairs`,
+        ach11: `Microscopic`,
+        ach12: `Subatomic`,
+        ach13: `Planck Pettiness`,
+        ach14: `Are We There Yet?`,
+        ach15: `Precision Player`,
+        ach16: `Running Out Of Room`,
+        ach17: `You Can Stop Anytime`,
+        achPubDesc: `Publish {0} times.`,
+        achApproxDesc: `Get your approximation of e 10^-{0} off true`,
+        sach1: `Pattern Fanatic`,
+        sach1Desc: `Have every variable level the same.`,
+        sach1Hint: `Palindromic`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Elite`,
+        sach3: `On Vacation`,
+        sach3Desc: `Don't buy anything for an hour after a publication.`,
+        sach3Hint: `Forgot something?`,
+        sach4: `Futility`,
+        sach44Desc: `Tap the equation 1000 times.`,
+        sach4Hint: `Fatigued`,
+        story1Title: `A New Beginning`,
+        story1:
+`You return from your old professor's retirement party, the mantle passed onto you, the first student, to head the department of students accrued over the years.
+Excited to finally be listed as something other than 'et. al' on a paper, you continued with your existing research, but as progress slowed, you felt less and less satisfied.
+The days turn into weeks, which blur together as more and more publications are written.
+Eventually, a student comes to you with a dusty tome, featuring a as-of-yet unexplored theorem.
+Feeling a stroke of inspiriation, you assemble a team of students and throw yourself into the research`,
+        story2Title: `Taking Risks`,
+        story2:
+`You notice a few unassuming variables at the bottom of the equation.
+A student warns you against changing them, citing the risk of decreasing the income existing values, but you forge ahead.`,
+        story3Title: `International`,
+        story3:
+`You publish your first paper, with your name front and center.
+Colleagues congratulate you, but you feel there is something missing, further exploration to be had.
+You decide to forge ahead.`,
+        story4Title: `Light Modification`,
+        story4:
+`With your progress starting to slow, you scour the original equation texts to find a remedy.
+It turns out all along there's been some modifiers you can add, but at ever increasing costs.
+You decide to buy one, hoping it alleviates your issues...`,
+        story5Title: `Making Progress`,
+        story5:
+`You reach 1e100 ρ₁, a major milestone in your research.
+Colleagues come to congratulate you on pushing your research so far, but you shrug them off - you feel as if there's more you could do.
+You head back to your office and get to work once more`,
+        story6Title: `The End.... Or Is It?`,
+        story6:
+`You finally purchased every modifier, to close out your research into this field.
+Your students assigned to this project celebrate, anticipating closing out this line of research, and your name is posted in journals worldwide.
+
+You decide to go over your numbers once more, just to make sure...`,
+        story7Title: `Mathaholic`,
+        story7:
+`1e500.
+
+A monumentally large number, but but barely a blip to you now.
+People are starting to take notice as you push mathematics to points thought unachieveable in this field.
+There's a waiting list to study under you now.
+Your friends and family are expressing concern, worried you're in too deep.
+It doesn't matter.
+Another breakthrough is close.
+You can feel it.
+
+Right?`,
+        story8Title: `The End.`,
+        story8:
+`1e1000.
+
+A number so big it'd be impossible to comprehend.
+You did it. They said you couldn't.
+Years after you first started, you reach an incredible end to your research.
+You're featured on TIME, on daytime television, in worldwide newspapers. Your papers are framed, your students all professors in their own rights now.
+You pass on the mantle to a younger student of yours to retire like your old professor, back all those years ago.
+
+THE END.
+Thanks for playing! - ellipsis`
+    }
+};
+const menuLang = Localization.language;
+let getLoc = (name, lang = menuLang) => {
+    if (lang in locStrings && name in locStrings[lang])
+        return locStrings[lang][name];
+    if (name in locStrings.en)
+        return locStrings.en[name];
+    return `String missing: ${lang}.${name}`;
+};
 
 var tauMultiplier = 4;
 
@@ -115,49 +312,46 @@ var init = () => {
         gamma3.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation(); //if bought/refunded, force a refresh of the equation
     }        
 
-    //utilities
-    var bsf={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'\=",e:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=bsf._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},d:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=bsf._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}};
-    
     // Achievements
-    var AchievementCat0 = theory.createAchievementCategory(0, "Miscellaneous");
-    var AchievementCat1 = theory.createAchievementCategory(1, "Publications");
-    var AchievementCat2 = theory.createAchievementCategory(2, "Approximation");
-    var AchievementCat3  = theory.createAchievementCategory(3, "Secret Achievements");
-    achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
+    var AchievementCat0 = theory.createAchievementCategory(0, getLoc(`achCat1`));
+    var AchievementCat1 = theory.createAchievementCategory(1, getLoc(`achCat2`));
+    var AchievementCat2 = theory.createAchievementCategory(2, getLoc(`achCat3`));
+    var AchievementCat3  = theory.createAchievementCategory(3, getLoc(`achCat4`));
+    theory.createAchievement(5, AchievementCat0, getLoc(`ach1`), getLoc(`ach1Desc`), () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
     
-    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => numPublications >= 1); //award an achievement with name and description if there has been 1 publish
-    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => numPublications >= 3); //same for 3 publications
-    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => numPublications >= 5); //same for 5 publications
-    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => numPublications >= 10); //same for 10 publications
-    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => numPublications >= 20); //same for 20 publications
+    theory.createAchievement(0, AchievementCat1, getLoc(`ach2`), getLoc(`ach2Desc`), () => numPublications >= 1); //award an achievement with name and description if there has been 1 publish
+    theory.createAchievement(1, AchievementCat1, getLoc(`ach3`), Localization.format(getLoc(`achPubDesc`), '3'), () => numPublications >= 3); //same for 3 publications
+    theory.createAchievement(2, AchievementCat1, getLoc(`ach4`), Localization.format(getLoc(`achPubDesc`), '5'), () => numPublications >= 5); //same for 5 publications
+    theory.createAchievement(3, AchievementCat1, getLoc(`ach5`), Localization.format(getLoc(`achPubDesc`), '10'), () => numPublications >= 10); //same for 10 publications
+    theory.createAchievement(4, AchievementCat1, getLoc(`ach6`), Localization.format(getLoc(`achPubDesc`), '20'), () => numPublications >= 20); //same for 20 publications
     
-    achievement7 = theory.createAchievement(6, AchievementCat2, "Close Enough", "Get your approximation of e to 10^-1 off true", () => inverseE_Gamma >= BigNumber.From("1e0"));
-    achievement8 = theory.createAchievement(7, AchievementCat2, "Nitpicking Exercise", "Get your approximation of e to 10^-5 off true", () => inverseE_Gamma >= BigNumber.From("1e5"));
-    achievement9 = theory.createAchievement(8, AchievementCat2, "Splitting Hairs", "Get your approximation of e to 10^-10 off true", () => inverseE_Gamma >= BigNumber.From("1e10"));
-    achievement10 = theory.createAchievement(9, AchievementCat2, "Microscopic", "Get your approximation of e to 10^-15 off true", () => inverseE_Gamma >= BigNumber.From("1e15"));
-    achievement12 = theory.createAchievement(10, AchievementCat2, "Subatomic", "Get your approximation of e to 10^-25 off true", () => inverseE_Gamma >= BigNumber.From("1e25"));
-    achievement13 = theory.createAchievement(11, AchievementCat2, "Planck Pettiness", "Get your approximation of e to 10^-35 off true", () => inverseE_Gamma >= BigNumber.From("1e35"));
-    achievement11 = theory.createAchievement(12, AchievementCat2, "Are We There Yet?", "Get your approximation of e to 10^-50 off true", () => inverseE_Gamma >= BigNumber.From("1e50"));
-    achievement14 = theory.createAchievement(13, AchievementCat2, "Precision Player", "Get your approximation of e to 10^-100 off true", () => inverseE_Gamma >= BigNumber.From("1e100"));
-    achievement15 = theory.createAchievement(14, AchievementCat2, "Running Out Of Room", "Get your approximation of e to 10^-250 off true", () => inverseE_Gamma >= BigNumber.From("1e250"));
-    achievement16 = theory.createAchievement(15, AchievementCat2, "You Can Stop Anytime", "Get your approximation of e to 10^-500 off true", () => inverseE_Gamma >= BigNumber.From("1e500"));
+    theory.createAchievement(6, AchievementCat2, getLoc(`ach7`), Localization.format(getLoc(`achApproxDesc`), '1'), () => inverseE_Gamma >= BigNumber.From("1e0"));
+    theory.createAchievement(7, AchievementCat2, getLoc(`ach8`), Localization.format(getLoc(`achApproxDesc`), '5'), () => inverseE_Gamma >= BigNumber.From("1e5"));
+    theory.createAchievement(8, AchievementCat2, getLoc(`ach9`), Localization.format(getLoc(`achApproxDesc`), '10'), () => inverseE_Gamma >= BigNumber.From("1e10"));
+    theory.createAchievement(9, AchievementCat2, getLoc(`ach10`), Localization.format(getLoc(`achApproxDesc`), '15'), () => inverseE_Gamma >= BigNumber.From("1e15"));
+    theory.createAchievement(10, AchievementCat2, getLoc(`ach11`), Localization.format(getLoc(`achApproxDesc`), '25'), () => inverseE_Gamma >= BigNumber.From("1e25"));
+    theory.createAchievement(11, AchievementCat2, getLoc(`ach12`), Localization.format(getLoc(`achApproxDesc`), '35'), () => inverseE_Gamma >= BigNumber.From("1e35"));
+    theory.createAchievement(12, AchievementCat2, getLoc(`ach13`), Localization.format(getLoc(`achApproxDesc`), '50'), () => inverseE_Gamma >= BigNumber.From("1e50"));
+    theory.createAchievement(13, AchievementCat2, getLoc(`ach14`), Localization.format(getLoc(`achApproxDesc`), '100'), () => inverseE_Gamma >= BigNumber.From("1e100"));
+    theory.createAchievement(14, AchievementCat2, getLoc(`ach15`), Localization.format(getLoc(`achApproxDesc`), '250'), () => inverseE_Gamma >= BigNumber.From("1e250"));
+    theory.createAchievement(15, AchievementCat2, getLoc(`ach16`), Localization.format(getLoc(`achApproxDesc`), '500'), () => inverseE_Gamma >= BigNumber.From("1e500"));
 
-   // achievement21 = theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
-    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
-    achievement23 = theory.createSecretAchievement(22, AchievementCat3, bsf.d("bDMzdDVwMzRr"), bsf.d("MTMzNw")+ ".", bsf.d("RWxpdGU"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
-    // achievement24 = theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
-    achievement25 = theory.createSecretAchievement(24, AchievementCat3, bsf.d("T24gVmFjYXRpb24"),bsf.d("RG9uJ3QgYnV5IGFueXRoaW5nIGZvciBhbiBob3VyIGFmdGVyIGEgcHVibGljYXRpb24") + ".",bsf.d("Rm9yZ290IHNvbWV0aGluZz8"), () => a1.level == 0 && t >= 3600 && numPublications > 0);
-    achievement26 = theory.createSecretAchievement(25,AchievementCat3, bsf.d("RnV0aWxpdHk"),bsf.d("VGFwIHRoZSBlcXVhdGlvbiAxMDAwIHRpbWVz")+ ".",bsf.d("RmF0aWd1ZWQ"),() => tapCount >= 1000);
+    //theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
+    theory.createSecretAchievement(21, AchievementCat3, getLoc("sach1"), getLoc("sach1Desc"), getLoc("sach1Hint"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
+    theory.createSecretAchievement(22, AchievementCat3, getLoc("sach2"), getLoc("sach2Desc"), getLoc("sach2Hint"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
+    //theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
+    theory.createSecretAchievement(24, AchievementCat3, getLoc("sach3"), getLoc("sach3Desc"), getLoc("sach3Hint"), () => a1.level == 0 && t >= 3600 && numPublications > 0);
+    theory.createSecretAchievement(25,AchievementCat3, getLoc("sach4"), getLoc("sach4Desc"), getLoc("sach4Hint"),() => tapCount >= 1000);
 
     // Story chapters
-    chapter1 = theory.createStoryChapter(0, "A New Beginning", bsf.d("WW91IHJldHVybiBmcm9tIHlvdXIgb2xkIHByb2Zlc3NvcidzIHJldGlyZW1lbnQgcGFydHksIHRoZSBtYW50bGUgcGFzc2VkIG9udG8geW91LCB0aGUgZmlyc3Qgc3R1ZGVudCwgdG8gaGVhZCB0aGUgZGVwYXJ0bWVudCBvZiBzdHVkZW50cyBhY2NydWVkIG92ZXIgdGhlIHllYXJzLgpFeGNpdGVkIHRvIGZpbmFsbHkgYmUgbGlzdGVkIGFzIHNvbWV0aGluZyBvdGhlciB0aGFuICdldC4gYWwnIG9uIGEgcGFwZXIsIHlvdSBjb250aW51ZWQgd2l0aCB5b3VyIGV4aXN0aW5nIHJlc2VhcmNoLCBidXQgYXMgcHJvZ3Jlc3Mgc2xvd2VkLCB5b3UgZmVsdCBsZXNzIGFuZCBsZXNzIHNhdGlzZmllZC4KVGhlIGRheXMgdHVybiBpbnRvIHdlZWtzLCB3aGljaCBibHVyIHRvZ2V0aGVyIGFzIG1vcmUgYW5kIG1vcmUgcHVibGljYXRpb25zIGFyZSB3cml0dGVuLgpFdmVudHVhbGx5LCBhIHN0dWRlbnQgY29tZXMgdG8geW91IHdpdGggYSBkdXN0eSB0b21lLCBmZWF0dXJpbmcgYSBhcy1vZi15ZXQgdW5leHBsb3JlZCB0aGVvcmVtLgpGZWVsaW5nIGEgc3Ryb2tlIG9mIGluc3BpcmlhdGlvbiwgeW91IGFzc2VtYmxlIGEgdGVhbSBvZiBzdHVkZW50cyBhbmQgdGhyb3cgeW91cnNlbGYgaW50byB0aGUgcmVzZWFyY2g"), () => a1.level > 0); //unlock story chapter when a1 is purchased
-    chapter2 = theory.createStoryChapter(1,"Taking Risks" ,bsf.d("WW91IG5vdGljZSBhIGZldyB1bmFzc3VtaW5nIHZhcmlhYmxlcyBhdCB0aGUgYm90dG9tIG9mIHRoZSBlcXVhdGlvbi4KQSBzdHVkZW50IHdhcm5zIHlvdSBhZ2FpbnN0IGNoYW5naW5nIHRoZW0sIGNpdGluZyB0aGUgcmlzayBvZiBkZWNyZWFzaW5nIHRoZSBpbmNvbWUgZXhpc3RpbmcgdmFsdWVzLCBidXQgeW91IGZvcmdlIGFoZWFkLg"), () => b1.level >0 || b2.level > 0); //unlock story chapter if b1 or b2 have been puchased
-    chapter3 = theory.createStoryChapter(2, "International Recognition",bsf.d("WW91IHB1Ymxpc2ggeW91ciBmaXJzdCBwYXBlciwgd2l0aCB5b3VyIG5hbWUgZnJvbnQgYW5kIGNlbnRlci4KQ29sbGVhZ3VlcyBjb25ncmF0dWxhdGUgeW91LCBidXQgeW91IGZlZWwgdGhlcmUgaXMgc29tZXRoaW5nIG1pc3NpbmcsIGZ1cnRoZXIgZXhwbG9yYXRpb24gdG8gYmUgaGFkLgpZb3UgZGVjaWRlIHRvIGZvcmdlIGFoZWFkLg"), () => numPublications > 0); //unlock story chapter if a publication has been done
-    chapter4 = theory.createStoryChapter(3, "Light Modification", bsf.d("V2l0aCB5b3VyIHByb2dyZXNzIHN0YXJ0aW5nIHRvIHNsb3csIHlvdSBzY291ciB0aGUgb3JpZ2luYWwgZXF1YXRpb24gdGV4dHMgdG8gZmluZCBhIHJlbWVkeS4KSXQgdHVybnMgb3V0IGFsbCBhbG9uZyB0aGVyZSdzIGJlZW4gc29tZSBtb2RpZmllcnMgeW91IGNhbiBhZGQsIGJ1dCBhdCBldmVyIGluY3JlYXNpbmcgY29zdHMuCllvdSBkZWNpZGUgdG8gYnV5IG9uZSwgaG9waW5nIGl0IGFsbGV2aWF0ZXMgeW91ciBpc3N1ZXMuLi4"), () => gamma0.level == 1 || gamma1.level == 1 || gamma2.level == 1 || gamma3.level == 1);//unlock story chapter if a milestone is purchased
-    chapter5 = theory.createStoryChapter(4, "Making Progress", bsf.d("WW91IHJlYWNoIDFlMTAwIA") + "ρ₁" + bsf.d("₁LCBhIG1ham9yIG1pbGVzdG9uZSBpbiB5b3VyIHJlc2VhcmNoLgpDb2xsZWFndWVzIGNvbWUgdG8gY29uZ3JhdHVsYXRlIHlvdSBvbiBwdXNoaW5nIHlvdXIgcmVzZWFyY2ggc28gZmFyLCBidXQgeW91IHNocnVnIHRoZW0gb2ZmIC0geW91IGZlZWwgYXMgaWYgdGhlcmUncyBtb3JlIHlvdSBjb3VsZCBkby4KWW91IGhlYWQgYmFjayB0byB5b3VyIG9mZmljZSBhbmQgZ2V0IHRvIHdvcmsgb25jZSBtb3Jl"), () => currency.value >= BigNumber.From("1e100"));//unlock story chapter upon reaching 1e100 rho1
-    chapter6 = theory.createStoryChapter(5, "The End.... Or Is It?",bsf.d("WW91IGZpbmFsbHkgcHVyY2hhc2VkIGV2ZXJ5IG1vZGlmaWVyLCB0byBjbG9zZSBvdXQgeW91ciByZXNlYXJjaCBpbnRvIHRoaXMgZmllbGQuCllvdXIgc3R1ZGVudHMgYXNzaWduZWQgdG8gdGhpcyBwcm9qZWN0IGNlbGVicmF0ZSwgYW50aWNpcGF0aW5nIGNsb3Npbmcgb3V0IHRoaXMgbGluZSBvZiByZXNlYXJjaCwgYW5kIHlvdXIgbmFtZSBpcyBwb3N0ZWQgaW4gam91cm5hbHMgd29ybGR3aWRlLgoKWW91IGRlY2lkZSB0byBnbyBvdmVyIHlvdXIgbnVtYmVycyBvbmNlIG1vcmUsIGp1c3QgdG8gbWFrZSBzdXJlLi4u"), () => gamma0.level == 3 && gamma1.level == 5 && gamma2.level == 2 && gamma3.level == 2); //unlock a story when all milestone levels have been purchased    
-    chapter6 = theory.createStoryChapter(6, "Mathaholic",bsf.d("MWU1MDAuCgpBIG1vbnVtZW50YWxseSBsYXJnZSBudW1iZXIsIGJ1dCBidXQgYmFyZWx5IGEgYmxpcCB0byB5b3Ugbm93LgpQZW9wbGUgYXJlIHN0YXJ0aW5nIHRvIHRha2Ugbm90aWNlIGFzIHlvdSBwdXNoIG1hdGhlbWF0aWNzIHRvIHBvaW50cyB0aG91Z2h0IHVuYWNoaWV2ZWFibGUgaW4gdGhpcyBmaWVsZC4KVGhlcmUncyBhIHdhaXRpbmcgbGlzdCB0byBzdHVkeSB1bmRlciB5b3Ugbm93LgpZb3VyIGZyaWVuZHMgYW5kIGZhbWlseSBhcmUgZXhwcmVzc2luZyBjb25jZXJuLCB3b3JyaWVkIHlvdSdyZSBpbiB0b28gZGVlcC4KSXQgZG9lc24ndCBtYXR0ZXIuCkFub3RoZXIgYnJlYWt0aHJvdWdoIGlzIGNsb3NlLgpZb3UgY2FuIGZlZWwgaXQuCgpSaWdodD8"), () => currency.value >= BigNumber.From("1e500"));
-    chapter7 = theory.createStoryChapter(7, "The End.", bsf.d("MWUxMDAwLgoKQSBudW1iZXIgc28gYmlnIGl0J2QgYmUgaW1wb3NzaWJsZSB0byBjb21wcmVoZW5kLgpZb3UgZGlkIGl0LiBUaGV5IHNhaWQgeW91IGNvdWxkbid0LgpZZWFycyBhZnRlciB5b3UgZmlyc3Qgc3RhcnRlZCwgeW91IHJlYWNoIGFuIGluY3JlZGlibGUgZW5kIHRvIHlvdXIgcmVzZWFyY2guCllvdSdyZSBmZWF0dXJlZCBvbiBUSU1FLCBvbiBkYXl0aW1lIHRlbGV2aXNpb24sIGluIHdvcmxkd2lkZSBuZXdzcGFwZXJzLiBZb3VyIHBhcGVycyBhcmUgZnJhbWVkLCB5b3VyIHN0dWRlbnRzIGFsbCBwcm9mZXNzb3JzIGluIHRoZWlyIG93biByaWdodHMgbm93LgpZb3UgcGFzcyBvbiB0aGUgbWFudGxlIHRvIGEgeW91bmdlciBzdHVkZW50IG9mIHlvdXJzIHRvIHJldGlyZSBsaWtlIHlvdXIgb2xkIHByb2Zlc3NvciwgYmFjayBhbGwgdGhvc2UgeWVhcnMgYWdvLgoKVEhFIEVORC4KVGhhbmtzIGZvciBwbGF5aW5nISAtIGVsbGlwc2lz"), () => currency.value >= BigNumber.From("1e1000"));
+    theory.createStoryChapter(0, getLoc("story1Title"), getLoc("story1"), () => a1.level > 0); //unlock story chapter when a1 is purchased
+    theory.createStoryChapter(1, getLoc("story2Title"), getLoc("story2"), () => b1.level >0 || b2.level > 0); //unlock story chapter if b1 or b2 have been puchased
+    theory.createStoryChapter(2, getLoc("story3Title"), getLoc("story3"), () => numPublications > 0); //unlock story chapter if a publication has been done
+    theory.createStoryChapter(3, getLoc("story4Title"), getLoc("story4"), () => gamma0.level == 1 || gamma1.level == 1 || gamma2.level == 1 || gamma3.level == 1);//unlock story chapter if a milestone is purchased
+    theory.createStoryChapter(4, getLoc("story5Title"), getLoc("story5"), () => currency.value >= BigNumber.From("1e100"));//unlock story chapter upon reaching 1e100 rho1
+    theory.createStoryChapter(5, getLoc("story6Title"), getLoc("story6"), () => gamma0.level == 3 && gamma1.level == 5 && gamma2.level == 2 && gamma3.level == 2); //unlock a story when all milestone levels have been purchased    
+    theory.createStoryChapter(6, getLoc("story7Title"), getLoc("story7"), () => currency.value >= BigNumber.From("1e500"));
+    theory.createStoryChapter(7, getLoc("story8Title"), getLoc("story8"), () => currency.value >= BigNumber.From("1e1000"));
 }
 
 var updateInverseE_Gamma = () => {
@@ -312,12 +506,13 @@ var postPublish = ()  => {
 var setInternalState = (state) => { //set the internal state of values that need to be kept post switch that aren't levels
     let values = state.split(" "); //save values to a string
     if (values.length > 0) numPublications = parseInt(values[0]); //save the value of publish numbers to slot 0
-    if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
+    // inverseE_gamma is updated every tick, shouldn't be needed
+    //if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
     if (values.length > 2) tapCount = parseInt(values[2]);
     if (values.length > 3) t = Number.parseFloat(values[3]);
 }
 
-var getInternalState = () => `${numPublications} ${inverseE_Gamma} ${tapCount} ${t}` //return the data saved
+var getInternalState = () => `${numPublications} 0 ${tapCount} ${t}` //return the data saved
 
 var getPublicationMultiplier = (tau) => tau.pow(1.5/tauMultiplier); //publication mult bonus is (tau^0.15)*100
 var getPublicationMultiplierFormula = (symbol) => /*"10 · " +*/ symbol + "^{0.375}"; //text to render for publication mult ext

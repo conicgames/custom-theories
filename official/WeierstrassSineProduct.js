@@ -5,8 +5,38 @@ import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "weierstrass-product-sine";
-var name = "Weierstraß Sine Product";
-var description = "Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.\n\nIntuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.\n\nThe product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infty.\n\nHere, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.";
+var getName = (language) => {
+    const names = {
+        en: `Weierstraß Sine Product`,
+        de: `Weierstraße Sinus Produkt`,
+        fr: `Weierstrasse Sine Product`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => {
+    const descs = {
+        en:
+`Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.
+
+Intuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.
+
+The product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infinity.
+
+Here, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.`,
+        de:
+``,
+        fr:
+`Exploiter l’inexactitude de la représentation du produit du sinus, un résultat dû à Euler qui a été rigoureusement prouvé plus tard par Weierstrass en utilisant son célèbre théorème de factorisation.
+
+Intuitivement, l’idée derrière cette formule est de factoriser le sinus en utilisant ses racines (le sinus a des zéros à chaque multiple de π), tout comme on le ferait pour un polynôme.
+
+Le produit s_n ne représente que les n premiers facteurs de ce produit infini (avec la racine à x=0), ce qui signifie qu’il y a une certaine erreur entre s_n(x) et le sin(x réel), en fonction de n et x. Notez que ce produit tronqué s_n se rapproche mieux de sin(x) pour le plus grand n et le plus petit x, en particulier l’approximation devient mauvaise pour un n fixe lorsque x devient grand dans le sens où le rapport s_n(x)/sin(x) diverge pour x -> infinité.
+
+Ici, la dérivée de q par rapport au temps est fixée à s_n(χ)/sin(χ), c’est-à-dire le rapport d’avant évalué à χ (chi), qui est lui-même une valeur dépendante de n. Notez que l’augmentation de n augmente à la fois χ et la précision de l’approximation s_n.`
+    };
+    return descs[language] || descs.en;
+}
+var description = "";
 var authors = "xelaroc (AlexCord#6768)";
 var version = 5;
 var releaseOrder = "1";
@@ -159,11 +189,16 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => q.toString();
+var getInternalState = () => q.toBase64String();
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
     let values = state.split(" ");
-    if (values.length > 0) q = parseBigNumber(values[0]);
+    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
     updateChiDescAndInfo();
     updateSineRatio_flag = true;
 }
