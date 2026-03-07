@@ -9,7 +9,8 @@ var getName = (language) => {
     const names = {
         en: `Weierstraß Sine Product`,
         de: `Weierstraße Sinus Produkt`,
-        fr: `Weierstrasse Sine Product`
+        fr: `Weierstrasse Sine Product`,
+        ja: `ワイエルシュトラスの正弦積`
     };
     return names[language] || names.en;
 };
@@ -38,7 +39,12 @@ Intuitivement, l’idée derrière cette formule est de factoriser le sinus en u
 
 Le produit s_n ne représente que les n premiers facteurs de ce produit infini (avec la racine à x=0), ce qui signifie qu’il y a une certaine erreur entre s_n(x) et le sin(x réel), en fonction de n et x. Notez que ce produit tronqué s_n se rapproche mieux de sin(x) pour le plus grand n et le plus petit x, en particulier l’approximation devient mauvaise pour un n fixe lorsque x devient grand dans le sens où le rapport s_n(x)/sin(x) diverge pour x -> infinité.
 
-Ici, la dérivée de q par rapport au temps est fixée à s_n(χ)/sin(χ), c’est-à-dire le rapport d’avant évalué à χ (chi), qui est lui-même une valeur dépendante de n. Notez que l’augmentation de n augmente à la fois χ et la précision de l’approximation s_n.`
+Ici, la dérivée de q par rapport au temps est fixée à s_n(χ)/sin(χ), c’est-à-dire le rapport d’avant évalué à χ (chi), qui est lui-même une valeur dépendante de n. Notez que l’augmentation de n augmente à la fois χ et la précision de l’approximation s_n.`,
+        ja:
+`オイラーによる正弦関数の積表示の不正確さを利用する。この結果は後に、ワイエルシュトラスの因数分解定理によって厳密に証明された
+この公式の発想は、正弦関数をその根によって因数分解することにある。sin(x)はπの整数倍で0になるため、多項式を根で分解するのと似た考え方である。
+s_nはこの無限積の最初のn個の因子だけを表すため、s_n(x)とsin(x)の間にはnとxに依存する誤差が生じる。nが大きいほど、またxが小さいほど近似は良くなるがnを固定したままxが大きくなるとs_n(x)/sin(x)は発散する。
+この理論では、qの時間変化率をs_n(χ)/sin(χ)とする。χもnに依存する値であり、nを増やすことでχと近似精度の両方が上昇する。`
     };
     return descs[language] || descs.en;
 }

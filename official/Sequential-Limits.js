@@ -9,7 +9,8 @@ import { Utils } from "./api/Utils";
 var id = "SequentialLimits"; //must be unique, make sure to change it 
 var getName = (language) => { //display name
     const names = {
-        en: `Sequential Limits`
+        en: `Sequential Limits`,
+        fr: `Limites séquentielles`
     };
     return names[language] || names.en;
 };
@@ -32,7 +33,25 @@ Xelaroc/AlexCord, for answering my neverending questions, debugging and helping 
 The Exponential Idle beta testing team
 - The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.
 
-Enjoy!`
+Enjoy!`,
+        fr:
+`Vous êtes le premier étudiant du professeur désormais à la retraite, et maintenant qu'ils ont pris leur retraite, vous avez le titre de chercheur en chef. Désireux de plonger dans des domaines où votre ancien professeur a plongé, vous commencez à examiner le concept exploré dans le septième lemme - limites séquentielles - pour faire progresser votre carrière.
+
+Cette théorie explore le concept d'approximations en utilisant un réarrangement de la formule de Stirling pour approcher le nombre d'Euler.
+La formule, nommée d'après James Stirling et d'abord déclarée par Abraham De Moivre, stipule que ln(n!) peut être approché par la somme infinie ln(1) + ln(2) .... + ln(n).
+Soyez prudent - plus votre approximation du nombre d'Euler est proche, moins votre numérateur grandit!
+Un jeu d'équilibre serré, amusant pour toute la famille (ou du moins, ceux qui jouent à Exponential Idle).
+
+Remerciements spéciaux à:
+
+Gilles-Philippe, Pour le développement du SDK de théorie personnalisée, la mise en œuvre des fonctionnalités que j'ai demandées, la fourniture d'innombrables exemples de scripts et l'aide avec mes nombreuses questions et l'équilibrage.
+
+Xelaroc/AlexCord, pour avoir répondu à mes questions sans fin, déboguer et m'avoir aidé à comprendre comment équilibrer une théorie, et aller au-delà pour m'apprendre comment fonctionnent les théories personnalisées.
+
+L'équipe de bêta test Exponential Idle
+- L'équipe de traduction Exponential Idle, dont j'ai ajouté le travail, et sans laquelle ce jeu n'aurait pas la portée qu'il a.
+
+Profitez-en!`
     };
     return descs[language] || descs.en;
 }
@@ -201,6 +220,102 @@ You pass on the mantle to a younger student of yours to retire like your old pro
 
 THE END.
 Thanks for playing! - ellipsis`
+    },
+    fr: {
+        achCat1: `Divers`,
+        achCat2: `Publications`,
+        achCat3: `Approximation`,
+        achCat4: `Récompenses secrètes`,
+        ach1: `Optimisation d'achats`,
+        ach1Desc: `Externaliser l'achat actuel de variables à vos étudiants.`,
+        ach2: `Auteur amateur`,
+        ach2Desc: `Publier une fois.`,
+        ach3: `Reporter régulier`,
+        ach4: `Regular Scribbler`,
+        ach5: `Studied Scribbler`,
+        ach6: `Essayiste exemplaire`,
+        ach7: `Professionnel de la publication`,
+        ach8: `Assez proche`,
+        ach9: `Exercice de pinaillage`,
+        ach10: `Repérage de poils`,
+        ach11: `Microscopique`,
+        ach12: `Subatomique`,
+        ach13: `Mesquinerie de Planck`,
+        ach14: `Sommes-nous Déjà Là?`,
+        ach15: `Joueur de précision`,
+        ach16: `Je suis à court de place`,
+        ach17: `Vous pouvez vous arrêter à tout moment`,
+        achPubDesc: `Publier {0} fois.`,
+        achApproxDesc: `Get your approximation of e 10^-{0} off true`,
+        sach1: `Pattern fanatic`,
+        sach1Desc: `Avoir chaque niveau de variable le même.`,
+        sach1Hint: `Palindromique`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Elite`,
+        sach3: `En vacances`,
+        sach3Desc: `N'achetez rien pendant une heure après une publication.`,
+        sach3Hint: `Vous avez oublié quelque chose?`,
+        sach4: `Futilité`,
+        sach44Desc: `Appuyez sur l'équation 1000 fois.`,
+        sach4Hint: `Fatigué`,
+        story1Title: `Un Nouveau Départ`,
+        story1:
+`Vous revenez de la fête de retraite de votre ancien professeur, le devoir vous a été transmis, le premier étudiant, pour diriger le département des étudiants accumulés au fil des ans.
+Excité d'être enfin répertorié comme autre chose que « et. al » sur un article, vous avez continué vos recherches existantes, mais à mesure que les progrès ralentissent, vous vous êtes senti de moins en moins satisfait.
+Les jours se transforment en semaines, qui s'estompent au fur et à mesure que de plus en plus de publications sont écrites.
+Finalement, un étudiant vient à vous avec un tome poussiéreux, comportant un théorème encore inexploré.
+En ressentant un coup d'inspiration, vous rassemblez une équipe d'étudiants et vous vous lancez dans la recherche`,
+        story2Title: `Prendre des risques`,
+        story2:
+`Vous remarquez quelques variables modestes au bas de l'équation.
+Un étudiant vous met en garde contre le fait de les changer, invoquant le risque de diminuer les valeurs existantes du revenu, mais vous allez de l'avant.`,
+        story3Title: `International`,
+        story3:
+`Vous publiez votre premier article, avec votre nom au premier plan.
+Les collègues vous félicitent, mais vous sentez qu'il manque quelque chose, plus d'exploration à faire.
+Vous décidez d'aller de l'avant.`,
+        story4Title: `Modification légère`,
+        story4:
+`Avec vos progrès qui commencent à ralentir, vous parcourez les textes originaux de l'équation pour trouver un remède.
+Il s'avère que depuis le début, il y a eu des modificateurs que vous pouvez ajouter, mais à des coûts toujours croissants.
+Vous décidez d'en acheter un, en espérant que cela atténuera vos problèmes...`,
+        story5Title: `Faire des progrès`,
+        story5:
+`Vous atteignez 1e100 ρ1, une étape majeure de votre recherche.
+Les collègues viennent vous féliciter d'avoir poussé vos recherches jusqu'à présent, mais vous les ignorez - vous avez l'impression qu'il y a plus que vous pourriez faire.
+Vous retournez à votre bureau et vous vous reprenez au travail`,
+        story6Title: `La fin.... Ou Est-Ce Le Cas?`,
+        story6:
+`Vous avez finalement acheté tous les modificateurs, pour clôturer vos recherches dans ce domaine.
+Vos étudiants affectés à ce projet célèbrent, anticipant la clôture de cette ligne de recherche, et votre nom est affiché dans des revues du monde entier.
+
+Vous décidez de passer en revue vos chiffres une fois de plus, juste pour vous assurer...`,
+        story7Title: `Mathaholic`,
+        story7:
+`1e500.
+
+Un nombre monumentalement important, mais à peine un blip pour vous maintenant.
+Les gens commencent à remarquer que vous poussez les mathématiques à des points considérés comme irréalisables dans ce domaine.
+Il y a une liste d'attente pour étudier sous vos revoirs maintenant.
+Vos amis et votre famille expriment leur inquiétude, craignant que vous ne soyez trop profond.
+Ce n'est pas grave.
+Une autre percée est proche.
+Tu peux le sentir.
+
+D'accord?`,
+        story8Title: `Fin.`,
+        story8:
+`1e1000.
+
+Un nombre si grand qu'il serait impossible à comprendre.
+Tu l'as fait. Ils ont dit que tu ne pouvais pas.
+Des années après avoir commencé, vous atteignez une fin incroyable à vos recherches.
+Vous êtes présenté sur TIME, à la télévision de jour, dans des journaux du monde entier. Vos papiers sont encadrés, vos étudiants sont tous des professeurs à leurs propres droits maintenant.
+Vous passez le manteau à un de vos jeunes étudiants pour qu'il prenne sa retraite comme votre ancien professeur, il y a toutes ces années.
+
+FIN.
+Merci d'avoir joué ! - ellipsis`
     }
 };
 const menuLang = Localization.language;

@@ -203,7 +203,7 @@ There is still more τ to gain! Grind on!!
     integralMilestoneDesc: `$q/\\pi\\text{を}\\int_0^{q/\\pi}{g(x)dx}\\text{へ変更}$`,
     integralMilestoneInfo: `$\\text{分数積分を解放}$`,
     gxMilestoneDesc1: `$\\sin(x)\\text{を3項まで近似する}$`,
-    gxMilestoneDesc2: `$\\text{Approximate }\\log_{10}(1+x) \\text{ to 5 terms}$`,
+    gxMilestoneDesc2: `$\\log_{10}(1+x)\\text{を5項まで近似}$`,
     gxMilestoneDesc3: `$\\e^{x} \\text{を6項まで近似し、積分範囲の上限} \\pi \\text{を\\\\削除する / } $`,
     gxMilestoneInfo1: `$\\text{g(x)を} x-\\frac{x^3}{3!}+\\frac{x^5}{5!}//text{へ変更する}$`,
     gxMilestoneInfo2: `$\\text{g(x)を} (x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)//text{へ変更する}$`,
