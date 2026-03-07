@@ -299,7 +299,7 @@ Vous continuez à aller de l'avant avec votre recherche, aussi lente qu'elle pui
         story9Title: `EUREKA!!!`,
         story9:
 `Une nuit, tu dors agité.
-À quoi converge-t-il ?
+À quoi converge-t-il?
 Tu t'es tellement rapproché.
 Mais vous n'avez pas été en mesure de faire beaucoup de progrès récemment.
 Même ainsi, vous ne pouvez pas sortir les pensées de votre série de votre esprit.
