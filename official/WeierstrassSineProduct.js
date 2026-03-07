@@ -48,7 +48,6 @@ s_nはこの無限積の最初のn個の因子だけを表すため、s_n(x)とs
     };
     return descs[language] || descs.en;
 }
-var description = "";
 var authors = "xelaroc (AlexCord#6768)";
 var version = 5;
 var releaseOrder = "1";
