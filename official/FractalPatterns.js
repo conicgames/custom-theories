@@ -111,7 +111,7 @@ const locStrings = {
     improveNScaling: `Улучшить масштабирование переменной n`,
     snBoostDesc: `$S_n$ равен общему числу треугольников`,
     snBoostInfo: `Подсчитывает все треугольники в треугольнике Серпинского`,
-    addSTerm: `$\\text{Добавить член }s\\text{ и }\\downarrow \\text{экспоненту }T_n\\text{ на 2}$`,
+    addSTerm: `$\\text{Добавить член }s\\text{ и }\\downarrow \\text{ показатель степени }T_n\\text{ на 2}$`,
     improveRDesc: `$\\text{Улучшить уравнение } \\dot{r}$`
   }
 };
