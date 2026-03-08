@@ -25,7 +25,7 @@ var getName = (language) => {
     };
     return names[language] || names.en;  
 };
-const getDescription = (language) => {
+var getDescription = (language) => {
     const descs = {
         en:
 `The Basel problem is a legendary puzzle in mathematics, first proposed in the 17th century and famously solved by Leonhard Euler. It asks a deceptively simple question: what is the sum of the inverse squares of all positive integers? This infinite series, 1/1 + 1/4 + 1/9 + 1/16 + ..., converges to a finite value, but what?
@@ -387,7 +387,7 @@ Nous espérons que vous avez apprécié de jouer à travers cela, autant que nou
 もしかして、自分の仮説が間違っていたのではないか？
 この級数は発散するのではなく、
 実は収束するのではないか？
-あなたは$\\dot{r}$の計算式に小さな修正を加える。`,
+あなたはṙの計算式に小さな修正を加える。`,
         story4Title: `時間操作`,
         story4:
 `仮説を見直して以来、研究の進みは劇的に改善した。
@@ -806,7 +806,7 @@ var init = () => {
     {
         a_level = theory.createMilestoneUpgrade(2, 9);
         a_level.getDescription = (_) => Localization.format(getLoc(`aMilestoneDesc`), 9 - a_level.level);
-        a_level.getInfo = () => `$a \\to ${getA(a_level.level+1, false, 0).toFixed(3)}`;
+        a_level.getInfo = () => `$a \\to ${getA(a_level.level+1, false, 0).toFixed(3)}$`;
         a_level.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); }
         a_level.canBeRefunded = (_) => n_unlock.level == 0;
     }
