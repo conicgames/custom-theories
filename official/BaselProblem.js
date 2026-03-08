@@ -18,7 +18,8 @@ requiresGameVersion("1.4.33");
 var id = "basel_problem";
 var getName = (language) => {
     const names = {
-        en: "Basel Problem",
+        en: `Basel Problem`,
+        de: `Basel Problem`,
         fr: `Problème de Bâle`,
         ja: `バーゼル問題`,
         ru: `Базельская задача`
@@ -31,6 +32,10 @@ var getDescription = (language) => {
 `The Basel problem is a legendary puzzle in mathematics, first proposed in the 17th century and famously solved by Leonhard Euler. It asks a deceptively simple question: what is the sum of the inverse squares of all positive integers? This infinite series, 1/1 + 1/4 + 1/9 + 1/16 + ..., converges to a finite value, but what?
 
 In the Basel Problem theory, stand in Euler's shoes as you navigate the world of inverse squares. Everything in this theory revolves around them - variables based on partial sums, variable power scaling, and even the publication multiplier. Can you figure out the solution to this ancient problem?`,
+        de:
+`Das Basler Problem ist ein legendäres Rätsel der Mathematik, das erstmals im 17. Jahrhundert vorgeschlagen und von Leonhard Euler berühmt gelöst wurde. Es stellt eine täuschend einfache Frage: Wie groß ist die Summe der Umkehrquadrate aller positiven ganzen Zahlen? Diese unendliche Reihe, 1/1 + 1/4 + 1/9 + 1/16 + ..., konvergiert gegen einen endlichen Wert, aber was?
+
+Versetzen Sie sich in die Theorie des Basler Problems in die Fußstapfen von Euler und navigieren Sie durch die Welt der inversen Quadrate. Alles in dieser Theorie dreht sich um sie – Variablen, die auf Teilsummen basieren, variable Potenzskalierung und sogar der Publikationsmultiplikator. Können Sie die Lösung für dieses alte Problem finden?`,
         fr:
 `Le problème de Bâle est une énigme légendaire en mathématiques, proposée pour la première fois au XVIIe siècle et résolue par Leonhard Euler. Il pose une question faussement simple: quelle est la somme des carrés inverses de tous les entiers positifs? Cette série infinie, 1/1 + 1/4 + 1/9 + 1/16 + ..., converge vers une valeur finie, mais quoi?
 
@@ -219,6 +224,130 @@ The End.`,
 We hope you enjoyed playing through this, as much as we did making and designing this theory!`,
         gameEndPopupLabel: `Thanks for playing!`,
         gameEndPopupClose: `Close`
+    },
+    de: {
+        aPermaDesc: `Schalte $a$ Meilensteinlevel {0} frei`,
+        aPermaInfo: `Meilenstein: $\\uparrow a$ um $\\frac{{{0}}^2}{1000}$`,
+        qPermaDesc: `Schalte $q$ Meilenstein {0} frei`,
+        qPermaInfo: `Meilenstein: Schalte $q_{{0}}$ frei`,
+        rMilestoneDesc: `$\\dot{r}$ Gleichung umkehren`,
+        rMilestoneInfo: `Kehrt die $\\dot{r}$ Gleichung um`,
+        tMilestoneDesc: `Variable $t$ verbessern`,
+        tMilestoneInfo: `Verschiebt $t$ außerhalb des Exponenten $a$.`,
+        aMilestoneDesc: `$\\uparrow a$ um $\\frac{{{0}}^2}{1000}$`,
+        story1Title: `Unendliche Reihe`,
+        story1:
+`In einem alten Mathematiklehrbuch finden Sie ein interessantes ungelöstes Problem.
+Das Problem ist eine unendliche Reihe inverser Quadrate.
+Sie wenden sich mit diesem Problem an Ihren Professor.
+Sie sieht dich an und sagt: „Weißt du, ob diese Reihe zusammenläuft?“
+Sie antworten: „Ich bin nicht sicher, aber das ist es, was ich herausfinden möchte.“
+Sie schaut sich noch einmal Ihr altes Lehrbuch an.
+„Das ist seit Jahrhunderten ein ungelöstes Problem. Glauben Sie, dass Sie es lösen können?“
+Du schaust auf das Blatt Papier und denkst noch etwas darüber nach.
+„Es gibt unendlich viele Begriffe, und sie sind alle positiv, also divergiert es wahrscheinlich, oder?“
+„Und ich glaube, ich weiß, wie ich es beweisen kann.“
+Sie erstellen einen kleinen Begriff mit dem Namen „r“ und beginnen mit der Arbeit am Projekt.`,
+        story2Title: `Unbehagliches Gefühl`,
+        story2:
+`Sie beginnen Ihre Recherche voller Spannung.
+Sie schaffen es, ein Lemma zum Problem in einer kleinen Zeitschrift zu veröffentlichen.
+Zufrieden mit Ihren Fortschritten machen Sie weiter.
+Aber irgendwo im Hinterkopf
+Man wird das Gefühl nicht ganz los, dass man etwas verpasst hat.
+Um sicherzugehen, überprüfen Sie noch einmal alle Ihre Gleichungen.`,
+        story3Title: `Anspruchsvolle Annahmen`,
+        story3:
+`Sie haben wochenlang vergeblich auf Ihre Formel gestarrt.
+Der Fortschritt beginnt deutlich zu verlangsamen.
+Verzweiflung macht sich breit.
+Plötzlich wachst du mitten in der Nacht mit einer Idee auf.
+Was wäre, wenn Ihre Hypothese falsch wäre?
+Was ist, wenn die Serie nicht auseinandergeht?
+und konvergiert doch?
+Sie nehmen eine kleine Änderung an der Berechnung von rdot vor.`,
+        story4Title: `Zeitliche Manipulation`,
+        story4:
+`Ihr Fortschritt hat sich dramatisch verbessert, seit Sie Ihre Hypothese noch einmal überprüft haben.
+Es ist jetzt ziemlich klar, dass die Reihe konvergiert.
+Aber wozu konvergiert es?
+Du fängst schon wieder an, stecken zu bleiben.
+Vielleicht hilft es, die Zeit schneller zu machen.
+Sie nehmen die Variable „t“ und verschieben sie in einen anderen Teil Ihrer Gleichung.`,
+        story5Title: `Exponentielles Wachstum`,
+        story5:
+`Es gelingt Ihnen, eine Untergrenze für die Zahl zu erstellen, gegen die die Reihe konvergiert.
+Sie sind sich jedoch nicht sicher, wie Sie eine Obergrenze festlegen sollen.
+Sie fragen Ihren Professor, was Sie tun sollen.
+Sie schaut sich Ihre Gleichung an und sagt:
+„Haben Sie versucht, die Variable ‚a‘ zu ändern?“
+Ihnen wird klar, dass Sie bei all Ihren Recherchen nie daran gedacht hätten, diesen Wert zu ändern.
+Versuchen Sie, den Wert von „a“ zu erhöhen, und sehen Sie, was passiert.`,
+        story6Title: `Grenzen`,
+        story6:
+`Es hat funktioniert!
+Durch Ändern der Variablen „a“ konnten Sie eine Obergrenze für die Konvergenz der Gleichung erstellen.
+Im Moment sind Ihre Grenzen jedoch nicht sehr präzise.
+Sie haben die Reihe so begrenzt, dass sie auf einen Wert zwischen 1 und 2 konvergiert.
+Aber Sie möchten die Grenzen verbessern.
+Sie schauen sich Ihre Gleichung noch einmal an und stellen fest, dass Sie die Variable „q1“ nie manipuliert haben.
+Sie versuchen, eine Variable „q2“ hinzuzufügen und sehen, was passiert.`,
+        story7Title: `Näherkommen`,
+        story7:
+`Du hast gute Fortschritte gemacht.
+Du spürst, dass du jetzt nah dran bist.
+Sie haben den Reihenkonvergenzwert auf einen Wert zwischen 1,6 und 1,65 begrenzt.
+Aber du bist nicht zufrieden.
+Sie möchten den genauen Wert wissen.
+Weiter geht es...`,
+        story8Title: `Verzweiflung`,
+        story8:
+`Monate sind vergangen.
+Sie haben es immer noch nicht geschafft, Ihre Grenzen für den Konvergenzwert zu verbessern.
+Aber was können Sie sonst noch tun?
+Sie haben versucht, jede Variable in der Theorie zu manipulieren.
+Du wirst langsam verzweifelt.
+Ist das das Ende?
+Du bist noch nicht ganz bereit aufzugeben.
+Sie treiben Ihre Forschung weiter voran, so langsam sie auch sein mag.`,
+        story9Title: `EUREKA!!!`,
+        story9:
+`Eines Nachts schläfst du unruhig.
+Womit konvergiert es?
+Du bist so nah dran.
+Aber Sie konnten in letzter Zeit keine großen Fortschritte machen.
+Trotzdem gehen einem die Gedanken an die Serie nicht aus dem Kopf.
+Plötzlich sieht man es.
+Die Begriffe der Serie verdrehen sich in Ihrem Kopf, und am Ende gibt es eine Zahl.
+pi^2/6.
+Die Reihe konvergiert gegen pi^2/6.
+Und Sie wissen, wie man es beweist.
+Du springst aus dem Bett.
+Mit vor Aufregung zitternden Händen fügen Sie Ihrer Gleichung einen letzten Term hinzu.`,
+        story10Title: `Das Ende`,
+        story10:
+`Du hast es endlich geschafft.
+Sie haben bewiesen, dass die Reihe gegen pi^2/6 konvergiert.
+Sie haben Ihre Arbeit in einer renommierten Zeitschrift veröffentlicht.
+Sie wurden gebeten, Ihre Arbeit auf führenden Mathematikkonferenzen vorzustellen.
+Ihr Professor kommt auf Sie zu und sagt:
+„Ich bin so stolz auf dich.
+Ich wusste immer, dass du es schaffen kannst.
+Dieses Problem war seit Jahrhunderten ungelöst.
+Keiner meiner anderen Schüler würde es überhaupt anfassen.
+Aber Sie haben nicht nur bewiesen, dass die Serie konvergiert.
+Sie haben sogar herausgefunden, worauf es hinausläuft, mit einem sehr eleganten Beweis.
+An unserer Universität gibt es eine freie Fakultät für Mathematik. Sind Sie interessiert?"
+Sie nehmen das Angebot an und beginnen als Professor zu arbeiten.
+
+
+Das Ende.`,
+        gameEndPopupTitle: `Das Ende`,
+        gameEndPopupText:
+`Sie haben das Ende des Basler Problems erreicht. Diese Theorie endet bei der CT-Grenze von 1e600, sie kann jedoch noch höher gehen (wenn Sie sie wirklich überschreiten wollen).
+Wir hoffen, dass Ihnen das Durchspielen genauso viel Spaß gemacht hat wie uns beim Erstellen und Entwerfen dieser Theorie!`,
+        gameEndPopupLabel: `Danke für dass spielen!`,
+        gameEndPopupClose: `Schließen`
     },
     fr: {
         aPermaDesc: `Débloquer le niveau {0} de l'amélioration de $a$`,

@@ -13,6 +13,8 @@ var id = "magnetic_fields";
 var getName = (language) => {
     const names = {
         en: `Magnetic Fields`,
+        de: `Magnetische Felder`,
+        fr: `Champs Magnétiques`,
         ja: `磁場理論`,
         ru: `Магнитные поля`
     };
@@ -26,6 +28,18 @@ Discover the equations that describe the movement of a charged particle inside a
 Watch how rho grows as the particle moves away from its starting position and the magnetic field becomes stronger.
 Reset the particle's position to update its velocity to increase your long-term benefits.
 Have fun!`,
+        de:
+`Eine Custom Theorie zur Erforschung der Grundkonzepte magnetischer Felder.
+Entdecken Sie die Gleichungen, die die Bewegung eines geladenen Teilchens in einem Elektromagneten unendlicher Länge beschreiben.
+Beobachten Sie, wie Rho wächst, wenn sich das Teilchen von seiner Ausgangsposition entfernt und das Magnetfeld stärker wird.
+Setzen Sie die Position des Partikels zurück, um seine Geschwindigkeit zu aktualisieren und so Ihre langfristigen Vorteile zu erhöhen.
+Viel Spaß!`,
+        fr:
+`Une théorie personnalisée pour explorer les concepts de base des champs magnétiques.
+Découvrez les équations décrivant le mouvement d'une particule chargée dans un solénoïde de longueur infinie.
+Observer comment ρ augmente alors que la particle se déplace depuis sa position de départ et que le champ magnétique se renforce.
+Réinitialisez la position de la particule pour mettre à jour sa vitesse et augmenter vos bénéfices à long terme.
+Amusez-vous bien !`,
         ja:
 `磁場の基本概念を探求するカスタム理論。
 無限長ソレノイド内部を運動する荷電粒子を記述する方程式を解き明かそう。
@@ -135,6 +149,118 @@ You decide to organize a small party with the physics students that helped you t
 That was a long investment, but you feel like it was worth it.
 You miss pure mathematics but, at the same time, you want to explore more physics domains.
 One thing you're certain, is that this project marked a big step in your life.`
+    },
+    de: {
+        pResetMenu: `Partikelmenü fürs zurücksetzen`,
+        pResetLabel: `Nach dem Zurücksetzen des Partikels haben Sie Folgendes:`,
+        pReset: `Jetzt zurücksetzen`,
+        publicationTimeDesc: `Veröffentlichungszeit: {0}`,
+        publicationTimeInfo: `Verstrichene Zeit seit der letzten Veröffentlichung`,
+        resetTimeDesc: `Rückstellzeit: {0}`,
+        resetTimeInfo: `Verstrichene Zeit seit dem letzten Partikel-Reset`,
+        timeMMSS: `{0}:{1}`,
+        timeHHMMSS: `{0}:{1}:{2}`,
+        timeDHHMMSS: `{0}d {1}:{2}:{3}`,
+        story1Title: `Physik erforschen`,
+        story1:
+`Nachdem Sie jahrelang verschiedene Bereiche der Mathematik erforscht haben, um neue Konzepte für die Vergrößerung von τ zu finden, entscheiden Sie sich, an die Physikabteilung Ihrer Universität zu gehen.
+Sie treffen einen Studenten der Elektromagnetik, der ein großer Fan Ihrer Arbeit ist und Ihnen ein kleines Blatt mit Gleichungen überreicht.
+Der Titel: „Bewegung eines geladenen Teilchens innerhalb eines unendlich geladenen Elektromagneten“
+Sie sind sich nicht sicher, ob es Ihrem Projekt helfen wird, aber Sie entscheiden sich, es auszuprobieren ...`,
+        story2Title: `Beschleunigung`,
+        story2:
+`Mit den bisherigen Ergebnissen sind Sie recht zufrieden.
+Das häufige Zurücksetzen der Partikelposition hat Ihnen beim Fortschritt geholfen.
+Sie haben jedoch das Gefühl, dass etwas fehlt.
+Vielleicht hilft es, die Geschwindigkeit des Teilchens in die Gleichung einzubeziehen ...`,
+        story3Title: `Die Dichte des Fortschritts`,
+        story3:
+`Sie engagieren sich weiterhin mit Schülern, um mehr über Magnetfelder zu erfahren.
+Eine davon sagt Ihnen, dass das vom Magneten erzeugte Magnetfeld mit zunehmender Windungsdichte stärker wird.
+Sie bemerken den Term δ in den Gleichungen.
+Sie erfahren, dass es die Windungsdichte des Magneten darstellen soll.
+Warum nicht ein Upgrade daraus machen?`,
+        story4Title: `Ein alter Trick`,
+        story4:
+`Die Theorie schreitet immer weiter voran, verlangsamt sich jedoch erheblich.
+Sie beginnen sich zu fragen: War das Projekt des Physikstudenten, τ zu vergrößern, fehlerhaft?
+Kann die Theorie wirklich an höhere Grenzen stoßen?
+Sie beginnen, sich die Exponenten von ω und x genauer anzusehen.
+Korrekt! Sie zu erhöhen wäre eine gute Idee, um weiter voranzukommen.
+Es ist Zeit für den alten Exponententrick.`,
+        story5Title: `Neubetrachtung`,
+        story5:
+`Von Anfang an waren Sie von diesem Projekt überzeugt.
+Die Erforschung neuer Konzepte mit Elektromagnetismus hat wirklich Spaß gemacht, es fühlt sich nach so viel reiner Mathematik erfrischend an.
+Doch lohnt es sich für Ihr τ-Projekt wirklich?
+Die Theorie ist in den letzten Tagen so langsam geworden!
+Große Zahlen sind für die Physik offenbar nicht geeignet.
+Wenn Sie Ihre Wahl noch einmal überdenken, wird Ihnen klar, dass Ihnen die Optionen nicht ausgehen.
+Für weitere Variablen gibt es Exponenten, mit denen man herumbasteln kann...`,
+        story6Title: `Eine Leistung`,
+        story6:
+`Das Magnetfeldprojekt hat sich ausgezahlt.
+Du hast es endlich geschafft, du hast 1e600τ erreicht!
+Sie beschließen, eine kleine Party mit den Physikstudenten zu organisieren, die Ihnen auf Ihrer Reise geholfen haben.
+Das war eine lange Investition, aber Sie haben das Gefühl, dass sie sich gelohnt hat.
+Sie vermissen die reine Mathematik, möchten aber gleichzeitig weitere Bereiche der Physik erforschen.
+Sie sind sicher, dass dieses Projekt einen großen Schritt in Ihrem Leben markiert hat.`
+    },
+    fr: {
+        pResetMenu: `Réinitialisation de la Particule`,
+        pResetLabel: `Après réinitialisation de la particule, vous aurez :`,
+        pReset: `Réinitialiser Maintenant`,
+        publicationTimeDesc: `Temps depuis publication : {0}`,
+        publicationTimeInfo: `Temps écoulé depuis la dernière publication`,
+        resetTimeDesc: `Temps depuis réinitialisation : {0}`,
+        resetTimeInfo: `Temps écoulé depuis la dernière réinitialisation de la particule`,
+        timeMMSS: `{0}:{1}`,
+        timeHHMMSS: `{0}:{1}:{2}`,
+        timeDHHMMSS: `{0}j {1}:{2}:{3}`,
+        story1Title: `Explorer la Physique`,
+        story1:
+`Après des années à explorer différents domaines de mathématiques pour trouver de nouveaux concepts pour faire grandir τ, vous décidez de vous rendre dans le département de physique de votre université.
+Vous rencontrez un étudiant en électromagnétisme, grand admirateur de votre travail, qui vous tend une feuille d'équations.
+Le titre : 'Mouvement d'une particule chargée dans un solénoïde infini chargé'
+Vous n'êtes pas sûr que ça vous aidera dans votre projet, mais vous choisissez d'essayer...`,
+        story2Title: `Passer à la Vitesse Supérieure`,
+        story2:
+`Vous êtes plutôt satisfait des résultats jusque-là.
+Réinitialiser la position de la particule suffisamment a aidé votre progression.
+Cependant, vous avez l'impression qu'il manque quelque chose.
+Peut-être qu'inclure la vitesse de la particule dans l'équation aidera...`,
+        story3Title: `La Densité du Progrès`,
+        story3:
+`Vous continuez de communiquer avec des étudiants pour en apprendre plus sur les champs magnétiques.
+L'un d'eux vous apprend que le champ magnétique généré par le solénoïde devient plus fort lorsque la densité des spires augmente.
+Vous remarquez le terme δ dans l'équation.
+Vous apprenez qu'il représente la densité des spires du solénoïde.
+Pourquoi ne pas le transformer en amélioration ?`,
+        story4Title: `Une Vieille Combine`,
+        story4:
+`La théorie continue d'avancer, mais elle ralentit pas mal.
+Vous commencez à songer : le projet de l'étudiant en physique pour faire grandir τ était-il défectueux ?
+La théorie peut-elle vraiment atteindre les limites plus hautes ?
+Vous regardez les exposants de ω et x.
+Bien sûr ! Les augmenter serait une bonne idée pour progresser plus loin.
+C'est l'heure de la vieille combine des exposants.`,
+        story5Title: `Reconsidération`,
+        story5:
+`Depuis le début, vous étiez confiant sur ce projet.
+Explorer de nouveaux concepts avec l'électromagnétisme était très amusant, comme un rafraichissement après autant de mathématiques abstraites.
+Cependant, vaut-il vraiment la peine pour votre projet de τ ?
+La théorie est devenue si lente ces derniers jours !
+Les grands nombres ne conviennent pas à la physique, on dirait.
+Alors que vous reconsidérez vos choix, vous réalisez que vous n'êtes pas à court d'options.
+D'autres variables ont des exposants à manipuler...`,
+        story6Title: `Un Accomplissement`,
+        story6:
+`Le projet sur les champs magnétiques a payé.
+Vous l'avez enfin fait, vous avez atteint 1e600τ !
+Vous décidez d'organiser une petite fête avec les étudiants en physique qui vous ont aidé au long de votre périple.
+C'était un investissement de taille, mais vous ressentez que ça en valait la peine.
+Les mathématiques abstraites vous mentent, mais, en même temps, vous voulez explorer plus de domaines en physique.
+Une chose est certaine, ce projet a marqué une étape importante dans votre vie.`
     },
     ja: {
         pResetMenu: `粒子リセットメニュー`,

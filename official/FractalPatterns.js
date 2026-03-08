@@ -8,6 +8,7 @@ var id = "fractal_patterns";
 var getName = (language) => {
   const names = {
     en: `Fractal Patterns`,
+    de: `Fractale Muster`,
     fr: `Modèles de Fractales`,
     ja: `フラクタル構造`,
     ru: `Последовательности фракталов`
@@ -23,6 +24,13 @@ Ulam-Warburton cellular automaton (Uₙ),
 Sierpiński triangle (Sₙ).
 
 Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.`,
+    de:
+`Eine Theorie, die sich das Wachstum der drei fraktalen Muster zunutze macht:
+Zahnstochersequenz (Tₙ),
+Ulam-Warburton-Zellularautomat (Uₙ),
+Sierpiński-Dreieck (Sₙ).
+
+Vielen Dank an Gen (gen1code) und NGZ (ngz001) für all die Hilfe und Vorschläge mit LaTeX.`,
     fr:
 `Une théorie qui tire parti de la croissance des 3 modèles fractaux:
 Séquence de cure-dent (Tₙ),
@@ -77,6 +85,18 @@ const locStrings = {
     snBoostInfo: `Count all triangles in the sierpinsky triangle`,
     addSTerm: `Add the term $s$ & $\\downarrow T_n$ exponent by 2`,
     improveRDesc: `Improve $\\dot{r}$ equation`
+  },
+  de: {
+    fractalBgOff: `Deb Hintergrund deaktivieren`,
+    fractalBgOn: `Den Hintergrund aktivieren`,
+    fractalToggle: `Schaltet die Anzeige des fraktalen Hintergrunds um`,
+    addUlamWarburtonFractal: `Füge das Ulam-Warburton-Fraktal hinzu`,
+    addSierpinskiTriangleFractal: `Füge das Sierpinski-Dreieck-Fraktal hinzu`,
+    improveNScaling: `Verbessere die Skalierung von Variable n`,
+    snBoostDesc: `$S_n$ gibt die Gesamtzahl der Dreiecke zurück`,
+    snBoostInfo: `Zähle alle Dreiecke im Sierpinski-Dreieck`,
+    addSTerm: `Füge den Term $s$ hinzu und $\\downarrow T_n$ Exponent um 2`,
+    improveRDesc: `Verbessere die $\\dot{r}$ gelcihung`
   },
   fr: {
     fractalBgOff: `Désactiver l’arrière-plan`,

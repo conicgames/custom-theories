@@ -8,6 +8,7 @@ var id = "fractional_integration";
 var getName = (language) => {
   const names = {
     en: `Fractional Integration`,
+    de: `Fractionale Integration`,
     fr: `Intégration Fractionnelle`,
     ja: `分数階積分学`,
     ru: `Дробное интегрирование`
@@ -20,6 +21,10 @@ var getDescription = (language) => {
 `The functions between a function and its derivative have many ways of being shown, this is one of them.
 Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition.
 As such, as a fractional integral approaches 1, it should become the integral.`,
+    de:
+`Die Funktionen zwischen einer Funktion und ihren Derivat besitzt viele wege ihn zu Zeigen, dies ist einer von denen.
+Fraktionale Integration ist ein weg um zu Rechnen, was ziwschen einer Funktion und ihren Integral und ihrem fließenden übergang.
+Wenn sich ein Fractionalintegral dem Wert 1 nähert, sollte es zum Integral werden.`,
     fr:
 `Les fonctions entre une fonction et sa dérivée peuvent être montrées de différentes manières, ceci en est une.
 L'intégration fractionnelle est une manière de calculer ce qui est entre une fonction et son intégrale, avec une transition douce.
@@ -196,6 +201,107 @@ Yet, you keep pushing.
 Thank you all for playing this theory so far.
 I had a blast making it and I'm so grateful to Gen and XLII for helping me!
 There is still more τ to gain! Grind on!!
+-Snaeky`
+  },
+  de: {
+    gxPopupTitle: `g(x) Meilensteine`,
+    gxPopupWarning1: `Kaufen oder Verkaufen dieses Meilensteines setz $q$ zurück.`,
+    gxPopupWarning2: `Sind sie sich sicher dass dies wert ist?`,
+    gxPopupYes: `Ja`,
+    gxPopupNo: `Nein`,
+    gxPermaDesc: `Schalte g(x) Meilensteinlevel {0} frei`,
+    gxPermaInfo: `Schalte den g(x) Meilensteinlevel {0} frei`,
+    lambdaPermaDesc: `Schalte $\\lambda$ Meilensteinlevel {0} frei`,
+    lambdaPermaInfo: `Schalte den $\\lambda$ Meilensteinlevel {0} frei`,
+    integralMilestoneDesc: `Verändere $q/\\pi$ zu $\\int_0^{q/\\pi}{g(x)dx}$`,
+    integralMilestoneInfo: `Schalte den Fraktionalintegral frei`,
+    gxMilestoneDesc1: `Nähere $\\sin(x)$ zu 3 Terme`,
+    gxMilestoneDesc2: `Nähere $\\log_{10}(1+x)$ zu 5 Terme`,
+    gxMilestoneDesc3:
+`Nähere $e^{x}$ zu 6 Terme
+Entferne $/\\pi$ im dem Integrallimit`,
+    gxMilestoneInfo1: `Verändere $g(x)$ zu $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
+    gxMilestoneInfo2: `Verändere $g(x)$ zu $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
+    gxMilestoneInfo3: `Verändere $g(x)$ zu $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ & $q/\\pi \\to q$`,
+    lambdaMilestone1: `Verbessere die $\\lambda$ Fraktion zu $2/3^{i}$`,
+    lambdaMilestone2: `Verbessere die $\\lambda$ Fraktion zu $3/4^{i}$`,
+    story1Title: `Eine Idee`,
+    story1:
+`Beim Studium einiger Integrationstechniken denken Sie darüber nach, was es bedeuten würde, eine partielle Ableitung oder ein Integral zu haben...
+Sie erinnern sich an Ihren Freund, einen Professor, der sich mit Differential- und Integralrechnung beschäftigt hat, und fragen ihn, was er davon hält.
+Sie sagten: „Oh, ich glaube, ich habe vor langer Zeit etwas über ‚Riemann-Liouville-Fraktionalableitungen‘ in einem Lehrbuch gesehen.“
+Sie wissen nicht, ob es wirklich funktioniert, möchten es aber irgendwie testen.
+Sie möchten klein anfangen und es von Grund auf testen. Die Gleichung, die Sie aufstellen, lautet wie folgt.`,
+    story2Title: `Die Implementation`,
+    story2:
+`Wenn sich Ihr ρ-Wachstum zu verlangsamen beginnt, setzen Sie sich hin und denken nach. Das ist nur die Basis und Sie wissen, dass es gut funktioniert, aber Sie beginnen sich zu fragen, wie gut dieses Gedankenexperiment sein kann.
+Vielleicht funktioniert es gut, die gleiche Idee direkt auf ρ anzuwenden.
+Sie versuchen, das „Fraktionalintegral“ in die ρ-Gleichung einzufügen, um zu sehen, was dabei herauskommt...`,
+    story3Title: `Die Unvermeindlichkeit`,
+    story3:
+`Die Änderung hat geholfen, aber sie reicht immer noch nicht aus, um die Theorie auch nur annähernd zu beweisen.
+Sie schauen sich die Gleichung an. Sie wussten von Anfang an, dass Sie Lambda auf irgendeine Weise anpassen müssen, um überprüfen zu können, ob dieses „Integral“ wirklich mit tatsächlichen Integralen zusammenhängt.
+Es ist endlich an der Zeit, Lambda näher an 1 heranzuführen.`,
+    story4Title: `Vorwärts Gehen`,
+    story4:
+`Wow, Sie haben nicht damit gerechnet, dass es so gut funktioniert!
+Aber Sie denken, es geht schneller!
+Sie fügen eine neue Variable hinzu, um die Arbeit zu beschleunigen.`,
+    story5Title: `Konvergenz zur Wahrheit`,
+    story5:
+`Die m und n Verbesserungen laufen gut, aber Sie werden langsam ungeduldig.
+Es dauert zu lange, um wirklich etwas Konkretes zu zeigen.
+Sicher, ρ nimmt zu, aber das reicht nicht aus, um wirklich zu zeigen, dass dieses seltsam aussehende „partielle“ Integral zum tatsächlichen Integral konvergiert...
+Vielleicht beschleunigt die Änderung von g(x) die Sache!`,
+    story6Title: `Eine Lambmarkentdeckung`,
+    story6:
+`Der Professor kommt zu Ihnen und fragt, wie es läuft.
+Sie teilen ihnen mit, dass die Dinge gut laufen, aber immer noch sehr langsam. Sie fragen ihn nach einer Möglichkeit, die Dinge zu beschleunigen.
+„Warum haben Sie die Lambda-Funktion noch nicht angepasst? Konvergiert diese Summe nicht sehr langsam gegen 1?“
+Oh ja!!! Andere unendliche Summen, die gegen 1 konvergieren!
+Sie ändern die Lambda-Funktion.`,
+    story7Title: `Einblick`,
+    story7:
+`Eine erneute Änderung der Gleichung scheint sehr geholfen zu haben.
+Sie sind mit Ihrer Arbeit zufrieden und denken, dass Sie Ihre gebührende Sorgfalt walten lassen haben, um zu beweisen, dass diese Vermutung wahr ist...
+Der Professor kommt auf Sie zu und spottet.
+„Glaubst du wirklich, dass du schon etwas bewiesen hast?
+Sie benötigen größere Zahlen, um wirklich zu zeigen, dass es wahr ist.
+Erinnern Sie sich, was ich brauchte, um meine Gleichung zu beweisen?“
+Du lächelst sie an und nickst... und gehst weiter.
+Vielleicht können Sie noch mehr Dinge hinzufügen, damit es schneller geht...`,
+    story8Title: `Mehr Davon`,
+    story8:
+`Du verlierst den Glauben an das, was du bisher hast...
+Sie denken an den ersten Besuch Ihres Kollegen zurück.
+Funktioniert 3/4 besser als 2/3?`,
+    story9Title: `Vollgas`,
+    story9:
+`Sie haben das Gefühl, dass g(x) etwas Stärkeres braucht als alles, was Sie ihm zuvor gegeben haben.
+Jedes zweite g(x), das Sie verwendet haben, hat keine Kraft mehr und wird langsamer.
+Was ist eine wirklich gute Gleichung, die sehr schnell sehr groß wird?...
+e^x!!!
+Natürlich hat es dich die ganze Zeit direkt ins Gesicht gestarrt.
+Der Professor hatte vorhin recht! Warum nicht seine eigene Gleichung verwenden!`,
+    story10Title: `Einfache Tau einnahmen, Kollegen!!`,
+    story10:
+`Nun, Sie haben das Gefühl, dass es keine weiteren Änderungen mehr gibt.
+Der Professor kommt noch einmal vorbei.
+„Ah, das sollte reichen.
+Wie ich sehe, haben Sie meine eigene Gleichung verwendet, um die Dinge voranzutreiben.
+Was glaubst du, wird es jetzt sein?"
+Sie antworten mit einem Lächeln im Gesicht.
+Ich denke, wir müssen einfach abwarten und sehen.`,
+    story11Title: `Schließung`,
+    story11:
+`Sie und der Professor sind auf einer Konferenz, auf der Sie eine Rede über die Gleichung halten.
+Jeder ist beeindruckt, wie weit Sie mit roher Gewalt gekommen sind.
+Manche glauben, dass man nicht mehr viel weiter kommen wird.
+Dennoch machen Sie weiter Druck.
+
+Vielen Dank an alle, die diese Theorie bisher gespielt haben.
+Es hat mir viel Spaß gemacht, es zu machen, und ich bin Gen und XLII so dankbar, dass sie mir geholfen haben!
+Es gibt noch mehr τ zu gewinnen! Mach weiter!!
 -Snaeky`
   },
   fr: {
