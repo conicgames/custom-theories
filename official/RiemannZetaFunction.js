@@ -381,7 +381,7 @@ const locStrings =
         pubTime: '出版時間: {0}',
         terms: 'リーマン＝ジーゲル項: {0}',
         blackhole: 'ブラックホールを発動: ',
-        blackholeUnlock: 'ブラックホールを発動: ',
+        blackholeUnlock: 'ブラックホール',
         blackholeInfo: '{0}を{1}の最も近い零点まで巻き戻す',
         menuBlackhole: 'ブラックホール設定',
         blackholeThreshold: '次の値でブラックホールを自動発動:',

@@ -20,6 +20,7 @@ var getName = (language) => {
     const names = {
         en: `Euler's Formula`,
         de: `Eulers Formel`,
+        fr: `Formule d'Euler`,
         ja: `オイラーの公式`,
         ru: `Формула Эйлера`,
         uk: `Формула Ейлера`
@@ -88,6 +89,36 @@ und natürlich:
 Wir hoffen du hast Spaß diese Theorie zu spielen wie wir sie zu Entwickeln und Ideen zu sammeln für dies.
 
 - Das Eulers-Formel-CT-Team`,
+        fr:
+`Vous êtes un étudiant recruté par un professeur dans une université de renom. Étant donné que votre travail a attiré l'attention de vos collègues par le passé, vous décidez de vous lancer dans un sujet pas encore abordé par votre professeur, qui vous a intéressé dès que vous avez choisi d'étudier les mathématiques - les Nombres Complexes.
+Vous espérez qu'avec votre recherche sur le sujet, vous pourrez enfin avoir la percée que vous avez toujours voulue dans le monde scientifique.
+
+Cette théorie explore le monde des nombres complexes et leur place dans l'Univers des Mathématiques. Cette théorie, nommée d'après le célèbre mathématicien Leonhard Euler, explore la relation entre les fonctions exponentielles et trigonométriques.
+Votre tâche est d'utiliser cette formule, et, à l'aide du théorème de Pythagore, de calculer les distances à l'origine de cos(t) et isin(t) et les faire devenir aussi grandes que possible en utilisant plusieurs méthodes et approches !
+Une théorie avec une croissance intéressante, des propriétés peu communes, et (on l'espère) une histoire intéressante !
+
+Explication des variables :
+
+t - Une simple variable basée sur le temps, réinitialisée lors des publications.
+q - Une variable qui vous aide à faire grandir ρ, directement affectée par t.
+a - Plusieurs types de variables qui vous aident à faire grandir ρ.
+b et c - Des variables qui modifient cos(t) et isin(t)
+
+Un grand merci à :
+
+- Gilles-Philippe, pour avoir implémenté les fonctionnalités que nous avons proposées, nous avoir *beaucoup* aidés pendant le développement, en répondant à nos questions et nous donnant des fonctionnalités bêta à utiliser dans nos théories !
+
+- XLII, qui a fait quasiment TOUT l'équilibrage avec Snaeky, décidant de plusieurs composantes de la théorie telles que: le placement des améliorations, leur coût, le bonus de publication et plein d'autres !
+
+- Sneaky, sans qui cette théorie n'aurait pas été possible car il a eu l'idée initiale de structurer une théorie autour de la formule d'Euler, et qui a toujours répondu à mes (celles de peanut) questions et nous a tous motivés à faire progresser cette théorie.
+
+Et bien sûr:
+
+- La communauté Discord, qui a testé cette théorie et signalé plusieurs bugs, particulièrement ceux actifs dans #custom-theories-dev !
+
+Nous espérons que vous apprécierez jouer à cette théorie autant que nous avons apprécié la développer et trouver des idées pour celle-ci !
+
+- L'équipe de la théorie personnalisée Formule d'Euler`,
         ja:
 `あなたは有名大学の教授に雇われた学生です。あなたの取り組みは過去に同期の学生から少し注目を浴びたため、教授がまだ取り上げておらず、そして数学を学ぶことを決めた最初の日から興味を持っていたテーマ「複素数」について取り組むことに決めました。
 このテーマに関するあなたの研究によって、科学の世界において期待され続けていた大躍進を達成できることを願っています。
@@ -422,7 +453,7 @@ This has been the 3rd time this week.
 Your theory is growing incredibly slow.
 You cannot figure out why.
 The past weeks have been filled of you
-trying to grow this theory as large as you possible can.
+trying to grow this theory as large as you possibly can.
 
 More or less successful.
 
@@ -639,6 +670,191 @@ Sieh dich auch bei der Anderen CT, Konvergenz zur Wurzel von 2, die auch in dies
 PS: Wenn du es so weit Geschaft hast, dann PN "peanut#6368" wie schlecht die sprache JavaScript ist.`,
         gameEndPopupLabel: `Danke für das Spielen!`,
         gameEndPopupClose: `Schließen`
+    },
+    fr: {
+        rMilestone: `Débloquer la composante réelle R`,
+        iMilestone: `Débloquer la composante imaginaire I`,
+        b2MilestoneDesc: `$\\uparrow$ la base de $b_2$ de 0.01`,
+        b2MilestoneInfo: `Augmente la base de $b_2$ de 0.01`,
+        c2MilestoneDesc: `$\\uparrow$ la base de $c_2$ de 0.0125`,
+        c2MilestoneInfo: `Augmente la base de $c_2$ de 0.0125`,
+        achCat1: `Devises`,
+        achCat2: `Améliorations`,
+        achCat3: `Publications`,
+        achCat4: `Secrets`,
+        ach1: `Le Commencement`,
+        ach2: `Chance du Débutant`,
+        ach3: `Limites Imaginaires`,
+        ach4: `Progrès Complexe`,
+        ach5: `Nice`,
+        ach6: `Élève d'Euler`,
+        ach7: `Y’en a-t-il plus ?`,
+        ach8: `C'est fini ?`,
+        ach9: `Un Nouveau Professeur`,
+        ach10: `Analyse Automatique`,
+        ach10Desc: `Laissez l'algorithme d'apprentissage automatique calculer la théorie pour vous.`,
+        ach11: `Méthodes Réalistes`,
+        ach11Desc: `Apprenez à utiliser R (dimension réelle).`,
+        ach12: `Concepts Imaginaires`,
+        ach12Desc: `Apprenez à utiliser I (dimension imaginaire).`,
+        ach13: `Multiplication Arithmétique`,
+        ach13Desc: `Utilisez l'idée de vos collègues et ajoutez un facteur.`,
+        ach14: `Croissance Exponentielle`,
+        ach14Desc: `Ajouter un exposant à votre équation principale.`,
+        ach15: `Des Acides et …des Bases ?`,
+        ach15Desc: `Changez la base de b2.`,
+        ach16: `Première Fois`,
+        ach16Desc: `Publiez votre recherche.`,
+        ach17: `Pas à la mode ?`,
+        ach17Desc: `Publiez votre recherche deux fois.`,
+        ach18: `Je reconnais ce nom !`,
+        ach19: `Publicateur connu`,
+        ach20: `Écrivain Confirmé`,
+        ach21: `Auteur en Chef`,
+        achTauDesc: `Atteignez {0}τ.`,
+        achPubDesc: `Publiez votre recherche {0} fois.`,
+        sach1: `Ça Brille!`,
+        sach1Hint: `19 est mon nombre préféré.`,
+        sach1Message: `-- fais la "flashbang dance" ! --`,
+        sach2: `Compétition`,
+        sach2Hint: `Vous fumez quoi tous les jours ?`,
+        sach2Message2: `QUI A BESOIN DE RACINES`,
+        sach2Message3: `QUAND VOUS AVEZ`,
+        sach2Message4: `D E   L ' I M A G I N A T I O N`,
+        sach3: `Imparnumerophobie`,
+        sach3Hint: `Je n'aime pas les nombres impaires.`,
+        sach4: `Perfectionniste`,
+        sach4Hint: `La perfection est ma spécialité.`,
+        story1Title: `Raisonnement Circulaire`,
+        story1:
+`Vous approchez votre professeur avec un problème que vous avez trouvé.
+Vous dites : "Professeur, tous les autres experts de notre domaine n'arrêtent pas de dire que ceci ne peut pas être utilisé pour approfondir nos recherches.
+Cependant, je pense que je peux en tirer quelque chose !"
+Vous lui donnez la feuille avec la théorie :
+
+e^ix = cos(x) + i * sin(x).
+Il vous regarde et dit :
+"C'est la formule d'Euler. Êtes-vous sûr que vous pouvez obtenir des résultats de quelque chose qui a des nombres imaginaires ?"
+Vous anticipez et répondez : "Oui ! Je pense que je peux !"
+Il vous donne le feu vert pour travailler sur le projet.`,
+        story2Title: `Anticipation`,
+        story2:
+`En commençant votre recherche, vous réalisez que
+c'est beaucoup plus difficile que ce que vous avez prévu.
+Vous commencez à expérimenter avec cette formule.
+Cependant, vous n'arrivez pas encore à trouver comment intégrer le graphique dans votre équation.
+Votre motivation est pourtant plus haute que jamais,
+et vous êtes impatient de progresser plus loin avec ça.`,
+        story3Title: `Une Percée`,
+        story3:
+`Après plusieurs mois de travail sur ceci en tant que projet secondaire,
+vous trouvez enfin :
+Vous savez comment modifier l'équation.
+Vous essayez de modifier la valeur du cosinus
+et vous lui donnez un nouveau nom : 'R'.
+Vous commencez à expérimenter avec 'R'
+et essayez de voir ce qu'il se passe
+lorsque vous la modifiez.`,
+        story4Title: `Progression Complexe`,
+        story4:
+`Intéressant.
+Vous voyez que la modification a fait quelque chose à la particule.
+Ça n'affecte pas ρ mais ça fait quelque chose.
+Vous décidez que faire la même chose pour la composante complexe est une bonne idée.
+ 'i' va être intéressant à manipuler…
+Vous l'appelez 'I' et continuez vos calculs.`,
+        story5Title: `Une Approche Différente`,
+        story5:
+`Plusieurs semaines ont passé depuis que vous avez ajouté 'I' comme composante à votre recherche.
+Cependant, vous observez que la croissance a considérablement ralenti et vous inquiétez que votre recherche n'ait servi à rien.
+Vous demandez à vos collègues ce que vous devriez faire.
+L'un d'eux dit : ""Ajoute une variable à multiplier par la théorie.
+Peut-être que ça aidera avec ta progression.""
+Vous créez une petite variable appelée 'a1'.`,
+        story6Title: `Explosion`,
+        story6:
+`Ça a marché !
+Vos facteurs font du beau travail pour pousser la théorie.
+Mais, et si vous pouviez aller encore plus loin ?
+Après tout, vous avez observé la théorie pendant longtemps maintenant.
+Vous décidez de créer une variable appelée 'a3'. Elle aura une croissance exponentielle.
+Serait-ce assez pour que la théorie atteigne sa limite ?
+En tout cas, ça vous aide immensément dans votre progression.`,
+        story7Title: `Idées Exponentielles`,
+        story7:
+`"Bien sûr !
+C'est une relation entre les fonctions exponentielles et la trigonométrie !
+Pourquoi n'ajouterais-je pas un exposant ?
+C'est sûr, grâce à ça, la théorie peut être poussée à sa limite !",
+vous vous dites.
+Vous décidez d'ajouter un exposant à vos facteurs.`,
+        story8Title: `La Fin ?`,
+        story8:
+`Les vacances d'été sont enfin arrivées.
+Peut-être que c'est le moment pour vous d'arrêter.
+Vous avez poussé cette théorie à sa limite, vous vous dites
+que vous ne pouvez faire rien de plus.
+Vous avez essayé tout ce à quoi vous avez pensé.
+C'est l'heure de lâcher l'affaire.
+
+
+
+Ou pas... ?`,
+        story9Title: `Un Nouveau Départ`,
+        story9:
+`Vos vacances d'été ont été magnifiques.
+Vous avez passé de bons moments avec vos amis.
+Cependant, vous ne pouvez pas vous empêcher de penser constamment à la théorie.
+Depuis le début de vos vacances, elle vous a hanté.
+"Ça ne peut pas être la fin.", vous pensez.
+"Il doit y avoir autre chose ! Impossible que sa limite soit si basse !"
+
+Vous regardez la théorie à nouveau et remarquez quelque chose.
+Après tout ce travail, comment aviez-vous pu ne pas changer les bases de 'b' et 'c' ?
+Vous vous remotivez et recommencez à travailler sur la théorie.`,
+        story10Title: `Frustration`,
+        story10:
+`Vous vous réveillez soudainement en panique.
+Vous avez eu un cauchemar, d'un immense 'i' tombant sur vous.
+Une nouvelle nuit dans votre laboratoire.
+C'est la troisième cette semaine.
+Votre théorie grandit incroyablement lentement.
+Vous ne parvenez pas à savoir pourquoi.
+Vous avez passé les dernières semaines
+à tenter de faire grandir cette théorie autant que vous pouviez.
+
+Avec plus ou moins de succès.
+
+Soudainement, vous réalisez que vous avez oublié de changer la base de 'c'.
+Vous réfléchissez à comment 'a3' est reliée à 'c'.
+Serait-ce le moyen de pousser la théorie à sa limite ?`,
+        story11Title: `La Vraie Fin`,
+        story11:
+`Vous l'avez enfin fait.
+Vous avez prouvé que la théorie pouvait être poussée à sa limite.
+Vous êtes fier de vous.
+Vos publications ont reçu massivement d'attention.
+Un jour, votre professeur vous approche :
+"Vous avez montré beaucoup de détermination,
+bien plus que je n'ai jamais vu de la part d'un étudiant auquel j'ai enseigné.
+Je prends ma retraite ce semestre. En même temps que vous obtenez votre diplôme.
+J'ai une petite offre d'emploi pour vous.
+Accepteriez-vous de prendre ma position ?"
+Vous acceptez son offre avec excitation 
+et avec hâte de poursuivre votre carrière en tant que professeur.
+
+
+La Fin.`,
+        gameEndPopupTitle: `La Fin`,
+        gameEndPopupText:
+`Vous avez atteint la fin de Formule d'Euler. Cette théorie se termine à la limite des théories personnalisées de 1e600, mais elle peut aller plus haut (si vous voulez vraiment la pousser.)
+Nous espérons que vous avez apprécié y jouer, autant que nous avons apprécié faire et conceptualiser cette théorie !
+
+Allez voir l'autre théorie personnalisée arrivée dans la même mise à jour: "Convergents vers √2" après avoir joué à celle-ci, si ce n'est pas déjà fait !
+
+PS: Si vous avez été si loin, envoyez un message privé à peanut#6368 sur à quel point JavaScript est un mauvais langage.`,
+        gameEndPopupLabel: `Merci d'avoir joué !`,
+        gameEndPopupClose: `Fermer`
     },
     ja: {
         rMilestone: `実数成分 R を解禁`,

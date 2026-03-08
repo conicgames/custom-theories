@@ -97,10 +97,10 @@ const locStrings = {
     gxPopupWarning2: `Do you want to continue?`,
     gxPopupYes: `Yes`,
     gxPopupNo: `No`,
-    gxPermaDesc: `$\\text{Unlock g(x) Milestone lv }$`,
-    gxPermaInfo: `$\\text{Unlocks the g(x) Milestone lv }$`,
-    lambdaPermaDesc: `$\\text{Unlock }\\lambda \\text{ Milestone lv }$`,
-    lambdaPermaInfo: `$\\text{Unlocks the }\\lambda \\text{ Milestone lv }$`,
+    gxPermaDesc: `$\\text{Unlock g(x) Milestone lv {0}}$`,
+    gxPermaInfo: `$\\text{Unlocks the g(x) Milestone lv {0}}$`,
+    lambdaPermaDesc: `$\\text{Unlock }\\lambda \\text{ Milestone lv {0}}$`,
+    lambdaPermaInfo: `$\\text{Unlocks the }\\lambda \\text{ Milestone lv {0}}$`,
     integralMilestoneDesc: `$\\text{Change }q/\\pi\\text{ to }\\int_0^{q/\\pi}{g(x)dx}$`,
     integralMilestoneInfo: `$\\text{Unlock Fractional Integral}$`,
     gxMilestoneDesc1: `$\\text{Approximate }\\sin(x) \\text{ to 3 terms}$`,
@@ -142,8 +142,8 @@ Maybe changing g(x) will speed things up!`,
     story6Title: `A Lambdmark Discovery`,
     story6:
 `The Professor comes to you and asks how things are going.
-You inform them that things are going well, but still very slow.You ask him about any way to speed things up.
-"Why haven't you adjusted the lambda function yet? Isn't that sum very slow to converge to 1?\"
+You inform them that things are going well, but still very slow. You ask him about any way to speed things up.
+"Why haven't you adjusted the lambda function yet? Isn't that sum very slow to converge to 1?"
 Oh yeah!!! Other infinite sums that converge to 1!
 You change the lambda function.`,
     story7Title: `Insight`,
@@ -340,7 +340,7 @@ e^x！！！
     story6Title: `Знаменательное открытие`,
     story6:
 `К Вам подходит профессор и спрашивает, как всё продвигается.
-Вы сообщаете, что прогресс хороший, но всё ещё очень медленный.Вы спрашиваете его, есть ли способ ускорить теорию.
+Вы сообщаете, что прогресс хороший, но всё ещё очень медленный. Вы спрашиваете его, есть ли способ ускорить теорию.
 "Почему Вы до сих пор не заменили функцию лямбды?
 Этот ряд очень медленно сходится к 1, не так ли?"
 Ну конечно!!! Другие бесконечные ряды, которые тоже сходятся к 1!
@@ -567,8 +567,8 @@ var init = () => {
       currency,
       new CompositeCost(2, new ExponentialCost(1e100, BigNumber.TEN.pow(350).log2()), new ExponentialCost(BigNumber.TEN.pow(1050), 1))
     );
-    perm1.getDescription = (amount) => getLoc(`gxPermaDesc`) + Math.min(perm1.level + 1, 3);
-    perm1.getInfo = (amount) => getLoc(`gxPermaInfo`) + Math.min(perm1.level + 1, 3);
+    perm1.getDescription = (amount) => Localization.format(getLoc(`gxPermaDesc`), Math.min(perm1.level + 1, 3));
+    perm1.getInfo = (amount) => Localization.format(getLoc(`gxPermaInfo`), Math.min(perm1.level + 1, 3));
     perm1.boughtOrRefunded = (_) => {
       updateAvailability();
     };
@@ -577,8 +577,8 @@ var init = () => {
 
   {
     perm2 = theory.createPermanentUpgrade(4, currency, new ExponentialCost(BigNumber.TEN.pow(350), BigNumber.TEN.pow(400).log2()));
-    perm2.getDescription = (amount) => getLoc(`lambdaPermaDesc`) + Math.min(perm2.level + 1, 2);
-    perm2.getInfo = (amount) => getLoc(`lambdaPermaInfo`) + Math.min(perm2.level + 1, 2);
+    perm2.getDescription = (amount) => Localization.format(getLoc(`lambdaPermaDesc`), Math.min(perm1.level + 1, 2));
+    perm2.getInfo = (amount) => Localization.format(getLoc(`lambdaPermaInfo`), Math.min(perm1.level + 1, 2));
     perm2.boughtOrRefunded = (_) => updateAvailability();
     perm2.maxLevel = 2;
   }

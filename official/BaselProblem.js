@@ -304,7 +304,7 @@ Vous continuez à aller de l'avant avec votre recherche, aussi lente qu'elle pui
         story9:
 `Une nuit, vous vous agitez dans votre sommeil.
 Vers quoi converge-t-elle?
-Vous vous êtes tellement rapporché.
+Vous vous êtes tellement rapproché.
 Mais vous n'avez pas été en mesure de faire beaucoup de progrès récemment.
 Même ainsi, vous ne pouvez pas sortir les pensées de votre série de votre esprit.
 Soudain, vous le voyez.
