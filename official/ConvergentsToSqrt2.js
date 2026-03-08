@@ -24,7 +24,7 @@ var getDescription = (language) => {
         de:
 `Verwenden Sie die gegen √2 konvergierenden Zahlen, um ρ zu erhöhen. Die ersten gegen √2 konvergierenden Zahlen lauten: 1, 3/2, 7/5, 17/12. N_n ist der Zähler der n-ten gegen √2 konvergierenden Zahl und D_n der nth Nenner, wobei die nullte konvergierende Zahl 1/1 ist. Im Grenzwert konvergieren diese Zahlen gegen √2. Die Konvergenten schwanken um √2. Die Änderungsrate von q hängt von der Genauigkeit der Approximation ab.`,
         fr:
-`Utilisez les convergents à √2 pour augmenter ρ. Les premiers convergents à √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent à √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`,
+`Utilisez les convergents vers √2 pour augmenter ρ. Les premiers convergents vers √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent vers √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`,
         ja:
 `ρを増やすために、√2の連分数近似を用いる。√2の最初のいくつかの収束分数は、1, 3/2, 7/5, 17/12の通りである。N_nを√2の第n収束分数の分母とする。ただし、0番目の収束分数は1/1とする。これらは極限において√2に収束する。また、これらの収束分数は√2を上回ったり下回ったりしながら振動する。`,
         ru:

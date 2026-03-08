@@ -9,7 +9,7 @@ var getName = (language) => {
     const names = {
         en: `Weierstraß Sine Product`,
         de: `Weierstraß Sinus Produkt`,
-        fr: `Weierstrasse Sine Product`,
+        fr: `Produit Sinus de Weierstrass`,
         ja: `ワイエルシュトラスの正弦積`,
         ru: `Вейерштрассовское произведение по синусу`
     };
@@ -34,11 +34,11 @@ Das Produkt s_n repräsentiert lediglich die ersten n Faktoren dieses unendliche
 
 Hier wird die Ableitung von q nach der Zeit auf s_n(χ)/sin(χ) gesetzt, d. h. das Verhältnis von zuvor, ausgewertet an der Stelle χ (chi), welches selbst ein Wert ist, der von n abhängt. Beachten Sie, dass eine Erhöhung von n sowohl χ als auch die Genauigkeit der Näherung s_n erhöht.`,
         fr:
-`Exploiter l’inexactitude de la représentation du produit du sinus, un résultat dû à Euler qui a été rigoureusement prouvé plus tard par Weierstrass en utilisant son célèbre théorème de factorisation.
+`Exploitez l’inexactitude de la représentation du produit du sinus, un résultat dû à Euler qui a été rigoureusement prouvé plus tard par Weierstrass en utilisant son célèbre théorème de factorisation.
 
 Intuitivement, l’idée derrière cette formule est de factoriser le sinus en utilisant ses racines (le sinus a des zéros à chaque multiple de π), tout comme on le ferait pour un polynôme.
 
-Le produit s_n ne représente que les n premiers facteurs de ce produit infini (avec la racine à x=0), ce qui signifie qu’il y a une certaine erreur entre s_n(x) et le sin(x réel), en fonction de n et x. Notez que ce produit tronqué s_n se rapproche mieux de sin(x) pour le plus grand n et le plus petit x, en particulier l’approximation devient mauvaise pour un n fixe lorsque x devient grand dans le sens où le rapport s_n(x)/sin(x) diverge pour x -> infinité.
+Le produit s_n ne représente que les n premiers facteurs de ce produit infini (avec la racine à x=0), ce qui signifie qu’il y a une certaine erreur entre s_n(x) et le sin(x) réel, en fonction de n et x. Notez que ce produit tronqué s_n se rapproche mieux de sin(x) pour un n plus grand et un x plus petit, en particulier l’approximation devient mauvaise pour un n fixé lorsque x devient grand dans le sens où le rapport s_n(x)/sin(x) diverge pour x -> infini.
 
 Ici, la dérivée de q par rapport au temps est fixée à s_n(χ)/sin(χ), c’est-à-dire le rapport d’avant évalué à χ (chi), qui est lui-même une valeur dépendante de n. Notez que l’augmentation de n augmente à la fois χ et la précision de l’approximation s_n.`,
         ja:
