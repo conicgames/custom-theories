@@ -271,7 +271,7 @@ Peut-être que vous pouvez ajouter d'autre choses pour la faire aller plus vite.
 `Vous perdez la foi en ce que vous avez jusque là...
 Vous pensez à la fois où votre collègue vous a rendu visite pour la première fois.
 Est-ce que 3/4 fonctionnerait mieux que 2/3 ?`,
-    story9Title: `À Fond`,
+    story9Title: `Plein Gaz`,
     story9:
 `Vous avez l'impression que g(x) a besoin de quelque chose de plus fort que tout ce que vous lui aviez donné auparavant.
 Toutes les autres g(x) que vous avez utilisées sont à court d'énergie et ralentissent considérablement.
