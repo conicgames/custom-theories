@@ -19,7 +19,8 @@ var id = "basel_problem";
 var getName = (language) => {
     const names = {
         en: "Basel Problem",
-        fr: `Problème de Bâle`
+        fr: `Problème de Bâle`,
+        ja: `バーゼル問題`
     };
     return names[language] || names.en;  
 };
@@ -32,7 +33,10 @@ In the Basel Problem theory, stand in Euler's shoes as you navigate the world of
         fr:
 `Le problème de Bâle est une énigme légendaire en mathématiques, proposée pour la première fois au XVIIe siècle et résolue par Leonhard Euler. Il pose une question faussement simple: quelle est la somme des carrés inverses de tous les entiers positifs? Cette série infinie, 1/1 + 1/4 + 1/9 + 1/16 + ..., converge vers une valeur finie, mais quoi?
 
-Dans la théorie du problème de Bâle, placez-vous à la place d'Euler pendant que vous naviguez dans le monde des carrés inverses. Tout dans cette théorie tourne autour d'eux - des variables basées sur des sommes partielles, l'échelonnement des variables et même le multiplicateur de publication. Pouvez-vous trouver la solution de cet ancien problème?`
+Dans la théorie du problème de Bâle, placez-vous à la place d'Euler pendant que vous naviguez dans le monde des carrés inverses. Tout dans cette théorie tourne autour d'eux - des variables basées sur des sommes partielles, l'échelonnement des variables et même le multiplicateur de publication. Pouvez-vous trouver la solution de cet ancien problème?`,
+        ja:
+`バーゼル問題は、17世紀に提起され、レオンハルト・オイラーによって見事に解かれた、数学史に残る伝説的な難問である。問いは一見すると驚くほど単純だ。すべての正の整数の逆二乗の和はいくつになるのか？ この無限級数 1/1 + 1/4 + 1/9 + 1/16 + ... は有限の値に収束するが、その値はいったい何なのだろうか？
+バーゼル問題理論では、オイラーの立場になって逆二乗の世界を進んでいく。この理論のすべては逆二乗を中心に回っている――部分和に基づく変数、変数パワーのスケーリング、さらには論文発表倍率に至るまで。あなたはこの古くからの難問の答えを見つけ出せるだろうか？`
     }
     return descs[language] || descs.en;
 };
@@ -335,6 +339,132 @@ Fin.`,
 Nous espérons que vous avez apprécié de jouer à travers cela, autant que nous avons apprécié concevoir cette théorie!`,
         gameEndPopupLabel: `Merci d'avoir joué!`,
         gameEndPopupClose: `Fermer`
+    },
+    ja: {
+        aPermaDesc: `$\\text{aマイルストーンLv.}{0}\\text{を解放}$`,
+        aPermaInfo: `$\\text{マイルストーン:}\\uparrow a\\text{を}\\frac{{{0}}^2}{1000}\\text{増加}$"`,
+        qPermaDesc: `$q\\text{マイルストーンLv.}{0}\\text{を解放}$`,
+        qPermaInfo: `$\\text{マイルストーン:}q_{{0}}\\text{を解放}$`,
+        rMilestoneDesc: `$\\dot{r}\\text{の式を反転}$`,
+        rMilestoneInfo: `$\\dot{r}$の式を反転する`,
+        tMilestoneDesc: `変数$t$を改良`,
+        tMilestoneInfo: `$t$を$a$の指数の外へ移動する。`,
+        aMilestoneDesc: `$\\uparrow a$を$\\frac{{{0}}^2}{1000}$増加`,
+        story1Title: `無限級数`,
+        story1:
+`あなたは古い数学の教科書の中に、興味深い未解決問題を見つける。
+それは逆二乗の無限級数に関する問題だった。
+あなたはその問題を持って教授のもとへ向かう。
+教授はあなたを見て言う。
+「この級数が収束するかどうか、わかるかい？」
+あなたは答える。
+「まだわかりません。でも、それを突き止めたいんです」
+教授は古びた教科書にもう一度目を落とす。
+「これは何世紀ものあいだ未解決だった問題だ。君に解けると思うかい？」
+あなたはその紙を見つめながら、さらに考え込む。
+「項は無限にあって、しかも全部正です。なら、たぶん発散しますよね？」
+「しかも、その証明の仕方も思いついた気がします」
+あなたは 'r' という小さな項を作り、この研究に取りかかる。`,
+        story2Title: `拭えない違和感`,
+        story2:
+`あなたは胸を躍らせながら研究を始める。
+この問題に関する補題をひとつまとめ、小さな学術誌に発表することにも成功した。
+進展に満足しつつ、あなたはそのまま研究を押し進めていく。
+だが心の片隅で、
+何かを見落としているような感覚がどうしても消えない。
+あなたは念のため、すべての式をもう一度見直し、確かめ直すことにした。`,
+        story3Title: `前提を疑う`,
+        story3:
+`何週間も式を見つめ続けてきたが、成果は出ない。
+進展は目に見えて鈍ってきている。
+焦りが募っていく。
+そんなある夜、あなたはふとした着想で真夜中に目を覚ます。
+もしかして、自分の仮説が間違っていたのではないか？
+この級数は発散するのではなく、
+実は収束するのではないか？
+あなたは$\\dot{r}$の計算式に小さな修正を加える。`,
+        story4Title: `時間操作`,
+        story4:
+`仮説を見直して以来、研究の進みは劇的に改善した。
+この級数が収束することは、もはやかなり明らかだ。
+だが、いったい何に収束するのか？
+あなたは再び行き詰まり始める。
+もしかすると、時間の流れを速めれば助けになるかもしれない。
+あなたは変数't'を取り上げ、式の別の場所へ移してみる。`,
+        story5Title: `指数的成長`,
+        story5:
+`あなたはこの級数が収束する値の下界を作ることに成功する。
+だが、上界をどう作ればいいのかがわからない。
+あなたは教授に、どうすればいいか尋ねる。
+教授はあなたの式を見て言う。
+「変数'a'をいじってみたかい？」
+あなたは研究を通して、一度もその値を変えようと考えていなかったことに気づく。
+そこで'a'の値を増やし、何が起こるか試してみる。`,
+        story6Title: `上下界`,
+        story6:
+`うまくいった！
+変数'a'を変化させたことで、式の収束値に上界を与えられるようになった。
+ただし、今のところその評価はまだあまり精密ではない。
+この級数が1と2の間の値に収束するところまでは示せた。
+だが、あなたはもっと精度を上げたい。
+式を見直しているうちに、変数'q1'を一度も操作していなかったことに気づく。
+あなたは'q2'という変数を追加し、何が起こるか確かめてみる。`,
+        story7Title: `核心に迫る`,
+        story7:
+`研究は順調に進んでいる。
+もうかなり近づいている、そんな手応えがある。
+この級数の収束値を1.6と1.65の間にまで絞り込むことができた。
+だが、それでもあなたは満足できない。
+知りたいのは正確な値だ。
+あなたはさらに先へ進み続ける...`,
+        story8Title: `焦燥`,
+        story8:
+`数か月が過ぎた。
+それでもなお、収束値の評価をこれ以上改善することができない。
+だが、他に何ができるだろうか？
+この理論にある変数は、もうすべて操作し尽くしてしまった。
+あなたは追い詰められていく。
+これで終わりなのだろうか？
+それでも、まだ諦める気にはなれない。
+どれほど遅くなっても、あなたは研究を前に進め続ける。`,
+        story9Title: `エウレカ！！！`,
+        story9:
+`ある夜、あなたは落ち着かない眠りについていた。
+この級数はいったい何に収束するのか？
+ここまで迫っているのに、
+ここ最近はほとんど進展がなかった。
+それでも、頭の中からこの級数のことが離れない。
+その瞬間、見えた。
+級数の各項が頭の中で組み上がり、極限の先に、ひとつの数が現れる。
+pi^2/6。
+この級数はpi^2/6に収束する。
+そして、その証明の仕方もわかった。
+あなたはベッドから飛び起きる。
+興奮で手を震わせながら、式に最後の一項を加える。`,
+        story10Title: `終幕`,
+        story10:
+`あなたはついに成し遂げた。
+この級数がpi^2/6に収束することを証明したのだ。
+あなたの研究は権威ある学術誌に掲載され、
+一流の数学会議で発表するよう依頼も舞い込む。
+教授があなたのもとへやって来て言う。
+「本当に誇らしいよ。
+君ならきっとやれると、私はずっと思っていた。
+この問題は何世紀ものあいだ未解決だった。
+他の学生たちは、誰一人として触れようともしなかった。
+それなのに君は、この級数が収束することを示しただけではない。
+何に収束するのかまで突き止め、しかもとても美しい証明を与えたんだ。
+うちの大学の数学科で教員の空きがある。興味はあるかい？」
+あなたはその申し出を受け入れ、教授としての仕事を始める。
+
+
+終わり。`,
+        gameEndPopupTitle: `終わり`,
+        gameEndPopupText:
+`バーゼル問題はここで終わりです。この理論はCT上限である1e600で一区切りとなりますが、その先まで伸ばすこともできます（本気で押し進めたいなら、ですが）。
+この理論を遊んで楽しんでもらえたなら幸いです。私たちも、この理論を制作し設計したときと同じくらい楽しんでもらえていたら嬉しいです！`,
+        gameEndPopupLabel: `遊んでくれてありがとう！`,
+        gameEndPopupClose: `おしまい`
     }
 };
 const menuLang = Localization.language;

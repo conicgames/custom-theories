@@ -12,7 +12,8 @@ import { LayoutOptions } from "../api/ui/properties/LayoutOptions";
 var id = "magnetic_fields";
 var getName = (language) => {
     const names = {
-        en: `Magnetic Fields`
+        en: `Magnetic Fields`,
+        ja: `磁場理論`
     };
     return names[language] || names.en;
 };
@@ -23,7 +24,13 @@ var getDescription = (language) => {
 Discover the equations that describe the movement of a charged particle inside a solenoid of infinite length.
 Watch how rho grows as the particle moves away from its starting position and the magnetic field becomes stronger.
 Reset the particle's position to update its velocity to increase your long-term benefits.
-Have fun!`
+Have fun!`,
+        ja:
+`磁場の基本概念を探求するカスタム理論。
+無限長ソレノイド内部を運動する荷電粒子を記述する方程式を解き明かそう。
+粒子が初期位置から離れ、磁場が強くなるにつれて rho がどのように成長するかを見届けよう。
+粒子の位置をリセットして速度を更新し、長期的な利益を伸ばそう。
+お楽しみください！`
     };
     return descs[language] || descs.en;
 };
@@ -121,6 +128,62 @@ You decide to organize a small party with the physics students that helped you t
 That was a long investment, but you feel like it was worth it.
 You miss pure mathematics but, at the same time, you want to explore more physics domains.
 One thing you're certain, is that this project marked a big step in your life.`
+    },
+    ja: {
+        pResetMenu: `粒子リセットメニュー`,
+        pResetLabel: `粒子をリセットすると次の状態になります。`,
+        pReset: `今すぐリセット`,
+        publicationTimeDesc: `出版時間: {0}`,
+        publicationTimeInfo: `前回の出版からの経過時間`,
+        resetTimeDesc: `リセット時間: {0}`,
+        resetTimeInfo: `前回の粒子リセットからの経過時間`,
+        timeMMSS: `{0}:{1}`,
+        timeHHMMSS: `{0}:{1}:{2}`,
+        timeDHHMMSS: `{0}日 {1}:{2}:{3}`,
+        story1Title: `物理への探求`,
+        story1:
+`τを成長させる新たな概念を求めて、長年さまざまな数学分野を探求してきたあなたは、大学の物理学科を訪れることにした。
+そこで、あなたの研究の大ファンだという電磁気学専攻の学生と出会い、1枚の小さな数式メモを手渡される。
+その題名は「無限長ソレノイド内における荷電粒子の運動」。
+自分の計画に役立つかは分からなかったが、あなたは試してみることにした...`,
+        story2Title: `スピードアップ`,
+        story2:
+`ここまでの結果にはかなり満足している。
+粒子の位置を何度もリセットしたことが、着実な進展につながった。
+しかし、どこか足りない気がする。
+もしかすると、粒子の速度を方程式に組み込めば役に立つかもしれない...`,
+        story3Title: `進歩の密度`,
+        story3:
+`磁場についてさらに学ぶため、あなたは学生たちとの交流を続ける。
+そのうちの一人が、ソレノイドの巻き数密度が高くなるほど、生成される磁場も強くなると教えてくれた。
+あなたは方程式の中にあるδの項に気づく。
+それがソレノイドの巻き数密度を表していると知ったあなたは、こう考える。
+これをアップグレードにしてみてはどうだろう？`,
+        story4Title: `古きトリック`,
+        story4:
+`理論は着実に前進しているが、その速度はかなり落ちてきている。
+あなたは考え始める――物理学科の学生が持ち込んだτ成長計画には、何か根本的な欠陥があったのではないか？
+この理論は本当に、さらに高みへ到達できるのだろうか？
+ωとxの指数を改めて見直してみる。
+そうだ！ そこを強化すれば、さらに先へ進めるはずだ。
+今こそ、昔ながらの指数強化の出番だ。`,
+        story5Title: `再考`,
+        story5:
+`最初から、あなたはこの計画に強い自信を持っていた。
+電磁気学を通して新しい概念を探るのは本当に楽しく、ずっと数学漬けだった日々のあとでは新鮮に感じられた。
+だが、これは本当にτ成長計画に見合うものなのだろうか？
+ここ数日、この理論はあまりにも遅くなってしまった！
+どうやら、巨大な数は物理とは相性が良くないらしい。
+選択を見直しながらも、あなたはまだ打つ手が残っていることに気づく。
+まだ指数をいじれる変数があるのだ...`,
+        story6Title: `ひとつの到達点`,
+        story6:
+`磁場計画は、確かな成果をもたらした。
+ついにやった――1e600τに到達したのだ！
+あなたは、この旅を通して助けてくれた物理学科の学生たちと、小さな祝賀会を開くことにした。
+長い投資だったが、それだけの価値はあったと感じている。
+純粋数学が恋しくもあるが、それと同時に、もっと多くの物理分野を探求してみたいとも思う。
+ひとつ確かなのは、この計画があなたの人生において大きな一歩になったということだ。`
     }
 };
 const menuLang = Localization.language;

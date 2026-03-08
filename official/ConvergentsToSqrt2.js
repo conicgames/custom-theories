@@ -12,7 +12,8 @@ var getName = (language) => {
         en: `Convergents to √2`,
         de: `Konvergenz zur Wurzel von 2`,
         fr: `Convergents vers √2`,
-        ja: `√2の収束分数`
+        ja: `√2の収束分数`,
+        ru: `Приближение к корню из двух`
     };
     return names[language] || names.en;
 };
@@ -25,7 +26,9 @@ var getDescription = (language) => {
         fr:
 `Utilisez les convergents à √2 pour augmenter ρ. Les premiers convergents à √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent à √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`,
         ja:
-`ρを増やすために、√2の連分数近似を用いる。√2の最初のいくつかの収束分数は、1, 3/2, 7/5, 17/12の通りである。N_nを√2の第n収束分数の分母とする。ただし、0番目の収束分数は1/1とする。これらは極限において√2に収束する。また、これらの収束分数は√2を上回ったり下回ったりしながら振動する。`
+`ρを増やすために、√2の連分数近似を用いる。√2の最初のいくつかの収束分数は、1, 3/2, 7/5, 17/12の通りである。N_nを√2の第n収束分数の分母とする。ただし、0番目の収束分数は1/1とする。これらは極限において√2に収束する。また、これらの収束分数は√2を上回ったり下回ったりしながら振動する。`,
+        ru:
+`Используйте приближения к √2 для роста ρ. Первые несколько приближений к √2 следующие: 1, 3/2, 7/5, 17/12. N_n - числитель n-ного приближения к √2, а D_n - знаменатель n-ного приближения, нулевое приближение равно 1/1. В пределе эти приближения сходятся к √2. Приближения колеблются около √2, выше и ниже него. Скорость изменения q зависит от точности аппроксимации.`
     };
     return descs[language] || descs.en;
 };

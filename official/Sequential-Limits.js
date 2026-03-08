@@ -10,7 +10,8 @@ var id = "SequentialLimits"; //must be unique, make sure to change it
 var getName = (language) => { //display name
     const names = {
         en: `Sequential Limits`,
-        fr: `Limites séquentielles`
+        fr: `Limites séquentielles`,
+        ja: `数列の極限`
     };
     return names[language] || names.en;
 };
@@ -51,7 +52,27 @@ Xelaroc/AlexCord, pour avoir répondu à mes questions sans fin, déboguer et m'
 L'équipe de bêta test Exponential Idle
 - L'équipe de traduction Exponential Idle, dont j'ai ajouté le travail, et sans laquelle ce jeu n'aurait pas la portée qu'il a.
 
-Profitez-en!`
+Profitez-en!`,
+        ja:
+`あなたは、今はもう引退した教授の最初の教え子。
+そしてその教授が退いた今、主任研究者の座を託されることになった。
+かつて恩師が切り拓いた分野へ、自分も踏み込んでいきたい――そんな思いから、あなたはLemma7で扱われた概念、「数列の極限」の研究に乗り出し、さらなる飛躍を目指す。
+
+この理論では、スターリングの公式を変形することで、ネイピア数eを近似するという考え方を扱う。
+この公式はジェームズ・スターリングの名を冠し、最初にアブラハム・ド・モアブルによって述べられたもので、ln(n!)はln(1) + ln(2) .... + ln(n)によって近似できる。
+ただし注意――eの近似が真値に近づくほど、分子の伸びは鈍くなるぞ！
+絶妙なバランス感覚が試される理論。家族みんなで楽しめます（少なくとも、Exponential Idleを遊ぶ人たちなら）。
+
+スペシャルサンクス：
+
+Gilles-Philippeには、カスタム理論SDKの開発、私の要望した機能の実装、数えきれないほどのスクリプト例の提供、そして多くの質問やバランス調整の相談に応じてくれたことに感謝します。
+
+XelarocとAlexCordには、終わりのない私の質問に答え、デバッグを手伝い、さらには理論のバランス調整の考え方を教えてくれただけでなく、カスタム理論の仕組みそのものまで丁寧に教えてくれたことに感謝します。
+
+Exponential Idleベータテストチーム
+私もExponential Idle翻訳チームに加わりましたが、この存在がなければこのゲームがこんなにも広く届くことはなかったでしょう。
+
+お楽しみください！`
     };
     return descs[language] || descs.en;
 }
@@ -98,7 +119,7 @@ const locStrings = {
         sach3Desc: ``,
         sach3Hint: ``,
         sach4: ``,
-        sach44Desc: ``,
+        sach4Desc: ``,
         sach4Hint: ``,
         story1Title: ``,
         story1:
@@ -161,7 +182,7 @@ const locStrings = {
         sach3Desc: `Don't buy anything for an hour after a publication.`,
         sach3Hint: `Forgot something?`,
         sach4: `Futility`,
-        sach44Desc: `Tap the equation 1000 times.`,
+        sach4Desc: `Tap the equation 1000 times.`,
         sach4Hint: `Fatigued`,
         story1Title: `A New Beginning`,
         story1:
@@ -257,7 +278,7 @@ Thanks for playing! - ellipsis`
         sach3Desc: `N'achetez rien pendant une heure après une publication.`,
         sach3Hint: `Vous avez oublié quelque chose?`,
         sach4: `Futilité`,
-        sach44Desc: `Appuyez sur l'équation 1000 fois.`,
+        sach4Desc: `Appuyez sur l'équation 1000 fois.`,
         sach4Hint: `Fatigué`,
         story1Title: `Un Nouveau Départ`,
         story1:
@@ -316,6 +337,104 @@ Vous passez le manteau à un de vos jeunes étudiants pour qu'il prenne sa retra
 
 FIN.
 Merci d'avoir joué ! - ellipsis`
+    },
+    ja: {
+        achCat1: `その他`,
+        achCat2: `出版`,
+        achCat3: `近似`,
+        achCat4: `隠し実績`,
+        ach1: `購入最適化`,
+        ach1Desc: `変数の購入そのものは、学生たちに任せよう。`,
+        ach2: `かけだしの著者`,
+        ach2Desc: `出版を1回行う。`,
+        ach3: `いつものレポーター`,
+        ach4: `いつもの書き手`,
+        ach5: `研鑽を積んだ書き手`,
+        ach6: `模範的なエッセイスト`,
+        ach7: `出版のプロ`,
+        ach8: `だいたいあってる`,
+        ach9: `粗探しの練習`,
+        ach10: `重箱の隅をつつく`,
+        ach11: `顕微鏡レベル`,
+        ach12: `亜原子レベル`,
+        ach13: `プランク級の細かさ`,
+        ach14: `まだ着かないの？`,
+        ach15: `繊細な人`,
+        ach16: `もう余裕がない`,
+        ach17: `いつでもやめられるよ`,
+        achPubDesc: `出版を{0}回行う。`,
+        achApproxDesc: `eの近似値の真値との差を10^-{0}まで縮める。`,
+        sach1: `パターン狂`,
+        sach1Desc: `すべての変数レベルを同じにする。`,
+        sach1Hint: `回文`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `エリート`,
+        sach3: `休暇中`,
+        sach3Desc: `論文発表後、1時間何も購入しない。`,
+        sach3Hint: `何か忘れてない？`,
+        sach4: `徒労`,
+        sach4Desc: `数式を1000回タップする。`,
+        sach4Hint: `疲労困憊`,
+        story1Title: `新たな始まり`,
+        story1:
+`恩師の退職パーティーから戻ったあなたに託されたのは、長年にわたって集った学生たちの学科を率いる役目だった。最初の教え子であるあなたが、その後継者となったのだ。
+ようやく論文の著者欄で""et al.""以外の立場になれることに胸を躍らせながら、あなたはこれまでの研究を続けた。だが、進展が鈍るにつれ、満足感は少しずつ薄れていく。
+日々は週へと変わり、次々と論文が書き上げられていった。
+やがてある日、一人の学生が、まだ誰にも研究されていない定理が記された埃まみれの古書を持ってくる。
+閃きを覚えたあなたは学生たちを集め、その研究へと身を投じる。`,
+        story2Title: `リスクを取る`,
+        story2:
+`数式の下のほうに、目立たない変数がいくつかあることに気づく。
+ある学生は、それをいじると既存の値から得られる収入が下がる危険があると警告する。
+それでもあなたは、構わず先へ進む。`,
+        story3Title: `世界へ`,
+        story3:
+`初めての論文を発表し、自分の名前が堂々と先頭に載る。
+同僚たちは祝福してくれるが、あなたはどこか物足りなさを覚えていた。まだ踏み込める余地がある。
+あなたは歩みを止めないことにする。`,
+        story4Title: `ささやかな改変`,
+        story4:
+`進捗が鈍り始めたあなたは、解決策を求めて元の数式資料を徹底的に調べる。
+すると、どうやら最初から追加できる修飾子が存在していたことがわかる。ただし、その代償は買うごとにどんどん重くなっていく。
+問題が少しでも和らぐことを願い、あなたはひとつ購入することにした...。`,
+        story5Title: `前進`,
+        story5:
+`研究の大きな節目となる1e100 ρ1に到達した。
+同僚たちはここまで研究を進めたあなたを祝福するが、あなたはそれを軽く受け流す。まだやれることがある――そんな感覚が拭えない。
+あなたは再び研究室へ戻り、仕事に取りかかる。`,
+        story6Title: `終わり.... なのか？`,
+        story6:
+`ついに、研究に必要な修飾子をすべて購入し終えた。
+このプロジェクトを担当していた学生たちは、この研究分野に区切りがつくことを喜び、あなたの名は世界中の学術誌に載る。
+
+だが、あなたは最後にもう一度だけ数字を見直すことにした。念のために...。`,
+        story7Title: `数学厨`,
+        story7:
+`1e500。
+
+とてつもなく大きな数字。だが、今のあなたにとっては、もはやほんの小さな通過点にすぎない。
+この分野で到達不可能だと思われていた領域にまで数学を押し広げるあなたに、人々は注目し始めている。
+今や、あなたのもとで学びたい者たちの順番待ちができている。
+友人や家族は、あなたが研究にのめり込みすぎているのではと心配している。
+でも、そんなことはどうでもいい。
+次の大きな突破口は、もうすぐそこだ。
+そう感じる。
+
+……だろ？`,
+        story8Title: `終幕。`,
+        story8:
+`1e1000。
+
+あまりにも大きすぎて、もはや想像することすらできない数。
+あなたは成し遂げた。できるはずがないと言われながらも。
+最初に研究を始めてから幾年もの時を経て、ついに驚異的な終着点へとたどり着く。
+あなたはTIME誌に取り上げられ、昼のテレビ番組に出演し、世界中の新聞で報じられる。
+あなたの論文は額装され、教え子たちは皆それぞれ教授となった。
+そしてあなたもまた、かつての恩師のように引退するため、自分の若き教え子へその役目を引き継ぐ。
+
+これで終わり。
+プレイしてくれてありがとう！ — ellipsis`
     }
 };
 const menuLang = Localization.language;

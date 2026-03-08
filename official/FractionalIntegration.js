@@ -195,7 +195,7 @@ There is still more τ to gain! Grind on!!
     gxPopupWarning1: `このマイルストーンを購入または払い戻しすると、$q$ がリセットされます。`,
     gxPopupWarning2: `続行しますか？`,
     gxPopupYes: `はい`,
-    gxPopupNo: `はい`,
+    gxPopupNo: `いいえ`,
     gxPermaDesc: `$\\text{g(x)マイルストーンのレベル上限解放}$`,
     gxPermaInfo: `$\\text{g(x)マイルストーンのレベル上限を解放する}$`,
     lambdaPermaDesc: `$\\lambda\\text{マイルストーンのレベル上限解放}$`,
@@ -286,7 +286,7 @@ e^x！！！
 
 ここまでこの理論を遊んでくれて、みんな本当にありがとう。
 作るのもすごく楽しかったし、手伝ってくれたGenとXLIIには感謝してもしきれない！
-まだまだ Ï„ は稼げるぞ！ どんどんいけ！！
+まだまだ τ は稼げるぞ！ どんどんいけ！！
 -Snaeky`
   },
   ru: {
@@ -301,7 +301,7 @@ e^x！！！
     lambdaPermaInfo: `$\\text{Разблокирует для улучшения }\\lambda \\text{ уровень }$`,
     integralMilestoneDesc: `$\\text{Заменить }q/\\pi\\text{ на }\\int_0^{q/\\pi}{g(x)dx}$`,
     integralMilestoneInfo: `$\\text{Разблокировать дробный интеграл}$`,
-    gxMilestoneDesc1: `$\\text{Приблизить }\\sin(x) \\text{ с помощью 3 членов }$`,
+    gxMilestoneDesc1: `$\\text{Приблизить }\\sin(x) \\text{ с помощью 3 членов}$`,
     gxMilestoneDesc2: `$\\text{Приблизить }\\log_{10}(1+x) \\text{ с помощью 5 членов}$`,
     gxMilestoneDesc3: `$\\text{Приблизить }e^{x} \\text{ с помощью 6 членов и \\\\убрать / } \\pi \\text{ из предела интегрирования} $`,
     gxMilestoneInfo1: `$\\text{Заменить g(x) на } x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
@@ -386,7 +386,7 @@ e^x!!!
 
 Спасибо всем за то, что играли в эту теорию до сих пор.
 Я получил огромное удовольствие от её создания и очень благодарен Gen и XLII за помощь!
-Вам ещё предстоит набрать много Ï„! Продолжайте!!
+Вам ещё предстоит набрать много τ! Продолжайте!!
 -Snaeky`
   }
 };

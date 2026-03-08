@@ -362,7 +362,7 @@ when you modify it.`,
         story4Title: `Complex Progress`,
         story4:
 `Interesting.
-You see that the modification did something to the partical.
+You see that the modification did something to the particle.
 It's not affecting ρ but its doing something.
 You decide that doing the same to the complex component is a good idea.
 'i' is going to be interesting to deal with...
@@ -481,7 +481,7 @@ PS: If you made it this far, DM peanut#6368 about how bad of a language JavaScri
         ach9: `Ein neuer Professor`,
         ach10: `Automatische Analyse`,
         ach10Desc: `Lass dein Maschienenlernalgorithmus die Theorie für dich ausrechnen.`,
-        ach11: `Realistische Methoden.`,
+        ach11: `Realistische Methoden`,
         ach11Desc: `Finde heraus wie man R nutzt (Reale Dimensionen)`,
         ach12: `Imaginäre Konzepte`,
         ach12Desc: `Finde heraus wie man I nutzt (Imaginäre Dimensionen)`,
@@ -511,7 +511,7 @@ PS: If you made it this far, DM peanut#6368 about how bad of a language JavaScri
         sach2Message4: `V O R S T E L L U N G HAST`,
         sach3: `Imparnumerophobie`,
         sach3Hint: `Ich mag keine ungraden Zahlen.`,
-        sach4: `Perfektionist.`,
+        sach4: `Perfektionist`,
         sach4Hint: `Makellosigkeit ist meine Spezialität.`,
         story1Title: `Zirkelschluss`,
         story1:
@@ -812,6 +812,8 @@ i' を扱えばより面白くなるだろう・・・
 君にちょっとした仕事の話がある。
 私の後任として引き継いでくれないか？」
 あなたは胸を躍らせてその申し出を受け、教授としてのキャリアを歩み出すのが待ちきれなくなっている。
+
+
 終わり。`,
         gameEndPopupTitle: `終わり`,
         gameEndPopupText:

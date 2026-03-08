@@ -22,6 +22,7 @@ var getName = (language) =>
         de: 'Riemannsche Zeta-Funktion',
         es: 'Función Zeta de Riemann',
         fr: 'Fonction Zêta de Riemann',
+        ja: 'リーマンゼータ関数',
         ru: 'Дзета-функция Римана',
         uk: 'Дзета-функція Рімана',
         tl: 'Punsiyong Riemann Zeta',
@@ -75,6 +76,12 @@ Cette définition a été ensuite étendue aux nombres réels par Tchebychev, et
 1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)
 
 Dans cette théorie, nous examinerons la fonction zêta sur la droite perpendiculaire à l'axe des x à x=0,5, appelée droite critique. En 1859, Riemann lui-même a émis l'hypothèse que, à part les « zéros triviaux » situés aux entiers négatifs pairs -2, -4, -6, ..., toutes les autres racines de la fonction sont situées sur la droite critique.`,
+        ja:
+`現在リーマンゼータ関数として知られている関数は、もともとオイラーによって、1より大きい整数に対し次の無限級数として定義された:
+ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ...
+その後、この定義はチェビシェフによって実数へ、さらにリーマンによって複素平面へと拡張された。しかし、実部が1以下のすべての s において発散してしまうため、導関数の連続性を保つには特別な形の関数を定義する必要があった。これが解析接続であり、ゼータ関数の解析接続は、次の有名なミームと関係している:
+1 + 2 + 3 + 4 + ... = -1/12 = ζ(-1)
+この理論では、x = 0.5においてx軸に垂直な直線、いわゆる臨界線上でのゼータ関数を調べる。1859年、リーマン自身によって、負の偶数-2, -4, -6, ... にある、いわゆる「自明な零点」を除けば、この関数の他のすべての根はこの臨界線上にあるという予想が立てられた。`,
         ru:
 `Функция, известная сейчас как дзета-функция Римана, была впервые определена Эйлером для целых чисел больше 1, как бесконечный ряд: 
 ζ(s) = 1 + 1/(2^s) + 1/(3^s) + ... 
@@ -368,6 +375,26 @@ const locStrings =
         rotationLockInfo: 'Alterne la possibilité de tourner et agrandir le graphique 3D',
         overlayInfo: 'Alterne entre l\'affichage des termes de Riemann-Siegel et le temps de publication',
         rewind: 'Diminue t de {0}.\nCeci peut aider à atteindre des zéros précédents en utilisant le trou noir.'
+    },
+    ja:
+    {
+        pubTime: '出版時間: {0}',
+        terms: 'リーマン＝ジーゲル項: {0}',
+        blackhole: 'ブラックホールを発動: ',
+        blackholeUnlock: 'ブラックホールを発動: ',
+        blackholeInfo: '{0}を{1}の最も近い零点まで巻き戻す',
+        menuBlackhole: 'ブラックホール設定',
+        blackholeThreshold: '次の値でブラックホールを自動発動:',
+        blackholeCopyt: '現在のtを使用',
+        save: '保存',
+        rotationLock:
+        [
+            'グラフのロックを解除',
+            'グラフをロック'
+        ],
+        rotationLockInfo: '3Dグラフの回転とズームの可否を切り替える',
+        overlayInfo: 'リーマン＝ジーゲル項と出版時間の表示を切り替える',
+        rewind: '"tを{0}だけ巻き戻す。\nこれはブラックホール使用時に前の零点へ着地しやすくするのに役立つ。"',
     },
     ru:
     {

@@ -8,7 +8,9 @@ var id = "fractal_patterns";
 var getName = (language) => {
   const names = {
     en: `Fractal Patterns`,
-    fr: `Modèles de Fractales`
+    fr: `Modèles de Fractales`,
+    ja: `フラクタル構造`,
+    ru: `Последовательности фракталов`
   };
   return names[language] || names.en;
 };
@@ -27,7 +29,21 @@ Séquence de cure-dent (Tₙ),
 Automate cellulaire Ulam-Warburton (Uₙ),
 Triangle de Sierpiński (Sₙ).
 
-Un grand merci à Gen (gen1code) et NGZ (ngz001) pour toute l’aide et les suggestions avec le LaTeX.`
+Un grand merci à Gen (gen1code) et NGZ (ngz001) pour toute l’aide et les suggestions avec le LaTeX.`,
+    ja:
+`3つのフラクタルパターンの成長を活用する理論:
+つまようじ数列 (Tₙ)、
+ウラム・ワーバートン・セル・オートマトン (Uₙ)、
+シェルピンスキーの三角形 (Sₙ)。
+
+LaTeXに関する多くの協力と助言をしてくれたGen(gen1code)とNGZ(ngz001)に心から感謝します。`,
+    ru:
+`Эта теория использует преимущества роста трёх фрактальных последовательностей:
+последовательности зубочисток (Tₙ),
+автоматона Улама-Уорбертона (Uₙ),
+треугольника Серпинского (Sₙ).
+
+Большое спасибо Gen (gen1code) и NGZ (ngz001) за всю помощь и предложения, касающиеся LaTeX.`
   };
   return descs[language] || descs.en;
 };
@@ -73,6 +89,30 @@ const locStrings = {
     snBoostInfo: `Compter tous les triangles dans le triangle de Sierpinski`,
     addSTerm: `$\\text{Ajouter le terme }s\\text{ & }\\downarrow \\text{exposant de}T_n\\text{par 2}$`,
     improveRDesc: `$\\text{Améliorer l'équation de} \\dot{r}$`
+  },
+  ja: {
+    fractalBgOff: `背景を無効化`,
+    fractalBgOn: `背景を有効化`,
+    fractalToggle: `フラクタル背景の表示を切り替える`,
+    addUlamWarburtonFractal: `ウラム・ワーバートンフラクタルを追加`,
+    addSierpinskiTriangleFractal: `シェルピンスキーの三角形を追加`,
+    improveNScaling: `n変数のスケーリングを改善`,
+    snBoostDesc: `$S_n$は三角形の総数を返す`,
+    snBoostInfo: `シェルピンスキーの三角形内のすべての三角形を数える`,
+    addSTerm: `$s\\text{項を追加し、}T_n\\text{の指数を2下げる}$`,
+    improveRDesc: `$\\dot{r}\\text{の式を改善}$`
+  },
+  ru: {
+    fractalBgOff: `Отключить задний план`,
+    fractalBgOn: `Включить задний план`,
+    fractalToggle: `Переключает отображение фрактального заднего плана`,
+    addUlamWarburtonFractal: `Добавить автоматон Улама-Уорбертона`,
+    addSierpinskiTriangleFractal: `Добавить треугольник Серпинского`,
+    improveNScaling: `Улучшить масштабирование переменной n`,
+    snBoostDesc: `$S_n$ равен общему числу треугольников`,
+    snBoostInfo: `Подсчитывает все треугольники в треугольнике Серпинского`,
+    addSTerm: `$\\text{Добавить член }s\\text{ и }\\downarrow T_n\\text{экспоненту на 2}$`,
+    improveRDesc: `$\\text{Улучшить уравнение } \\dot{r}$`
   }
 };
 const menuLang = Localization.language;
