@@ -92,11 +92,11 @@ const locStrings = {
         gameEndPopupClose: ``
     },
     en: {
-        aPermaDesc: `$\\text{Unlock }a\\text{ milestone lv }\${0}`,
-        aPermaInfo: `$\\text{Milestone: }\\uparrow a\\text{ by }\\frac{{{0}}^2}{1000}$`,
-        qPermaDesc: `$\\text{Unlock }q\\text{ milestone lv }\${0}`,
-        qPermaInfo: `$\\text{Milestone: Unlock }q_{{0}}$`,
-        rMilestoneDesc: `$\\text{Invert } \\dot{r} \\text{ equation}$`,
+        aPermaDesc: `Unlock $a$ milestone lv {0}`,
+        aPermaInfo: `Milestone: $\\uparrow a$ by $\\frac{{{0}}^2}{1000}$`,
+        qPermaDesc: `Unlock $q$ milestone lv {0}`,
+        qPermaInfo: `Milestone: Unlock $q_{{0}}$`,
+        rMilestoneDesc: `Invert $\\dot{r}$ equation`,
         rMilestoneInfo: `Inverts the $\\dot{r}$ equation`,
         tMilestoneDesc: `Improve variable $t$`,
         tMilestoneInfo: `Moves $t$ outside the $a$ exponent.`,
@@ -217,14 +217,14 @@ We hope you enjoyed playing through this, as much as we did making and designing
     },
     fr: {
         aPermaDesc: `Débloquer le niveau {0} de l'amélioration de $a$`,
-        aPermaInfo: `$\\text{Amélioration : }\\uparrow a\\text{ de }\\frac{{{0}}^2}{1000}$`,
+        aPermaInfo: `Amélioration : $\\uparrow a$ de $\\frac{{{0}}^2}{1000}$`,
         qPermaDesc: `Débloquer le niveau {0} de l'amélioration de $q$`,
-        qPermaInfo: `$\\text{Amélioration : Débloquer }q_{{0}}$`,
+        qPermaInfo: `Amélioration : Débloquer $q_{{0}}$`,
         rMilestoneDesc: `Inverser l'équation de $r$`,
         rMilestoneInfo: `Inverse l'équation de $r$`,
         tMilestoneDesc: `Améliorer la variable $t$`,
         tMilestoneInfo: `Déplace $t$ en dehors de l'exposant $a$.`,
-        aMilestoneDesc: `$\\Augmente a$ de $\\frac{{{0}}^2}{1000}$`,
+        aMilestoneDesc: `Augmente $a$ de $\\frac{{{0}}^2}{1000}$`,
         story1Title: `Série infinie`,
         story1:
 `Vous trouvez un problème intéressant non résolu dans un vieux manuel de mathématiques.
@@ -341,11 +341,11 @@ Nous espérons que vous avez apprécié de jouer à travers cela, autant que nou
         gameEndPopupClose: `Fermer`
     },
     ja: {
-        aPermaDesc: `$\\text{aマイルストーンLv.}{0}\\text{を解放}$`,
-        aPermaInfo: `$\\text{マイルストーン:}\\uparrow a\\text{を}\\frac{{{0}}^2}{1000}\\text{増加}$"`,
-        qPermaDesc: `$q\\text{マイルストーンLv.}{0}\\text{を解放}$`,
-        qPermaInfo: `$\\text{マイルストーン:}q_{{0}}\\text{を解放}$`,
-        rMilestoneDesc: `$\\dot{r}\\text{の式を反転}$`,
+        aPermaDesc: `$a$マイルストーンLv.{0}を解放`,
+        aPermaInfo: `マイルストーン:$\\uparrow a$を$\\frac{{{0}}^2}{1000}$増加`,
+        qPermaDesc: `$q$マイルストーンLv.{0}を解放`,
+        qPermaInfo: `マイルストーン:$q_{{0}}$を解放`,
+        rMilestoneDesc: `$\\dot{r}$の式を反転`,
         rMilestoneInfo: `$\\dot{r}$の式を反転する`,
         tMilestoneDesc: `変数$t$を改良`,
         tMilestoneInfo: `$t$を$a$の指数の外へ移動する。`,

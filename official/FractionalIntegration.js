@@ -8,6 +8,7 @@ var id = "fractional_integration";
 var getName = (language) => {
   const names = {
     en: `Fractional Integration`,
+    fr: `Intégration Fractionnelle`,
     ja: `分数階積分学`,
     ru: `Дробное интегрирование`
   };
@@ -19,6 +20,10 @@ var getDescription = (language) => {
 `The functions between a function and its derivative have many ways of being shown, this is one of them.
 Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition.
 As such, as a fractional integral approaches 1, it should become the integral.`,
+    fr:
+`Les fonctions entre une fonction et sa dérivée peuvent être montrées de différentes manières, ceci en est une.
+L'intégration fractionnelle est une manière de calculer ce qui est entre une fonction et son intégrale, avec une transition douce.
+Ainsi, lorsqu'une intégrale fractionnelle approche 1, elle doit devenir l'intégrale.`,
     ja:
 `関数とその導関数の間にあるものは、様々な形で表すことができます。これはそのうちのひとつです。 
 分数階積分は、関数とその積分の間にあるものを計算する方法で、なめらかに移り変わっていきます。
@@ -51,7 +56,8 @@ const locStrings = {
     integralMilestoneInfo: ``,
     gxMilestoneDesc1: ``,
     gxMilestoneDesc2: ``,
-    gxMilestoneDesc3: ``,
+    gxMilestoneDesc3:
+``,
     gxMilestoneInfo1: ``,
     gxMilestoneInfo2: ``,
     gxMilestoneInfo3: ``,
@@ -97,20 +103,22 @@ const locStrings = {
     gxPopupWarning2: `Do you want to continue?`,
     gxPopupYes: `Yes`,
     gxPopupNo: `No`,
-    gxPermaDesc: `$\\text{Unlock g(x) Milestone lv {0}}$`,
-    gxPermaInfo: `$\\text{Unlocks the g(x) Milestone lv {0}}$`,
-    lambdaPermaDesc: `$\\text{Unlock }\\lambda \\text{ Milestone lv {0}}$`,
-    lambdaPermaInfo: `$\\text{Unlocks the }\\lambda \\text{ Milestone lv {0}}$`,
-    integralMilestoneDesc: `$\\text{Change }q/\\pi\\text{ to }\\int_0^{q/\\pi}{g(x)dx}$`,
-    integralMilestoneInfo: `$\\text{Unlock Fractional Integral}$`,
-    gxMilestoneDesc1: `$\\text{Approximate }\\sin(x) \\text{ to 3 terms}$`,
-    gxMilestoneDesc2: `$\\text{Approximate }\\log_{10}(1+x) \\text{ to 5 terms}$`,
-    gxMilestoneDesc3: `$\\text{Approximate }e^{x} \\text{ to 6 terms and\\\\Remove / } \\pi \\text{ in the integral limit} $`,
-    gxMilestoneInfo1: `$\\text{Change g(x) to } x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
-    gxMilestoneInfo2: `$\\text{Change g(x) to } (x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
-    gxMilestoneInfo3: `$\\text{Change g(x) to } 1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!} \\text{ \\& {} q/} \\pi \\to q$`,
-    lambdaMilestone1: `$\\text{Improve } \\lambda \\text{ Fraction to } 2/3^{i}$`,
-    lambdaMilestone2: `$\\text{Improve } \\lambda \\text{ Fraction to } 3/4^{i}$`,
+    gxPermaDesc: `Unlock g(x) Milestone lv {0}`,
+    gxPermaInfo: `Unlocks the g(x) Milestone lv {0}`,
+    lambdaPermaDesc: `Unlock $\\lambda$ Milestone lv {0}`,
+    lambdaPermaInfo: `Unlocks the $\\lambda$ Milestone lv {0}`,
+    integralMilestoneDesc: `Change $q/\\pi$ to $\\int_0^{q/\\pi}{g(x)dx}$`,
+    integralMilestoneInfo: `Unlock Fractional Integral`,
+    gxMilestoneDesc1: `Approximate $\\sin(x)$ to 3 terms`,
+    gxMilestoneDesc2: `Approximate $\\log_{10}(1+x)$ to 5 terms`,
+    gxMilestoneDesc3:
+`Approximate $e^{x}$ to 6 terms
+Remove $/\\pi$ in the integral limit`,
+    gxMilestoneInfo1: `Change $g(x)$ to $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
+    gxMilestoneInfo2: `Change $g(x)$ to $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
+    gxMilestoneInfo3: `Change $g(x)$ to $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ & $q/\\pi \\to q$`,
+    lambdaMilestone1: `Improve $\\lambda$ Fraction to $2/3^{i}$`,
+    lambdaMilestone2: `Improve $\\lambda$ Fraction to $3/4^{i}$`,
     story1Title: `An Idea`,
     story1:
 `While studying some techniques in integration, you think about what it would mean to have a partial derivative or integral...
@@ -190,26 +198,128 @@ I had a blast making it and I'm so grateful to Gen and XLII for helping me!
 There is still more τ to gain! Grind on!!
 -Snaeky`
   },
+  fr: {
+    gxPopupTitle: `Amélioration de g(x)`,
+    gxPopupWarning1: `Acheter ou rembourser cette amélioration va réinitialiser $q$.`,
+    gxPopupWarning2: `Voulez-vous continuer ?`,
+    gxPopupYes: `Oui`,
+    gxPopupNo: `Non`,
+    gxPermaDesc: `Débloquer le niveau {0} de l'amélioration de g(x)`,
+    gxPermaInfo: `Débloque le niveau {0} de l'amélioration de g(x)`,
+    lambdaPermaDesc: `Débloquer le niveau {0} de l'amélioration de $\\lambda$`,
+    lambdaPermaInfo: `Débloque le niveau {0} de l'amélioration de $\\lambda$`,
+    integralMilestoneDesc: `Change $q/\\pi$ à $\\int_0^{q/\\pi}{g(x)dx}$`,
+    integralMilestoneInfo: `Débloque l'intégrale fractionnelle`,
+    gxMilestoneDesc1: `Approxime $\\sin(x)$ à 3 termes`,
+    gxMilestoneDesc2: `Approxime $\\log_{10}(1+x)$ à 5 termes`,
+    gxMilestoneDesc3:
+`Approxime $e^{x}$ à 6 termes et
+retire $/\\pi$ dans la limite de l'intégrale`,
+    gxMilestoneInfo1: `Change g(x) à $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
+    gxMilestoneInfo2: `Change g(x) à $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
+    gxMilestoneInfo3: `Change g(x) à $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ & $q/\\pi \\to q$`,
+    lambdaMilestone1: `Améliore la fraction de $\\lambda$ à $2/3^{i}$`,
+    lambdaMilestone2: `Améliore la fraction de $\\lambda$ à $3/4^{i}$`,
+    story1Title: `Une Idée`,
+    story1:
+`En étudiant des techniques d'intégration, vous réfléchissez à ce que ça signifie d'avoir une dérivée ou intégrale partielle...
+Vous vous souvenez d'un ami, un professeur qui a travaillé sur le calcul différentiel et intégral, et lui demandez ce qu'il en pense.
+Il dit, "Oh, je crois que j'ai vu quelque chose sur les 'Dérivées Fractionnelles de Riemann-Liouville' dans un manuel il y a longtemps."
+Vous voulez partir de quelque chose de basique et tester de bas en haut. L'équation que vous faites est la suivante.`,
+    story2Title: `L'Implémentation`,
+    story2:
+`Alors que la croissance de ρ commence à ralentir, vous faites une pause et réfléchissez.
+C'est juste la base et vous savez qu'elle fonctionne bien, mais vous commencez à songer à quel point cette expérience de pensée peut être intéressante.
+Peut-être qu'appliquer la même idée pour ρ directement fonctionnera bien.
+Vous essayez d'ajouter "l'intégrale fractionnelle" dans l'équation de ρ pour voir ce qu'il en ressort...`,
+    story3Title: `L'Inévitable`,
+    story3:
+`Le changement a aidé, mais ce n'est pas assez pour se rapprocher de la preuve de la théorie.
+Vous jetez un coup d'oeil à l'équation.
+Vous saviez depuis le début que vous deviez ajuster lambda d'une façon ou d'une autre pour pouvoir vérifier si cette 'intégrale' était réellement liée aux véritables intégrales.
+C'est enfin le moment de faire tendre lambda vers 1.`,
+    story4Title: `Ça Avance`,
+    story4:
+`Waouh, vous n'aviez pas anticipé que ça fonctionne aussi bien !
+Mais, vous pensez qu'elle peut aller plus vite !
+Vous ajoutez une nouvelle variable pour accélérer les choses.`,
+    story5Title: `Converger vers la Vérité`,
+    story5:
+`Les variables m et n font bien le travail, mais vous devenez impatient.
+Cela prend trop de temps pour prouver quelque chose de concret.
+Certes, ρ augmente, mais ce n'est pas assez pour réellement montrer que cette intégrale "partielle" bizarre converge vers la véritable intégrale...
+Peut-être que changer g(x) va accélérer les choses !`,
+    story6Title: `Une Découverte Lambda`,
+    story6:
+`Le professeur vous approche et demande comment les choses se passent.
+Vous l'informez qu'elles se passent bien, mais toujours très lentement. Vous lui demandez comment accélérer les choses.
+"Pourquoi n'avez vous pas encore ajusté la fonction lambda ? Cette somme n'est-elle pas très lente à converger vers 1 ?"
+Ah oui !!! D'autres sommes infinies qui convergent vers 1 !
+Vous changez la fonction lambda.`,
+    story7Title: `Aperçu`,
+    story7:
+`Avoir encore changé l'équation semble avoir beaucoup aidé.
+Vous êtes satisfait de votre travail et pensez avoir diligemment fait le nécessaire pour prouver la véracité de cette conjecture...
+Le professeur vous approche et se rit de vous.
+"Pensez-vous vraiment avoir déjà prouvé quoi que ce soit ?
+Vous aurez besoin de nombres plus grand que ça pour vraiment prouver que c'est vrai.
+Vous vous souvenez de ce que j'ai dû faire pour prouver mon équation ?"
+Vous lui souriez et hochez la tête... et continuez de pousser.
+Peut-être que vous pouvez ajouter d'autre choses pour la faire aller plus vite...`,
+    story8Title: `Toujours les Mêmes`,
+    story8:
+`Vous perdez la foi en ce que vous avez jusque là...
+Vous pensez à la fois où votre collègue vous a rendu visite pour la première fois.
+Est-ce que 3/4 fonctionnerait mieux que 2/3 ?`,
+    story9Title: `À Fond`,
+    story9:
+`Vous avez l'impression que g(x) a besoin de quelque chose de plus fort que tout ce que vous lui aviez donné auparavant.
+Toutes les autres g(x) que vous avez utilisées sont à court d'énergie et ralentissent considérablement.
+Qu'est-ce qu'une très bonne équation qui devient très grande, très vite ?...
+e^x !!!
+Bien sûr, elle pendait devant votre nez tout ce temps.
+Le professeur avait raison ! Pourquoi ne pas utiliser sa propre équation !`,
+    story10Title: `Des Gains de Tau Faciles, les Gars !!!`,
+    story10:
+`Bien, vous avez l'impression qu'il n'y a plus de changements à faire.
+Le professeur vous rend visite une nouvelle fois.
+"Ah, ça devrait faire l'affaire.
+Je vois que vous avez utilisé ma propre équation pour pousser les choses.
+Qu'est-ce que vous pensez que ça va devenir maintenant ?"
+Vous répondez par un sourire.
+Je pense qu'on doit juste attendre et observer.`,
+    story11Title: `Clôture`,
+    story11:
+`Vous et le professeur êtes à une conférence où vous donnez un discours sur l'équation.
+Tout le monde est impressionné en voyant à quel point vous êtes allé loin.
+Certains pensent que vous ne pouvez pas aller beaucoup plus loin.
+Pourtant, vous continuez de pousser.
+
+Merci d'avoir joué à cette théorie jusqu'à présent.
+Je me suis éclaté à la faire et je suis si reconnaissant envers Gen et XLII pour m'avoir aidé !
+Il y a encore plus de τ à gagner ! Continuez !!
+- Snaeky`
+  },
   ja: {
     gxPopupTitle: `g(x)マイルストーン`,
     gxPopupWarning1: `このマイルストーンを購入または払い戻しすると、$q$ がリセットされます。`,
     gxPopupWarning2: `続行しますか？`,
     gxPopupYes: `はい`,
     gxPopupNo: `いいえ`,
-    gxPermaDesc: `$\\text{g(x)マイルストーンのレベル上限解放}$`,
-    gxPermaInfo: `$\\text{g(x)マイルストーンのレベル上限を解放する}$`,
-    lambdaPermaDesc: `$\\lambda\\text{マイルストーンのレベル上限解放}$`,
-    lambdaPermaInfo: `$\\lambda\\text{マイルストーンのレベル上限を解放する}$`,
-    integralMilestoneDesc: `$q/\\pi\\text{を}\\int_0^{q/\\pi}{g(x)dx}\\text{へ変更}$`,
-    integralMilestoneInfo: `$\\text{分数積分を解放}$`,
-    gxMilestoneDesc1: `$\\sin(x)\\text{を3項まで近似する}$`,
-    gxMilestoneDesc2: `$\\log_{10}(1+x)\\text{を5項まで近似}$`,
-    gxMilestoneDesc3: `$\\e^{x} \\text{を6項まで近似し、積分範囲の上限} \\pi \\text{を\\\\削除する / } $`,
-    gxMilestoneInfo1: `$\\text{g(x)を} x-\\frac{x^3}{3!}+\\frac{x^5}{5!}//text{へ変更する}$`,
-    gxMilestoneInfo2: `$\\text{g(x)を} (x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)//text{へ変更する}$`,
-    gxMilestoneInfo3: `$\\text{g(x)の} 1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!} \\text{と{} q/} \\pi \\to q$`,
-    lambdaMilestone1: `$\\lambda \\text{の分数式を} 2/3^{i}//text{へ変更}$`,
-    lambdaMilestone2: `$\\lambda \\text{の分数式を} 2/3^{i}//text{へ変更}$`,
+    gxPermaDesc: `g(x)マイルストーンのレベル上限解放`,
+    gxPermaInfo: `g(x)マイルストーンのレベル上限を解放する`,
+    lambdaPermaDesc: `$\\lambda$マイルストーンのレベル上限解放`,
+    lambdaPermaInfo: `$\\lambda$マイルストーンのレベル上限を解放する`,
+    integralMilestoneDesc: `$q/\\pi$を$\\int_0^{q/\\pi}{g(x)dx}$へ変更`,
+    integralMilestoneInfo: `分数積分を解放`,
+    gxMilestoneDesc1: `$\\sin(x)$を3項まで近似する`,
+    gxMilestoneDesc2: `$\\log_{10}(1+x)$を5項まで近似`,
+    gxMilestoneDesc3: `$e^{x}を6項まで近似し、積分範囲の上限} \\pi \\text{を\\\\削除する / } $`,
+    gxMilestoneInfo1: `g(x)を$x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$へ変更する`,
+    gxMilestoneInfo2: `g(x)を$(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$へ変更する`,
+    gxMilestoneInfo3: `$\\text{g(x)の} 1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!} \\text{と} q/\\pi \\to q$`,
+    lambdaMilestone1: `$\\lambda$の分数式を$2/3^{i}$へ変更`,
+    lambdaMilestone2: `$\\lambda$の分数式を$3/4^{i}$へ変更`,
     story1Title: `一つのアイデア`,
     story1:
 `積分のいくつかの手法を勉強しているうちに、偏微分などの部分的な積分があるとしたら、それは一体どんなものなのだろうかと考えるようになった。
@@ -295,40 +405,42 @@ e^x！！！
     gxPopupWarning2: `Вы хотите продолжить?`,
     gxPopupYes: `Да`,
     gxPopupNo: `Нет`,
-    gxPermaDesc: `$\\text{Разблокировать для улучшения g(x) уровень }$`,
-    gxPermaInfo: `$\\text{Разблокирует для улучшения g(x) уровень }$`,
-    lambdaPermaDesc: `$\\text{Разблокировать для улучшения}\\lambda \\text{ уровень }$`,
-    lambdaPermaInfo: `$\\text{Разблокирует для улучшения }\\lambda \\text{ уровень }$`,
-    integralMilestoneDesc: `$\\text{Заменить }q/\\pi\\text{ на }\\int_0^{q/\\pi}{g(x)dx}$`,
-    integralMilestoneInfo: `$\\text{Разблокировать дробный интеграл}$`,
-    gxMilestoneDesc1: `$\\text{Приблизить }\\sin(x) \\text{ с помощью 3 членов}$`,
-    gxMilestoneDesc2: `$\\text{Приблизить }\\log_{10}(1+x) \\text{ с помощью 5 членов}$`,
-    gxMilestoneDesc3: `$\\text{Приблизить }e^{x} \\text{ с помощью 6 членов и \\\\убрать / } \\pi \\text{ из предела интегрирования} $`,
-    gxMilestoneInfo1: `$\\text{Заменить g(x) на } x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
-    gxMilestoneInfo2: `$\\text{Заменить g(x) на } (x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
-    gxMilestoneInfo3: `$\\text{Заменить g(x) на } 1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!} \\text{ \\и {} q/} \\pi \\на q$`,
-    lambdaMilestone1: `$\\text{Улучшить уравнение } \\lambda \\text{ до } 2/3^{i}$`,
-    lambdaMilestone2: `$\\text{Улучшить уравнение } \\lambda \\text{ до } 3/4^{i}$`,
+    gxPermaDesc: `Разблокировать {0} уровень улучшения g(x)`,
+    gxPermaInfo: `Разблокирует {0} уровень улучшения g(x)`,
+    lambdaPermaDesc: `Разблокировать {0} уровень улучшения $\\lambda$`,
+    lambdaPermaInfo: `Разблокирует {0} уровень улучшения $\\lambda$`,
+    integralMilestoneDesc: `Заменить $q/\\pi$ на $\\int_0^{q/\\pi}{g(x)dx}$`,
+    integralMilestoneInfo: `Разблокировать дробный интеграл`,
+    gxMilestoneDesc1: `Приблизить $\\sin(x)$ с помощью 3 членов`,
+    gxMilestoneDesc2: `Приблизить $\\log_{10}(1+x)$ с помощью 5 членов`,
+    gxMilestoneDesc3:
+`Приблизить $e^{x}$ с помощью 6 членов и
+убрать $/\\pi$ из предела интегрирования`,
+    gxMilestoneInfo1: `Заменить g(x) на $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
+    gxMilestoneInfo2: `Заменить g(x) на $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
+    gxMilestoneInfo3: `Заменить g(x) на $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ \\и $q/\\pi \\to q$`,
+    lambdaMilestone1: `Улучшить уравнение $\\lambda$ до $2/3^{i}$`,
+    lambdaMilestone2: `Улучшить уравнение $\\lambda$ до $3/4^{i}$`,
     story1Title: `Идея`,
     story1:
-`При изучении техник интегрирования вы задумываетесь о том, как можно было бы получить частичную произодную или интеграл...
+`При изучении техник интегрирования Вы задумываетесь о том, как можно было бы получить частичную произодную или интеграл...
 Вы вспоминаете о своём друге — профессоре, работавшем над дифференциальным и интегральным исчислением, и спрашиваете, что он думает об этом.
 Он говорит: "Мне кажется, я видел что-то о дробных производных Римана-Лиувилля давным-давно в каком-то учебнике."
-Вы не знаете, реально ли это работает, но хотите это как-то проверить.
-Вы хотите начать с чего-то малого и проверить все снизу доверху. Уравнение, которое Вы составили, выглядит так.`,
+Вы не знаете, действительно ли это работает, но хотите это как-то проверить.
+Вы хотите начать с чего-то малого и проверить все с самых низов. Уравнение, которое Вы составили, выглядит так.`,
     story2Title: `Реализация`,
     story2:
-`Когда рост ρ начинает замедляться, Вы садитесь и начинаете думать. Это просто основа и Вы знаете, что она работает хорошо, но Вы начинаете интересоваться, насколько хорош может быть этот мысленный эксперимент.
+`Когда рост ρ начинает замедляться, Вы садитесь и задумываетесь. Это просто основа и Вы знаете, что она работает хорошо, но Вы начинаете интересоваться, насколько хорош может быть этот мысленный эксперимент.
 Возможно, применение этой же идеи для ρ напрямую сработает лучше.
 Вы пытаетесь добавить "дробный интеграл" в уравнение ρ и посмотреть, что из этого выйдет...`,
     story3Title: `Неизбежность`,
     story3:
 `Изменение помогло, но этого всё ещё недостаточно, чтобы даже приблизиться к доказательству теории.
-Вы бросаете взгляд на уравнение. Вы с самого начала знали, что нужно было каким-то образом изменить лямбду так, чтобы можно было проверить, относится ли как-то этот 'интеграл' к настоящим интегралам.
+Вы бросаете взгляд на уравнение. Вы с самого начала знали, что нужно было каким-то образом изменить лямбду так, чтобы можно было проверить, относится ли как-то этот "интеграл" к настоящим интегралам.
 Настало время приблизить лямбду к 1.`,
     story4Title: `Продвижение вперёд`,
     story4:
-`Вау, Вы не ожидали, что оно сработает настолько хорошо!
+`Вау, Вы не ожидали, что это сработает настолько хорошо!
 Но Вы думаете, что можно ещё быстрее!
 Вы добавляете новую переменную для ускорения прогресса.`,
     story5Title: `Сближение с истиной`,

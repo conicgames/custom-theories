@@ -75,8 +75,8 @@ const locStrings = {
     improveNScaling: `Improve n variable scaling`,
     snBoostDesc: `$S_n$ returns total amount of triangles`,
     snBoostInfo: `Count all triangles in the sierpinsky triangle`,
-    addSTerm: `$\\text{Add the term }s\\text{ & }\\downarrow T_n\\text{exponent by 2}$`,
-    improveRDesc: `$\\text{Improve } \\dot{r} \\text{ equation}$`
+    addSTerm: `Add the term $s$ & $\\downarrow T_n$ exponent by 2`,
+    improveRDesc: `Improve $\\dot{r}$ equation`
   },
   fr: {
     fractalBgOff: `Désactiver l’arrière-plan`,
@@ -87,8 +87,8 @@ const locStrings = {
     improveNScaling: `Améliorer la variable n`,
     snBoostDesc: `$S_n$ renvoie le nombre total de triangles`,
     snBoostInfo: `Compter tous les triangles dans le triangle de Sierpinski`,
-    addSTerm: `$\\text{Ajouter le terme }s\\text{ & }\\downarrow \\text{exposant de}T_n\\text{par 2}$`,
-    improveRDesc: `$\\text{Améliorer l'équation de} \\dot{r}$`
+    addSTerm: `Ajouter le terme $s$ & $\\downarrow$ exposant de $T_n$ par 2`,
+    improveRDesc: `Améliorer l'équation de $\\dot{r}$`
   },
   ja: {
     fractalBgOff: `背景を無効化`,
@@ -99,8 +99,8 @@ const locStrings = {
     improveNScaling: `n変数のスケーリングを改善`,
     snBoostDesc: `$S_n$は三角形の総数を返す`,
     snBoostInfo: `シェルピンスキーの三角形内のすべての三角形を数える`,
-    addSTerm: `$s\\text{項を追加し、}T_n\\text{の指数を2下げる}$`,
-    improveRDesc: `$\\dot{r}\\text{の式を改善}$`
+    addSTerm: `$s$項を追加し、$T_n$の指数を2下げる`,
+    improveRDesc: `$\\dot{r}$の式を改善`
   },
   ru: {
     fractalBgOff: `Отключить задний план`,
@@ -111,8 +111,8 @@ const locStrings = {
     improveNScaling: `Улучшить масштабирование переменной n`,
     snBoostDesc: `$S_n$ равен общему числу треугольников`,
     snBoostInfo: `Подсчитывает все треугольники в треугольнике Серпинского`,
-    addSTerm: `$\\text{Добавить член }s\\text{ и }\\downarrow \\text{ показатель степени }T_n\\text{ на 2}$`,
-    improveRDesc: `$\\text{Улучшить уравнение } \\dot{r}$`
+    addSTerm: `Добавить член $s$ и $\\downarrow$ показатель степени $T_n$ на 2`,
+    improveRDesc: `Улучшить уравнение $\\dot{r}$`
   }
 };
 const menuLang = Localization.language;
