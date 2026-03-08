@@ -40,6 +40,7 @@ Variable Explanation:
 
 t - A simple variable based on time. Is reset on publish.
 q - A variable helping you grow ρ, directly affected by t.
+a - Multiple kinds of variables, helping you grow ρ.
 b and c - Variables modifying cos(t) and isin(t)
 
 Huge thanks to:
