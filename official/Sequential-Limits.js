@@ -220,7 +220,7 @@ You decide to go over your numbers once more, just to make sure...`,
         story7:
 `1e500.
 
-A monumentally large number, but but barely a blip to you now.
+A monumentally large number, but barely a blip to you now.
 People are starting to take notice as you push mathematics to points thought unachieveable in this field.
 There's a waiting list to study under you now.
 Your friends and family are expressing concern, worried you're in too deep.
