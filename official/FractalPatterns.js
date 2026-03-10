@@ -518,19 +518,18 @@ var fadeBackground = (image, opacity) => {
 var updateBackgroundImage = (elapsedTime) => {
   if (lastTheme != game.settings.theme) {
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequenceLight.png?raw=true");
+      backgroundImages[0].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternToothpickSequenceLight.png");
     else
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequence.png?raw=true");
+      backgroundImages[0].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternToothpickSequence.png");
   
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburtonLight.png?raw=true");
+      backgroundImages[1].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternUlamWarburtonLight.png");
     else
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburton.png?raw=true");
-    
+      backgroundImages[1].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternUlamWarburton.png");
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangleLight.png?raw=true");
+      backgroundImages[2].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternSierpinskiTriangleLight.png");
     else
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangle.png?raw=true");
+      backgroundImages[2].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternSierpinskiTriangle.png");
 
     lastTheme = game.settings.theme;
   }
