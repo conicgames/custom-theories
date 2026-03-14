@@ -358,13 +358,19 @@ var postPublish = () => {
   theory.invalidateTertiaryEquation();
   theory.invalidateQuaternaryValues();
 };
-var getInternalState = () => `${q} ${r} ${t_cumulative}`;
+
+var getInternalState = () => `${q.toBase64String()} ${r.toBase64String()} ${t_cumulative.toBase64String()}`;
 
 var setInternalState = (state) => {
+  const bigNumberFromBase64OrParse = (value) => {
+    let result;
+    try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+    return result;
+  }
   let values = state.split(" ");
-  if (values.length > 0) q = parseBigNumber(values[0]);
-  if (values.length > 1) r = parseBigNumber(values[1]);
-  if (values.length > 2) t_cumulative = parseBigNumber(values[2]);
+  if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
+  if (values.length > 1) r = bigNumberFromBase64OrParse(values[1]);
+  if (values.length > 2) t_cumulative = bigNumberFromBase64OrParse(values[2]);
 
   updateN_flag = true;
 };

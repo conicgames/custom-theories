@@ -445,16 +445,23 @@ var tick = (elapsedTime, multiplier) => {
   theory.invalidateTertiaryEquation();
 };
 
-var getInternalState = () => `${t_cumulative} ${lambda_man} ${lambda_exp} ${lambda_base} ${q} ${r}`;
+var getInternalState = () => `${t_cumulative.toBase64String()} 0 0 ${lambda_base.toBase64String()} ${q.toBase64String()} ${r.toBase64String()}`;
 
 var setInternalState = (state) => {
+  const bigNumberFromBase64OrParse = (value) => {
+    let result;
+    try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+    return result;
+  }
+
   let values = state.split(" ");
-  if (values.length > 0) t_cumulative = parseBigNumber(values[0]);
-  if (values.length > 1) lambda_man = parseBigNumber(values[1]);
-  if (values.length > 2) lambda_exp = parseBigNumber(values[2]);
-  if (values.length > 3) lambda_base = parseBigNumber(values[3]);
-  if (values.length > 4) q = parseBigNumber(values[4]);
-  if (values.length > 5) r = parseBigNumber(values[5]);
+  if (values.length > 0) t_cumulative = bigNumberFromBase64OrParse(values[0]);
+  // update_divisor flag should handle computing those
+  //if (values.length > 1) lambda_man = bigNumberFromBase64OrParse(values[1]);
+  //if (values.length > 2) lambda_exp = bigNumberFromBase64OrParse(values[2]);
+  if (values.length > 3) lambda_base = bigNumberFromBase64OrParse(values[3]);
+  if (values.length > 4) q = bigNumberFromBase64OrParse(values[4]);
+  if (values.length > 5) r = bigNumberFromBase64OrParse(values[5]);
   update_divisor = true;
 };
 
