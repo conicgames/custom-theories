@@ -114,7 +114,7 @@
     },
     "authors": "Snaeky - Idea\nMathis S. - Coding",
     "description": "A custom theory about Riemann-Stieltjes integration\nThis version has a 6x tickspeed multiplier speedup for season 6",
-    "version": "2",
+    "version": "3",
     "releaseOrder": "1"
   }
 ]
