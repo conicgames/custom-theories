@@ -40,7 +40,7 @@ var getDescription = (language) => {
 }
 
 var authors = "Snaeky - Idea\nMathis S. - Coding";
-var version = 1;
+var version = 2;
 
 const s6_speed_multiplier = 6;
 
