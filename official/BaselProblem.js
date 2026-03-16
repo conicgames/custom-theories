@@ -434,7 +434,7 @@ Vous désespérez.
 Serait-ce la fin?
 Vous n'êtes pas encore tout à fait prêt à abandonner.
 Vous continuez à aller de l'avant avec votre recherche, aussi lente qu'elle puisse être.`,
-        story9Title: `EUREKA!!!`,
+        story9Title: `EURÊKA!!!`,
         story9:
 `Une nuit, vous vous agitez dans votre sommeil.
 Vers quoi converge-t-elle?
