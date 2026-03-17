@@ -129,11 +129,17 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => `${q}`
+var getInternalState = () => `${q.toBase64String()}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
-    if (values.length > 0) q = parseBigNumber(values[0]);
+    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
 }
 
 var postPublish = () => {
@@ -205,7 +211,7 @@ var getPublicationMultiplier = (newtau) => {
     let tau = newtau.pow(1.0/tauMultiplier);
     return tau<tt1250 ? tau.pow(2.203)/200:multcutoff*tau.pow(0.0001);
 }
-var getPublicationMultiplierFormula = (symbol) => "\\frac{\\tau^{0.55075}}{200}";
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.55075}}{200}";
 var getTau = () => currency.value.pow(0.1*tauMultiplier);
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
