@@ -6,9 +6,35 @@ import { Utils } from "../api/Utils";
 
 requiresGameVersion("1.4.33");
 
-var id = "convergents_to_sqrt(2)"
-var name = "Convergents to √2";
-var description = "Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.";
+var id = "convergents_to_sqrt(2)";
+var getName = (language) => {
+    const names = {
+        en: `Convergents to √2`,
+        de: `Konvergenz zur Wurzel von 2`,
+        fr: `Convergents vers √2`,
+        ja: `√2の収束分数`,
+        ru: `Приближение к корню из двух`,
+        uk: `Підхідні дроби до √2`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => {
+    const descs = {
+        en:
+`Use the convergents to √2 to increase ρ. The first few convergents to √2 are as follows: 1, 3/2, 7/5, 17/12. N_n is the numerator of the nth convergent to √2 and D_n is the nth denominator, with 0th convergent being 1/1. In the limit, these converge to √2. The convergents oscillate above and below √2. The rate of change of q is based on the precision of the approximation.`,
+        de:
+`Verwenden Sie die gegen √2 konvergierenden Zahlen, um ρ zu erhöhen. Die ersten gegen √2 konvergierenden Zahlen lauten: 1, 3/2, 7/5, 17/12. N_n ist der Zähler der n-ten gegen √2 konvergierenden Zahl und D_n der nth Nenner, wobei die nullte konvergierende Zahl 1/1 ist. Im Grenzwert konvergieren diese Zahlen gegen √2. Die Konvergenten schwanken um √2. Die Änderungsrate von q hängt von der Genauigkeit der Approximation ab.`,
+        fr:
+`Utilisez les convergents vers √2 pour augmenter ρ. Les premiers convergents vers √2 sont les suivants : 1, 3/2, 7/5, 17/12. N_n est le numérateur du nième convergent vers √2 et D_n est le nième dénominateur, le 0e convergent étant 1/1. Dans la limite, ceux-ci convergent vers √2. Les convergents oscillent au-dessus et au-dessous de √2. Le taux de changement de q est basé sur la précision de l’approximation.`,
+        ja:
+`ρを増やすために、√2の連分数近似を用いる。√2の最初のいくつかの収束分数は、1, 3/2, 7/5, 17/12の通りである。N_nを√2の第n収束分数の分母とする。ただし、0番目の収束分数は1/1とする。これらは極限において√2に収束する。また、これらの収束分数は√2を上回ったり下回ったりしながら振動する。`,
+        ru:
+`Используйте приближения к √2 для роста ρ. Первые несколько приближений к √2 следующие: 1, 3/2, 7/5, 17/12. N_n - числитель n-ного приближения к √2, а D_n - знаменатель n-ного приближения, нулевое приближение равно 1/1. В пределе эти приближения сходятся к √2. Приближения колеблются около √2, выше и ниже него. Скорость изменения q зависит от точности аппроксимации.`,
+        uk:
+`Використай підхідні дроби до √2 для збільшення ρ. Перші кілька підхідних дробів до √2 такі: 1, 3/2, 7/5, 17/12. N_n – чисельник n-го підхідного дробу до √2, а D_n – n-й знаменник, причому 0-й підхідний дріб дорівнює 1/1. У границі вони збігаються до √2. Підхідні дроби коливаються, набуваючи значень більших і менших за √2. Швидкість зміни q залежить від точності наближення.`
+    };
+    return descs[language] || descs.en;
+};
 var authors = "Solarion#4131";
 var version = 12;
 var releaseOrder = "4";
@@ -129,11 +155,17 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => `${q}`
+var getInternalState = () => `${q.toBase64String()}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
-    if (values.length > 0) q = parseBigNumber(values[0]);
+    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
 }
 
 var postPublish = () => {
@@ -205,7 +237,7 @@ var getPublicationMultiplier = (newtau) => {
     let tau = newtau.pow(1.0/tauMultiplier);
     return tau<tt1250 ? tau.pow(2.203)/200:multcutoff*tau.pow(0.0001);
 }
-var getPublicationMultiplierFormula = (symbol) => "\\frac{\\tau^{0.55075}}{200}";
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.55075}}{200}";
 var getTau = () => currency.value.pow(0.1*tauMultiplier);
 var getCurrencyFromTau = (tau) => [tau.max(BigNumber.ONE).pow(10/tauMultiplier), currency.symbol];
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();

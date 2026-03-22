@@ -7,13 +7,673 @@ import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "SequentialLimits"; //must be unique, make sure to change it 
-var name = "Sequential Limits"; //display name
-var description = "You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.\n\nThis theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.\nThe formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).\nBe careful - the closer your approximation of Euler's number is, the less your numerator grows!\nA close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle). \n\nSpecial thanks to:\n\nGilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.\n\nXelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.\n\nThe Exponential Idle beta testing team\n- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.\n\nEnjoy!"; //theory description. does not support LaTeX
+var getName = (language) => { //display name
+    const names = {
+        en: `Sequential Limits`,
+        de: `Sequentielle Grenzen`,
+        fr: `Limites Séquentielles`,
+        ja: `数列の極限`,
+        ru: `Пределы последовательностей`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => { //theory description. does not support LaTeX
+    const descs = {
+        en:
+`You're the first student of the now-retired professor, and now that they've retired, you're given the mantle of chief researcher. Eager to dive into fields where your old professor dove off, you start looking into the concept explored in the seventh lemma - sequential limits - to further your career.
+
+This theory explores the concept of approximations using a rearrangement of Stirling's Formula to approximate Euler's number.
+The formula, named after James Stirling and first stated by Abraham De Moivre, states that ln(n!) can be approximated by the infinite sum ln(1) + ln(2) .... + ln(n).
+Be careful - the closer your approximation of Euler's number is, the less your numerator grows!
+A close balancing game, fun for the whole family (or at least, the ones who play Exponential Idle).
+
+Special thanks to:
+
+Gilles-Philippe, for development of the custom theory SDK, implementing features I requested, providing countless script examples, and help with my numerous questions and balancing.
+
+Xelaroc/AlexCord, for answering my neverending questions, debugging and helping me understand how to balance a theory, and going above and beyond to teach me how custom theories work.
+
+The Exponential Idle beta testing team
+- The Exponential Idle translation team, who's work I added to, and without which this game wouldn't have the reach it does.
+
+Enjoy!`,
+        de:
+`Sie sind der erste Student des inzwischen pensionierten Professors, und jetzt, da dieser in den Ruhestand getreten ist, wird Ihnen die Rolle des Chefforschers übertragen. Sie sind bestrebt, in Bereiche einzutauchen, in denen Ihr alter Professor abgesprungen ist, und beginnen, sich mit dem im siebten Lemma untersuchten Konzept – sequentiellen Grenzen – auseinanderzusetzen, um Ihre Karriere voranzutreiben.
+
+Diese Theorie untersucht das Konzept der Näherungen mithilfe einer Neuordnung der Stirling-Formel, um die Euler-Zahl anzunähern.
+Die nach James Stirling benannte und erstmals von Abraham De Moivre aufgestellte Formel besagt, dass ln(n!) durch die unendliche Summe ln(1) + ln(2).... + ln(n) angenähert werden kann.
+Seien Sie vorsichtig – je näher Ihre Annäherung an die Eulersche Zahl ist, desto weniger wächst Ihr Zähler!
+Ein enges Balancespiel, Spaß für die ganze Familie (oder zumindest für diejenigen, die Exponential Idle spielen).
+
+Besonderer Dank geht an:
+
+Gilles-Philippe, für die Entwicklung des benutzerdefinierten Theorie-SDK, die Implementierung der von mir angeforderten Funktionen, die Bereitstellung unzähliger Skriptbeispiele und die Hilfe bei meinen zahlreichen Fragen und beim Ausbalancieren.
+
+Xelaroc/AlexCord, für die Beantwortung meiner endlosen Fragen, das Debuggen und die Hilfe beim Verstehen, wie man eine Theorie ausbalanciert, und dafür, dass Sie mir beigebracht haben, wie benutzerdefinierte Theorien funktionieren.
+
+Das Betatestteam von Exponential Idle
+- Das Übersetzungsteam von Exponential Idle, zu dessen Arbeit ich beigetragen habe und ohne das dieses Spiel nicht die Reichweite hätte, die es hat.
+
+Genießen!`,
+        fr:
+`Vous êtes le premier étudiant du professeur désormais à la retraite, et maintenant qu'il a pris sa retraite, vous avez été donné le titre de chercheur en chef. Désireux de plonger dans des domaines où votre ancien professeur a plongé, vous commencez à examiner le concept exploré dans le septième lemme - limites séquentielles - pour faire progresser votre carrière.
+
+Cette théorie explore le concept d'approximations en utilisant un réarrangement de la formule de Stirling pour approcher le nombre d'Euler.
+La formule, nommée d'après James Stirling et d'abord déclarée par Abraham De Moivre, stipule que ln(n!) peut être approché par la somme infinie ln(1) + ln(2) .... + ln(n).
+Soyez prudent - plus votre approximation du nombre d'Euler est proche, moins votre numérateur grandit !
+Un jeu d'équilibre serré, amusant pour toute la famille (ou du moins, ceux qui jouent à Exponential Idle).
+
+Remerciements spéciaux à:
+
+Gilles-Philippe, pour le développement du kit de développement de théorie personnalisée, la mise en œuvre des fonctionnalités que j'ai demandées, la fourniture d'innombrables exemples de scripts et l'aide avec mes nombreuses questions et l'équilibrage.
+
+Xelaroc/AlexCord, pour avoir répondu à mes questions sans fin, déboguer et m'avoir aidé à comprendre comment équilibrer une théorie, et aller au-delà pour m'apprendre comment fonctionnent les théories personnalisées.
+
+L'équipe de bêta test Exponential Idle
+- L'équipe de traduction Exponential Idle, dont j'ai ajouté le travail, et sans laquelle ce jeu n'aurait pas la portée qu'il a.
+
+Amusez-vous !`,
+        ja:
+`あなたは、今はもう引退した教授の最初の教え子。
+そしてその教授が退いた今、主任研究者の座を託されることになった。
+かつて恩師が切り拓いた分野へ、自分も踏み込んでいきたい――そんな思いから、あなたはLemma7で扱われた概念、「数列の極限」の研究に乗り出し、さらなる飛躍を目指す。
+
+この理論では、スターリングの公式を変形することで、ネイピア数eを近似するという考え方を扱う。
+この公式はジェームズ・スターリングの名を冠し、最初にアブラハム・ド・モアブルによって述べられたもので、ln(n!)はln(1) + ln(2) .... + ln(n)によって近似できる。
+ただし注意――eの近似が真値に近づくほど、分子の伸びは鈍くなるぞ！
+絶妙なバランス感覚が試される理論。家族みんなで楽しめます（少なくとも、Exponential Idleを遊ぶ人たちなら）。
+
+スペシャルサンクス：
+
+Gilles-Philippeには、カスタム理論SDKの開発、私の要望した機能の実装、数えきれないほどのスクリプト例の提供、そして多くの質問やバランス調整の相談に応じてくれたことに感謝します。
+
+XelarocとAlexCordには、終わりのない私の質問に答え、デバッグを手伝い、さらには理論のバランス調整の考え方を教えてくれただけでなく、カスタム理論の仕組みそのものまで丁寧に教えてくれたことに感謝します。
+
+Exponential Idleベータテストチーム
+私もExponential Idle翻訳チームに加わりましたが、この存在がなければこのゲームがこんなにも広く届くことはなかったでしょう。
+
+お楽しみください！`,
+        ru:
+`Вы - первый студент ныне вышедшего на пенсию профессора, и теперь, когда его уже нет, Вам передана должность главного научного сотрудника. Жаждая погрузиться в отрасли, в которые окунался Ваш старый профессор, Вы начинаете работать над концептом, которому была посвящена седьмая лемма - пределами последовательностей, - для продвижения своей карьеры.
+
+Эта теория исследует концепцию аппроксимаций, использующих видоизменённую формулу Стирлинга для приближения числа Эйлера.
+Формула за авторством Абрахама де Муавра, названная в честь Джеймса Стирлинга, утверждает, что ln(n!) можно аппроксимировать бесконечной суммой ln(1) + ln(2) .... + ln(n).
+Будьте аккуратны - чем ближе Ваша аппроксимация числа Эйлера, тем медленнее растёт числитель!
+Игра балансирования - развлечение для всей семьи (или хотя бы для тех, кто играет в Exponential Idle).
+
+Особые благодарности:
+
+Gilles-Philippe, за разработку SDK пользовательских теорий, внедрение функций, о которых я просил, предоставление бесчисленных примеров скриптов, ответы на множество моих вопросов и помощь с балансом.
+
+Xelaroc/AlexCord, за ответы на мои нескончаемые вопросы, дебаг и помощь с процессом баланса теории, а также за то, что делал всё возможное, чтобы научить меня тому, как работают пользовательские теории.
+
+Команде бета-тестеров Exponential Idle
+Команде переводчиков Exponential Idle, чей работе я поспособствовал и без которых эта игра не достигла бы нынешних масштабов.
+
+Наслаждайтесь!`
+    };
+    return descs[language] || descs.en;
+}
 var authors = "ellipsis"; //display author in the "author" field
 var version = 8; //version id, make sure to change it on update
 var releaseOrder = "2";
 
 requiresGameVersion("1.4.33");
+
+const locStrings = {
+    example: {
+        achCat1: ``,
+        achCat2: ``,
+        achCat3: ``,
+        achCat4: ``,
+        ach1: ``,
+        ach1Desc: ``,
+        ach2: ``,
+        ach2Desc: ``,
+        ach3: ``,
+        ach4: ``,
+        ach5: ``,
+        ach6: ``,
+        ach7: ``,
+        ach8: ``,
+        ach9: ``,
+        ach10: ``,
+        ach11: ``,
+        ach12: ``,
+        ach13: ``,
+        ach14: ``,
+        ach15: ``,
+        ach16: ``,
+        ach17: ``,
+        achPubDesc: `{0}`,
+        achApproxDesc: `{0}`,
+        sach1: ``,
+        sach1Desc: ``,
+        sach1Hint: ``,
+        sach2: ``,
+        sach2Desc: ``,
+        sach2Hint: ``,
+        sach3: ``,
+        sach3Desc: ``,
+        sach3Hint: ``,
+        sach4: ``,
+        sach4Desc: ``,
+        sach4Hint: ``,
+        story1Title: ``,
+        story1:
+``,
+        story2Title: ``,
+        story2:
+``,
+        story3Title: ``,
+        story3:
+``,
+        story4Title: ``,
+        story4:
+``,
+        story5Title: ``,
+        story5:
+``,
+        story6Title: ``,
+        story6:
+``,
+        story7Title: ``,
+        story7:
+``,
+        story8Title: ``,
+        story8:
+``
+    },
+    en: {
+        achCat1: `Miscellaneous`,
+        achCat2: `Publications`,
+        achCat3: `Approximation`,
+        achCat4: `Secret Achievements`,
+        ach1: `Purchase Optimisation`,
+        ach1Desc: `Outsource the actual buying of variables to your students.`,
+        ach2: `Amateur Author`,
+        ach2Desc: `Publish once.`,
+        ach3: `Regular Reporter`,
+        ach4: `Regular Scribbler`,
+        ach5: `Studied Scribbler`,
+        ach6: `Exemplary Essayist`,
+        ach7: `Publication Professional`,
+        ach8: `Close Enough`,
+        ach9: `Nitpicking Exercise`,
+        ach10: `Splitting Hairs`,
+        ach11: `Microscopic`,
+        ach12: `Subatomic`,
+        ach13: `Planck Pettiness`,
+        ach14: `Are We There Yet?`,
+        ach15: `Precision Player`,
+        ach16: `Running Out Of Room`,
+        ach17: `You Can Stop Anytime`,
+        achPubDesc: `Publish {0} times.`,
+        achApproxDesc: `Get your approximation of e 10^-{0} off true`,
+        sach1: `Pattern Fanatic`,
+        sach1Desc: `Have every variable level the same.`,
+        sach1Hint: `Palindromic`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Elite`,
+        sach3: `On Vacation`,
+        sach3Desc: `Don't buy anything for an hour after a publication.`,
+        sach3Hint: `Forgot something?`,
+        sach4: `Futility`,
+        sach4Desc: `Tap the equation 1000 times.`,
+        sach4Hint: `Fatigued`,
+        story1Title: `A New Beginning`,
+        story1:
+`You return from your old professor's retirement party, the mantle passed onto you, the first student, to head the department of students accrued over the years.
+Excited to finally be listed as something other than 'et. al' on a paper, you continued with your existing research, but as progress slowed, you felt less and less satisfied.
+The days turn into weeks, which blur together as more and more publications are written.
+Eventually, a student comes to you with a dusty tome, featuring a as-of-yet unexplored theorem.
+Feeling a stroke of inspiriation, you assemble a team of students and throw yourself into the research`,
+        story2Title: `Taking Risks`,
+        story2:
+`You notice a few unassuming variables at the bottom of the equation.
+A student warns you against changing them, citing the risk of decreasing the income existing values, but you forge ahead.`,
+        story3Title: `International`,
+        story3:
+`You publish your first paper, with your name front and center.
+Colleagues congratulate you, but you feel there is something missing, further exploration to be had.
+You decide to forge ahead.`,
+        story4Title: `Light Modification`,
+        story4:
+`With your progress starting to slow, you scour the original equation texts to find a remedy.
+It turns out all along there's been some modifiers you can add, but at ever increasing costs.
+You decide to buy one, hoping it alleviates your issues...`,
+        story5Title: `Making Progress`,
+        story5:
+`You reach 1e100 ρ₁, a major milestone in your research.
+Colleagues come to congratulate you on pushing your research so far, but you shrug them off - you feel as if there's more you could do.
+You head back to your office and get to work once more`,
+        story6Title: `The End.... Or Is It?`,
+        story6:
+`You finally purchased every modifier, to close out your research into this field.
+Your students assigned to this project celebrate, anticipating closing out this line of research, and your name is posted in journals worldwide.
+
+You decide to go over your numbers once more, just to make sure...`,
+        story7Title: `Mathaholic`,
+        story7:
+`1e500.
+
+A monumentally large number, but barely a blip to you now.
+People are starting to take notice as you push mathematics to points thought unachieveable in this field.
+There's a waiting list to study under you now.
+Your friends and family are expressing concern, worried you're in too deep.
+It doesn't matter.
+Another breakthrough is close.
+You can feel it.
+
+Right?`,
+        story8Title: `The End.`,
+        story8:
+`1e1000.
+
+A number so big it'd be impossible to comprehend.
+You did it. They said you couldn't.
+Years after you first started, you reach an incredible end to your research.
+You're featured on TIME, on daytime television, in worldwide newspapers. Your papers are framed, your students all professors in their own rights now.
+You pass on the mantle to a younger student of yours to retire like your old professor, back all those years ago.
+
+THE END.
+Thanks for playing! - ellipsis`
+    },
+    de: {
+        achCat1: `Verschiedenes`,
+        achCat2: `Veröffentlichungen`,
+        achCat3: `Annäherungen`,
+        achCat4: `Geheime Erfolge`,
+        ach1: `Einkaufsoptimierung`,
+        ach1Desc: `Lagern Sie den eigentlichen Einkauf von Variablen an Ihre Studierenden aus`,
+        ach2: `Amateurautor`,
+        ach2Desc: `Einmal veröffentlichen.`,
+        ach3: `Regelmäßiger Reporter`,
+        ach4: `Regelmäßiger Schreiberling`,
+        ach5: `Studierter Schreiber`,
+        ach6: `Vorbildlicher Aufsätzer`,
+        ach7: `Publikationsprofi`,
+        ach8: `Nah Genug`,
+        ach9: `Nitpicking-Übung`,
+        ach10: `Haarspalterei`,
+        ach11: `Mikroskopisch`,
+        ach12: `Subatomar`,
+        ach13: `Plancks Kleinlichkeit`,
+        ach14: `Sind Wir Schon Da?`,
+        ach15: `Präzisionsspieler`,
+        ach16: `Kein Platz mehr`,
+        ach17: `Sie können jederzeit aufhören`,
+        achPubDesc: `{0} mal veröffentlichen.`,
+        achApproxDesc: `Erhalten Sie Ihre Näherung von e 10^-{0} wahr`,
+        sach1: `Musterfanatiker`,
+        sach1Desc: `Sorgen Sie dafür, dass alle Variablenebenen gleich sind.`,
+        sach1Hint: `Palindromisch`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Elite`,
+        sach3: `Im Urlaub`,
+        sach3Desc: `Kaufen Sie nach einer Veröffentlichung eine Stunde lang nichts.`,
+        sach3Hint: `Etwas vergessen?`,
+        sach4: `Sinnlosigkeit`,
+        sach4Desc: `Tippe die Gleichung 1000 Mal an.`,
+        sach4Hint: `Erschöpft`,
+        story1Title: `Ein Neuanfang`,
+        story1:
+`Du kehrst von der Abschiedsfeier deines alten Professors zurück. Dir, dem ersten Studenten, wurde die Leitung des Fachbereichs übertragen, der sich über die Jahre angesammelt hat.
+Endlich wirst du in einer Publikation nicht mehr nur als „et al.“ genannt. Du setzt deine Forschung fort, doch mit dem langsameren Fortschritt wächst deine Unzufriedenheit.
+Die Tage vergehen wie im Flug, während immer mehr Publikationen entstehen.
+Schließlich kommt ein Student mit einem verstaubten Wälzer zu dir, der ein bisher unerforschtes Theorem enthält.
+Inspiriert von diesem Gedanken stellst du ein Team von Studenten zusammen und stürzt dich in die Forschung.`,
+        story2Title: `Risiken Eingehen`,
+        story2:
+`Sie bemerken einige unscheinbare Variablen am Ende der Gleichung.
+Ein Student warnt Sie davor, diese zu ändern, da dies das Risiko berge, die bestehenden Einkommenswerte zu verringern, aber Sie machen trotzdem weiter.`,
+        story3Title: `International`,
+        story3:
+`Sie veröffentlichen Ihre erste Arbeit, Ihr Name steht prominent auf der Titelseite.
+Ihre Kollegen gratulieren Ihnen, doch Sie spüren, dass etwas fehlt, dass es noch mehr zu entdecken gibt.
+Sie beschließen, weiterzumachen.`,
+        story4Title: `Leichte Modifikation`,
+        story4:
+`Da dein Fortschritt ins Stocken gerät, durchforstest du die Originalformeln nach einer Lösung.
+Es stellt sich heraus, dass es schon immer Modifikatoren gab, die du hinzufügen konntest, allerdings zu immer höheren Kosten.
+Du beschließt, einen zu kaufen, in der Hoffnung, dass er deine Probleme löst…`,
+        story5Title: `Fortschritte Werden Erzielt`,
+        story5:
+`Sie erreichen 1e100 ρ₁, einen wichtigen Meilenstein Ihrer Forschung.
+Kollegen gratulieren Ihnen zu Ihrem bisherigen Erfolg, doch Sie winken ab – Sie spüren, dass Sie noch mehr erreichen können.
+Sie kehren in Ihr Büro zurück und machen sich wieder an die Arbeit.`,
+        story6Title: `Das Ende... oder doch nicht?`,
+        story6:
+`Sie haben endlich alle notwendigen Informationen erworben und Ihre Forschung auf diesem Gebiet abgeschlossen.
+Ihre Studierenden, die an diesem Projekt beteiligt waren, feiern, voller Vorfreude auf den Abschluss dieser Forschungsrichtung, und Ihr Name wird in Fachzeitschriften weltweit veröffentlicht.
+
+Sie beschließen, Ihre Zahlen noch einmal zu überprüfen, nur um sicherzugehen...`,
+        story7Title: `Matheliker`,
+        story7:
+`1e500.
+
+Eine gigantische Zahl, aber für dich im Moment kaum der Rede wert.
+Man wird langsam auf dich aufmerksam, denn du treibst die Mathematik an Grenzen, die in diesem Bereich für unmöglich gehalten wurden.
+Es gibt bereits eine Warteliste für deine Studienplätze.
+Deine Freunde und Familie machen sich Sorgen, ob du dich nicht zu weit vorgewagt hast. Aber das ist egal.
+Der nächste Durchbruch steht kurz bevor.
+Du spürst es.
+
+Oder?`,
+        story8Title: `Das Ende.`,
+        story8:
+`1e1000.
+
+Eine Zahl so gewaltig, dass sie unvorstellbar ist.
+Du hast es geschafft. Alle sagten, du könntest es nicht.
+Jahre nach deinem Beginn erreichst du einen unglaublichen Höhepunkt deiner Forschung.
+Du wirst im TIME Magazine, im Fernsehen und in Zeitungen weltweit vorgestellt. Deine Arbeiten werden gerahmt, deine ehemaligen Studenten sind inzwischen selbst Professoren.
+Du übergibst die Professur an einen jüngeren Studenten, der wie dein ehemaliger Professor vor so vielen Jahren in den Ruhestand geht.
+
+ENDE.
+Vielen Dank fürs Mitspielen! - ellipsis`
+    },
+    fr: {
+        achCat1: `Divers`,
+        achCat2: `Publications`,
+        achCat3: `Approximation`,
+        achCat4: `Secrets`,
+        ach1: `Optimisation d'achats`,
+        ach1Desc: `Externalisez l'achat de variables à vos étudiants.`,
+        ach2: `Auteur Amateur`,
+        ach2Desc: `Publiez une fois.`,
+        ach3: `Reporter Régulier`,
+        ach4: `Griffonneur Régulier`,
+        ach5: `Griffonneur Érudit`,
+        ach6: `Essayiste Exemplaire`,
+        ach7: `Professionnel de la Publication`,
+        ach8: `Assez Proche`,
+        ach9: `Exercice Chirurgical`,
+        ach10: `À un Cheveu Près`,
+        ach11: `Microscopique`,
+        ach12: `Subatomique`,
+        ach13: `Insignifiance de Planck`,
+        ach14: `Sommes-nous Déjà Là ?`,
+        ach15: `Joueur de Précision`,
+        ach16: `À Court de Place`,
+        ach17: `Vous Pouvez Vous Arrêter à Tout Moment`,
+        achPubDesc: `Publiez {0} fois.`,
+        achApproxDesc: `Approximez e à 10^-{0} près`,
+        sach1: `Fanatique des Motifs`,
+        sach1Desc: `Ayez chaque niveau de variable identique.`,
+        sach1Hint: `Palindromique`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Élite`,
+        sach3: `En Vacances`,
+        sach3Desc: `N'achetez rien pendant une heure après une publication.`,
+        sach3Hint: `Avez-vous oublié quelque chose ?`,
+        sach4: `Futilité`,
+        sach4Desc: `Appuyez sur l'équation 1000 fois.`,
+        sach4Hint: `Fatigué`,
+        story1Title: `Un Nouveau Départ`,
+        story1:
+`Vous revenez du pot de départ de votre ancien professeur, le flambeau vous a été transmis, le premier étudiant, pour diriger le département des étudiants accumulés au fil des ans.
+Excité d'être enfin mentionné comme autre chose que « et. al » sur un article, vous avez continué vos recherches existantes, mais à mesure que les progrès ralentissaient, vous vous êtes senti de moins en moins satisfait.
+Les jours se transforment en semaines, qui s'estompent au fur et à mesure des publications écrites.
+Finalement, un étudiant vient à vous avec un tome poussiéreux, comportant un théorème encore inexploré.
+Ressentant un coup d'inspiration, vous rassemblez une équipe d'étudiants et vous vous lancez dans la recherche.`,
+        story2Title: `Prendre des Risques`,
+        story2:
+`Vous remarquez quelques variables modestes en bas de l'équation.
+Un étudiant vous met en garde contre le fait de les changer, invoquant le risque de diminuer les valeurs existantes du revenu, mais vous allez de l'avant.`,
+        story3Title: `International`,
+        story3:
+`Vous publiez votre premier article, avec votre nom au premier plan.
+Les collègues vous félicitent, mais vous sentez qu'il manque quelque chose, plus d'exploration à faire.
+Vous décidez d'aller de l'avant.`,
+        story4Title: `Légère Modification`,
+        story4:
+`Vos progrès commençant à ralentir, vous parcourez les textes originaux de l'équation pour trouver un remède.
+Il s'avère que depuis le début, il y avait des modificateurs que vous pouvez ajouter, mais à des coûts toujours croissants.
+Vous décidez d'en acheter un, en espérant que cela atténuera vos problèmes...`,
+        story5Title: `Faire des Progrès`,
+        story5:
+`Vous atteignez 1e100 ρ₁, une étape majeure de votre recherche.
+Les collègues viennent vous féliciter d'avoir poussé vos recherches jusqu'à présent, mais vous les ignorez - vous avez l'impression qu'il y a plus que vous pourriez faire.
+Vous retournez à votre bureau et vous vous reprenez au travail.`,
+        story6Title: `La Fin.... Ou Pas ?`,
+        story6:
+`Vous avez finalement acheté tous les modificateurs, pour clôturer vos recherches dans ce domaine.
+Vos étudiants affectés à ce projet célèbrent, anticipant la clôture de cette ligne de recherche, et votre nom est affiché dans des revues du monde entier.
+
+Vous décidez de passer en revue vos chiffres une fois de plus, juste pour vous assurer...`,
+        story7Title: `Féru de Mathématiques`,
+        story7:
+`1e500.
+
+Un nombre monumentalement important, mais à peine un détail pour vous maintenant.
+Les gens commencent à remarquer que vous poussez les mathématiques à des points considérés comme irréalisables dans ce domaine.
+Il y a une liste d'attente pour étudier sous votre aile maintenant.
+Vos amis et votre famille expriment leur inquiétude, craignant que vous ne soyez trop aspiré.
+Ce n'est pas grave.
+Une autre percée est proche.
+Vous pouvez le sentir.
+
+N'est-ce pas ?`,
+        story8Title: `La Fin.`,
+        story8:
+`1e1000.
+
+Un nombre si grand qu'il serait impossible à comprendre.
+Vous l'avez fait. Ils ont dit que vous ne pourriez pas.
+Des années après avoir commencé, vous atteignez une fin incroyable à vos recherches.
+Vous êtes présenté sur TIME, à la télévision, dans des journaux du monde entier. Vos papiers sont encadrés, vos étudiants sont tous des professeurs pour leur propre compte maintenant.
+Vous passez le flambeau à un de vos jeunes étudiants pour prendre votre retraite comme votre ancien professeur, il y a toutes ces années.
+
+FIN.
+Merci d'avoir joué ! - ellipsis`
+    },
+    ja: {
+        achCat1: `その他`,
+        achCat2: `出版`,
+        achCat3: `近似`,
+        achCat4: `隠し実績`,
+        ach1: `購入最適化`,
+        ach1Desc: `変数の購入そのものは、学生たちに任せよう。`,
+        ach2: `かけだしの著者`,
+        ach2Desc: `出版を1回行う。`,
+        ach3: `いつものレポーター`,
+        ach4: `いつもの書き手`,
+        ach5: `研鑽を積んだ書き手`,
+        ach6: `模範的なエッセイスト`,
+        ach7: `出版のプロ`,
+        ach8: `だいたいあってる`,
+        ach9: `粗探しの練習`,
+        ach10: `重箱の隅をつつく`,
+        ach11: `顕微鏡レベル`,
+        ach12: `亜原子レベル`,
+        ach13: `プランク級の細かさ`,
+        ach14: `まだ着かないの？`,
+        ach15: `繊細な人`,
+        ach16: `もう余裕がない`,
+        ach17: `いつでもやめられるよ`,
+        achPubDesc: `出版を{0}回行う。`,
+        achApproxDesc: `eの近似値の真値との差を10^-{0}まで縮める。`,
+        sach1: `パターン狂`,
+        sach1Desc: `すべての変数レベルを同じにする。`,
+        sach1Hint: `回文`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `エリート`,
+        sach3: `休暇中`,
+        sach3Desc: `論文発表後、1時間何も購入しない。`,
+        sach3Hint: `何か忘れてない？`,
+        sach4: `徒労`,
+        sach4Desc: `数式を1000回タップする。`,
+        sach4Hint: `疲労困憊`,
+        story1Title: `新たな始まり`,
+        story1:
+`恩師の退職パーティーから戻ったあなたに託されたのは、長年にわたって集った学生たちの学科を率いる役目だった。最初の教え子であるあなたが、その後継者となったのだ。
+ようやく論文の著者欄で""et al.""以外の立場になれることに胸を躍らせながら、あなたはこれまでの研究を続けた。だが、進展が鈍るにつれ、満足感は少しずつ薄れていく。
+日々は週へと変わり、次々と論文が書き上げられていった。
+やがてある日、一人の学生が、まだ誰にも研究されていない定理が記された埃まみれの古書を持ってくる。
+閃きを覚えたあなたは学生たちを集め、その研究へと身を投じる。`,
+        story2Title: `リスクを取る`,
+        story2:
+`数式の下のほうに、目立たない変数がいくつかあることに気づく。
+ある学生は、それをいじると既存の値から得られる収入が下がる危険があると警告する。
+それでもあなたは、構わず先へ進む。`,
+        story3Title: `世界へ`,
+        story3:
+`初めての論文を発表し、自分の名前が堂々と先頭に載る。
+同僚たちは祝福してくれるが、あなたはどこか物足りなさを覚えていた。まだ踏み込める余地がある。
+あなたは歩みを止めないことにする。`,
+        story4Title: `ささやかな改変`,
+        story4:
+`進捗が鈍り始めたあなたは、解決策を求めて元の数式資料を徹底的に調べる。
+すると、どうやら最初から追加できる修飾子が存在していたことがわかる。ただし、その代償は買うごとにどんどん重くなっていく。
+問題が少しでも和らぐことを願い、あなたはひとつ購入することにした...。`,
+        story5Title: `前進`,
+        story5:
+`研究の大きな節目となる1e100 ρ1に到達した。
+同僚たちはここまで研究を進めたあなたを祝福するが、あなたはそれを軽く受け流す。まだやれることがある――そんな感覚が拭えない。
+あなたは再び研究室へ戻り、仕事に取りかかる。`,
+        story6Title: `終わり.... なのか？`,
+        story6:
+`ついに、研究に必要な修飾子をすべて購入し終えた。
+このプロジェクトを担当していた学生たちは、この研究分野に区切りがつくことを喜び、あなたの名は世界中の学術誌に載る。
+
+だが、あなたは最後にもう一度だけ数字を見直すことにした。念のために...。`,
+        story7Title: `数学厨`,
+        story7:
+`1e500。
+
+とてつもなく大きな数字。だが、今のあなたにとっては、もはやほんの小さな通過点にすぎない。
+この分野で到達不可能だと思われていた領域にまで数学を押し広げるあなたに、人々は注目し始めている。
+今や、あなたのもとで学びたい者たちの順番待ちができている。
+友人や家族は、あなたが研究にのめり込みすぎているのではと心配している。
+でも、そんなことはどうでもいい。
+次の大きな突破口は、もうすぐそこだ。
+そう感じる。
+
+……だろ？`,
+        story8Title: `終幕。`,
+        story8:
+`1e1000。
+
+あまりにも大きすぎて、もはや想像することすらできない数。
+あなたは成し遂げた。できるはずがないと言われながらも。
+最初に研究を始めてから幾年もの時を経て、ついに驚異的な終着点へとたどり着く。
+あなたはTIME誌に取り上げられ、昼のテレビ番組に出演し、世界中の新聞で報じられる。
+あなたの論文は額装され、教え子たちは皆それぞれ教授となった。
+そしてあなたもまた、かつての恩師のように引退するため、自分の若き教え子へその役目を引き継ぐ。
+
+これで終わり。
+プレイしてくれてありがとう！ — ellipsis`
+    },
+    ru: {
+        achCat1: `Разное`,
+        achCat2: `Публикации`,
+        achCat3: `Аппроксимации`,
+        achCat4: `Секретные достижения`,
+        ach1: `Оптимизация покупок`,
+        ach1Desc: `Передайте покупку переменных в руки своих студентов.`,
+        ach2: `Автор-любитель`,
+        ach2Desc: `Совершите первую публикацию.`,
+        ach3: `Постоянный докладчик`,
+        ach4: `Постоянный писака`,
+        ach5: `Начитанный писака`,
+        ach6: `Образцовый эссеист`,
+        ach7: `Профессионал публикаций`,
+        ach8: `И так сойдёт`,
+        ach9: `Упражнения в дотошности`,
+        ach10: `Придирки к мелочам`,
+        ach11: `Микроскопический`,
+        ach12: `Субатомный`,
+        ach13: `Мелочность величины Планка`,
+        ach14: `Мы уже приехали?`,
+        ach15: `Точный игрок`,
+        ach16: `Места всё меньше`,
+        ach17: `Ты можешь остановиться в любой момент`,
+        achPubDesc: `Совершите публикацию {0} раз.`,
+        achApproxDesc: `Добейтесь того, чтобы Ваша аппроксимация e давала погрешность в 10 ^-{0}.`,
+        sach1: `Фанатик закономерностей`,
+        sach1Desc: `Купите одинаковое количество уровней каждой переменной.`,
+        sach1Hint: `Палиндром`,
+        sach2: `l33t5p34k`,
+        sach2Desc: `1337.`,
+        sach2Hint: `Элитарность.`,
+        sach3: `В отпуске`,
+        sach3Desc: `Не покупайте ничего в течение часа после публикации.`,
+        sach3Hint: `Что-то забыли?`,
+        sach4: `Всё тщетно`,
+        sach4Desc: `Нажмите на уравнение 1000 раз.`,
+        sach4Hint: `Усталость`,
+        story1Title: `Новое начало`,
+        story1:
+`Вы вернулись с вечеринки в честь выхода Вашего старого профессора на пенсию, и ответственность возглавить кафедру из студентов, набранных за все годы, была передана Вам, первому студенту.
+Восхищённый тем, что отныне Вы будете упоминаться в статьях как-то иначе, кроме "и др.", Вы продолжаете свои исследования, но по мере того, как прогресс замедляется, Вы чувствуете себя все менее и менее удовлетворённым.
+Дни превращаются в недели, которые сливаются воедино по мере того, как пишется все больше и больше публикаций.
+В конце концов, к вам подходит студент с пыльным сборником, содержащим ещё не изученную теорему.
+Чувствуя прилив вдохновения, вы собираете команду студентов и с головой погружаетесь в исследование.`,
+        story2Title: `Принятие рисков`,
+        story2:
+`Вы замечаете несколько непритязательных переменных в нижней части уравнения.
+Студент предостерегает вас от их изменения, ссылаясь на риск снижения существующих значений роста, но вы продолжаете идти вперед.`,
+        story3Title: `Международный уровень`,
+        story3:
+`Вы публикуете свою первую статью, с Вашим именем на самом видном месте.
+Коллеги поздравляют Вас, однако Вы чувствуете, что чего-то не хватает и исследование надо продолжать.
+Вы решаете двигаться вперёд.`,
+        story4Title: `Лёгкая модификация`,
+        story4:
+`С замедлением прогресса Вы тщательно просматриваете тексты первоначального уравнения в попытках найти решение.
+Оказывается, всё это время Вы могли добавить некоторые модификаторы, затраты на которые, тем не менее, будут постоянно расти.
+Вы решаете купить один из них, надеясь, что это облегчит Ваши проблемы...`,
+        story5Title: `Достижение прогресса`,
+        story5:
+`Вы достигли 1e100 ρ₁, значительной цели в Вашем исследовании.
+Коллеги подходят поздравить Вас с тем, что Вы так далеко продвинулись в своих исследованиях, но Вы отмахиваетесь от них - Вам кажется, что Вы могли бы сделать гораздо больше.
+Вы возвращаетесь в свой офис и снова принимаетесь за работу.`,
+        story6Title: `Конец... Или нет?`,
+        story6:
+`Вы наконец-то приобрели все модификаторы, что может позволить Вам завершить свои исследования в этой области.
+Ваши студенты, участвующие в этом проекте, празднуют победу, предвкушая завершение этого направления исследований, а Ваше имя публикуется в журналах по всему миру.
+
+Вы решаете для верности еще раз проверить свои цифры...`,
+        story7Title: `Математоголик`,
+        story7:
+`1e500.
+
+Монументально большое число, теперь ставшее для Вас едва заметной вспышкой.
+Люди начинают обращать внимание на то, что Вы доводите математику до уровня, который считается недостижимым в этой области.
+На обучение под Вашим крылом образуются очереди.
+Ваши друзья и родственники обеспокоены, опасаясь, что Вы зашли слишком далеко.
+Но всё это не имеет значения.
+Следующий прорыв близок.
+Вы это чувствуете.
+
+Да ведь?`,
+        story8Title: `Конец.`,
+        story8:
+`1e1000.
+
+Число настолько огромное, что его невозможно постигнуть.
+Вы сделали это. Хотя все говорили, что Вы не сможете.
+Спустя годы после начала Вы достигли невероятного окончания своих исследований.
+Вы везде: в "Time", на телевидении, в газетах по всему миру. Ваши статьи вешают в рамку. Ваши студенты уже сами становятся профессорами.
+Вы передаёте эстафету своему молодому студенту и выходите на пенсию, как Ваш профессор много лет назад.
+
+КОНЕЦ.
+Спасибо за игру! - ellipsis`
+    }
+};
+const menuLang = Localization.language;
+let getLoc = (name, lang = menuLang) => {
+    if (lang in locStrings && name in locStrings[lang])
+        return locStrings[lang][name];
+    if (name in locStrings.en)
+        return locStrings.en[name];
+    return `String missing: ${lang}.${name}`;
+};
 
 var tauMultiplier = 4;
 
@@ -115,49 +775,46 @@ var init = () => {
         gamma3.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation(); //if bought/refunded, force a refresh of the equation
     }        
 
-    //utilities
-    var bsf={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'\=",e:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=bsf._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},d:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=bsf._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}};
-    
     // Achievements
-    var AchievementCat0 = theory.createAchievementCategory(0, "Miscellaneous");
-    var AchievementCat1 = theory.createAchievementCategory(1, "Publications");
-    var AchievementCat2 = theory.createAchievementCategory(2, "Approximation");
-    var AchievementCat3  = theory.createAchievementCategory(3, "Secret Achievements");
-    achievement6 = theory.createAchievement(5, AchievementCat0, "Purchase Optimisation", "Outsource the actual buying of variables to your students", () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
+    var AchievementCat0 = theory.createAchievementCategory(0, getLoc(`achCat1`));
+    var AchievementCat1 = theory.createAchievementCategory(1, getLoc(`achCat2`));
+    var AchievementCat2 = theory.createAchievementCategory(2, getLoc(`achCat3`));
+    var AchievementCat3  = theory.createAchievementCategory(3, getLoc(`achCat4`));
+    theory.createAchievement(5, AchievementCat0, getLoc(`ach1`), getLoc(`ach1Desc`), () => theory.isAutoBuyerAvailable); //award an achievement for unlocking the autobuyer
     
-    achievement1 = theory.createAchievement(0, AchievementCat1, "Amateur Author", "Publish once.", () => numPublications >= 1); //award an achievement with name and description if there has been 1 publish
-    achievement2 = theory.createAchievement(1, AchievementCat1, "Regular Reporter", "Publish 3 times.", () => numPublications >= 3); //same for 3 publications
-    achievement3 = theory.createAchievement(2, AchievementCat1, "Studied Scribbler", "Publish 5 times.", () => numPublications >= 5); //same for 5 publications
-    achievement4 = theory.createAchievement(3, AchievementCat1, "Exemplary Essayist", "Publish 10 times.", () => numPublications >= 10); //same for 10 publications
-    achievement5 = theory.createAchievement(4, AchievementCat1, "Publication Professional", "Publish 20 times.", () => numPublications >= 20); //same for 20 publications
+    theory.createAchievement(0, AchievementCat1, getLoc(`ach2`), getLoc(`ach2Desc`), () => numPublications >= 1); //award an achievement with name and description if there has been 1 publish
+    theory.createAchievement(1, AchievementCat1, getLoc(`ach3`), Localization.format(getLoc(`achPubDesc`), '3'), () => numPublications >= 3); //same for 3 publications
+    theory.createAchievement(2, AchievementCat1, getLoc(`ach4`), Localization.format(getLoc(`achPubDesc`), '5'), () => numPublications >= 5); //same for 5 publications
+    theory.createAchievement(3, AchievementCat1, getLoc(`ach5`), Localization.format(getLoc(`achPubDesc`), '10'), () => numPublications >= 10); //same for 10 publications
+    theory.createAchievement(4, AchievementCat1, getLoc(`ach6`), Localization.format(getLoc(`achPubDesc`), '20'), () => numPublications >= 20); //same for 20 publications
     
-    achievement7 = theory.createAchievement(6, AchievementCat2, "Close Enough", "Get your approximation of e to 10^-1 off true", () => inverseE_Gamma >= BigNumber.From("1e0"));
-    achievement8 = theory.createAchievement(7, AchievementCat2, "Nitpicking Exercise", "Get your approximation of e to 10^-5 off true", () => inverseE_Gamma >= BigNumber.From("1e5"));
-    achievement9 = theory.createAchievement(8, AchievementCat2, "Splitting Hairs", "Get your approximation of e to 10^-10 off true", () => inverseE_Gamma >= BigNumber.From("1e10"));
-    achievement10 = theory.createAchievement(9, AchievementCat2, "Microscopic", "Get your approximation of e to 10^-15 off true", () => inverseE_Gamma >= BigNumber.From("1e15"));
-    achievement12 = theory.createAchievement(10, AchievementCat2, "Subatomic", "Get your approximation of e to 10^-25 off true", () => inverseE_Gamma >= BigNumber.From("1e25"));
-    achievement13 = theory.createAchievement(11, AchievementCat2, "Planck Pettiness", "Get your approximation of e to 10^-35 off true", () => inverseE_Gamma >= BigNumber.From("1e35"));
-    achievement11 = theory.createAchievement(12, AchievementCat2, "Are We There Yet?", "Get your approximation of e to 10^-50 off true", () => inverseE_Gamma >= BigNumber.From("1e50"));
-    achievement14 = theory.createAchievement(13, AchievementCat2, "Precision Player", "Get your approximation of e to 10^-100 off true", () => inverseE_Gamma >= BigNumber.From("1e100"));
-    achievement15 = theory.createAchievement(14, AchievementCat2, "Running Out Of Room", "Get your approximation of e to 10^-250 off true", () => inverseE_Gamma >= BigNumber.From("1e250"));
-    achievement16 = theory.createAchievement(15, AchievementCat2, "You Can Stop Anytime", "Get your approximation of e to 10^-500 off true", () => inverseE_Gamma >= BigNumber.From("1e500"));
+    theory.createAchievement(6, AchievementCat2, getLoc(`ach7`), Localization.format(getLoc(`achApproxDesc`), '1'), () => inverseE_Gamma >= BigNumber.From("1e0"));
+    theory.createAchievement(7, AchievementCat2, getLoc(`ach8`), Localization.format(getLoc(`achApproxDesc`), '5'), () => inverseE_Gamma >= BigNumber.From("1e5"));
+    theory.createAchievement(8, AchievementCat2, getLoc(`ach9`), Localization.format(getLoc(`achApproxDesc`), '10'), () => inverseE_Gamma >= BigNumber.From("1e10"));
+    theory.createAchievement(9, AchievementCat2, getLoc(`ach10`), Localization.format(getLoc(`achApproxDesc`), '15'), () => inverseE_Gamma >= BigNumber.From("1e15"));
+    theory.createAchievement(10, AchievementCat2, getLoc(`ach11`), Localization.format(getLoc(`achApproxDesc`), '25'), () => inverseE_Gamma >= BigNumber.From("1e25"));
+    theory.createAchievement(11, AchievementCat2, getLoc(`ach12`), Localization.format(getLoc(`achApproxDesc`), '35'), () => inverseE_Gamma >= BigNumber.From("1e35"));
+    theory.createAchievement(12, AchievementCat2, getLoc(`ach13`), Localization.format(getLoc(`achApproxDesc`), '50'), () => inverseE_Gamma >= BigNumber.From("1e50"));
+    theory.createAchievement(13, AchievementCat2, getLoc(`ach14`), Localization.format(getLoc(`achApproxDesc`), '100'), () => inverseE_Gamma >= BigNumber.From("1e100"));
+    theory.createAchievement(14, AchievementCat2, getLoc(`ach15`), Localization.format(getLoc(`achApproxDesc`), '250'), () => inverseE_Gamma >= BigNumber.From("1e250"));
+    theory.createAchievement(15, AchievementCat2, getLoc(`ach16`), Localization.format(getLoc(`achApproxDesc`), '500'), () => inverseE_Gamma >= BigNumber.From("1e500"));
 
-   // achievement21 = theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
-    achievement22 = theory.createSecretAchievement(21, AchievementCat3, bsf.d("UGF0dGVybiBGYW5hdGlj"), bsf.d("SGF2ZSBldmVyeSB2YXJpYWJsZSBsZXZlbCB0aGUgc2FtZQ")+ ".", bsf.d("UGFsaW5kcm9taWM"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
-    achievement23 = theory.createSecretAchievement(22, AchievementCat3, bsf.d("bDMzdDVwMzRr"), bsf.d("MTMzNw")+ ".", bsf.d("RWxpdGU"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
-    // achievement24 = theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
-    achievement25 = theory.createSecretAchievement(24, AchievementCat3, bsf.d("T24gVmFjYXRpb24"),bsf.d("RG9uJ3QgYnV5IGFueXRoaW5nIGZvciBhbiBob3VyIGFmdGVyIGEgcHVibGljYXRpb24") + ".",bsf.d("Rm9yZ290IHNvbWV0aGluZz8"), () => a1.level == 0 && t >= 3600 && numPublications > 0);
-    achievement26 = theory.createSecretAchievement(25,AchievementCat3, bsf.d("RnV0aWxpdHk"),bsf.d("VGFwIHRoZSBlcXVhdGlvbiAxMDAwIHRpbWVz")+ ".",bsf.d("RmF0aWd1ZWQ"),() => tapCount >= 1000);
+    //theory.createSecretAchievement(20, AchievementCat3,"What's 9 + 10?", "21", "October 9th, 2021", () => a1.level == 9 && a2.level == 10 );
+    theory.createSecretAchievement(21, AchievementCat3, getLoc("sach1"), getLoc("sach1Desc"), getLoc("sach1Hint"), () => a1.level == b2.level && b1.level == a2.level && 0  < a1.level && a1.level < 10 && 0  < a2.level && a2.level < 10);
+    theory.createSecretAchievement(22, AchievementCat3, getLoc("sach2"), getLoc("sach2Desc"), getLoc("sach2Hint"), () => a1.level == 1 && a2.level == 3 && b1.level == 3 && b2.level == 7 );
+    //theory.createSecretAchievement(23, AchievementCat3, "NoAB", "Don't autobuy anything for a whole publication",'Hint', () => abFlag == true && theory.isAutoBuyerAvailable);
+    theory.createSecretAchievement(24, AchievementCat3, getLoc("sach3"), getLoc("sach3Desc"), getLoc("sach3Hint"), () => a1.level == 0 && t >= 3600 && numPublications > 0);
+    theory.createSecretAchievement(25,AchievementCat3, getLoc("sach4"), getLoc("sach4Desc"), getLoc("sach4Hint"),() => tapCount >= 1000);
 
     // Story chapters
-    chapter1 = theory.createStoryChapter(0, "A New Beginning", bsf.d("WW91IHJldHVybiBmcm9tIHlvdXIgb2xkIHByb2Zlc3NvcidzIHJldGlyZW1lbnQgcGFydHksIHRoZSBtYW50bGUgcGFzc2VkIG9udG8geW91LCB0aGUgZmlyc3Qgc3R1ZGVudCwgdG8gaGVhZCB0aGUgZGVwYXJ0bWVudCBvZiBzdHVkZW50cyBhY2NydWVkIG92ZXIgdGhlIHllYXJzLgpFeGNpdGVkIHRvIGZpbmFsbHkgYmUgbGlzdGVkIGFzIHNvbWV0aGluZyBvdGhlciB0aGFuICdldC4gYWwnIG9uIGEgcGFwZXIsIHlvdSBjb250aW51ZWQgd2l0aCB5b3VyIGV4aXN0aW5nIHJlc2VhcmNoLCBidXQgYXMgcHJvZ3Jlc3Mgc2xvd2VkLCB5b3UgZmVsdCBsZXNzIGFuZCBsZXNzIHNhdGlzZmllZC4KVGhlIGRheXMgdHVybiBpbnRvIHdlZWtzLCB3aGljaCBibHVyIHRvZ2V0aGVyIGFzIG1vcmUgYW5kIG1vcmUgcHVibGljYXRpb25zIGFyZSB3cml0dGVuLgpFdmVudHVhbGx5LCBhIHN0dWRlbnQgY29tZXMgdG8geW91IHdpdGggYSBkdXN0eSB0b21lLCBmZWF0dXJpbmcgYSBhcy1vZi15ZXQgdW5leHBsb3JlZCB0aGVvcmVtLgpGZWVsaW5nIGEgc3Ryb2tlIG9mIGluc3BpcmlhdGlvbiwgeW91IGFzc2VtYmxlIGEgdGVhbSBvZiBzdHVkZW50cyBhbmQgdGhyb3cgeW91cnNlbGYgaW50byB0aGUgcmVzZWFyY2g"), () => a1.level > 0); //unlock story chapter when a1 is purchased
-    chapter2 = theory.createStoryChapter(1,"Taking Risks" ,bsf.d("WW91IG5vdGljZSBhIGZldyB1bmFzc3VtaW5nIHZhcmlhYmxlcyBhdCB0aGUgYm90dG9tIG9mIHRoZSBlcXVhdGlvbi4KQSBzdHVkZW50IHdhcm5zIHlvdSBhZ2FpbnN0IGNoYW5naW5nIHRoZW0sIGNpdGluZyB0aGUgcmlzayBvZiBkZWNyZWFzaW5nIHRoZSBpbmNvbWUgZXhpc3RpbmcgdmFsdWVzLCBidXQgeW91IGZvcmdlIGFoZWFkLg"), () => b1.level >0 || b2.level > 0); //unlock story chapter if b1 or b2 have been puchased
-    chapter3 = theory.createStoryChapter(2, "International Recognition",bsf.d("WW91IHB1Ymxpc2ggeW91ciBmaXJzdCBwYXBlciwgd2l0aCB5b3VyIG5hbWUgZnJvbnQgYW5kIGNlbnRlci4KQ29sbGVhZ3VlcyBjb25ncmF0dWxhdGUgeW91LCBidXQgeW91IGZlZWwgdGhlcmUgaXMgc29tZXRoaW5nIG1pc3NpbmcsIGZ1cnRoZXIgZXhwbG9yYXRpb24gdG8gYmUgaGFkLgpZb3UgZGVjaWRlIHRvIGZvcmdlIGFoZWFkLg"), () => numPublications > 0); //unlock story chapter if a publication has been done
-    chapter4 = theory.createStoryChapter(3, "Light Modification", bsf.d("V2l0aCB5b3VyIHByb2dyZXNzIHN0YXJ0aW5nIHRvIHNsb3csIHlvdSBzY291ciB0aGUgb3JpZ2luYWwgZXF1YXRpb24gdGV4dHMgdG8gZmluZCBhIHJlbWVkeS4KSXQgdHVybnMgb3V0IGFsbCBhbG9uZyB0aGVyZSdzIGJlZW4gc29tZSBtb2RpZmllcnMgeW91IGNhbiBhZGQsIGJ1dCBhdCBldmVyIGluY3JlYXNpbmcgY29zdHMuCllvdSBkZWNpZGUgdG8gYnV5IG9uZSwgaG9waW5nIGl0IGFsbGV2aWF0ZXMgeW91ciBpc3N1ZXMuLi4"), () => gamma0.level == 1 || gamma1.level == 1 || gamma2.level == 1 || gamma3.level == 1);//unlock story chapter if a milestone is purchased
-    chapter5 = theory.createStoryChapter(4, "Making Progress", bsf.d("WW91IHJlYWNoIDFlMTAwIA") + "ρ₁" + bsf.d("₁LCBhIG1ham9yIG1pbGVzdG9uZSBpbiB5b3VyIHJlc2VhcmNoLgpDb2xsZWFndWVzIGNvbWUgdG8gY29uZ3JhdHVsYXRlIHlvdSBvbiBwdXNoaW5nIHlvdXIgcmVzZWFyY2ggc28gZmFyLCBidXQgeW91IHNocnVnIHRoZW0gb2ZmIC0geW91IGZlZWwgYXMgaWYgdGhlcmUncyBtb3JlIHlvdSBjb3VsZCBkby4KWW91IGhlYWQgYmFjayB0byB5b3VyIG9mZmljZSBhbmQgZ2V0IHRvIHdvcmsgb25jZSBtb3Jl"), () => currency.value >= BigNumber.From("1e100"));//unlock story chapter upon reaching 1e100 rho1
-    chapter6 = theory.createStoryChapter(5, "The End.... Or Is It?",bsf.d("WW91IGZpbmFsbHkgcHVyY2hhc2VkIGV2ZXJ5IG1vZGlmaWVyLCB0byBjbG9zZSBvdXQgeW91ciByZXNlYXJjaCBpbnRvIHRoaXMgZmllbGQuCllvdXIgc3R1ZGVudHMgYXNzaWduZWQgdG8gdGhpcyBwcm9qZWN0IGNlbGVicmF0ZSwgYW50aWNpcGF0aW5nIGNsb3Npbmcgb3V0IHRoaXMgbGluZSBvZiByZXNlYXJjaCwgYW5kIHlvdXIgbmFtZSBpcyBwb3N0ZWQgaW4gam91cm5hbHMgd29ybGR3aWRlLgoKWW91IGRlY2lkZSB0byBnbyBvdmVyIHlvdXIgbnVtYmVycyBvbmNlIG1vcmUsIGp1c3QgdG8gbWFrZSBzdXJlLi4u"), () => gamma0.level == 3 && gamma1.level == 5 && gamma2.level == 2 && gamma3.level == 2); //unlock a story when all milestone levels have been purchased    
-    chapter6 = theory.createStoryChapter(6, "Mathaholic",bsf.d("MWU1MDAuCgpBIG1vbnVtZW50YWxseSBsYXJnZSBudW1iZXIsIGJ1dCBidXQgYmFyZWx5IGEgYmxpcCB0byB5b3Ugbm93LgpQZW9wbGUgYXJlIHN0YXJ0aW5nIHRvIHRha2Ugbm90aWNlIGFzIHlvdSBwdXNoIG1hdGhlbWF0aWNzIHRvIHBvaW50cyB0aG91Z2h0IHVuYWNoaWV2ZWFibGUgaW4gdGhpcyBmaWVsZC4KVGhlcmUncyBhIHdhaXRpbmcgbGlzdCB0byBzdHVkeSB1bmRlciB5b3Ugbm93LgpZb3VyIGZyaWVuZHMgYW5kIGZhbWlseSBhcmUgZXhwcmVzc2luZyBjb25jZXJuLCB3b3JyaWVkIHlvdSdyZSBpbiB0b28gZGVlcC4KSXQgZG9lc24ndCBtYXR0ZXIuCkFub3RoZXIgYnJlYWt0aHJvdWdoIGlzIGNsb3NlLgpZb3UgY2FuIGZlZWwgaXQuCgpSaWdodD8"), () => currency.value >= BigNumber.From("1e500"));
-    chapter7 = theory.createStoryChapter(7, "The End.", bsf.d("MWUxMDAwLgoKQSBudW1iZXIgc28gYmlnIGl0J2QgYmUgaW1wb3NzaWJsZSB0byBjb21wcmVoZW5kLgpZb3UgZGlkIGl0LiBUaGV5IHNhaWQgeW91IGNvdWxkbid0LgpZZWFycyBhZnRlciB5b3UgZmlyc3Qgc3RhcnRlZCwgeW91IHJlYWNoIGFuIGluY3JlZGlibGUgZW5kIHRvIHlvdXIgcmVzZWFyY2guCllvdSdyZSBmZWF0dXJlZCBvbiBUSU1FLCBvbiBkYXl0aW1lIHRlbGV2aXNpb24sIGluIHdvcmxkd2lkZSBuZXdzcGFwZXJzLiBZb3VyIHBhcGVycyBhcmUgZnJhbWVkLCB5b3VyIHN0dWRlbnRzIGFsbCBwcm9mZXNzb3JzIGluIHRoZWlyIG93biByaWdodHMgbm93LgpZb3UgcGFzcyBvbiB0aGUgbWFudGxlIHRvIGEgeW91bmdlciBzdHVkZW50IG9mIHlvdXJzIHRvIHJldGlyZSBsaWtlIHlvdXIgb2xkIHByb2Zlc3NvciwgYmFjayBhbGwgdGhvc2UgeWVhcnMgYWdvLgoKVEhFIEVORC4KVGhhbmtzIGZvciBwbGF5aW5nISAtIGVsbGlwc2lz"), () => currency.value >= BigNumber.From("1e1000"));
+    theory.createStoryChapter(0, getLoc("story1Title"), getLoc("story1"), () => a1.level > 0); //unlock story chapter when a1 is purchased
+    theory.createStoryChapter(1, getLoc("story2Title"), getLoc("story2"), () => b1.level >0 || b2.level > 0); //unlock story chapter if b1 or b2 have been puchased
+    theory.createStoryChapter(2, getLoc("story3Title"), getLoc("story3"), () => numPublications > 0); //unlock story chapter if a publication has been done
+    theory.createStoryChapter(3, getLoc("story4Title"), getLoc("story4"), () => gamma0.level == 1 || gamma1.level == 1 || gamma2.level == 1 || gamma3.level == 1);//unlock story chapter if a milestone is purchased
+    theory.createStoryChapter(4, getLoc("story5Title"), getLoc("story5"), () => currency.value >= BigNumber.From("1e100"));//unlock story chapter upon reaching 1e100 rho1
+    theory.createStoryChapter(5, getLoc("story6Title"), getLoc("story6"), () => gamma0.level == 3 && gamma1.level == 5 && gamma2.level == 2 && gamma3.level == 2); //unlock a story when all milestone levels have been purchased    
+    theory.createStoryChapter(6, getLoc("story7Title"), getLoc("story7"), () => currency.value >= BigNumber.From("1e500"));
+    theory.createStoryChapter(7, getLoc("story8Title"), getLoc("story8"), () => currency.value >= BigNumber.From("1e1000"));
 }
 
 var updateInverseE_Gamma = () => {
@@ -312,12 +969,13 @@ var postPublish = ()  => {
 var setInternalState = (state) => { //set the internal state of values that need to be kept post switch that aren't levels
     let values = state.split(" "); //save values to a string
     if (values.length > 0) numPublications = parseInt(values[0]); //save the value of publish numbers to slot 0
-    if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
+    // inverseE_gamma is updated every tick, shouldn't be needed
+    //if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
     if (values.length > 2) tapCount = parseInt(values[2]);
     if (values.length > 3) t = Number.parseFloat(values[3]);
 }
 
-var getInternalState = () => `${numPublications} ${inverseE_Gamma} ${tapCount} ${t}` //return the data saved
+var getInternalState = () => `${numPublications} 0 ${tapCount} ${t}` //return the data saved
 
 var getPublicationMultiplier = (tau) => tau.pow(1.5/tauMultiplier); //publication mult bonus is (tau^0.15)*100
 var getPublicationMultiplierFormula = (symbol) => /*"10 · " +*/ symbol + "^{0.375}"; //text to render for publication mult ext
