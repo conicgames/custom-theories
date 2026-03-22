@@ -506,7 +506,7 @@ e^x！！！
 -Snaeky`
   },
   ru: {
-    gxPopupTitle: `Улучшение g(x)`,
+    gxPopupTitle: `Цели g(x)`,
     gxPopupWarning1: `Покупка или переназначение этого улучшения обнулит $q$.`,
     gxPopupWarning2: `Вы хотите продолжить?`,
     gxPopupYes: `Да`,
