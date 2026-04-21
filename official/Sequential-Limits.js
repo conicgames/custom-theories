@@ -312,12 +312,13 @@ var postPublish = ()  => {
 var setInternalState = (state) => { //set the internal state of values that need to be kept post switch that aren't levels
     let values = state.split(" "); //save values to a string
     if (values.length > 0) numPublications = parseInt(values[0]); //save the value of publish numbers to slot 0
-    if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
+    // inverseE_gamma is updated every tick, shouldn't be needed
+    //if (values.length > 1) inverseE_Gamma = parseBigNumber(values[1]); //save the value of inverseE_Gamma numbers to slot 1
     if (values.length > 2) tapCount = parseInt(values[2]);
     if (values.length > 3) t = Number.parseFloat(values[3]);
 }
 
-var getInternalState = () => `${numPublications} ${inverseE_Gamma} ${tapCount} ${t}` //return the data saved
+var getInternalState = () => `${numPublications} 0 ${tapCount} ${t}` //return the data saved
 
 var getPublicationMultiplier = (tau) => tau.pow(1.5/tauMultiplier); //publication mult bonus is (tau^0.15)*100
 var getPublicationMultiplierFormula = (symbol) => /*"10 · " +*/ symbol + "^{0.375}"; //text to render for publication mult ext
