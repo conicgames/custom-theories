@@ -5,8 +5,67 @@ import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "weierstrass-product-sine";
-var name = "Weierstraß Sine Product";
-var description = "Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.\n\nIntuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.\n\nThe product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infty.\n\nHere, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.";
+var getName = (language) => {
+    const names = {
+        en: `Weierstraß Sine Product`,
+        de: `Weierstraß Sinus Produkt`,
+        fr: `Produit Sinus de Weierstrass`,
+        ja: `ワイエルシュトラスの正弦積`,
+        ru: `Вейерштрассовское произведение по синусу`,
+        uk: `Добуток Веєрштрасса для синуса`
+    };
+    return names[language] || names.en;
+};
+var getDescription = (language) => {
+    const descs = {
+        en:
+`Exploit the inaccuracy of sine's product representation, a result due to Euler which was rigorously proved later by Weierstraß using his famous Factorization Theorem.
+
+Intuitively, the idea behind this formula is to factorize sine using its roots (sine has zeros at each multiple of π), just as one would do for a polynomial.
+
+The product s_n represents only the n first factors of this infinite product (together with the root at x=0), which means there is some error between s_n(x) and the actual sin(x), depending on n and x. Note that this truncated product s_n approximates sin(x) better for bigger n and smaller x, in particular the approximation becomes bad for a fixed n when x gets large in the sense that the ratio s_n(x)/sin(x) diverges for x -> infinity.
+
+Here, the derivative of q with respect to time is set to s_n(χ)/sin(χ) i.e. the ratio from before evaluated at χ (chi), which itself is a value depending on n. Note that increasing n both increases χ and the accuracy of the approximation s_n.`,
+        de:
+`Nutzen Sie die Ungenauigkeit der Produktdarstellung des Sinus aus, ein Ergebnis von Euler, das später von Weierstraß mithilfe seines berühmten Faktorisierungssatzes rigoros bewiesen wurde.
+
+Intuitiv liegt der Gedanke hinter dieser Formel darin, den Sinus mithilfe seiner Wurzeln zu faktorisieren (der Sinus hat Nullstellen an jedem Vielfachen von π), genau wie man es bei einem Polynom tun würde.
+
+Das Produkt s_n repräsentiert lediglich die ersten n Faktoren dieses unendlichen Produkts (zusammen mit der Nullstelle bei x=0), was bedeutet, dass zwischen s_n(x) und dem tatsächlichen sin(x) ein Fehler besteht, der von n und x abhängt. Beachten Sie, dass dieses verkürzte Produkt s_n sin(x) für größere n und kleinere x besser approximiert. Insbesondere verschlechtert sich die Approximation für ein festes n, wenn x groß wird, da das Verhältnis s_n(x)/sin(x) für x → ∞ divergiert.
+
+Hier wird die Ableitung von q nach der Zeit auf s_n(χ)/sin(χ) gesetzt, d. h. das Verhältnis von zuvor, ausgewertet an der Stelle χ (chi), welches selbst ein Wert ist, der von n abhängt. Beachten Sie, dass eine Erhöhung von n sowohl χ als auch die Genauigkeit der Näherung s_n erhöht.`,
+        fr:
+`Exploitez l’inexactitude de la représentation du produit du sinus, un résultat dû à Euler qui a été rigoureusement prouvé plus tard par Weierstrass en utilisant son célèbre théorème de factorisation.
+
+Intuitivement, l’idée derrière cette formule est de factoriser le sinus en utilisant ses racines (le sinus a des zéros à chaque multiple de π), tout comme on le ferait pour un polynôme.
+
+Le produit s_n ne représente que les n premiers facteurs de ce produit infini (avec la racine à x=0), ce qui signifie qu’il y a une certaine erreur entre s_n(x) et le sin(x) réel, en fonction de n et x. Notez que ce produit tronqué s_n se rapproche mieux de sin(x) pour un n plus grand et un x plus petit, en particulier l’approximation devient mauvaise pour un n fixé lorsque x devient grand dans le sens où le rapport s_n(x)/sin(x) diverge pour x -> infini.
+
+Ici, la dérivée de q par rapport au temps est fixée à s_n(χ)/sin(χ), c’est-à-dire le rapport d’avant évalué à χ (chi), qui est lui-même une valeur dépendante de n. Notez que l’augmentation de n augmente à la fois χ et la précision de l’approximation s_n.`,
+        ja:
+`オイラーによる正弦関数の積表示の不正確さを利用する。この結果は後に、ワイエルシュトラスの因数分解定理によって厳密に証明された
+この公式の発想は、正弦関数をその根によって因数分解することにある。sin(x)はπの整数倍で0になるため、多項式を根で分解するのと似た考え方である。
+s_nはこの無限積の最初のn個の因子だけを表すため、s_n(x)とsin(x)の間にはnとxに依存する誤差が生じる。nが大きいほど、またxが小さいほど近似は良くなるがnを固定したままxが大きくなるとs_n(x)/sin(x)は発散する。
+この理論では、qの時間変化率をs_n(χ)/sin(χ)とする。χもnに依存する値であり、nを増やすことでχと近似精度の両方が上昇する。`,
+        ru:
+`Воспользуйтесь неточностью представления произведения по синусу: обусловленным Эйлером результатом, который был позже строго доказан Вейерштрассом при помощи его знаменитой теоремы факторизации.
+
+Интуитивно понятно, что идея, стоящая за этой формулой - разложить синус на множители, используя его корни (корни синуса располагаются в каждом числе, кратном π), точно так же, как это можно сделать для многочлена.
+
+Произведение s_n представляет собой только первые n множителей этого бесконечного произведения (включая корень x=0), и из-за этого между s_n(x) и самим sin(x) возникает некоторая погрешность, зависящая от n и x. Следует заметить, что это частичное произведение s_n приближается к sin(x) тем лучше, чем больше n и меньше x. В частности, аппроксимация становится хуже при определённом n, когда x становится большим, в том смысле, что отношение s_n(x)/sin(x) расходится при x, стремящемся к бесконечности.
+
+Производная q по времени в этой теории равна s_n(χ)/sin(χ), то есть упомянутому ранее отношению, в которое подставили χ (хи), величина которого в свою очередь зависит от n. Стоит отметить, что увеличение n увеличивает как χ, так и точность аппроксимации s_n.`,
+        uk:
+`Скористайся похибкою розкладу синуса у добуток — результату, отриманого Ейлером та пізніше доведеного Веєрштрассом за допомогою його знаменитої теореми факторизації.
+
+Інтуїтивно, ідея цієї формули полягає в розкладі синуса на множники за допомогою його коренів (синус має нулі в кожному числі, кратному π), подібно до того, як це було б зроблено для многочлена.
+
+Добуток s_n представляє лише перших n множників цього нескінченного добутку (разом із коренем x=0), що означає, що існує певна похибка між s_n(x) та справжнім sin(x), залежно від n та x. Варто зауважити, що цей частковий добуток s_n прямує до sin(x) краще для більших n та менших x; зокрема, апроксимація стає поганою для фіксованого n й великих x, в сенсі того, що відношення s_n(x)/sin(x) стає розбіжним при x, що прямує до нескінченності.  
+
+У цій теорії похідна q за часом дорівнює s_n(χ)/sin(χ), тобто згаданому вище відношенню при χ (хі), величина якого, своєю чергою, залежить від n. Варто зазначити, що зі зростанням n збільшується як χ, так і точність наближення s_n.`
+    };
+    return descs[language] || descs.en;
+}
 var authors = "xelaroc (AlexCord#6768)";
 var version = 5;
 var releaseOrder = "1";
@@ -159,11 +218,16 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => q.toString();
+var getInternalState = () => q.toBase64String();
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
     let values = state.split(" ");
-    if (values.length > 0) q = parseBigNumber(values[0]);
+    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
     updateChiDescAndInfo();
     updateSineRatio_flag = true;
 }

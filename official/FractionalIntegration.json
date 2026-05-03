@@ -1,5 +1,9 @@
 {
   "description": {
-    "default": "The functions between a function and its derivative have many ways of being shown, this is one of them. Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. As such, as a fractional integral approaches 1, it should become the integral."
+    "default": "The functions between a function and its derivative have many ways of being shown, this is one of them.\nFractional integration is a way to calculate what is between a function and its integral and is a smooth transition.\nAs such, as a fractional integral approaches 1, it should become the integral.",
+    "de": "Die Funktionen zwischen einer Funktion und ihren Derivat besitzt viele wege ihn zu Zeigen, dies ist einer von denen.\nFraktionale Integration ist ein weg um zu Rechnen, was ziwschen einer Funktion und ihren Integral und ihrem fließenden übergang.\nWenn sich ein Fractionalintegral dem Wert 1 nähert, sollte es zum Integral werden.",
+    "fr": "Les fonctions entre une fonction et sa dérivée peuvent être montrées de différentes manières, ceci en est une.\nL'intégration fractionnelle est une manière de calculer ce qui est entre une fonction et son intégrale, avec une transition douce.\nAinsi, lorsqu'une intégrale fractionnelle approche 1, elle doit devenir l'intégrale.",
+    "ja": "関数とその導関数の間にあるものは、様々な形で表すことができます。これはそのうちのひとつです。 \n分数階積分は、関数とその積分の間にあるものを計算する方法で、なめらかに移り変わっていきます。\nしたがって、分数階積分が1に近づくほど、それは通常の積分になっていくはずです。",
+    "ru": "Функции между функцией и ее производной можно показать разными способами, и это один из них. \nДробное интегрирование — это способ вычисления того, что находится между функцией и ее интегралом и является плавным переходом. \nПо существу, когда дробный интеграл приближается к 1, он должен стать интегралом."
   }
 }

@@ -1,5 +1,9 @@
 {
   "description": {
-    "default": "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX."
+    "default": "A theory that takes advantage of the growth of the 3 fractal patterns:\nToothpick Sequence (Tₙ),\nUlam-Warburton cellular automaton (Uₙ),\nSierpiński triangle (Sₙ).\n\nBig thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.",
+    "de": "Eine Theorie, die sich das Wachstum der drei fraktalen Muster zunutze macht:\nZahnstochersequenz (Tₙ),\nUlam-Warburton-Zellularautomat (Uₙ),\nSierpiński-Dreieck (Sₙ).\n\nVielen Dank an Gen (gen1code) und NGZ (ngz001) für all die Hilfe und Vorschläge mit LaTeX.",
+    "fr": "Une théorie qui tire parti de la croissance des 3 modèles fractaux:\nSéquence de cure-dent (Tₙ),\nAutomate cellulaire Ulam-Warburton (Uₙ),\nTriangle de Sierpiński (Sₙ).\n\nUn grand merci à Gen (gen1code) et NGZ (ngz001) pour toute l’aide et les suggestions avec le LaTeX.",
+    "ja": "3つのフラクタルパターンの成長を活用する理論:\nつまようじ数列 (Tₙ)、\nウラム・ワーバートン・セル・オートマトン (Uₙ)、\nシェルピンスキーの三角形 (Sₙ)。\n\nLaTeXに関する多くの協力と助言をしてくれたGen(gen1code)とNGZ(ngz001)に心から感謝します。",
+    "ru": "Эта теория использует преимущества роста трёх фрактальных последовательностей:\nпоследовательности зубочисток (Tₙ),\nавтоматона Улама-Уорбертона (Uₙ),\nтреугольника Серпинского (Sₙ).\n\nБольшое спасибо Gen (gen1code) и NGZ (ngz001) за всю помощь и предложения, касающиеся LaTeX."
   }
 }

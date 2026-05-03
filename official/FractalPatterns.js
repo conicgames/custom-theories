@@ -5,15 +5,164 @@ import { theory, QuaternaryEntry } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
 var id = "fractal_patterns";
-var name = "Fractal Patterns";
-var description =
-  "A theory that takes advantage of the growth of the 3 fractal patterns:\n Toothpick Sequence (Tₙ),\n Ulam-Warburton cellular automaton (Uₙ),\n Sierpiński triangle (Sₙ).\n\n Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.";
+var getName = (language) => {
+  const names = {
+    en: `Fractal Patterns`,
+    de: `Fractale Muster`,
+    fr: `Modèles de Fractales`,
+    ja: `フラクタル構造`,
+    ru: `Последовательности фракталов`,
+    uk: `Послідовності фракталів`
+  };
+  return names[language] || names.en;
+};
+var getDescription = (language) => {
+  const descs = {
+    en:
+`A theory that takes advantage of the growth of the 3 fractal patterns:
+Toothpick Sequence (Tₙ),
+Ulam-Warburton cellular automaton (Uₙ),
+Sierpiński triangle (Sₙ).
+
+Big thanks to Gen (gen1code) and NGZ (ngz001) for all the help and suggestions with the LaTeX.`,
+    de:
+`Eine Theorie, die sich das Wachstum der drei fraktalen Muster zunutze macht:
+Zahnstochersequenz (Tₙ),
+Ulam-Warburton-Zellularautomat (Uₙ),
+Sierpiński-Dreieck (Sₙ).
+
+Vielen Dank an Gen (gen1code) und NGZ (ngz001) für all die Hilfe und Vorschläge mit LaTeX.`,
+    fr:
+`Une théorie qui tire parti de la croissance des 3 modèles fractaux:
+Séquence de cure-dent (Tₙ),
+Automate cellulaire Ulam-Warburton (Uₙ),
+Triangle de Sierpiński (Sₙ).
+
+Un grand merci à Gen (gen1code) et NGZ (ngz001) pour toute l’aide et les suggestions avec le LaTeX.`,
+    ja:
+`3つのフラクタルパターンの成長を活用する理論:
+つまようじ数列 (Tₙ)、
+ウラム・ワーバートン・セル・オートマトン (Uₙ)、
+シェルピンスキーの三角形 (Sₙ)。
+
+LaTeXに関する多くの協力と助言をしてくれたGen(gen1code)とNGZ(ngz001)に心から感謝します。`,
+    ru:
+`Эта теория использует преимущества роста трёх фрактальных последовательностей:
+последовательности зубочисток (Tₙ),
+автоматона Улама-Уорбертона (Uₙ),
+треугольника Серпинского (Sₙ).
+
+Большое спасибо Gen (gen1code) и NGZ (ngz001) за всю помощь и предложения, касающиеся LaTeX.`,
+    uk:
+`Ця теорія використовує переваги зростання трьох фрактальних послідовностей:
+послідовності зубочисток (Tₙ),
+автоматона Улама-Ворбертона (Uₙ),
+трикутника Серпінського (Sₙ).
+
+Велика подяка Gen (gen1code) та NGZ (ngz001) за всю допомогу та пропозиції щодо LaTeX.`
+  };
+  return descs[language] || descs.en;
+};
 var authors = "xlii";
 var version = 9;
 var releaseOrder = "6";
 
 requiresGameVersion("1.4.33");
 
+const locStrings = {
+  example: {
+    fractalBgOff: ``,
+    fractalBgOn: ``,
+    fractalToggle: ``,
+    addUlamWarburtonFractal: ``,
+    addSierpinskiTriangleFractal: ``,
+    improveNScaling: ``,
+    snBoostDesc: ``,
+    snBoostInfo: ``,
+    addSTerm: ``,
+    improveRDesc: ``
+  },
+  en: {
+    fractalBgOff: `Disable background`,
+    fractalBgOn: `Enable background`,
+    fractalToggle: `Toggles the display of fractal background`,
+    addUlamWarburtonFractal: `Add the Ulam-Warburton fractal`,
+    addSierpinskiTriangleFractal: `Add the Sierpinski Triangle fractal`,
+    improveNScaling: `Improve n variable scaling`,
+    snBoostDesc: `$S_n$ returns total amount of triangles`,
+    snBoostInfo: `Count all triangles in the sierpinsky triangle`,
+    addSTerm: `Add the term $s$ & $\\downarrow T_n$ exponent by 2`,
+    improveRDesc: `Improve $\\dot{r}$ equation`
+  },
+  de: {
+    fractalBgOff: `Deb Hintergrund deaktivieren`,
+    fractalBgOn: `Den Hintergrund aktivieren`,
+    fractalToggle: `Schaltet die Anzeige des fraktalen Hintergrunds um`,
+    addUlamWarburtonFractal: `Füge das Ulam-Warburton-Fraktal hinzu`,
+    addSierpinskiTriangleFractal: `Füge das Sierpinski-Dreieck-Fraktal hinzu`,
+    improveNScaling: `Verbessere die Skalierung von Variable n`,
+    snBoostDesc: `$S_n$ gibt die Gesamtzahl der Dreiecke zurück`,
+    snBoostInfo: `Zähle alle Dreiecke im Sierpinski-Dreieck`,
+    addSTerm: `Füge den Term $s$ hinzu und $\\downarrow T_n$ Exponent um 2`,
+    improveRDesc: `Verbessere die $\\dot{r}$ gelcihung`
+  },
+  fr: {
+    fractalBgOff: `Désactiver l’arrière-plan`,
+    fractalBgOn: `Activer l’arrière-plan`,
+    fractalToggle: `Afficher l’arrière-plan fractal`,
+    addUlamWarburtonFractal: `Ajouter la fractale Ulam-Warburton`,
+    addSierpinskiTriangleFractal: `Ajouter la fractale du triangle de Sierpinski`,
+    improveNScaling: `Améliorer la variable n`,
+    snBoostDesc: `$S_n$ renvoie le nombre total de triangles`,
+    snBoostInfo: `Compter tous les triangles dans le triangle de Sierpinski`,
+    addSTerm: `Ajouter le terme $s$ & $\\downarrow$ exposant de $T_n$ par 2`,
+    improveRDesc: `Améliorer l'équation de $\\dot{r}$`
+  },
+  ja: {
+    fractalBgOff: `背景を無効化`,
+    fractalBgOn: `背景を有効化`,
+    fractalToggle: `フラクタル背景の表示を切り替える`,
+    addUlamWarburtonFractal: `ウラム・ワーバートンフラクタルを追加`,
+    addSierpinskiTriangleFractal: `シェルピンスキーの三角形を追加`,
+    improveNScaling: `n変数のスケーリングを改善`,
+    snBoostDesc: `$S_n$は三角形の総数を返す`,
+    snBoostInfo: `シェルピンスキーの三角形内のすべての三角形を数える`,
+    addSTerm: `$s$項を追加し、$T_n$の指数を2下げる`,
+    improveRDesc: `$\\dot{r}$の式を改善`
+  },
+  ru: {
+    fractalBgOff: `Отключить задний план`,
+    fractalBgOn: `Включить задний план`,
+    fractalToggle: `Переключает отображение фрактального заднего плана`,
+    addUlamWarburtonFractal: `Добавить автоматон Улама-Уорбертона`,
+    addSierpinskiTriangleFractal: `Добавить треугольник Серпинского`,
+    improveNScaling: `Улучшить масштабирование переменной n`,
+    snBoostDesc: `$S_n$ равен общему числу треугольников`,
+    snBoostInfo: `Подсчитывает все треугольники в треугольнике Серпинского`,
+    addSTerm: `Добавить член $s$ и $\\downarrow$ показатель степени $T_n$ на 2`,
+    improveRDesc: `Улучшить уравнение $\\dot{r}$`
+  },
+  uk: {
+    fractalBgOff: `Вимкнути задній план`,
+    fractalBgOn: `Увімкнути задній план`,
+    fractalToggle: `Перемикає відображення фрактального заднього плану`,
+    addUlamWarburtonFractal: `Додати автоматон Улама-Ворбертона`,
+    addSierpinskiTriangleFractal: `Додати трикутник Серпінського`,
+    improveNScaling: `Вдосконалити масштабування змінної n`,
+    snBoostDesc: `$S_n$ дорівнює загальній кількості трикутників`,
+    snBoostInfo: `Підраховує всі трикутники у трикутнику Серпінського`,
+    addSTerm: `Додати член $s$ і $\\downarrow$ показник ступеня $T_n$ на 2`,
+    improveRDesc: `Вдосконалити рівняння $\\dot{r}$`
+  }
+};
+const menuLang = Localization.language;
+let getLoc = (name, lang = menuLang) => {
+  if (lang in locStrings && name in locStrings[lang])
+    return locStrings[lang][name];
+  if (name in locStrings.en)
+    return locStrings.en[name];
+  return `String missing: ${lang}.${name}`;
+};
 var tauMultiplier = 4;
 
 var currency = BigNumber.ZERO;
@@ -25,7 +174,7 @@ var q = BigNumber.ONE;
 var r = BigNumber.ONE;
 var t_cumulative = BigNumber.ZERO;
 var A = BigNumber.ONE;
-var tvar, c1, c2, q1, q2, r1, n1, n2, n3, s;
+var tvar, c1, c2, q1, q2, r1, n1, s;
 var fractalToggle;
 var snexp, snboost, nboost, fractalTerm, sterm, expterm;
 
@@ -149,8 +298,8 @@ var init = () => {
   // Fractal Toggle
   {
     fractalToggle = theory.createPermanentUpgrade(3, currency, new FreeCost());
-    fractalToggle.getDescription = (_) => fractalToggle.level > 0 ? "Disable background" : "Enable background";
-    fractalToggle.getInfo = (_) => "Toggles the display of fractal background";
+    fractalToggle.getDescription = (_) => fractalToggle.level > 0 ? getLoc("fractalBgOff") : getLoc("fractalBgOn");
+    fractalToggle.getInfo = (_) => getLoc("fractalToggle");
     fractalToggle.boughtOrRefunded = (_) => {
       fractalToggle.level = fractalToggle.level & 1;
       backgroundTime = 0;
@@ -171,15 +320,15 @@ var init = () => {
     fractalTerm = theory.createMilestoneUpgrade(0, 2);
     fractalTerm.getDescription = (_) => {
       if (fractalTerm.level === 0) {
-        return "Add the Ulam-Warburton fractal";
+        return getLoc("addUlamWarburtonFractal");
       }
-      return "Add the Sierpinski Triangle fractal";
+      return getLoc("addSierpinskiTriangleFractal");
     };
     fractalTerm.getInfo = (_) => {
       if (fractalTerm.level === 0) {
-        return "Add the Ulam-Warburton fractal";
+        return getLoc("addUlamWarburtonFractal");
       }
-      return "Add the Sierpinski Triangle fractal";
+      return getLoc("addSierpinskiTriangleFractal");
     };
     fractalTerm.boughtOrRefunded = (_) => {
       theory.invalidatePrimaryEquation();
@@ -191,9 +340,9 @@ var init = () => {
   }
   {
     nboost = theory.createMilestoneUpgrade(2, 2);
-    nboost.getDescription = (_) => "Improve n variable scaling";
+    nboost.getDescription = (_) => getLoc("improveNScaling");
 
-    nboost.getInfo = (_) => "Improve n variable scaling";
+    nboost.getInfo = (_) => getLoc("improveNScaling");
 
     nboost.boughtOrRefunded = (_) => {
       theory.invalidatePrimaryEquation();
@@ -216,8 +365,8 @@ var init = () => {
   }
   {
     snboost = theory.createMilestoneUpgrade(3, 1);
-    snboost.getDescription = (_) => "$S_n$ returns total amount of triangles";
-    snboost.getInfo = (_) => "Count all triangles in the sierpinsky triangle";
+    snboost.getDescription = (_) => getLoc("snBoostDesc");
+    snboost.getInfo = (_) => getLoc("snBoostInfo");
     snboost.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     snboost.boughtOrRefunded = (_) => {
       S_n = S(Math.floor(Math.sqrt(n)));
@@ -228,8 +377,8 @@ var init = () => {
   }
   {
     sterm = theory.createMilestoneUpgrade(4, 1);
-    sterm.getDescription = () => "$\\text{Add the term }s\\;\\;\\&\\;\\downarrow T_n\\text{exponent by 2}$";
-    sterm.getInfo = () => "$\\text{Add the term }s\\;\\;\\&\\;\\downarrow T_n\\text{exponent by 2}$";
+    sterm.getDescription = () => getLoc("addSTerm");
+    sterm.getInfo = () => getLoc("addSTerm");
     sterm.boughtOrRefunded = (_) => {
       updateAvailability();
       theory.invalidatePrimaryEquation();
@@ -238,8 +387,8 @@ var init = () => {
   }
   {
     expterm = theory.createMilestoneUpgrade(5, 1);
-    expterm.getDescription = () => "$\\text{Improve } \\dot{r} \\text{ equation}$";
-    expterm.getInfo = () => `$\\dot{r} = r_1(T_nU_n)^{\\log(\\sqrt{2U_n})}S_{\\lfloor \\sqrt{n} \\rfloor}^{${snexp.level > 0 ? getsnexp(snexp.level).toString(1) : ""}}$`;
+    expterm.getDescription = () => getLoc("improveRDesc");
+    expterm.getInfo = () => `$\\dot{r} = r_1(T_nU_n)^{\\log(\\sqrt{2U_n})}S_{\\lfloor \\sqrt{n} \\rfloor}^{${getsnexp(snexp.level).toString(1)}$`;
     expterm.boughtOrRefunded = (_) => {
       theory.invalidatePrimaryEquation();
     };
@@ -358,13 +507,19 @@ var postPublish = () => {
   theory.invalidateTertiaryEquation();
   theory.invalidateQuaternaryValues();
 };
-var getInternalState = () => `${q} ${r} ${t_cumulative}`;
+
+var getInternalState = () => `${q.toBase64String()} ${r.toBase64String()} ${t_cumulative.toBase64String()}`;
 
 var setInternalState = (state) => {
+  const bigNumberFromBase64OrParse = (value) => {
+    let result;
+    try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+    return result;
+  }
   let values = state.split(" ");
-  if (values.length > 0) q = parseBigNumber(values[0]);
-  if (values.length > 1) r = parseBigNumber(values[1]);
-  if (values.length > 2) t_cumulative = parseBigNumber(values[2]);
+  if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
+  if (values.length > 1) r = bigNumberFromBase64OrParse(values[1]);
+  if (values.length > 2) t_cumulative = bigNumberFromBase64OrParse(values[2]);
 
   updateN_flag = true;
 };
