@@ -80,6 +80,10 @@ var numberFormat = (value, decimals, negExpFlag=false) => {
         {
             let exp = Math.floor((value*BigNumber.from(1+1e-5)).log10().toNumber());
             let mts = (value * BigNumber.TEN.pow(-exp)).toString(decimals);
+            if (mts.startsWith('10')) { // Edge case when mantissa rounds up to 10
+                mts = (value * BigNumber.TEN.pow(-exp) / 10).toString(decimals)
+                exp++;
+            }
             if (exp > 0 || !negExpFlag)
             {
                 return `${mts}e${exp}`;
@@ -752,22 +756,32 @@ var postPublish = () => {
 
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
-var getInternalState = () => `${x.toNumber()} ${vx.toNumber()} ${vz.toNumber()} ${vtot.toNumber()} ${I.toNumber()} ${t} ${ts} ${pubTime} ${resetTime}`;
+var getInternalState = () => `${x.toBase64String()} ${vx.toBase64String()} ${vz.toBase64String()} ${vtot.toBase64String()} ${I.toBase64String()} ${t.toBase64String()} ${ts.toBase64String()} ${pubTime} ${resetTime}`;
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrFrom = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = BigNumber.from(value); };
+        return result;
+    }
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
     let values = state.split(" ");
-    if (values.length > 0) x = BigNumber.from(values[0]);
-    if (values.length > 1) vx = BigNumber.from(values[1]);
-    if (values.length > 2) vz = BigNumber.from(values[2]);
-    if (values.length > 3) vtot = BigNumber.from(values[3]);
-    if (values.length > 4) I = BigNumber.from(values[4]);
-    if (values.length > 5) t = parseBigNumber(values[5]);
-    if (values.length > 6) ts = parseBigNumber(values[6]);
+    if (values.length > 0) x = bigNumberFromBase64OrFrom(values[0]);
+    if (values.length > 1) vx = bigNumberFromBase64OrFrom(values[1]);
+    if (values.length > 2) vz = bigNumberFromBase64OrFrom(values[2]);
+    if (values.length > 3) vtot = bigNumberFromBase64OrFrom(values[3]);
+    if (values.length > 4) I = bigNumberFromBase64OrFrom(values[4]);
+    if (values.length > 5) t = bigNumberFromBase64OrParse(values[5]);
+    if (values.length > 6) ts = bigNumberFromBase64OrParse(values[6]);
     if (values.length > 7) pubTime = Number(values[7]);
     if (values.length > 8) resetTime = Number(values[8]);
   
     updateC();
-  };
+};
 
 var getXexp = () => (BigNumber.from(3.2 + 0.1*xExp.level));
 var getXexpstr = () => (xExp.level == 0 ? "3.2" : xExp.level == 1 ? "3.3" : "3.4")

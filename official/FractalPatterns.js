@@ -358,13 +358,19 @@ var postPublish = () => {
   theory.invalidateTertiaryEquation();
   theory.invalidateQuaternaryValues();
 };
-var getInternalState = () => `${q} ${r} ${t_cumulative}`;
+
+var getInternalState = () => `${q.toBase64String()} ${r.toBase64String()} ${t_cumulative.toBase64String()}`;
 
 var setInternalState = (state) => {
+  const bigNumberFromBase64OrParse = (value) => {
+    let result;
+    try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+    return result;
+  }
   let values = state.split(" ");
-  if (values.length > 0) q = parseBigNumber(values[0]);
-  if (values.length > 1) r = parseBigNumber(values[1]);
-  if (values.length > 2) t_cumulative = parseBigNumber(values[2]);
+  if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
+  if (values.length > 1) r = bigNumberFromBase64OrParse(values[1]);
+  if (values.length > 2) t_cumulative = bigNumberFromBase64OrParse(values[2]);
 
   updateN_flag = true;
 };
@@ -518,19 +524,18 @@ var fadeBackground = (image, opacity) => {
 var updateBackgroundImage = (elapsedTime) => {
   if (lastTheme != game.settings.theme) {
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequenceLight.png?raw=true");
+      backgroundImages[0].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternToothpickSequenceLight.png");
     else
-      backgroundImages[0].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternToothpickSequence.png?raw=true");
+      backgroundImages[0].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternToothpickSequence.png");
   
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburtonLight.png?raw=true");
+      backgroundImages[1].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternUlamWarburtonLight.png");
     else
-      backgroundImages[1].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternUlamWarburton.png?raw=true");
-    
+      backgroundImages[1].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternUlamWarburton.png");
     if (game.settings.theme == Theme.LIGHT)
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangleLight.png?raw=true");
+      backgroundImages[2].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternSierpinskiTriangleLight.png");
     else
-      backgroundImages[2].source = ImageSource.fromUri("https://github.com/conicgames/custom-theories/blob/main/assets/FractalPatternSierpinskiTriangle.png?raw=true");
+      backgroundImages[2].source = ImageSource.fromUri("https://raw.githubusercontent.com/conicgames/custom-theories/refs/heads/main/assets/FractalPatternSierpinskiTriangle.png");
 
     lastTheme = game.settings.theme;
   }

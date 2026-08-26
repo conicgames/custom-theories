@@ -526,22 +526,28 @@ var postPublish = () => {
     num_publications++;
 }
 
-var getInternalState = () => `${num_publications} ${t} ${q1} ${q2} ${q3} ${q4} ${q5} ${q6} ${q7} ${q8} ${q9} ${r}`
+var getInternalState = () => `${num_publications} ${t.toBase64String()} ${q1.toBase64String()} ${q2.toBase64String()} ${q3.toBase64String()} ${q4.toBase64String()} ${q5.toBase64String()} ${q6.toBase64String()} ${q7.toBase64String()} ${q8.toBase64String()} ${q9.toBase64String()} ${r.toBase64String()}`
 
 var setInternalState = (state) => {
+    const bigNumberFromBase64OrParse = (value) => {
+        let result;
+        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
+        return result;
+    }
+
     let values = state.split(" ");
     if (values.length > 0) num_publications = parseInt(values[0]);
-    if (values.length > 1) t = parseBigNumber(values[1]);
-    if (values.length > 2) q1 = parseBigNumber(values[2]);
-    if (values.length > 3) q2 = parseBigNumber(values[3]);
-    if (values.length > 4) q3 = parseBigNumber(values[4]);
-    if (values.length > 5) q4 = parseBigNumber(values[5]);
-    if (values.length > 6) q5 = parseBigNumber(values[6]);
-    if (values.length > 7) q6 = parseBigNumber(values[7]);
-    if (values.length > 8) q7 = parseBigNumber(values[8]);
-    if (values.length > 9) q8 = parseBigNumber(values[9]);
-    if (values.length > 10) q9 = parseBigNumber(values[10]);
-    if (values.length > 11) r = parseBigNumber(values[11]);
+    if (values.length > 1) t = bigNumberFromBase64OrParse(values[1]);
+    if (values.length > 2) q1 = bigNumberFromBase64OrParse(values[2]);
+    if (values.length > 3) q2 = bigNumberFromBase64OrParse(values[3]);
+    if (values.length > 4) q3 = bigNumberFromBase64OrParse(values[4]);
+    if (values.length > 5) q4 = bigNumberFromBase64OrParse(values[5]);
+    if (values.length > 6) q5 = bigNumberFromBase64OrParse(values[6]);
+    if (values.length > 7) q6 = bigNumberFromBase64OrParse(values[7]);
+    if (values.length > 8) q7 = bigNumberFromBase64OrParse(values[8]);
+    if (values.length > 9) q8 = bigNumberFromBase64OrParse(values[9]);
+    if (values.length > 10) q9 = bigNumberFromBase64OrParse(values[10]);
+    if (values.length > 11) r = bigNumberFromBase64OrParse(values[11]);
 }
 
 
