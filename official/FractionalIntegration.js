@@ -11,7 +11,7 @@ var description =
   "Fractional integration is a way to calculate what is between a function and its integral and is a smooth transition. " +
   "As such, as a fractional integral approaches 1, it should become the integral.";
 var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
-var version = 5;
+var version = 6;
 var releaseOrder = "5";
 
 requiresGameVersion("1.4.33");
@@ -272,7 +272,7 @@ var init = () => {
       } else if (gxUpg.level == 1 || gxUpg.maxLevel < 3) {
         return "$\\text{Approximate }\\log_{10}(1+x) \\text{ to 5 terms}$";
       }
-      return "$\\text{Approximate }e^{x} \\text{ to 6 terms and\\\\Remove / } \\pi \\text{ in the integral limit} $";
+      return "$\\text{Approximate }e^{x} \\text{ to 6 terms and}\\\\\\text{remove / } \\pi \\text{ in the integral limit} $";
     };
     gxUpg.getInfo = (_) => {
       if (gxUpg.level == 0 || gxUpg.maxLevel < 2) {
@@ -289,15 +289,15 @@ var init = () => {
     baseUpg = theory.createMilestoneUpgrade(5, 2);
     baseUpg.getDescription = (_) => {
       if (baseUpg.level == 0 || baseUpg.maxLevel < 2) {
-        return "$\\text{Improve } \\lambda \\text{ Fraction to } 2/3^{i}$";
+        return "$\\text{Improve } \\lambda \\text{ fraction to } 2/3^{i}$";
       }
-      return "$\\text{Improve } \\lambda \\text{ Fraction to } 3/4^{i}$";
+      return "$\\text{Improve } \\lambda \\text{ fraction to } 3/4^{i}$";
     };
     baseUpg.getInfo = (_) => {
       if (baseUpg.level == 0 || baseUpg.maxLevel < 2) {
-        return "$\\text{Improve } \\lambda \\text{ Fraction to } 2/3^{i}$";
+        return "$\\text{Improve } \\lambda \\text{ fraction to } 2/3^{i}$";
       }
-      return "$\\text{Improve } \\lambda \\text{ Fraction to } 3/4^{i}$";
+      return "$\\text{Improve } \\lambda \\text{ fraction to } 3/4^{i}$";
     };
     baseUpg.boughtOrRefunded = (_) => {
       lambda_base = BigNumber.from(2 + baseUpg.level);
