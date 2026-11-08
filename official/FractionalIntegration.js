@@ -46,7 +46,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII 
 "Mathis S. & Samthi99 - Français\n" +
 "maimai - 日本語\n" +
 "zalut_sky - Русский";
-var version = 5;
+var version = 6;
 var releaseOrder = "5";
 
 requiresGameVersion("1.4.33");
