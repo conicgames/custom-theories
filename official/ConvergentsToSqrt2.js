@@ -161,17 +161,11 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateTertiaryEquation();
 }
 
-var getInternalState = () => `${q.toBase64String()}`
+var getInternalState = () => `${q}`
 
 var setInternalState = (state) => {
-    const bigNumberFromBase64OrParse = (value) => {
-        let result;
-        try { result = BigNumber.fromBase64String(value); } catch { result = parseBigNumber(value); };
-        return result;
-    }
-
     let values = state.split(" ");
-    if (values.length > 0) q = bigNumberFromBase64OrParse(values[0]);
+    if (values.length > 0) q = parseBigNumber(values[0]);
 }
 
 var postPublish = () => {
