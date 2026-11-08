@@ -128,6 +128,7 @@ var authors = 'prop (Minh)\n\n' +
 'aervnu - Deutsch\n' +
 'Jooo & Warzen User - Español\n' +
 'Mathis S. - Français\n' +
+'maimai - 日本語\n' +
 'hotab - Русский\n' +
 'BotAn & hotab - Українська\n' +
 '66.69 - Filipino\n' +

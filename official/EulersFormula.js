@@ -205,7 +205,13 @@ b і c — змінні, що модифікують cos(t) та isin(t)
     };
     return descs[language] || descs.en;
 };
-var authors = "Snaeky (SnaekySnacks#1161) - Structuring\nXLII (XLII#0042) - Balancing\npeanut (peanut#6368) - Developer";
+var authors = "Snaeky (SnaekySnacks#1161) - Structuring\nXLII (XLII#0042) - Balancing\npeanut (peanut#6368) - Developer\n\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский\n" +
+"BotAn - Українська";
 var version = 6;
 var releaseOrder = "3";
 

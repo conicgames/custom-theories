@@ -40,7 +40,12 @@ Ainsi, lorsqu'une intégrale fractionnelle approche 1, elle doit devenir l'inté
   };
   return descs[language] || descs.en;
 };
-var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing";
+var authors = "Snaeky (SnaekySnacks#1161) - Idea\nGen (Gen#3006) - Coding\nXLII (XLII#0042) - Balancing\n\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский";
 var version = 5;
 var releaseOrder = "5";
 
@@ -117,13 +122,13 @@ const locStrings = {
     gxMilestoneDesc1: `Approximate $\\sin(x)$ to 3 terms`,
     gxMilestoneDesc2: `Approximate $\\log_{10}(1+x)$ to 5 terms`,
     gxMilestoneDesc3:
-`Approximate $e^{x}$ to 6 terms
+`Approximate $e^{x}$ to 6 terms and
 Remove $/\\pi$ in the integral limit`,
     gxMilestoneInfo1: `Change $g(x)$ to $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
     gxMilestoneInfo2: `Change $g(x)$ to $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
     gxMilestoneInfo3: `Change $g(x)$ to $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ & $q/\\pi \\to q$`,
-    lambdaMilestone1: `Improve $\\lambda$ Fraction to $2/3^{i}$`,
-    lambdaMilestone2: `Improve $\\lambda$ Fraction to $3/4^{i}$`,
+    lambdaMilestone1: `Improve $\\lambda$ fraction to $2/3^{i}$`,
+    lambdaMilestone2: `Improve $\\lambda$ fraction to $3/4^{i}$`,
     story1Title: `An Idea`,
     story1:
 `While studying some techniques in integration, you think about what it would mean to have a partial derivative or integral...
@@ -223,8 +228,8 @@ Entferne $/\\pi$ im dem Integrallimit`,
     gxMilestoneInfo1: `Verändere $g(x)$ zu $x-\\frac{x^3}{3!}+\\frac{x^5}{5!}$`,
     gxMilestoneInfo2: `Verändere $g(x)$ zu $(x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\frac{x^5}{5})/\\ln(10)$`,
     gxMilestoneInfo3: `Verändere $g(x)$ zu $1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\frac{x^4}{4!}+\\frac{x^5}{5!}$ & $q/\\pi \\to q$`,
-    lambdaMilestone1: `Verbessere die $\\lambda$ Fraktion zu $2/3^{i}$`,
-    lambdaMilestone2: `Verbessere die $\\lambda$ Fraktion zu $3/4^{i}$`,
+    lambdaMilestone1: `Verbessere die $\\lambda$ fraktion zu $2/3^{i}$`,
+    lambdaMilestone2: `Verbessere die $\\lambda$ fraktion zu $3/4^{i}$`,
     story1Title: `Eine Idee`,
     story1:
 `Beim Studium einiger Integrationstechniken denken Sie darüber nach, was es bedeuten würde, eine partielle Ableitung oder ein Integral zu haben...

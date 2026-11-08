@@ -50,7 +50,12 @@ Dans la théorie du problème de Bâle, placez-vous à la place d'Euler pendant 
     }
     return descs[language] || descs.en;
 };
-var authors = "Python's Koala\n\nThanks to Mathis S. for developing the simulation for theory balancing.";
+var authors = "Python's Koala\n\nThanks to Mathis S. for developing the simulation for theory balancing.\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский";
 var version = 2;
 var releaseOrder = "9";
 

@@ -57,7 +57,12 @@ Amusez-vous bien !`,
 };
 var authors = "Mathis S.\n" +
 "Thanks to the amazing Exponential Idle community for their support and feedback on this theory!\n"+
-"Special thanks to prop for helping me with parts of the code.";
+"Special thanks to prop for helping me with parts of the code.\n\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский";
 var version = 1;
 var releaseOrder = "8";
 

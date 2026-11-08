@@ -63,7 +63,13 @@ LaTeXに関する多くの協力と助言をしてくれたGen(gen1code)とNGZ(n
   };
   return descs[language] || descs.en;
 };
-var authors = "xlii";
+var authors = "xlii\n\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский\n" +
+"hotab - Українська";
 var version = 9;
 var releaseOrder = "6";
 

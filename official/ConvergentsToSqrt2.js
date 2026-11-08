@@ -35,7 +35,13 @@ var getDescription = (language) => {
     };
     return descs[language] || descs.en;
 };
-var authors = "Solarion#4131";
+var authors = "Solarion#4131\n\n" +
+"Translations:\n" +
+"Door - Deutsch\n" +
+"Mathis S. & Samthi99 - Français\n" +
+"maimai - 日本語\n" +
+"zalut_sky - Русский\n" +
+"BotAn - Українська";
 var version = 12;
 var releaseOrder = "4";
 
