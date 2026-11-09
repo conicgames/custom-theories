@@ -54,7 +54,7 @@ var authors = "Python's Koala\n\nThanks to Mathis S. for developing the simulati
 "Translations:\n" +
 "Door - Deutsch\n" +
 "Mathis S. & Samthi99 - Français\n" +
-"maimai - 日本語\n" +
+"Maimai - 日本語\n" +
 "zalut_sky - Русский";
 var version = 2;
 var releaseOrder = "9";
@@ -63,7 +63,7 @@ const locStrings = {
     example: {
         aPermaDesc: `{0}`,
         aPermaInfo: `{0}`,
-        qPermaDesc: `{0}`,
+        qPermaDesc: `{0}`,    
         qPermaInfo: `{0}`,
         rMilestoneDesc: ``,
         rMilestoneInfo: ``,
