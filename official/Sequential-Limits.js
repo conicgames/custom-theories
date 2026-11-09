@@ -118,7 +118,7 @@ var authors = "ellipsis\n\n" +
 "Translations:\n" +
 "Door - Deutsch\n" +
 "Mathis S. & Samthi99 - Français\n" +
-"maimai - 日本語\n" +
+"Maimai - 日本語\n" +
 "zalut_sky - Русский"; //display author in the "author" field
 var version = 9; //version id, make sure to change it on update
 var releaseOrder = "2";
