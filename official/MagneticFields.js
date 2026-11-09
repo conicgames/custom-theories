@@ -61,7 +61,7 @@ var authors = "Mathis S.\n" +
 "Translations:\n" +
 "Door - Deutsch\n" +
 "Mathis S. & Samthi99 - Français\n" +
-"maimai - 日本語\n" +
+"Maimai - 日本語\n" +
 "zalut_sky - Русский";
 var version = 1;
 var releaseOrder = "8";
