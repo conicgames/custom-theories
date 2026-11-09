@@ -120,7 +120,7 @@ var authors = "ellipsis\n\n" +
 "Mathis S. & Samthi99 - Français\n" +
 "maimai - 日本語\n" +
 "zalut_sky - Русский"; //display author in the "author" field
-var version = 8; //version id, make sure to change it on update
+var version = 9; //version id, make sure to change it on update
 var releaseOrder = "2";
 
 requiresGameVersion("1.4.33");
@@ -889,19 +889,19 @@ var getSecondaryEquation = () => {
     result += "{\\dot{\\rho}}_3 = b_1"; // first part of eq, i.e rho3dot = b1
     switch (gamma2.level){ //switch statemement based on the third milestone (b1 exponent) to add exponents if the milestone level is 1 - 4
         case 1:
-            result+= "^{\\!1.02}\\!";
+            result+= "^{1.02}";
             break;
         case 2:
-            result+= "^{\\!1.04}\\!";
+            result+= "^{1.04}";
             break;
     }
     result += "b_2"; //add b2 
     switch (gamma3.level){ //switch statemement based on the fourth milestone (b2 exponent) to add exponents if the milestone level is 1 - 4
         case 1:
-            result+= "^{\\!1.02}\\!";
+            result+= "^{1.02}";
             break;
         case 2:
-            result+= "^{\\!1.04}\\!";
+            result+= "^{1.04}";
             break;
     }
     result += "\\qquad "; //add a space
