@@ -209,7 +209,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Structuring\nXLII (XLII#0042) - Bala
 "Translations:\n" +
 "Door - Deutsch\n" +
 "Mathis S. & Samthi99 - Français\n" +
-"maimai - 日本語\n" +
+"Maimai - 日本語\n" +
 "zalut_sky - Русский\n" +
 "BotAn - Українська";
 var version = 6;
